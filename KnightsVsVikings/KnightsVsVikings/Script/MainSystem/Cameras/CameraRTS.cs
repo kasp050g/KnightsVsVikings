@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class CameraMove : Camera
+    public class CameraRTS : Camera
     {
         private float moveSpeed = 500;
 

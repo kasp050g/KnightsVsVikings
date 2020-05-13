@@ -10,10 +10,10 @@ namespace MainSystemFramework
     public class Camera
     {
         protected Matrix transform;
+        private bool isFirstUpdate;
 
         public Vector2 Position { get; set; }
         public Matrix Transform { get => transform; private set => transform = value; }
-        private bool IsFirstUpdate { get; set; }
 
         public Camera()
         {
@@ -27,7 +27,7 @@ namespace MainSystemFramework
 
         public virtual void OnSwitchScene()
         {
-            IsFirstUpdate = true;
+            isFirstUpdate = true;
         }
     }
 }
