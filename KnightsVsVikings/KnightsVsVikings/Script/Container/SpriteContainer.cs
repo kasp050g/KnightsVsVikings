@@ -25,9 +25,13 @@ namespace MainSystemFramework
         }
         #endregion
 
-        public Dictionary<string, Texture2D> sprite = new Dictionary<string, Texture2D>();
-        public Dictionary<string, List<Texture2D>> spriteList = new Dictionary<string, List<Texture2D>>();
-        public SpriteFont normalFont;
+        private Dictionary<string, Texture2D> sprite = new Dictionary<string, Texture2D>();
+        private Dictionary<string, List<Texture2D>> spriteList = new Dictionary<string, List<Texture2D>>();
+        private SpriteFont normalFont;
+
+        public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
+        public Dictionary<string, List<Texture2D>> SpriteList { get => spriteList; set => spriteList = value; }
+        public SpriteFont NormalFont { get => normalFont; set => normalFont = value; }
 
         public SpriteContainer()
         {
@@ -37,7 +41,7 @@ namespace MainSystemFramework
         public void LoadContent(ContentManager content)
         {
             // Normal Font
-            normalFont = content.Load<SpriteFont>("Font/NormalFont");
+            NormalFont = content.Load<SpriteFont>("Font/NormalFont");
 
             // The Pixel
             AddSprite(content.Load<Texture2D>("Images/MainSystem/Pixel"), "Pixel");
@@ -47,12 +51,12 @@ namespace MainSystemFramework
 
         private void AddSprite(Texture2D texture2D, string name)
         {
-            sprite.Add(name, texture2D);
+            Sprite.Add(name, texture2D);
         }
 
         private void AddSpriteList(List<Texture2D> texture2Ds, string name)
         {
-            spriteList.Add(name, texture2Ds);
+            SpriteList.Add(name, texture2Ds);
         }
     }
 }

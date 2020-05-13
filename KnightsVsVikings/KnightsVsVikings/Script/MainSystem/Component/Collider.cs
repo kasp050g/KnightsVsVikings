@@ -111,7 +111,7 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
-            texture = SpriteContainer.Instance.sprite["Pixel"];
+            texture = SpriteContainer.Instance.Sprite["Pixel"];
 
             if (size == new Vector2(0, 0))
             {

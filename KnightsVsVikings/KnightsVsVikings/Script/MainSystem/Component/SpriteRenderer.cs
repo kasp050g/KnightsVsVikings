@@ -33,7 +33,7 @@ namespace MainSystemFramework
         {
             if (Sprite == null)
             {
-                Sprite = SpriteContainer.Instance.sprite["Pixel"];
+                Sprite = SpriteContainer.Instance.Sprite["Pixel"];
             }
         }
 
@@ -77,7 +77,7 @@ namespace MainSystemFramework
         }
         public void SetSprite(string spriteName)
         {
-            sprite = SpriteContainer.Instance.sprite[spriteName];
+            sprite = SpriteContainer.Instance.Sprite[spriteName];
         }
 
         public override void Draw(SpriteBatch spriteBatch)

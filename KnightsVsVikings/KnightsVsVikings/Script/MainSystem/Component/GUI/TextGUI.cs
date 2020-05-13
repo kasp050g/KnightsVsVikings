@@ -48,7 +48,7 @@ namespace MainSystemFramework
         #region Constructors
         public TextGUI(string text)
         {
-            this.spriteFont = SpriteContainer.Instance.normalFont;
+            this.spriteFont = SpriteContainer.Instance.NormalFont;
             this.fontColor = Color.Black;
             this.fontScale = new Vector2(0.5f,0.5f);
             this.text = text;
@@ -81,7 +81,7 @@ namespace MainSystemFramework
         {
             if (spriteFont == null)
             {
-                this.spriteFont = SpriteContainer.Instance.normalFont;
+                this.spriteFont = SpriteContainer.Instance.NormalFont;
             }
             UpdateOriginPosition();
             base.Awake();

@@ -130,7 +130,7 @@ namespace MainSystemFramework
             }
             if (spriteFont == null)
             {
-                this.spriteFont = SpriteContainer.Instance.normalFont;
+                this.spriteFont = SpriteContainer.Instance.NormalFont;
             }
         }
 
