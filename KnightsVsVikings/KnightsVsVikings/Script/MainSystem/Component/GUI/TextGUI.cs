@@ -24,7 +24,7 @@ namespace MainSystemFramework
         #region Properties
         public Color FontColor { get => fontColor; set => fontColor = value; }
         public SpriteFont SpriteFont { get => spriteFont; set => spriteFont = value; }
-        public string Text { get { return text; } set { text = value; UpdateOriginPosition(); } }
+        public string Text { get { return text; } private set { text = value;  } }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
         
         public OriginPositionEnum OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
@@ -131,6 +131,12 @@ namespace MainSystemFramework
         public void UpdateOriginPosition()
         {
             Helper.UpdateOriginText(text, OriginRectangle, spriteFont, fontScale, originPositionEnum, ref newPosition);
+        }
+
+        public void SetText(string text)
+        {
+            this.text = text;
+            UpdateOriginPosition();
         }
 
         #endregion

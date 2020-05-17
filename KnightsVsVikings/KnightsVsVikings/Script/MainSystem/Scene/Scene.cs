@@ -21,12 +21,11 @@ namespace MainSystemFramework
         protected List<GameObject> gameObjects = new List<GameObject>();
         protected List<GameObject> guis = new List<GameObject>();
 
-        public List<Collider> Colliders { get; set; } = new List<Collider>();
-        public List<GUI> UIColliders { get; set; } = new List<GUI>();
-
         protected List<GameObject> gameObjectsToBeCreated = new List<GameObject>();
         protected List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
+        public List<Collider> Colliders { get; set; } = new List<Collider>();
+        public List<GUI> UIColliders { get; set; } = new List<GUI>();
         public string Name { get { return name; } set { name = value; } }
         public bool UpdateEnabled { get { return updateEnabled; } set { updateEnabled = value; } }
         public bool DrawEnabled { get { return drawEnabled; } set { drawEnabled = value; } }

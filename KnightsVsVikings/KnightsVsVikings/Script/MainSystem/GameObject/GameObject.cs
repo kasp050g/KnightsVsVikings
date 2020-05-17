@@ -9,13 +9,12 @@ namespace MainSystemFramework
 {
     public class GameObject
     {
+        private Dictionary<string, Component> components = new Dictionary<string, Component>();
+
         public GameObject MyParent { get; set; }
         public bool IsActive { get; set; }
         public Scene MyScene { get; set; }
         public Transform Transform { get; private set; }
-
-        private Dictionary<string, Component> components = new Dictionary<string, Component>();
-
         public string Tag { get; set; }
         public Dictionary<string, Component> Components { get => components; set => components = value; }
 

@@ -21,10 +21,7 @@ namespace MainSystemFramework
         public Vector2 DrawOffSet { get { return drawOffSet; } set { drawOffSet = value; } }
         public float Rotation { get { return rotation; } set { rotation = value; } }
 
-        public Transform()
-        {
 
-        }
 
         public Vector2 ForwardVector
         {
@@ -33,6 +30,17 @@ namespace MainSystemFramework
                 return new Vector2(
                     Helper.Cos(this.Rotation),
                     Helper.Sin(this.Rotation)
+                );
+            }
+        }
+
+        public Vector2 BackwardVector
+        {
+            get
+            {
+                return new Vector2(
+                    Helper.Cos(this.Rotation +180),
+                    Helper.Sin(this.Rotation +180)
                 );
             }
         }
@@ -48,7 +56,21 @@ namespace MainSystemFramework
             }
         }
 
+        public Vector2 LeftVector
+        {
+            get
+            {
+                return new Vector2(
+                    Helper.Cos(this.Rotation + 270),
+                    Helper.Sin(this.Rotation + 270)
+                );
+            }
+        }
 
+        public Transform()
+        {
+
+        }
 
         //public void LookAt(Vector2 positionToLookAt)
         //{

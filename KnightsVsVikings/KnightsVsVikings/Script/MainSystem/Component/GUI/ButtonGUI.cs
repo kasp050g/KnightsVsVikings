@@ -25,7 +25,7 @@ namespace MainSystemFramework
         Vector2 fontScale = new Vector2(1, 1);
 
         bool lastUpdate;
-        bool thisUpdate;
+        bool currentUpdate;
         #endregion
 
         #region Properties
@@ -38,6 +38,8 @@ namespace MainSystemFramework
         public SpriteFont SpriteFont { get => spriteFont; set => spriteFont = value; }
         public string Text { get => text; set => text = value; }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
+
+
         #endregion
 
         #region Constructors
@@ -147,7 +149,7 @@ namespace MainSystemFramework
                 if (Input.GetMouseButtonUp(MyMouseButtonsEnum.LeftButton) && lastUpdate == true)
                 {
                     lastUpdate = false;
-                    thisUpdate = false;
+                    currentUpdate = false;
                     if (OnClick != null)
                     {
                         OnClick();
@@ -156,7 +158,7 @@ namespace MainSystemFramework
 
                 if (Input.GetMouseButton(MyMouseButtonsEnum.LeftButton))
                 {
-                    if (thisUpdate == true)
+                    if (currentUpdate == true)
                     {
                         lastUpdate = true;
                     }
@@ -164,11 +166,11 @@ namespace MainSystemFramework
                     {
                         lastUpdate = false;
                     }
-                    thisUpdate = true;
+                    currentUpdate = true;
                 }
                 else
                 {
-                    thisUpdate = false;
+                    currentUpdate = false;
                 }
             }
             else

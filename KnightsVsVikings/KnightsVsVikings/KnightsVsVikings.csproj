@@ -50,7 +50,7 @@
     <Compile Include="Script\Container\SpriteContainer.cs" />
     <Compile Include="Script\MainSystem\Cameras\Camera.cs" />
     <Compile Include="Script\MainSystem\Cameras\CameraFollow.cs" />
-    <Compile Include="Script\MainSystem\Cameras\CameraMove.cs" />
+    <Compile Include="Script\MainSystem\Cameras\CameraRTS.cs" />
     <Compile Include="Script\MainSystem\Component\Collider.cs" />
     <Compile Include="Script\MainSystem\Component\Component.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\ButtonGUI.cs" />
