@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public enum MyMouseButtonsEnum
+    public enum EOriginPosition
     {
-        LeftButton, MiddleButton, RightButton
+        TopLeft, TopMid, TopRight,
+        MidLeft, Mid, MidRight,
+        BottomLeft, BottomMid, BottomRight
     }
 }

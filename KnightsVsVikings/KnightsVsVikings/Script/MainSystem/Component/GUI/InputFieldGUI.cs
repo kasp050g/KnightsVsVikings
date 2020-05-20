@@ -117,16 +117,16 @@ namespace MainSystemFramework
 
         public void SelectedInputField()
         {
-            if (MouseIsHovering && !Input.GetMouseButtonDown(MyMouseButtonsEnum.RightButton))
+            if (MouseIsHovering && !Input.GetMouseButtonDown(EMyMouseButtons.RightButton))
             {
-                if (Input.GetMouseButtonDown(MyMouseButtonsEnum.LeftButton))
+                if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton))
                 {
                     currentSelected = true;
                 }
             }
             else
             {
-                if (Input.GetMouseButtonDown(MyMouseButtonsEnum.LeftButton) || Input.GetMouseButtonDown(MyMouseButtonsEnum.RightButton))
+                if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton) || Input.GetMouseButtonDown(EMyMouseButtons.RightButton))
                 {
                     currentSelected = false;
                 }

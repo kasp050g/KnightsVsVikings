@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public enum OriginPositionEnum
+    public enum EInputState
     {
-        TopLeft, TopMid, TopRight,
-        MidLeft, Mid, MidRight,
-        BottomLeft, BottomMid, BottomRight
+        GetKey, GetKeyDown, GetKeyUp
     }
 }

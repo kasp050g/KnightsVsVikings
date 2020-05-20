@@ -24,14 +24,14 @@ namespace MainSystemFramework
         }
         #endregion
 
-        private  SceneContainer sceneContainer = new SceneContainer();
-        private  CameraFollow camera = new CameraFollow();
-        private  Scene currentScene;
+        private SceneContainer sceneContainer = new SceneContainer();
+        private CameraFollow camera = new CameraFollow();
+        private Scene currentScene;
 
-        public  CameraFollow Camera { get => camera; set => camera = value; }
-        public  SceneContainer SceneContainer { get => sceneContainer; set => sceneContainer = value; }
+        public CameraFollow Camera { get => camera; set => camera = value; }
+        public SceneContainer SceneContainer { get => sceneContainer; set => sceneContainer = value; }
         // TODO : fix
-        public  Scene CurrentScene
+        public Scene CurrentScene
         {
             get
             {
@@ -57,13 +57,13 @@ namespace MainSystemFramework
             }
         }
 
-        public  void Initialize()
+        public void Initialize()
         {
             SceneContainer.Initialize();
             CurrentScene = SceneContainer.Scenes[0];
         }
 
-        public  void UpdateScenes()
+        public void UpdateScenes()
         {
             CurrentScene.Update();
 
@@ -80,7 +80,7 @@ namespace MainSystemFramework
             }
         }
 
-        public  void DrawScenes(SpriteBatch spriteBatch)
+        public void DrawScenes(SpriteBatch spriteBatch)
         {
             CurrentScene.Draw(spriteBatch);
 

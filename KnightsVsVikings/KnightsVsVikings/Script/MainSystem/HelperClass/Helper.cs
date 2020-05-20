@@ -89,22 +89,22 @@ namespace MainSystemFramework
             }
         }
 
-        public static void UpdateOrigin(GameObject go,Texture2D sprite, OriginPositionEnum originPositionEnum)
+        public static void UpdateOrigin(GameObject go,Texture2D sprite, EOriginPosition originPositionEnum)
         {
             // --- Top ---
 
             // top left
-            if (OriginPositionEnum.TopLeft == originPositionEnum)
+            if (EOriginPosition.TopLeft == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2(0, 0);
             }
             // top mid
-            else if (OriginPositionEnum.TopMid == originPositionEnum)
+            else if (EOriginPosition.TopMid == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width / 2f, 0);
             }
             // top rigth
-            else if (OriginPositionEnum.TopRight == originPositionEnum)
+            else if (EOriginPosition.TopRight == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width, 0);
             }
@@ -112,17 +112,17 @@ namespace MainSystemFramework
             // --- Mid ---
 
             // mid left
-            else if (OriginPositionEnum.MidLeft == originPositionEnum)
+            else if (EOriginPosition.MidLeft == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2(0, (float)sprite.Height / 2f);
             }
             // mid 
-            else if (OriginPositionEnum.Mid == originPositionEnum)
+            else if (EOriginPosition.Mid == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width / 2f, (float)sprite.Height / 2f);
             }
             // mid rigth
-            else if (OriginPositionEnum.MidRight == originPositionEnum)
+            else if (EOriginPosition.MidRight == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width, (float)sprite.Height / 2f);
             }
@@ -130,17 +130,17 @@ namespace MainSystemFramework
             // --- Bottom ---
 
             // bottom left
-            else if (OriginPositionEnum.BottomLeft == originPositionEnum)
+            else if (EOriginPosition.BottomLeft == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2(0, (float)sprite.Height);
             }
             // bottom mid
-            else if (OriginPositionEnum.BottomMid == originPositionEnum)
+            else if (EOriginPosition.BottomMid == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width / 2f, (float)sprite.Height);
             }
             // bottom rigth
-            else if (OriginPositionEnum.BottomRight == originPositionEnum)
+            else if (EOriginPosition.BottomRight == originPositionEnum)
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width, (float)sprite.Height);
             }
@@ -149,26 +149,26 @@ namespace MainSystemFramework
             //go.Transform.Origin = new Vector2(0,0);
         }
 
-        public static void UpdateOriginText(string text, Rectangle rectangle,SpriteFont spriteFont,Vector2 Scale, OriginPositionEnum originPositionEnum,ref Vector2 newPositon)
+        public static void UpdateOriginText(string text, Rectangle rectangle,SpriteFont spriteFont,Vector2 Scale, EOriginPosition originPositionEnum,ref Vector2 newPositon)
         {
             // --- Top ---
 
             // top left
-            if (OriginPositionEnum.TopLeft == originPositionEnum)
+            if (EOriginPosition.TopLeft == originPositionEnum)
             {
                 var x = rectangle.X;
                 var y = rectangle.Y;
                 newPositon = new Vector2(x, y);
             }
             // top mid
-            else if (OriginPositionEnum.TopMid == originPositionEnum)
+            else if (EOriginPosition.TopMid == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 2)) - (spriteFont.MeasureString(text).X / 2) * Scale.X;
                 var y = rectangle.Y;
                 newPositon = new Vector2(x, y);
             }
             // top rigth
-            else if (OriginPositionEnum.TopRight == originPositionEnum)
+            else if (EOriginPosition.TopRight == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 1)) - (spriteFont.MeasureString(text).X / 1) * Scale.X;
                 var y = rectangle.Y;
@@ -178,21 +178,21 @@ namespace MainSystemFramework
             // --- Mid ---
 
             // mid left
-            else if (OriginPositionEnum.MidLeft == originPositionEnum)
+            else if (EOriginPosition.MidLeft == originPositionEnum)
             {
                 var x = rectangle.X;
                 var y = (rectangle.Y + (rectangle.Height / 2)) - (spriteFont.MeasureString(text).Y / 2) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
             // mid 
-            else if (OriginPositionEnum.Mid == originPositionEnum)
+            else if (EOriginPosition.Mid == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 2)) - (spriteFont.MeasureString(text).X / 2) * Scale.X;
                 var y = (rectangle.Y + (rectangle.Height / 2)) - (spriteFont.MeasureString(text).Y / 2) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
             // mid rigth
-            else if (OriginPositionEnum.MidRight == originPositionEnum)
+            else if (EOriginPosition.MidRight == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 1)) - (spriteFont.MeasureString(text).X / 1) * Scale.X;
                 var y = (rectangle.Y + (rectangle.Height / 2)) - (spriteFont.MeasureString(text).Y / 2) * Scale.Y;
@@ -202,21 +202,21 @@ namespace MainSystemFramework
             // --- Bottom ---
 
             // bottom left
-            else if (OriginPositionEnum.BottomLeft == originPositionEnum)
+            else if (EOriginPosition.BottomLeft == originPositionEnum)
             {
                 var x = rectangle.X;
                 var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 1) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
             // bottom mid
-            else if (OriginPositionEnum.BottomMid == originPositionEnum)
+            else if (EOriginPosition.BottomMid == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 2)) - (spriteFont.MeasureString(text).X / 2) * Scale.X;
                 var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 2) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
             // bottom rigth
-            else if (OriginPositionEnum.BottomRight == originPositionEnum)
+            else if (EOriginPosition.BottomRight == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 1)) - (spriteFont.MeasureString(text).X / 1) * Scale.X;
                 var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 1) * Scale.Y;

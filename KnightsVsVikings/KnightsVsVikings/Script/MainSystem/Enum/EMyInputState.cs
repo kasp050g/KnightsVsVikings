@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public enum InputStateEnum
+    public enum EMyInputState
     {
-        GetKey, GetKeyDown, GetKeyUp
+        GetMouseButton, GetMouseButtonDown, GetMouseButtonUp
     }
 }

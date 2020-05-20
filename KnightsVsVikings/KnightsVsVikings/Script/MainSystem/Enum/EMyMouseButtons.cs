@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public enum MyInputStateEnum
+    public enum EMyMouseButtons
     {
-        GetMouseButton, GetMouseButtonDown, GetMouseButtonUp
+        LeftButton, MiddleButton, RightButton
     }
 }

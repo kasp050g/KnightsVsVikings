@@ -28,7 +28,7 @@ namespace MainSystemFramework
             this.IsWorldUI = isWorldUI;
             this.BlockGUI = blockUI;
         }
-        public ImageGUI(SpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color color,OriginPositionEnum originPositionEnum)
+        public ImageGUI(SpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color color,EOriginPosition originPositionEnum)
         {
             this.SpriteRenderer = spriteRenderer;
             this.IsWorldUI = isWorldUI;

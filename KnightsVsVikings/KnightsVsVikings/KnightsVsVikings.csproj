@@ -59,10 +59,10 @@
     <Compile Include="Script\MainSystem\Component\GUI\InputFieldGUI.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\TextGUI.cs" />
     <Compile Include="Script\MainSystem\Component\SpriteRenderer.cs" />
-    <Compile Include="Script\MainSystem\Enum\InputStateEnum.cs" />
-    <Compile Include="Script\MainSystem\Enum\MyInputStateEnum.cs" />
-    <Compile Include="Script\MainSystem\Enum\MyMouseButtonsEnum.cs" />
-    <Compile Include="Script\MainSystem\Enum\OriginPositionEnum.cs" />
+    <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
+    <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
+    <Compile Include="Script\MainSystem\Enum\EMyMouseButtons.cs" />
+    <Compile Include="Script\MainSystem\Enum\EOriginPosition.cs" />
     <Compile Include="Script\MainSystem\GameObject\GameObject.cs" />
     <Compile Include="Script\MainSystem\GameObject\Transform.cs" />
     <Compile Include="Script\MainSystem\HelperClass\Helper.cs" />

@@ -146,7 +146,7 @@ namespace MainSystemFramework
                 }
 
                 SpriteRenderer.Color = colorHovering;
-                if (Input.GetMouseButtonUp(MyMouseButtonsEnum.LeftButton) && lastUpdate == true)
+                if (Input.GetMouseButtonUp(EMyMouseButtons.LeftButton) && lastUpdate == true)
                 {
                     lastUpdate = false;
                     currentUpdate = false;
@@ -156,7 +156,7 @@ namespace MainSystemFramework
                     }
                 }
 
-                if (Input.GetMouseButton(MyMouseButtonsEnum.LeftButton))
+                if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
                 {
                     if (currentUpdate == true)
                     {

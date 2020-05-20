@@ -15,7 +15,7 @@ namespace MainSystemFramework
         private Color color = Color.White;
         private SpriteEffects spriteEffects = SpriteEffects.None;
         private float layerDepth = 0;
-        private OriginPositionEnum originPositionEnum = OriginPositionEnum.TopLeft;
+        private EOriginPosition originPositionEnum = EOriginPosition.TopLeft;
         private Vector2 offSet = new Vector2(0, 0);
         #endregion
 
@@ -24,7 +24,7 @@ namespace MainSystemFramework
         public Color Color { get => color; set => color = value; }
         public SpriteEffects SpriteEffects { get => spriteEffects; set => spriteEffects = value; }
         public float LayerDepth { get => layerDepth; set => layerDepth = value; }
-        public OriginPositionEnum OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
+        public EOriginPosition OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
         public Vector2 OffSet { get => offSet; set => offSet = value; }
         #endregion
 
@@ -47,20 +47,20 @@ namespace MainSystemFramework
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, OriginPositionEnum originPositionEnum)
+        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum)
         {
             this.OriginPositionEnum = originPositionEnum;
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, OriginPositionEnum originPositionEnum, float layerDepth)
+        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth)
         {
             this.layerDepth = layerDepth;
             this.OriginPositionEnum = originPositionEnum;
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, OriginPositionEnum originPositionEnum, float layerDepth, Color color)
+        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth, Color color)
         {
             this.color = color;
             this.layerDepth = layerDepth;
@@ -114,7 +114,7 @@ namespace MainSystemFramework
             return (SpriteRenderer)this.MemberwiseClone();
         }
 
-        public void SetOrigin(OriginPositionEnum originPositionEnum)
+        public void SetOrigin(EOriginPosition originPositionEnum)
         {
             this.originPositionEnum = originPositionEnum;
             Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);

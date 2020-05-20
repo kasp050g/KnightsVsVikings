@@ -18,7 +18,7 @@ namespace MainSystemFramework
 
         Vector2 newPosition = new Vector2(0, 0);
         Vector2 offsetPosition = new Vector2(0, 0);
-        OriginPositionEnum originPositionEnum = OriginPositionEnum.TopLeft;
+        EOriginPosition originPositionEnum = EOriginPosition.TopLeft;
         #endregion
 
         #region Properties
@@ -27,7 +27,7 @@ namespace MainSystemFramework
         public string Text { get { return text; } private set { text = value;  } }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
         
-        public OriginPositionEnum OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
+        public EOriginPosition OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
         public Vector2 OffsetPosition { get => offsetPosition; set => offsetPosition = value; }
         public virtual Rectangle OriginRectangle
         {
@@ -62,7 +62,7 @@ namespace MainSystemFramework
             this.text = text;
             
         }
-        public TextGUI(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,OriginPositionEnum originPositionEnum)
+        public TextGUI(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,EOriginPosition originPositionEnum)
         {
             this.spriteFont = spriteFont;
             this.fontColor = fontColor;
