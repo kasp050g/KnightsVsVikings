@@ -53,20 +53,6 @@ namespace MainSystemFramework
             this.size = size;
             this.offSet = offSet;
         }
-
-        //public Collider(SpriteRenderer spriteRenderer)
-        //{
-        //    this.size = new Vector2(spriteRenderer.Sprite.Width, spriteRenderer.Sprite.Height);
-        //    texture = SpriteContainer.Instance.sprite["Pixel"];
-        //}
-
-        //outDate
-        //public Collider(SpriteRenderer spriteRenderer, IGameListner gameListner)
-        //{
-        //    onCollisionEvent.Attach(gameListner);
-        //    this.size = new Vector2(spriteRenderer.Sprite.Width, spriteRenderer.Sprite.Height);
-        //    texture = SpriteContainer.Instance.sprite["Pixel"];
-        //}
         #endregion
 
         #region Methods 
