@@ -13,12 +13,14 @@ namespace MainSystemFramework
         private Vector2 origin;
         private Vector2 scale = new Vector2(1, 1);
         private Vector2 drawOffSet = new Vector2(0, 0);
+        private Vector2 velocity = new Vector2(0, 0);
         private float rotation;
 
         public Vector2 Position { get { return position; } set { position = value; } }
         public Vector2 Origin { get { return origin; } set { origin = value; } }
         public Vector2 Scale { get { return scale; } set { scale = value; } }
         public Vector2 DrawOffSet { get { return drawOffSet; } set { drawOffSet = value; } }
+        public Vector2 Velocity { get => velocity; set => velocity = value; }
         public float Rotation { get { return rotation; } set { rotation = value; } }
 
 
@@ -39,8 +41,8 @@ namespace MainSystemFramework
             get
             {
                 return new Vector2(
-                    Helper.Cos(this.Rotation +180),
-                    Helper.Sin(this.Rotation +180)
+                    Helper.Cos(this.Rotation + 180),
+                    Helper.Sin(this.Rotation + 180)
                 );
             }
         }
@@ -66,6 +68,8 @@ namespace MainSystemFramework
                 );
             }
         }
+
+
 
         public Transform()
         {

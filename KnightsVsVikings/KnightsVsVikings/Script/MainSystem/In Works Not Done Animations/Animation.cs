@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using KnightsVsVikings.Script.MainSystem.Enum;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace MainSystemFramework
         public string Name { get; private set; }
         public float Fps { get; private set; }
 
-        public Animation(List<Texture2D> sprites,string name,float fps)
+        public Animation(List<Texture2D> sprites, string name, float fps)
         {
             this.Sprites = sprites.ToArray();
             this.Name = name;

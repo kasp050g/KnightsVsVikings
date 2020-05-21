@@ -7,7 +7,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{29F38F0D-4D38-4239-BBE1-998E51B6FE11}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KnightsVsVikings</RootNamespace>
     <AssemblyName>KnightsVsVikings</AssemblyName>
@@ -40,6 +40,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
@@ -59,6 +62,7 @@
     <Compile Include="Script\MainSystem\Component\GUI\InputFieldGUI.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\TextGUI.cs" />
     <Compile Include="Script\MainSystem\Component\SpriteRenderer.cs" />
+    <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyMouseButtons.cs" />
@@ -67,9 +71,11 @@
     <Compile Include="Script\MainSystem\GameObject\Transform.cs" />
     <Compile Include="Script\MainSystem\HelperClass\Helper.cs" />
     <Compile Include="Script\MainSystem\In Works Not Done Animations\Animation.cs" />
-    <Compile Include="Script\MainSystem\In Works Not Done Animations\AnimationContainer.cs" />
-    <Compile Include="Script\MainSystem\In Works Not Done Animations\AnimationController.cs" />
+    <Compile Include="Script\MainSystem\In Works Not Done Animations\Animation_01.cs" />
     <Compile Include="Script\MainSystem\In Works Not Done Animations\Animator.cs" />
+    <Compile Include="Script\MainSystem\In Works Not Done Animations\Animator_01.cs" />
+    <Compile Include="Script\MainSystem\In Works Not Done Animations\BlendTree.cs" />
+    <Compile Include="Script\MainSystem\In Works Not Done Animations\BlendTree_01.cs" />
     <Compile Include="Script\MainSystem\ObserverPattern\GameEvent.cs" />
     <Compile Include="Script\MainSystem\ObserverPattern\IGameListner.cs" />
     <Compile Include="Script\MainSystem\Scene\Scene.cs" />
@@ -85,6 +91,8 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
+    <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
+    <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

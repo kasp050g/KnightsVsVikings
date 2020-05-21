@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KnightsVsVikings.Script.TheGame.Test;
 using MainSystemFramework;
 
 namespace KnightsVsVikings
@@ -12,6 +13,7 @@ namespace KnightsVsVikings
         public override void Initialize()
         {
             base.Initialize();
+            TestZone();
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -27,6 +29,13 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
+        }
+
+
+        public void TestZone()
+        {
+            Test_JAmen test_JAmen = new Test_JAmen();
+            Instantiate(test_JAmen.Jamen());
         }
     }
 }

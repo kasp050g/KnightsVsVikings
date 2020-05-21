@@ -241,9 +241,6 @@ namespace MainSystemFramework
                                 UIColliders.Add(item as GUI);
                             }
                         }
-                        //GUI gui = go.GetComponent<GUI>();
-                        //if (gui.BlockGUI)
-                        //    UIColliders.Add(gui);
                     }
                 }
             }
