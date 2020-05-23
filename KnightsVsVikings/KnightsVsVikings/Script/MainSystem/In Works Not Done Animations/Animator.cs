@@ -16,7 +16,7 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
         private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
         private Dictionary<string, BlendTree> blendTrees = new Dictionary<string, BlendTree>();
 
-        private EFacingDirection facingDirection;
+        private EFacingDirection facingDirection = EFacingDirection.Down;
         private Animation currentAnimation = null;
         private BlendTree currentBlendTree = null;
         private float timeElapsed;
@@ -26,6 +26,11 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
         {
             base.Awake();
             spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+
+            if (currentAnimation.animationType == EAnimationType.SpriteArray)
+            {
+                spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
+            }
         }
         public override void Start()
         {
@@ -52,22 +57,46 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
         {
             if (currentAnimation != null)
             {
-                if (currentBlendTree != null && GameObject.Transform.Velocity != new Vector2(0,0))
+                if (currentBlendTree != null && GameObject.Transform.Velocity != new Vector2(0, 0))
                 {
-                    currentAnimation = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer,ref facingDirection);
+                    Animation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
+                    if (currentAnimation != tmp)
+                    {
+                        currentAnimation = tmp;
+                    }
                 }
 
                 timeElapsed += Time.deltaTime;
 
                 currentIndex = (int)(timeElapsed * currentAnimation.Fps);
 
-                if (currentIndex > currentAnimation.Sprites.Length - 1)
+                if (currentAnimation.SpriteSheet != null)
                 {
-                    timeElapsed = 0;
-                    currentIndex = 0;
-                }
+                    if (currentIndex > currentAnimation.SpritePositions.Count - 1)
+                    {
+                        timeElapsed = 0;
+                        currentIndex = 0;
+                    }
 
-                spriteRenderer.Sprite = currentAnimation.Sprites[currentIndex];
+                    spriteRenderer.Sprite = currentAnimation.SpriteSheet;
+
+                    spriteRenderer.Rectangle = new Rectangle(
+                    (int)currentAnimation.SpritePositions[currentIndex].X,
+                    (int)currentAnimation.SpritePositions[currentIndex].Y,
+                    (int)currentAnimation.SpriteSize.X,
+                    (int)currentAnimation.SpriteSize.Y
+                    );
+                }
+                else
+                {
+                    if (currentIndex > currentAnimation.Sprites.Length - 1)
+                    {
+                        timeElapsed = 0;
+                        currentIndex = 0;
+                    }
+
+                    spriteRenderer.Sprite = currentAnimation.Sprites[currentIndex];
+                }
             }
         }
 
@@ -85,14 +114,26 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
             currentAnimation = null;
             currentBlendTree = null;
 
+            timeElapsed = 0;
+            currentIndex = 0;
+
             if (animations.ContainsKey(animationName))
             {
                 currentAnimation = animations[animationName];
+                if (currentAnimation.animationType == EAnimationType.SpriteArray && spriteRenderer != null)
+                {
+                    spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
+                }
             }
             else if (blendTrees.ContainsKey(animationName))
             {
                 currentBlendTree = blendTrees[animationName];
                 currentAnimation = currentBlendTree.FacingCheck(facingDirection);
+
+                if (currentAnimation.animationType == EAnimationType.SpriteArray && spriteRenderer != null)
+                {
+                    spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
+                }
             }
         }
     }

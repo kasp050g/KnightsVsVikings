@@ -78,53 +78,15 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
             {
                 case EFacingDirection.Up:
                     return Up;
-                    break;
                 case EFacingDirection.Down:
                     return Down;
-                    break;
                 case EFacingDirection.Left:
                     return Left;
-                    break;
                 case EFacingDirection.Rigth:
                     return Rigth;
-                    break;
                 default:
                     return Down;
-                    break;
             }
         }
-
-
-
-
-
-        //public void Facing(Vector2 vel)
-        //{
-        //    float y = vel.Y;
-        //    float x = vel.X;
-
-        //    if (0 < Math.Abs(y))
-        //    {
-        //        if (0 < y)
-        //        {
-        //            facingDirection = EFacingDirection.Up;
-        //        }
-        //        else
-        //        {
-        //            facingDirection = EFacingDirection.Down;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (0 > x)
-        //        {
-        //            facingDirection = EFacingDirection.Left;
-        //        }
-        //        else
-        //        {
-        //            facingDirection = EFacingDirection.Rigth;
-        //        }
-        //    }
-        //}
     }
 }

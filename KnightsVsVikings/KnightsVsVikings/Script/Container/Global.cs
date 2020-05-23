@@ -14,6 +14,8 @@ namespace MainSystemFramework
         public void LoadContent(ContentManager content)
         {
             SpriteContainer.Instance.LoadContent(content);
+            AnimationContainer.Instance.MakeAnimation();
+            BlendTreeContainer.Instance.MakeBlend();
             AudioContainer.Instance.LoadContent(content);
         }
 

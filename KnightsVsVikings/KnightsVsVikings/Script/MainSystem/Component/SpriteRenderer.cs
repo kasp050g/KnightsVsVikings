@@ -17,6 +17,7 @@ namespace MainSystemFramework
         private float layerDepth = 0;
         private EOriginPosition originPositionEnum = EOriginPosition.TopLeft;
         private Vector2 offSet = new Vector2(0, 0);
+        private Rectangle rectangle;
         #endregion
 
         #region Properties 
@@ -26,6 +27,7 @@ namespace MainSystemFramework
         public float LayerDepth { get => layerDepth; set => layerDepth = value; }
         public EOriginPosition OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
         public Vector2 OffSet { get => offSet; set => offSet = value; }
+        public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
         #endregion
 
         #region Constructors  
@@ -34,12 +36,14 @@ namespace MainSystemFramework
             if (Sprite == null)
             {
                 Sprite = SpriteContainer.Instance.Sprite["Pixel"];
+                rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
             }
         }
 
         public SpriteRenderer(Texture2D spriteName)
         {
             sprite = spriteName;
+            rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
 
         public SpriteRenderer(string spriteName)
@@ -78,6 +82,7 @@ namespace MainSystemFramework
         public void SetSprite(string spriteName)
         {
             sprite = SpriteContainer.Instance.Sprite[spriteName];
+            rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -88,7 +93,7 @@ namespace MainSystemFramework
                 // Postion
                 this.GameObject.Transform.Position + OffSet,
                 // Source Rectangle
-                null,
+                Rectangle,
                 // Color
                 this.Color,
                 // Rotation
