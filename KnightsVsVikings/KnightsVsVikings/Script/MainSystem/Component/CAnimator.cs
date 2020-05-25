@@ -23,6 +23,7 @@ namespace MainSystemFramework
         private int currentIndex;
         private bool stopAnimator = false;
 
+        public bool AnimationLock { get { return (currentAnimation != null ? currentAnimation.AnimationLock : false); } }
         public override void Awake()
         {
             base.Awake();
@@ -172,6 +173,33 @@ namespace MainSystemFramework
             else
             {
                 Console.WriteLine("Error did not find the animation: " + animationName);
+            }
+        }
+
+        public void Reset()
+        {
+            stopAnimator = false;
+            timeElapsed = 0;
+            currentIndex = 0;
+
+            if (currentAnimation.SpriteSheet != null)
+            {
+                currentBlendTree = blendTrees.First().Value;
+                currentAnimation = currentBlendTree.FacingCheck(facingDirection);
+
+                spriteRenderer.Sprite = currentAnimation.SpriteSheet;
+
+                spriteRenderer.Rectangle = new Rectangle(
+                (int)currentAnimation.SpritePositions[currentIndex].X,
+                (int)currentAnimation.SpritePositions[currentIndex].Y,
+                (int)currentAnimation.SpriteSize.X,
+                (int)currentAnimation.SpriteSize.Y
+                );
+            }
+            else
+            {
+                currentAnimation = animations.First().Value;
+                spriteRenderer.Sprite = currentAnimation.Sprites[currentIndex];
             }
         }
     }

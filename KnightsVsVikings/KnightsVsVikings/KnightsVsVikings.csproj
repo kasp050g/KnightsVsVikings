@@ -66,13 +66,21 @@
     <Compile Include="Script\MainSystem\Component\CSpriteRenderer.cs" />
     <Compile Include="Script\MainSystem\Enum\EAnimationType.cs" />
     <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
-    <Compile Include="Script\TheGame\Enum\AnimationsEnum\EFactions.cs" />
+    <Compile Include="Script\MainSystem\Random\TextureSheet2D.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CWorker.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\UFootman.cs" />
+    <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyMouseButtons.cs" />
     <Compile Include="Script\MainSystem\Enum\EOriginPosition.cs" />
-    <Compile Include="Script\TheGame\Enum\AnimationsEnum\EUnitAnimationType.cs" />
-    <Compile Include="Script\TheGame\Enum\AnimationsEnum\EUnitType.cs" />
+    <Compile Include="Script\TheGame\Enum\EUnitAnimationType.cs" />
+    <Compile Include="Script\TheGame\Enum\EUnitType.cs" />
     <Compile Include="Script\MainSystem\GameObject\GameObject.cs" />
     <Compile Include="Script\MainSystem\GameObject\Transform.cs" />
     <Compile Include="Script\MainSystem\HelperClass\Helper.cs" />
@@ -116,6 +124,7 @@
   <ItemGroup>
     <Folder Include="Content\Images\Characters\" />
     <Folder Include="Content\Images\Tiles\" />
+    <Folder Include="Script\TheGame\Unit\" />
     <Folder Include="Script\WorldEditor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.MainSystem.Enum
+namespace KnightsVsVikings
 {
     public enum EFactions
     {

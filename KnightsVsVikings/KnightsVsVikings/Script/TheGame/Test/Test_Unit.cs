@@ -1,5 +1,4 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
+﻿using KnightsVsVikings;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,9 +12,11 @@ namespace KnightsVsVikings.Script.TheGame.Test
 {
     public class Test_Unit : Component
     {
+        CAnimator cAnimator;
         public override void Awake()
         {
             base.Awake();
+            cAnimator = GameObject.GetComponent<CAnimator>();
         }
 
         public override void Destroy()
@@ -42,40 +43,37 @@ namespace KnightsVsVikings.Script.TheGame.Test
 
         public void NewAnimation()
         {
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D1))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D1) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation(EUnitAnimationType.Idle.ToString());
+                cAnimator.PlayAnimation(EUnitAnimationType.Idle.ToString());
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D2))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D2) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.Run}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.Run}");
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D3))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D3) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.BowAttack}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.BowAttack}");
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D4))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D4) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.SpearAttack}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.SpearAttack}");
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D5))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D5) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.SwordAttack}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.SwordAttack}");
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D6))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D6) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.Die}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.Die}");
             }
-            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D7))
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D7) && !cAnimator.AnimationLock)
             {
-                CAnimator tmp = GameObject.GetComponent<CAnimator>();
-                tmp.PlayAnimation($"{EUnitAnimationType.Cast}");
+                cAnimator.PlayAnimation($"{EUnitAnimationType.Cast}");
+            }
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D8))
+            {
+                cAnimator.Reset();
             }
         }
 

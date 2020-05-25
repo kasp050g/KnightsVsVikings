@@ -1,5 +1,5 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
+﻿using KnightsVsVikings;
+using KnightsVsVikings.Script.TheGame.Test;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.TheGame.Test
+namespace KnightsVsVikings
 {
     public class Test_JAmen
     {
@@ -31,8 +31,12 @@ namespace KnightsVsVikings.Script.TheGame.Test
 
             jamen.AddComponent<SpriteRenderer>(sp);
             jamen.AddComponent<CAnimator>(animator);
-            Test_Unit test_Unit = new Test_Unit();
-            jamen.AddComponent<Test_Unit>(test_Unit);
+
+            CWorker worker = new CWorker();
+            jamen.AddComponent<CWorker>(worker);
+
+            Test_Unit test = new Test_Unit();
+            jamen.AddComponent<Test_Unit>(test);
 
             return jamen;
         }

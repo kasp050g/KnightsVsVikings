@@ -1,5 +1,4 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
+﻿using KnightsVsVikings;
 using System;
 using System.Collections.Generic;
 using System.Linq;

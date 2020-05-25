@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum
+namespace KnightsVsVikings
 {
     public enum EUnitAnimationType
     {
