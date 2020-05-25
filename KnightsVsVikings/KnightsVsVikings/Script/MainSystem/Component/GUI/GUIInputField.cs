@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class InputFieldGUI : GUI
+    public class GUIInputField : GUI
     {
         #region Fields
         Color color = Color.White;
@@ -36,7 +36,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors
-        public InputFieldGUI(SpriteRenderer spriteRenderer, Texture2D image, Color color, SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string placeholderText)
+        public GUIInputField(CSpriteRenderer spriteRenderer, Texture2D image, Color color, SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string placeholderText)
         {
             this.SpriteRenderer = spriteRenderer;
             this.image = image;
@@ -54,9 +54,9 @@ namespace MainSystemFramework
         {
             if (SpriteRenderer == null)
             {
-                if (GameObject.GetComponent<SpriteRenderer>() != null)
+                if (GameObject.GetComponent<CSpriteRenderer>() != null)
                 {
-                    SpriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+                    SpriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
                 }
                 else
                 {

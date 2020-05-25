@@ -14,7 +14,7 @@ namespace KnightsVsVikings
         protected Stats stats = new Stats();
         protected List<Passive> passives = new List<Passive>();
         protected GameObject myTarget = null;
-
+        protected ETeam eTeam;
         public override void Awake()
         {
             base.Awake();

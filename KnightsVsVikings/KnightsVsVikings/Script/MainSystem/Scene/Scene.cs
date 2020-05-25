@@ -24,7 +24,7 @@ namespace MainSystemFramework
         protected List<GameObject> gameObjectsToBeCreated = new List<GameObject>();
         protected List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
-        public List<Collider> Colliders { get; set; } = new List<Collider>();
+        public List<CCollider> Colliders { get; set; } = new List<CCollider>();
         public List<GUI> UIColliders { get; set; } = new List<GUI>();
         public string Name { get { return name; } set { name = value; } }
         public bool UpdateEnabled { get { return updateEnabled; } set { updateEnabled = value; } }
@@ -156,7 +156,7 @@ namespace MainSystemFramework
 
         public void ColliderCheck()
         {
-            Collider[] tmpColliders = Colliders.ToArray();
+            CCollider[] tmpColliders = Colliders.ToArray();
 
             for (int i = 0; i < tmpColliders.Length; i++)
             {
@@ -227,9 +227,9 @@ namespace MainSystemFramework
                         gameObjects.Add(go);
                     }
 
-                    if (go.GetComponent<Collider>() != null)
+                    if (go.GetComponent<CCollider>() != null)
                     {
-                        Colliders.Add(go.GetComponent<Collider>());
+                        Colliders.Add(go.GetComponent<CCollider>());
                     }
 
                     if (go.GetComponent<GUI>() != null)

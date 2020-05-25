@@ -16,7 +16,7 @@ namespace KnightsVsVikings
         {
             GameObject jamen = new GameObject();
 
-            SpriteRenderer sp = new SpriteRenderer(SpriteContainer.Instance.Pixel);
+            CSpriteRenderer sp = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
             CAnimator animator = new CAnimator();
 
 
@@ -29,7 +29,7 @@ namespace KnightsVsVikings
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(factions, unitType, EUnitAnimationType.Cast));
             animator.PlayAnimation($"{EUnitAnimationType.Idle}");
 
-            jamen.AddComponent<SpriteRenderer>(sp);
+            jamen.AddComponent<CSpriteRenderer>(sp);
             jamen.AddComponent<CAnimator>(animator);
 
             CWorker worker = new CWorker();

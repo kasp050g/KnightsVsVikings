@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class ButtonGUI : GUI
+    public class GUIButton : GUI
     {
         #region Fields
         Action onClick;
@@ -43,11 +43,11 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors
-        public ButtonGUI()
+        public GUIButton()
         {
 
         }
-        public ButtonGUI(SpriteRenderer spriteRenderer)
+        public GUIButton(CSpriteRenderer spriteRenderer)
         {
             this.SpriteRenderer = spriteRenderer;
             this.image = spriteRenderer.Sprite;
@@ -57,7 +57,7 @@ namespace MainSystemFramework
             BlockGUI = true;
             ConstructorMethod();
         }
-        public ButtonGUI(Texture2D image, Texture2D imageHovering, Color color, Color colorHovering)
+        public GUIButton(Texture2D image, Texture2D imageHovering, Color color, Color colorHovering)
         {
             this.image = image;
             this.imageHovering = imageHovering;
@@ -66,7 +66,7 @@ namespace MainSystemFramework
             BlockGUI = true;
             ConstructorMethod();
         }
-        public ButtonGUI(SpriteRenderer spriteRenderer, Texture2D image, Texture2D imageHovering, Color color, Color colorHovering)
+        public GUIButton(CSpriteRenderer spriteRenderer, Texture2D image, Texture2D imageHovering, Color color, Color colorHovering)
         {
             this.SpriteRenderer = spriteRenderer;
             this.image = image;
@@ -76,7 +76,7 @@ namespace MainSystemFramework
             BlockGUI = true;
             ConstructorMethod();
         }
-        public ButtonGUI(Texture2D image, Color color, Color colorHovering, Vector2 fontScale, string text)
+        public GUIButton(Texture2D image, Color color, Color colorHovering, Vector2 fontScale, string text)
         {
             this.image = image;
             this.color = color;
@@ -86,7 +86,7 @@ namespace MainSystemFramework
             BlockGUI = true;
             ConstructorMethod();
         }
-        public ButtonGUI(SpriteRenderer spriteRenderer, Texture2D image, Texture2D imageHovering, Color color, Color colorHovering, SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text)
+        public GUIButton(CSpriteRenderer spriteRenderer, Texture2D image, Texture2D imageHovering, Color color, Color colorHovering, SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text)
         {
             this.SpriteRenderer = spriteRenderer;
             this.image = image;
@@ -119,9 +119,9 @@ namespace MainSystemFramework
             base.Start();
             if (SpriteRenderer == null)
             {
-                if (GameObject.GetComponent<SpriteRenderer>() != null)
+                if (GameObject.GetComponent<CSpriteRenderer>() != null)
                 {
-                    SpriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+                    SpriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
                 }
                 else
                 {

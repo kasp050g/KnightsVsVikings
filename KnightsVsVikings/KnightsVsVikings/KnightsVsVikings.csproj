@@ -72,6 +72,9 @@
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CWorker.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\StateMachine\State.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\StateMachine\StateMachine.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\StateMachine\UnitState\IdleState.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Components\Unit\UFootman.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyMouseButtons.cs" />
     <Compile Include="Script\MainSystem\Enum\EOriginPosition.cs" />
+    <Compile Include="Script\TheGame\Enum\ETeam.cs" />
     <Compile Include="Script\TheGame\Enum\EUnitAnimationType.cs" />
     <Compile Include="Script\TheGame\Enum\EUnitType.cs" />
     <Compile Include="Script\MainSystem\GameObject\GameObject.cs" />
