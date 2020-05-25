@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class ImageGUI : GUI
+    public class GUIImage : GUI
     {
         #region Fields
         #endregion
@@ -17,18 +17,18 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors
-        public ImageGUI()
+        public GUIImage()
         {
 
         }
 
-        public ImageGUI(SpriteRenderer spriteRenderer,bool isWorldUI,bool blockUI)
+        public GUIImage(CSpriteRenderer spriteRenderer,bool isWorldUI,bool blockUI)
         {
             this.SpriteRenderer = spriteRenderer;
             this.IsWorldUI = isWorldUI;
             this.BlockGUI = blockUI;
         }
-        public ImageGUI(SpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color color,EOriginPosition originPositionEnum)
+        public GUIImage(CSpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color color,EOriginPosition originPositionEnum)
         {
             this.SpriteRenderer = spriteRenderer;
             this.IsWorldUI = isWorldUI;
@@ -43,7 +43,7 @@ namespace MainSystemFramework
         {
             if(this.SpriteRenderer == null)
             {
-                this.SpriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+                this.SpriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
             }
             LayerDepth = SpriteRenderer.LayerDepth;
             base.Awake();

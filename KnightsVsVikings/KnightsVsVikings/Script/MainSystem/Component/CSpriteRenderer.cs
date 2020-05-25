@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class SpriteRenderer : Component
+    public class CSpriteRenderer : Component
     {
         #region Fields
         private Texture2D sprite;
@@ -31,7 +31,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors  
-        public SpriteRenderer()
+        public CSpriteRenderer()
         {
             if (Sprite == null)
             {
@@ -40,31 +40,31 @@ namespace MainSystemFramework
             }
         }
 
-        public SpriteRenderer(Texture2D spriteName)
+        public CSpriteRenderer(Texture2D spriteName)
         {
             sprite = spriteName;
             rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
 
-        public SpriteRenderer(string spriteName)
+        public CSpriteRenderer(string spriteName)
         {
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum)
+        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum)
         {
             this.OriginPositionEnum = originPositionEnum;
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth)
+        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth)
         {
             this.layerDepth = layerDepth;
             this.OriginPositionEnum = originPositionEnum;
             SetSprite(spriteName);
         }
 
-        public SpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth, Color color)
+        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth, Color color)
         {
             this.color = color;
             this.layerDepth = layerDepth;
@@ -114,9 +114,9 @@ namespace MainSystemFramework
             return "SpriteRenderer";
         }
 
-        public SpriteRenderer Clone()
+        public CSpriteRenderer Clone()
         {
-            return (SpriteRenderer)this.MemberwiseClone();
+            return (CSpriteRenderer)this.MemberwiseClone();
         }
 
         public void SetOrigin(EOriginPosition originPositionEnum)

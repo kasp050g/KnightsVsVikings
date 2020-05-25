@@ -12,7 +12,7 @@ namespace MainSystemFramework
 {
     public class CAnimator : Component
     {
-        private SpriteRenderer spriteRenderer;
+        private CSpriteRenderer spriteRenderer;
         private Dictionary<string, CAnimation> animations = new Dictionary<string, CAnimation>();
         private Dictionary<string, CBlendTree> blendTrees = new Dictionary<string, CBlendTree>();
 
@@ -27,7 +27,7 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
-            spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
 
             if (currentAnimation.animationType == EAnimationType.SpriteArray)
             {

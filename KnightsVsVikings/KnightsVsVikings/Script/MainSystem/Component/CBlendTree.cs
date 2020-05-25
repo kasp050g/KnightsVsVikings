@@ -35,7 +35,7 @@ namespace MainSystemFramework
         public CAnimation Rigth { get => rigth; private set => rigth = value; }
         //public EFacingDirection FacingDirection { get => facingDirection; set => facingDirection = value; }
 
-        public CAnimation Play(Vector2 vel, SpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
+        public CAnimation Play(Vector2 vel, CSpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
         {
             float y = vel.Y;
             float x = vel.X;

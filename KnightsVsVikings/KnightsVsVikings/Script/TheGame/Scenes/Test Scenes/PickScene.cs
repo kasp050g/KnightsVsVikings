@@ -66,7 +66,7 @@ namespace KnightsVsVikings
                 ScneNames += "\n " + i + ": " + SceneController.Instance.SceneContainer.Scenes[i].Name + " ";
             }
 
-            go.AddComponent<TextGUI>(new TextGUI(SpriteContainer.Instance.NormalFont, Color.Black, new Vector2(2, 2), "Click Number to Pick Scene." +
+            go.AddComponent<GUIText>(new GUIText(SpriteContainer.Instance.NormalFont, Color.Black, new Vector2(2, 2), "Click Number to Pick Scene." +
                 ScneNames));
             Instantiate(go);
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class TextGUI : GUI
+    public class GUIText : GUI
     {
         #region Fields
         Color fontColor = Color.Black;
@@ -46,7 +46,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors
-        public TextGUI(string text)
+        public GUIText(string text)
         {
             this.spriteFont = SpriteContainer.Instance.NormalFont;
             this.fontColor = Color.Black;
@@ -54,7 +54,7 @@ namespace MainSystemFramework
             this.text = text;
 
         }
-        public TextGUI(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text)
+        public GUIText(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text)
         {
             this.spriteFont = spriteFont;
             this.fontColor = fontColor;
@@ -62,7 +62,7 @@ namespace MainSystemFramework
             this.text = text;
             
         }
-        public TextGUI(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,EOriginPosition originPositionEnum)
+        public GUIText(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,EOriginPosition originPositionEnum)
         {
             this.spriteFont = spriteFont;
             this.fontColor = fontColor;

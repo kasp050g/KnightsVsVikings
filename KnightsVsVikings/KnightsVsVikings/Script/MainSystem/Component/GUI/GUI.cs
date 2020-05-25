@@ -14,7 +14,7 @@ namespace MainSystemFramework
         private bool blockGUI = false;
         private bool isWorldUI = false;
         private bool mouseIsHovering = false;
-        private SpriteRenderer spriteRenderer;
+        private CSpriteRenderer spriteRenderer;
         private float layerDepth = 0;
         #endregion
 
@@ -23,7 +23,7 @@ namespace MainSystemFramework
         public bool IsWorldUI { get => isWorldUI; set => isWorldUI = value; }
         public bool MouseIsHovering { get => mouseIsHovering; set => mouseIsHovering = value; }
         public Vector2 SceneSize { get { return GraphicsSetting.Instance.ScreenSize; } }
-        public SpriteRenderer SpriteRenderer { get => spriteRenderer; set => spriteRenderer = value; }
+        public CSpriteRenderer SpriteRenderer { get => spriteRenderer; set => spriteRenderer = value; }
         public float LayerDepth { get => layerDepth; set => layerDepth = value; }
 
         public virtual Rectangle GUImouseBlockCollision

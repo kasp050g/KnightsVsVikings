@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class Collider : Component
+    public class CCollider : Component
     {
         #region Fields
         private GameEvent onCollisionEvent = new GameEvent("Collision");
@@ -43,12 +43,12 @@ namespace MainSystemFramework
         #endregion
 
         #region Constructors 
-        public Collider()
+        public CCollider()
         {
 
         }
 
-        public Collider(Vector2 size, Vector2 offSet)
+        public CCollider(Vector2 size, Vector2 offSet)
         {
             this.size = size;
             this.offSet = offSet;
@@ -56,7 +56,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Methods 
-        public void OnCollisionEnter(Collider other)
+        public void OnCollisionEnter(CCollider other)
         {
             if (CheckCollisionEvents)
             {
@@ -101,7 +101,7 @@ namespace MainSystemFramework
 
             if (size == new Vector2(0, 0))
             {
-                SpriteRenderer spriteRenderer = GameObject.GetComponent<SpriteRenderer>();
+                CSpriteRenderer spriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
                 this.size = new Vector2(spriteRenderer.Sprite.Width, spriteRenderer.Sprite.Height);
             }
 
