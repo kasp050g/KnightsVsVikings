@@ -12,19 +12,21 @@ namespace KnightsVsVikings
 {
     public class AsmundScene : Scene
     {
-        Scene myScene;
+       Vector2 relativeSize = GraphicsSetting.Instance.ScreenSize;
         public override void Initialize()
         {
             base.Initialize();
 
             GameObject background = new GameObject();
-            SpriteRenderer sr = new SpriteRenderer("Map", EOriginPosition.TopLeft, 0.01f);
+            CSpriteRenderer sr = new CSpriteRenderer("Map", EOriginPosition.TopLeft, 0.01f);
 
-            ImageGUI image = new ImageGUI(sr, false, false);
-            background.AddComponent<SpriteRenderer>(sr);
-            background.AddComponent<ImageGUI>(image);
+            GUIImage image = new GUIImage(sr, false, false);
+            background.AddComponent<CSpriteRenderer>(sr);
+            background.AddComponent<GUIImage>(image);
 
-            myScene.Instantiate(background);
+            background.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2048, 1536); //2048, 1536 is the image's default size
+
+           Instantiate(background);
         }
 
         public override void OnSwitchAwayFromThisScene()
