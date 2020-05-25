@@ -52,6 +52,7 @@ namespace MainSystemFramework
 
             //Interface
             AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
+            AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
 
             AnimationsSheet(content);
         }
