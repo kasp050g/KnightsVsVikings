@@ -50,6 +50,9 @@ namespace MainSystemFramework
 
             Pixel = content.Load<Texture2D>("Images/MainSystem/Pixel");
 
+            //Interface
+            AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
+
             AnimationsSheet(content);
         }
 
@@ -65,6 +68,7 @@ namespace MainSystemFramework
 
         private void AnimationsSheet(ContentManager content)
         {
+
             // Knights Bowman
             AddSprite(content.Load<Texture2D>("Images/Characters/Knights/Bowman/KnightsBowmanDown"), "KnightsBowmanDown");
             AddSprite(content.Load<Texture2D>("Images/Characters/Knights/Bowman/KnightsBowmanSide"), "KnightsBowmanSide");
