@@ -55,7 +55,7 @@ namespace MainSystemFramework
             }
             else
             {
-                Console.WriteLine("Error: GameObject Line 57 - Try to add same component twice");
+                Console.WriteLine("Error: GameObject Line 58 - Try to add same component twice");
             }
         }
 

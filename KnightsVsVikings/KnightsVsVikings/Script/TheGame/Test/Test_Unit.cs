@@ -1,5 +1,4 @@
 ﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations;
 using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
@@ -45,37 +44,37 @@ namespace KnightsVsVikings.Script.TheGame.Test
         {
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D1))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation(EUnitAnimationType.Idle.ToString());
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D2))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.Run}");
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D3))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.BowAttack}");
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D4))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.SpearAttack}");
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D5))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.SwordAttack}");
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D6))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.Die}");
             }
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.D7))
             {
-                Animator tmp = GameObject.GetComponent<Animator>();
+                CAnimator tmp = GameObject.GetComponent<CAnimator>();
                 tmp.PlayAnimation($"{EUnitAnimationType.Cast}");
             }
         }

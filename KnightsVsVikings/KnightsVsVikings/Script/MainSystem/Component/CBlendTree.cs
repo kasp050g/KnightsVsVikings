@@ -8,18 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
+namespace MainSystemFramework
 {
-    public class BlendTree
+    public class CBlendTree
     {
         private string name;
-        private Animation up;
-        private Animation down;
-        private Animation left;
-        private Animation rigth;
+        private CAnimation up;
+        private CAnimation down;
+        private CAnimation left;
+        private CAnimation rigth;
         //private EFacingDirection facingDirection;
 
-        public BlendTree(Animation up, Animation down, Animation left, Animation rigth, string name)
+        public CBlendTree(CAnimation up, CAnimation down, CAnimation left, CAnimation rigth, string name)
         {
             this.up = up;
             this.down = down;
@@ -29,13 +29,13 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
         }
 
         public string Name { get => name; set => name = value; }
-        public Animation Up { get => up; private set => up = value; }
-        public Animation Down { get => down; private set => down = value; }
-        public Animation Left { get => left; private set => left = value; }
-        public Animation Rigth { get => rigth; private set => rigth = value; }
+        public CAnimation Up { get => up; private set => up = value; }
+        public CAnimation Down { get => down; private set => down = value; }
+        public CAnimation Left { get => left; private set => left = value; }
+        public CAnimation Rigth { get => rigth; private set => rigth = value; }
         //public EFacingDirection FacingDirection { get => facingDirection; set => facingDirection = value; }
 
-        public Animation Play(Vector2 vel, SpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
+        public CAnimation Play(Vector2 vel, SpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
         {
             float y = vel.Y;
             float x = vel.X;
@@ -72,7 +72,7 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
             }
         }
 
-        public Animation FacingCheck(EFacingDirection facingDirection)
+        public CAnimation FacingCheck(EFacingDirection facingDirection)
         {
             switch (facingDirection)
             {

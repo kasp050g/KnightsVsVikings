@@ -8,19 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
+namespace MainSystemFramework
 {
-    public class Animator : Component
+    public class CAnimator : Component
     {
         private SpriteRenderer spriteRenderer;
-        private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
-        private Dictionary<string, BlendTree> blendTrees = new Dictionary<string, BlendTree>();
+        private Dictionary<string, CAnimation> animations = new Dictionary<string, CAnimation>();
+        private Dictionary<string, CBlendTree> blendTrees = new Dictionary<string, CBlendTree>();
 
         private EFacingDirection facingDirection = EFacingDirection.Down;
-        private Animation currentAnimation = null;
-        private BlendTree currentBlendTree = null;
+        private CAnimation currentAnimation = null;
+        private CBlendTree currentBlendTree = null;
         private float timeElapsed;
         private int currentIndex;
+        private bool stopAnimator = false;
 
         public override void Awake()
         {
@@ -55,11 +56,15 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
 
         private void UpdateAnimation()
         {
-            if (currentAnimation != null)
+            // Check if we got a animation to play if so play it
+            // Check to if we ask it to stop the animator
+            if (currentAnimation != null && stopAnimator == false)
             {
+                // this is made for this Game.
+                // to 
                 if (currentBlendTree != null && GameObject.Transform.Velocity != new Vector2(0, 0))
                 {
-                    Animation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
+                    CAnimation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
                     if (currentAnimation != tmp)
                     {
                         currentAnimation = tmp;
@@ -70,14 +75,31 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
 
                 currentIndex = (int)(timeElapsed * currentAnimation.Fps);
 
-                if (currentAnimation.SpriteSheet != null)
-                {
-                    if (currentIndex > currentAnimation.SpritePositions.Count - 1)
-                    {
-                        timeElapsed = 0;
-                        currentIndex = 0;
-                    }
+                ChangeSprite();
+            }
+        }
 
+        private void ChangeSprite()
+        {
+            if (currentAnimation.SpriteSheet != null)
+            {
+                if (currentIndex > currentAnimation.SpritePositions.Count - 1)
+                {
+                    timeElapsed = 0;
+                    currentIndex = 0;
+                    if (currentAnimation.Loop == false && currentAnimation.End == false)
+                    {
+                        currentBlendTree = blendTrees.First().Value;
+                        currentAnimation = currentBlendTree.FacingCheck(facingDirection);
+                    }
+                    else if (currentAnimation.End == true)
+                    {
+                        stopAnimator = true;
+                    }
+                }
+
+                if (stopAnimator == false)
+                {
                     spriteRenderer.Sprite = currentAnimation.SpriteSheet;
 
                     spriteRenderer.Rectangle = new Rectangle(
@@ -87,24 +109,35 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
                     (int)currentAnimation.SpriteSize.Y
                     );
                 }
-                else
+            }
+            else
+            {
+                if (currentIndex > currentAnimation.Sprites.Length - 1)
                 {
-                    if (currentIndex > currentAnimation.Sprites.Length - 1)
+                    timeElapsed = 0;
+                    currentIndex = 0;
+                    if (currentAnimation.Loop == false && currentAnimation.End == false)
                     {
-                        timeElapsed = 0;
-                        currentIndex = 0;
+                        currentAnimation = animations.First().Value;
                     }
+                    else if (currentAnimation.End == true)
+                    {
+                        stopAnimator = true;
+                    }
+                }
 
+                if (stopAnimator == false)
+                {
                     spriteRenderer.Sprite = currentAnimation.Sprites[currentIndex];
                 }
             }
         }
 
-        public void AddAnimation(Animation animation)
+        public void AddAnimation(CAnimation animation)
         {
             animations.Add(animation.Name, animation);
         }
-        public void AddAnimation(BlendTree blendTree)
+        public void AddAnimation(CBlendTree blendTree)
         {
             blendTrees.Add(blendTree.Name, blendTree);
         }
@@ -116,6 +149,7 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
 
             timeElapsed = 0;
             currentIndex = 0;
+            stopAnimator = false;
 
             if (animations.ContainsKey(animationName))
             {
@@ -134,6 +168,10 @@ namespace KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations
                 {
                     spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
                 }
+            }
+            else
+            {
+                Console.WriteLine("Error did not find the animation: " + animationName);
             }
         }
     }

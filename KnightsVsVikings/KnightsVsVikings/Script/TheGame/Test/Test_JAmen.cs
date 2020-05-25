@@ -1,5 +1,4 @@
 ﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations;
 using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
@@ -18,7 +17,7 @@ namespace KnightsVsVikings.Script.TheGame.Test
             GameObject jamen = new GameObject();
 
             SpriteRenderer sp = new SpriteRenderer(SpriteContainer.Instance.Pixel);
-            Animator animator = new Animator();
+            CAnimator animator = new CAnimator();
 
 
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(factions, unitType, EUnitAnimationType.Idle));
@@ -31,7 +30,7 @@ namespace KnightsVsVikings.Script.TheGame.Test
             animator.PlayAnimation($"{EUnitAnimationType.Idle}");
 
             jamen.AddComponent<SpriteRenderer>(sp);
-            jamen.AddComponent<Animator>(animator);
+            jamen.AddComponent<CAnimator>(animator);
             Test_Unit test_Unit = new Test_Unit();
             jamen.AddComponent<Test_Unit>(test_Unit);
 

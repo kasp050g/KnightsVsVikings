@@ -1,5 +1,4 @@
 ﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.MainSystem.In_Works_Not_Done_Animations;
 using KnightsVsVikings.Script.TheGame.Enum.AnimationsEnum;
 using System;
 using System.Collections.Generic;
@@ -26,9 +25,9 @@ namespace MainSystemFramework
         }
         #endregion
 
-        private Dictionary<string, BlendTree> blendtrees = new Dictionary<string, BlendTree>();
+        private Dictionary<string, CBlendTree> blendtrees = new Dictionary<string, CBlendTree>();
 
-        public Dictionary<string, BlendTree> Blendtrees { get => blendtrees; set => blendtrees = value; }
+        public Dictionary<string, CBlendTree> Blendtrees { get => blendtrees; set => blendtrees = value; }
 
         public void MakeBlend()
         {
@@ -56,7 +55,7 @@ namespace MainSystemFramework
 
         private void CraftBlend(EFactions factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
-            BlendTree blendTree = new BlendTree(
+            CBlendTree blendTree = new CBlendTree(
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Up{unitAnimationType}"],
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Down{unitAnimationType}"],
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Side{unitAnimationType}"],
@@ -66,7 +65,7 @@ namespace MainSystemFramework
             Blendtrees.Add($"{factionName}{unitType}{unitAnimationType}", blendTree);
         }
 
-        public BlendTree GetUnitBlendTree(EFactions factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
+        public CBlendTree GetUnitBlendTree(EFactions factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
             return Blendtrees[$"{factionName}{unitType}{unitAnimationType}"];
         }
