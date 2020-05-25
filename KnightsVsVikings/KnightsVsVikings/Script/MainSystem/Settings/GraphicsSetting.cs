@@ -25,7 +25,7 @@ namespace MainSystemFramework
         #endregion
 
         public GraphicsDeviceManager Graphics { get; private set; }
-        public Vector2 ScreenSize { get; set; } = new Vector2(1280, 720);
+        public Vector2 ScreenSize { get; set; } = new Vector2(2280, 1720);
         public Vector2 ScreenScale { get { return new Vector2(ScreenSize.X / 1280, ScreenSize.Y / 720); } }
         public Vector2 GameZome { get; set; } = new Vector2(1, 1);
 
