@@ -29,7 +29,7 @@ namespace KnightsVsVikings
             GUIImage quitGameImage = new GUIImage(quitGameSR, false, false);
             quitGame.AddComponent<CSpriteRenderer>(quitGameSR);
             quitGame.AddComponent<GUIImage>(quitGameImage);
-            quitGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 340); //2222, 340 is a tenth of the image's default size
+            quitGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
             quitGame.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.2f);
 
             GameObject campaign = new GameObject();
@@ -37,7 +37,7 @@ namespace KnightsVsVikings
             GUIImage campaignImage = new GUIImage(campaignSR, false, false);
             campaign.AddComponent<CSpriteRenderer>(campaignSR);
             campaign.AddComponent<GUIImage>(campaignImage);
-            campaign.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 340); //2222, 340 is a tenth of the image's default size
+            campaign.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
             campaign.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.4f);
 
             Instantiate(background);
