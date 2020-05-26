@@ -320,6 +320,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/MainSystem/Pixel.png
 
+#begin Images/TileSheet/ExtraObjects128x128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/TileSheet/ExtraObjects128x128.png
+
+#begin Images/TileSheet/Grassland128x128.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/TileSheet/Grassland128x128.png
+
 #begin Images/UI/Campaign.png
 /importer:TextureImporter
 /processor:TextureProcessor

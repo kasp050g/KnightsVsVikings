@@ -86,14 +86,15 @@ namespace MainSystemFramework
         }
         public void SetSprite(Texture2D spriteName)
         {
+            spriteSheet = null;
             sprite = spriteName;
             rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
         public void SetSprite(TextureSheet2D spriteName)
         {
             spriteSheet = spriteName;
-            sprite = spriteSheet.Sprite;
-            rectangle = spriteSheet.Rectangle;
+            sprite = spriteName.Sprite;
+            rectangle = spriteName.Rectangle;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

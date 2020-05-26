@@ -12,6 +12,7 @@ namespace MainSystemFramework
     {
         #region Fields
         Action onClick;
+        Action onHorering;
 
         Color color = Color.White;
         Color colorHovering = Color.White;
@@ -28,10 +29,12 @@ namespace MainSystemFramework
 
         bool lastUpdate;
         bool currentUpdate;
+        bool mouseOverButtonCheck = false;
         #endregion
 
         #region Properties
         public Action OnClick { get => onClick; set => onClick = value; }
+        public Action OnHorering { get => onHorering; set => onHorering = value; }
         public Color Color { get => color; set => color = value; }
         public Color ColorHovering { get => colorHovering; set => colorHovering = value; }
         public Color FontColor { get => fontColor; set => fontColor = value; }
@@ -171,13 +174,22 @@ namespace MainSystemFramework
         {
             if (MouseIsHovering)
             {
-                if (ImageHovering != null && SpriteRenderer.Sprite != ImageHovering)
+                if(mouseOverButtonCheck == false)
                 {
-                    SetImage(true);
-                    Console.WriteLine("123");
+                    mouseOverButtonCheck = true;
+                    if ((imageSheet != null ? ImageSheetHovering != null && SpriteRenderer.SpriteSheet != ImageSheetHovering : ImageHovering != null && SpriteRenderer.Sprite != ImageHovering))
+                    {
+                        SetImage(true);
+                    }
+
+                    if (onHorering != null)
+                    {
+                        onHorering();
+                    }
+
+                    SpriteRenderer.Color = colorHovering;
                 }
-                
-                SpriteRenderer.Color = colorHovering;
+
                 if (Input.GetMouseButtonUp(EMyMouseButtons.LeftButton) && lastUpdate == true)
                 {
                     lastUpdate = false;
@@ -211,6 +223,7 @@ namespace MainSystemFramework
                 {
                     SetImage(false);
                 }
+                mouseOverButtonCheck = false;
                 SpriteRenderer.Color = color;
             }
             base.Update();

@@ -34,8 +34,8 @@ namespace MainSystemFramework
                 return new Rectangle(
                     (int)this.GameObject.Transform.Position.X - (int)(this.GameObject.Transform.Origin.X * this.GameObject.Transform.Scale.X),
                     (int)this.GameObject.Transform.Position.Y - (int)(this.GameObject.Transform.Origin.Y * this.GameObject.Transform.Scale.Y),
-                    (int)(this.SpriteRenderer.Sprite.Width * this.GameObject.Transform.Scale.X),
-                    (int)(this.SpriteRenderer.Sprite.Height * this.GameObject.Transform.Scale.Y)
+                    (int)((this.SpriteRenderer.SpriteSheet != null ? this.SpriteRenderer.SpriteSheet.Rectangle.Width : this.SpriteRenderer.Sprite.Width) * this.GameObject.Transform.Scale.X),
+                    (int)((this.SpriteRenderer.SpriteSheet != null ? this.SpriteRenderer.SpriteSheet.Rectangle.Height : this.SpriteRenderer.Sprite.Height) * this.GameObject.Transform.Scale.Y)
                     );
             }
         }
