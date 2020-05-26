@@ -54,15 +54,7 @@ namespace MainSystemFramework
             this.text = text;
 
         }
-        public GUIText(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text)
-        {
-            this.spriteFont = spriteFont;
-            this.fontColor = fontColor;
-            this.fontScale = fontScale;
-            this.text = text;
-            
-        }
-        public GUIText(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,EOriginPosition originPositionEnum)
+        public GUIText(SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string text,EOriginPosition originPositionEnum = EOriginPosition.TopLeft)
         {
             this.spriteFont = spriteFont;
             this.fontColor = fontColor;

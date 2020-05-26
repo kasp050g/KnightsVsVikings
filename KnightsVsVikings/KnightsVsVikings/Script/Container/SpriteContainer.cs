@@ -26,11 +26,15 @@ namespace MainSystemFramework
         #endregion
 
         private Dictionary<string, Texture2D> sprite = new Dictionary<string, Texture2D>();
+        private Dictionary<string, TextureSheet2D> spriteSheet = new Dictionary<string, TextureSheet2D>();
         private Dictionary<string, List<Texture2D>> spriteList = new Dictionary<string, List<Texture2D>>();
+        private Dictionary<string, List<TextureSheet2D>> spriteSheetList = new Dictionary<string, List<TextureSheet2D>>();
         private SpriteFont normalFont;
 
         public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
+        public Dictionary<string, TextureSheet2D> SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
         public Dictionary<string, List<Texture2D>> SpriteList { get => spriteList; set => spriteList = value; }
+        public Dictionary<string, List<TextureSheet2D>> SpriteSheetList { get => spriteSheetList; set => spriteSheetList = value; }
         public SpriteFont NormalFont { get => normalFont; set => normalFont = value; }
 
         public Texture2D Pixel { get; set; }
@@ -60,10 +64,18 @@ namespace MainSystemFramework
         {
             Sprite.Add(name, texture2D);
         }
+        private void AddSprite(TextureSheet2D textureSheet2D, string name)
+        {
+            SpriteSheet.Add(name, textureSheet2D);
+        }
 
         private void AddSpriteList(List<Texture2D> texture2Ds, string name)
         {
             SpriteList.Add(name, texture2Ds);
+        }
+        private void AddSpriteList(List<TextureSheet2D> TextureSheet2Ds, string name)
+        {
+            SpriteSheetList.Add(name, TextureSheet2Ds);
         }
 
         private void AnimationsSheet(ContentManager content)

@@ -22,18 +22,12 @@ namespace MainSystemFramework
 
         }
 
-        public GUIImage(CSpriteRenderer spriteRenderer,bool isWorldUI,bool blockUI)
+        public GUIImage(CSpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color? color = null,EOriginPosition originPositionEnum = EOriginPosition.TopLeft)
         {
             this.SpriteRenderer = spriteRenderer;
             this.IsWorldUI = isWorldUI;
             this.BlockGUI = blockUI;
-        }
-        public GUIImage(CSpriteRenderer spriteRenderer, bool isWorldUI, bool blockUI,Color color,EOriginPosition originPositionEnum)
-        {
-            this.SpriteRenderer = spriteRenderer;
-            this.IsWorldUI = isWorldUI;
-            this.BlockGUI = blockUI;
-            this.SpriteRenderer.Color = color;
+            this.SpriteRenderer.Color = color ?? Color.White;
             this.SpriteRenderer.OriginPositionEnum = originPositionEnum;
         }
         #endregion

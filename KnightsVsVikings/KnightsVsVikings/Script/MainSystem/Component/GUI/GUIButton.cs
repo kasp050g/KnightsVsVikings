@@ -19,6 +19,8 @@ namespace MainSystemFramework
 
         Texture2D image;
         Texture2D imageHovering;
+        TextureSheet2D imageSheet;
+        TextureSheet2D imageSheetHovering;
 
         SpriteFont spriteFont;
         string text = string.Empty;
@@ -35,11 +37,11 @@ namespace MainSystemFramework
         public Color FontColor { get => fontColor; set => fontColor = value; }
         public Texture2D Image { get => image; set => image = value; }
         public Texture2D ImageHovering { get => imageHovering; set => imageHovering = value; }
+        public TextureSheet2D ImageSheet { get => imageSheet; set => imageSheet = value; }
+        public TextureSheet2D ImageSheetHovering { get => imageSheetHovering; set => imageSheetHovering = value; }
         public SpriteFont SpriteFont { get => spriteFont; set => spriteFont = value; }
         public string Text { get => text; set => text = value; }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
-
-
         #endregion
 
         #region Constructors
@@ -100,6 +102,34 @@ namespace MainSystemFramework
             BlockGUI = true;
             ConstructorMethod();
         }
+        public GUIButton(Texture2D image, Texture2D imageHovering, Color color, Color colorHovering, CSpriteRenderer spriteRenderer = null, SpriteFont spriteFont = null, Color? fontColor = null, Vector2? fontScale = null, string text = "")
+        {
+            this.SpriteRenderer = spriteRenderer;
+            this.image = image;
+            this.imageHovering = imageHovering;
+            this.color = color;
+            this.colorHovering = colorHovering;
+            this.spriteFont = spriteFont;
+            this.fontColor = fontColor ?? Color.Black;
+            this.fontScale = fontScale ?? new Vector2(0.5f, 0.5f);
+            this.text = text;
+            BlockGUI = true;
+            ConstructorMethod();
+        }
+        public GUIButton(TextureSheet2D imageSheet, TextureSheet2D imageSheetHovering, Color color, Color colorHovering, CSpriteRenderer spriteRenderer = null, SpriteFont spriteFont = null, Color? fontColor = null, Vector2? fontScale = null, string text = "")
+        {
+            this.SpriteRenderer = spriteRenderer;
+            this.imageSheet = imageSheet;
+            this.imageSheetHovering = imageSheetHovering;
+            this.color = color;
+            this.colorHovering = colorHovering;
+            this.spriteFont = spriteFont;
+            this.fontColor = fontColor ?? Color.Black;
+            this.fontScale = fontScale ?? new Vector2(0.5f, 0.5f);
+            this.text = text;
+            BlockGUI = true;
+            ConstructorMethod();
+        }
         public void ConstructorMethod()
         {
 
@@ -134,6 +164,10 @@ namespace MainSystemFramework
             {
                 this.spriteFont = SpriteContainer.Instance.NormalFont;
             }
+            if (imageSheet != null)
+            {
+
+            }
         }
 
         public override void Update()
@@ -142,7 +176,7 @@ namespace MainSystemFramework
             {
                 if (imageHovering != null && SpriteRenderer.Sprite != imageHovering)
                 {
-                    SpriteRenderer.Sprite = imageHovering;
+                    SetImage(true);
                 }
 
                 SpriteRenderer.Color = colorHovering;
@@ -177,7 +211,7 @@ namespace MainSystemFramework
             {
                 if (SpriteRenderer.Sprite != image)
                 {
-                    SpriteRenderer.Sprite = image;
+                    SetImage(false);
                 }
                 SpriteRenderer.Color = color;
             }
@@ -214,6 +248,27 @@ namespace MainSystemFramework
             }
         }
 
+        private void SetImage(bool hovering)
+        {
+            if (!hovering && imageSheet != null)
+            {
+                SpriteRenderer.Sprite = imageSheet.Sprite;
+                SpriteRenderer.Rectangle = imageSheet.Rectangle;
+            }
+            else if (!hovering)
+            {
+                SpriteRenderer.Sprite = image;
+            }
+            else if (imageSheet != null)
+            {
+                SpriteRenderer.Sprite = imageSheetHovering.Sprite;
+                SpriteRenderer.Rectangle = imageSheetHovering.Rectangle;
+            }
+            else
+            {
+                SpriteRenderer.Sprite = imageHovering;
+            }
+        }
         public override void Destroy()
         {
             base.Destroy();
