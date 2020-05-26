@@ -56,6 +56,12 @@ namespace MainSystemFramework
 
             //Interface
             AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
+            AddSprite(content.Load<Texture2D>("Images/UI/Quit"), "QuitGame");
+            AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
+            AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
+            AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
+            AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
+            AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
 
             AnimationsSheet(content);
         }
