@@ -15,6 +15,7 @@ namespace KnightsVsVikings
         {
             base.Initialize();
             TestZone();
+            MouseSettings.Instance.IsMouseVisible(true);
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -44,6 +45,9 @@ namespace KnightsVsVikings
             TestUnit(EFactions.Vikings, EUnitType.Bowman, 5);
             TestUnit(EFactions.Vikings, EUnitType.Spearman, 6);
             TestUnit(EFactions.Vikings, EUnitType.Footman, 7);
+
+            Test_ButtonJamen test_J = new Test_ButtonJamen(this);
+            test_J.JamenTest();
         }
 
         public void TestUnit(EFactions factions, EUnitType unitType,int number)

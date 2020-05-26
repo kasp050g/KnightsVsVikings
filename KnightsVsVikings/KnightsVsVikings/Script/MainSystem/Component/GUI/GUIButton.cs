@@ -140,8 +140,7 @@ namespace MainSystemFramework
 
         #region Methods 
         public override void Awake()
-        {
-            LayerDepth = SpriteRenderer.LayerDepth;
+        {            
             base.Awake();
         }
         public override void Start()
@@ -160,25 +159,24 @@ namespace MainSystemFramework
                     //GameObject.AddComponent<SpriteRenderer>(new SpriteRenderer(image));
                 }
             }
+            LayerDepth = SpriteRenderer.LayerDepth;
             if (spriteFont == null)
             {
                 this.spriteFont = SpriteContainer.Instance.NormalFont;
             }
-            if (imageSheet != null)
-            {
-
-            }
+            SetImage(false);
         }
 
         public override void Update()
         {
             if (MouseIsHovering)
             {
-                if (imageHovering != null && SpriteRenderer.Sprite != imageHovering)
+                if (ImageHovering != null && SpriteRenderer.Sprite != ImageHovering)
                 {
                     SetImage(true);
+                    Console.WriteLine("123");
                 }
-
+                
                 SpriteRenderer.Color = colorHovering;
                 if (Input.GetMouseButtonUp(EMyMouseButtons.LeftButton) && lastUpdate == true)
                 {
@@ -250,23 +248,21 @@ namespace MainSystemFramework
 
         private void SetImage(bool hovering)
         {
-            if (!hovering && imageSheet != null)
+            if (!hovering && ImageSheet != null)
             {
-                SpriteRenderer.Sprite = imageSheet.Sprite;
-                SpriteRenderer.Rectangle = imageSheet.Rectangle;
+                SpriteRenderer.SetSprite(ImageSheet);
             }
             else if (!hovering)
             {
-                SpriteRenderer.Sprite = image;
+                SpriteRenderer.SetSprite(Image);
             }
-            else if (imageSheet != null)
+            else if (ImageSheet != null)
             {
-                SpriteRenderer.Sprite = imageSheetHovering.Sprite;
-                SpriteRenderer.Rectangle = imageSheetHovering.Rectangle;
+                SpriteRenderer.SetSprite(ImageSheetHovering);
             }
             else
             {
-                SpriteRenderer.Sprite = imageHovering;
+                SpriteRenderer.SetSprite(ImageHovering);
             }
         }
         public override void Destroy()

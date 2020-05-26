@@ -108,6 +108,7 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
+    <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
     <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
     <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
   </ItemGroup>

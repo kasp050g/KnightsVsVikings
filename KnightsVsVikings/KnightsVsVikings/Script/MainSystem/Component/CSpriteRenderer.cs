@@ -22,7 +22,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Properties 
-        public Texture2D Sprite { get => sprite; set => sprite = value; }
+        public Texture2D Sprite { get => sprite;  set => sprite = value; }
         public TextureSheet2D SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
         public Color Color { get => color; set => color = value; }
         public SpriteEffects SpriteEffects { get => spriteEffects; set => spriteEffects = value; }
@@ -83,6 +83,17 @@ namespace MainSystemFramework
                 sprite = spriteSheet.Sprite;
                 rectangle = spriteSheet.Rectangle;
             }
+        }
+        public void SetSprite(Texture2D spriteName)
+        {
+            sprite = spriteName;
+            rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
+        }
+        public void SetSprite(TextureSheet2D spriteName)
+        {
+            spriteSheet = spriteName;
+            sprite = spriteSheet.Sprite;
+            rectangle = spriteSheet.Rectangle;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
