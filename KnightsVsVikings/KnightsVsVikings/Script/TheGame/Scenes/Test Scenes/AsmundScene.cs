@@ -79,9 +79,9 @@ namespace KnightsVsVikings
             //GUIButton button = new GUIButton(campaignSR, texture1, texture2, Color.White, Color.White);
             //campaign.AddComponent<GUIButton>(button);
 
-            MakeButton("Campaign", "CampaignHover");
-            MakeButton("Campaign", "CampaignHover");
-            MakeButton("Campaign", "CampaignHover");
+            MakeButton("QuitGame", "QuitGameHover");
+            MakeButton("Credits", "CreditsHover");
+            MakeButton("Options", "OptionsHover");
             MakeButton("Campaign", "CampaignHover");
 
             Instantiate(background);
