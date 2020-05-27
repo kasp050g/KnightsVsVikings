@@ -58,12 +58,15 @@ namespace MainSystemFramework
             //Interface
             AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
             AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
+            AddSprite(content.Load<Texture2D>("Images/UI/QuitGameHover"), "QuitGameHover");
             AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
+            AddSprite(content.Load<Texture2D>("Images/UI/OptionsHover"), "OptionsHover");
             AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
             AddSprite(content.Load<Texture2D>("Images/UI/CampaignHover"), "CampaignHover");
             AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
             AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
             AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
+            AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
 
             // Tile Sheet
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
