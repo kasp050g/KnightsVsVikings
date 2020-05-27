@@ -34,11 +34,17 @@ namespace KnightsVsVikings
 
             GameObject campaign = new GameObject();
             CSpriteRenderer campaignSR = new CSpriteRenderer("Campaign", EOriginPosition.TopLeft, 0.02f);
+            CSpriteRenderer campaignSR1 = new CSpriteRenderer("CampaignHover", EOriginPosition.TopLeft, 0.02f);
             GUIImage campaignImage = new GUIImage(campaignSR, false, false);
             campaign.AddComponent<CSpriteRenderer>(campaignSR);
             campaign.AddComponent<GUIImage>(campaignImage);
             campaign.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540); //2222, 400 is a tenth of the image's default size
             campaign.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 2.5f);
+
+            Texture2D texture1 = campaignSR.Sprite;
+            Texture2D texture2 = campaignSR1.Sprite;
+            GUIButton button = new GUIButton(campaignSR, texture1, texture2, Color.White, Color.White);
+            campaign.AddComponent<GUIButton>(button);
 
             GameObject credits = new GameObject();
             CSpriteRenderer creditsSR = new CSpriteRenderer("Credits", EOriginPosition.TopLeft, 0.02f);
