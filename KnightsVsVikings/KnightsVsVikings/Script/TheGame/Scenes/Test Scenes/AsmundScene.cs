@@ -12,7 +12,7 @@ namespace KnightsVsVikings
 {
     public class AsmundScene : Scene
     {
-       Vector2 relativeSize = GraphicsSetting.Instance.ScreenSize;
+        float position = 1.25f;
         public override void Initialize()
         {
             base.Initialize();
@@ -24,67 +24,73 @@ namespace KnightsVsVikings
             background.AddComponent<GUIImage>(backgroundImage);
             background.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2048, 1536); //2048, 1536 is the image's default size
 
-            GameObject quitGame = new GameObject();
-            CSpriteRenderer quitGameSR = new CSpriteRenderer("QuitGame", EOriginPosition.TopLeft, 0.02f);
-            GUIImage quitGameImage = new GUIImage(quitGameSR, false, false);
-            quitGame.AddComponent<CSpriteRenderer>(quitGameSR);
-            quitGame.AddComponent<GUIImage>(quitGameImage);
-            quitGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540); //2222, 500 is a tenth of the image's default size
-            quitGame.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.2f);
+            //GameObject quitGame = new GameObject();
+            //CSpriteRenderer quitGameSR = new CSpriteRenderer("QuitGame", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage quitGameImage = new GUIImage(quitGameSR, false, false);
+            //quitGame.AddComponent<CSpriteRenderer>(quitGameSR);
+            //quitGame.AddComponent<GUIImage>(quitGameImage);
+            //quitGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540); //2222, 500 is a tenth of the image's default size
+            //quitGame.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.2f);
 
-            GameObject campaign = new GameObject();
-            CSpriteRenderer campaignSR = new CSpriteRenderer("Campaign", EOriginPosition.TopLeft, 0.02f);
-            CSpriteRenderer campaignSR1 = new CSpriteRenderer("CampaignHover", EOriginPosition.TopLeft, 0.02f);
-            GUIImage campaignImage = new GUIImage(campaignSR, false, false);
-            campaign.AddComponent<CSpriteRenderer>(campaignSR);
-            campaign.AddComponent<GUIImage>(campaignImage);
-            campaign.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540); //2222, 400 is a tenth of the image's default size
-            campaign.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 2.5f);
 
-            Texture2D texture1 = campaignSR.Sprite;
-            Texture2D texture2 = campaignSR1.Sprite;
-            GUIButton button = new GUIButton(campaignSR, texture1, texture2, Color.White, Color.White);
-            campaign.AddComponent<GUIButton>(button);
+            //GameObject credits = new GameObject();
+            //CSpriteRenderer creditsSR = new CSpriteRenderer("Credits", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage creditsImage = new GUIImage(creditsSR, false, false);
+            //credits.AddComponent<CSpriteRenderer>(creditsSR);
+            //credits.AddComponent<GUIImage>(creditsImage);
+            //credits.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
+            //credits.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.4f);
 
-            GameObject credits = new GameObject();
-            CSpriteRenderer creditsSR = new CSpriteRenderer("Credits", EOriginPosition.TopLeft, 0.02f);
-            GUIImage creditsImage = new GUIImage(creditsSR, false, false);
-            credits.AddComponent<CSpriteRenderer>(creditsSR);
-            credits.AddComponent<GUIImage>(creditsImage);
-            credits.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
-            credits.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.4f);
+            //GameObject loadGame = new GameObject();
+            //CSpriteRenderer loadGameSR = new CSpriteRenderer("LoadGame", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage loadGameImage = new GUIImage(loadGameSR, false, false);
+            //loadGame.AddComponent<CSpriteRenderer>(loadGameSR);
+            //loadGame.AddComponent<GUIImage>(loadGameImage);
+            //loadGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
+            //loadGame.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.0f);
 
-            GameObject loadGame = new GameObject();
-            CSpriteRenderer loadGameSR = new CSpriteRenderer("LoadGame", EOriginPosition.TopLeft, 0.02f);
-            GUIImage loadGameImage = new GUIImage(loadGameSR, false, false);
-            loadGame.AddComponent<CSpriteRenderer>(loadGameSR);
-            loadGame.AddComponent<GUIImage>(loadGameImage);
-            loadGame.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
-            loadGame.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.0f);
+            //GameObject customBattles = new GameObject();
+            //CSpriteRenderer customBattlesSR = new CSpriteRenderer("CustomBattles", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage customBattlesImage = new GUIImage(customBattlesSR, false, false);
+            //customBattles.AddComponent<CSpriteRenderer>(customBattlesSR);
+            //customBattles.AddComponent<GUIImage>(customBattlesImage);
+            //customBattles.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
+            //customBattles.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 2.0f);
 
-            GameObject customBattles = new GameObject();
-            CSpriteRenderer customBattlesSR = new CSpriteRenderer("CustomBattles", EOriginPosition.TopLeft, 0.02f);
-            GUIImage customBattlesImage = new GUIImage(customBattlesSR, false, false);
-            customBattles.AddComponent<CSpriteRenderer>(customBattlesSR);
-            customBattles.AddComponent<GUIImage>(customBattlesImage);
-            customBattles.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
-            customBattles.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 2.0f);
+            //GameObject options = new GameObject();
+            //CSpriteRenderer optionsSR = new CSpriteRenderer("Options", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage optionsImage = new GUIImage(optionsSR, false, false);
+            //options.AddComponent<CSpriteRenderer>(optionsSR);
+            //options.AddComponent<GUIImage>(optionsImage);
+            //options.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
+            //options.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.65f);
 
-            GameObject options = new GameObject();
-            CSpriteRenderer optionsSR = new CSpriteRenderer("Options", EOriginPosition.TopLeft, 0.02f);
-            GUIImage optionsImage = new GUIImage(optionsSR, false, false);
-            options.AddComponent<CSpriteRenderer>(optionsSR);
-            options.AddComponent<GUIImage>(optionsImage);
-            options.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2222, 540); //2222, 340 is a tenth of the image's default size
-            options.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 1.65f);
+            //GameObject campaign = new GameObject();
+            //CSpriteRenderer campaignSR = new CSpriteRenderer("Campaign", EOriginPosition.TopLeft, 0.02f);
+            //CSpriteRenderer campaignSR1 = new CSpriteRenderer("CampaignHover", EOriginPosition.TopLeft, 0.02f);
+            //GUIImage campaignImage = new GUIImage(campaignSR, false, false);
+            //campaign.AddComponent<CSpriteRenderer>(campaignSR);
+            //campaign.AddComponent<GUIImage>(campaignImage);
+            //campaign.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540); //2222, 400 is a tenth of the image's default size
+            //campaign.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / 2.5f);
+
+            //Texture2D texture1 = campaignSR.Sprite;
+            //Texture2D texture2 = campaignSR1.Sprite;
+            //GUIButton button = new GUIButton(campaignSR, texture1, texture2, Color.White, Color.White);
+            //campaign.AddComponent<GUIButton>(button);
+
+            MakeButton("Campaign", "CampaignHover");
+            MakeButton("Campaign", "CampaignHover");
+            MakeButton("Campaign", "CampaignHover");
+            MakeButton("Campaign", "CampaignHover");
 
             Instantiate(background);
-            Instantiate(quitGame);
-            Instantiate(campaign);
-            Instantiate(credits);
-            //Instantiate(loadGame);
-            Instantiate(options);
-            Instantiate(customBattles);
+            //Instantiate(quitGame);
+            //Instantiate(campaign);
+            //Instantiate(credits);
+            ////Instantiate(loadGame);
+            //Instantiate(options);
+            //Instantiate(customBattles);
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -100,6 +106,26 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
+        }
+        private void MakeButton(string name, string hoverName)
+        {
+            GameObject go = new GameObject( );
+            CSpriteRenderer sr = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
+            CSpriteRenderer hover = new CSpriteRenderer(hoverName, EOriginPosition.TopLeft, 0.02f);
+            GUIImage image = new GUIImage(sr, false, false);
+            go.AddComponent<CSpriteRenderer>(sr);
+            go.AddComponent<GUIImage>(image);
+            go.Transform.Scale = go.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540);
+            go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
+            
+            Texture2D texture1 = sr.Sprite;
+            Texture2D texture2 = hover.Sprite;
+            GUIButton button = new GUIButton(sr, texture1, texture2, Color.White, Color.White);
+            go.AddComponent<GUIButton>(button);
+
+            Instantiate(go);
+
+            position = position * 1.3f;
         }
     }
 }
