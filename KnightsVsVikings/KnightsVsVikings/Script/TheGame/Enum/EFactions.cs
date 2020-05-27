@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public enum EFactions
+    public enum EFaction
     {
         Knights,
         Vikings

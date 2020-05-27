@@ -31,18 +31,18 @@ namespace MainSystemFramework
 
         public void MakeAnimation()
         {
-            MakeUnit(EFactions.Knights, EUnitType.Worker);
-            MakeUnit(EFactions.Knights, EUnitType.Bowman);
-            MakeUnit(EFactions.Knights, EUnitType.Footman);
-            MakeUnit(EFactions.Knights, EUnitType.Spearman);
+            MakeUnit(EFaction.Knights, EUnitType.Worker);
+            MakeUnit(EFaction.Knights, EUnitType.Bowman);
+            MakeUnit(EFaction.Knights, EUnitType.Footman);
+            MakeUnit(EFaction.Knights, EUnitType.Spearman);
 
-            MakeUnit(EFactions.Vikings, EUnitType.Worker);
-            MakeUnit(EFactions.Vikings, EUnitType.Bowman);
-            MakeUnit(EFactions.Vikings, EUnitType.Footman);
-            MakeUnit(EFactions.Vikings, EUnitType.Spearman);
+            MakeUnit(EFaction.Vikings, EUnitType.Worker);
+            MakeUnit(EFaction.Vikings, EUnitType.Bowman);
+            MakeUnit(EFaction.Vikings, EUnitType.Footman);
+            MakeUnit(EFaction.Vikings, EUnitType.Spearman);
         }
 
-        private void MakeUnit(EFactions factionName, EUnitType unitType)
+        private void MakeUnit(EFaction factionName, EUnitType unitType)
         {
             EUnitAnimationType unitAnimationType;
             Vector2 spriteSize = new Vector2(256, 256);

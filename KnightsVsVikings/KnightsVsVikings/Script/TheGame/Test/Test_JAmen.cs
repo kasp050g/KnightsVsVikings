@@ -11,13 +11,14 @@ namespace KnightsVsVikings
 {
     public class Test_JAmen
     {
-        public GameObject Jamen(EFactions factions, EUnitType unitType)
+        public GameObject Jamen(EFaction factions, EUnitType unitType)
         {
             GameObject jamen = new GameObject();
 
             CSpriteRenderer sp = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
             CAnimator animator = new CAnimator();
-
+            jamen.AddComponent<CSpriteRenderer>(sp);
+            jamen.AddComponent<CAnimator>(animator);
 
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(factions, unitType, EUnitAnimationType.Idle));
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(factions, unitType, EUnitAnimationType.Run));
@@ -28,8 +29,7 @@ namespace KnightsVsVikings
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(factions, unitType, EUnitAnimationType.Cast));
             animator.PlayAnimation($"{EUnitAnimationType.Idle}");
 
-            jamen.AddComponent<CSpriteRenderer>(sp);
-            jamen.AddComponent<CAnimator>(animator);
+
 
             CWorker worker = new CWorker();
             jamen.AddComponent<CWorker>(worker);

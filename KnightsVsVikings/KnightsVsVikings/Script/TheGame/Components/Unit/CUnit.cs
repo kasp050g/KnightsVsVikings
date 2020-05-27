@@ -7,29 +7,46 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public abstract class CUnit : Component
+    public class CUnit : Component
     {
         protected Stats stats = new Stats();
         protected List<Passive> passives = new List<Passive>();
         protected GameObject myTarget = null;
-        protected ETeam eTeam;
+
         protected CAnimator animator;
         protected CMove move;
+
         protected FiniteStateMachine<CUnit> StateMachine;
 
-        public CAnimator Animator { get => animator; set => animator = value; }
+        protected ETeam team;
+        protected EUnitType unitType;
+        protected EFaction faction;
 
+        public CAnimator Animator { get => animator; set => animator = value; }
+        public bool IsLive { get; set; }
+
+        public CUnit()
+        {
+
+        }
+        public CUnit(ETeam team, EUnitType unitType, EFaction faction)
+        {
+            this.team = team;
+            this.unitType = unitType;
+            this.faction = faction;
+        }
         public override void Awake()
         {
             base.Awake();
             animator = GameObject.GetComponent<CAnimator>();
             move = GameObject.GetComponent<CMove>();
-            StateMachine = new FiniteStateMachine<CUnit>(this, new UnitIdle());
-            StateMachine.RegisterState(new UnitRun());
+
+            MadeUnit();
         }
         public override void Start()
         {
@@ -152,6 +169,43 @@ namespace KnightsVsVikings
             }
 
             move.Velocity = newVel;
+        }
+
+        private void MadeUnit()
+        {        
+            // Add Animations
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Idle));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Run));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.BowAttack));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.SpearAttack));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.SwordAttack));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Die));
+            animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Cast));
+            animator.PlayAnimation($"{EUnitAnimationType.Idle}");
+
+            // StateMachine
+            StateMachine = new FiniteStateMachine<CUnit>(this, new UnitIdleState());
+            StateMachine.AddState(new UnitMoveToPositionState());
+            StateMachine.AddState(new UnitChaseMyTargetState());
+            StateMachine.AddState(new UnitDieState());
+            switch (unitType)
+            {
+                case EUnitType.Worker:
+                    StateMachine.AddState(new UnitMeleeAttackState());
+                    StateMachine.AddState(new UnitGatheringState());
+                    break;
+                case EUnitType.Bowman:
+                    StateMachine.AddState(new UnitRangeAttackState());
+                    break;
+                case EUnitType.Footman:
+                    StateMachine.AddState(new UnitMeleeAttackState());
+                    break;
+                case EUnitType.Spearman:
+                    StateMachine.AddState(new UnitMeleeAttackState());
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
