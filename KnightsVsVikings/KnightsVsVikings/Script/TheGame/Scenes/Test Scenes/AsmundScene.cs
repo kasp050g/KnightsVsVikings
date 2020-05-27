@@ -13,19 +13,25 @@ namespace KnightsVsVikings
     public class AsmundScene : Scene
     {
         float position = 1.25f; //this is the starting position of the first created button
+        GUIButton quitGame;
+        GUIButton credits;
+        GUIButton options;
+        GUIButton campaign;
         public override void Initialize()
         {
             base.Initialize();
 
+            MouseSettings.Instance.IsMouseVisible(true);
             CreateBackground();
 
-            MakeButton("QuitGame", "QuitGameHover");
-            MakeButton("Credits", "CreditsHover");
-            MakeButton("Options", "OptionsHover");
-            MakeButton("Campaign", "CampaignHover");
+            MakeButton("QuitGame", "QuitGameHover",ref quitGame);
+            MakeButton("Credits", "CreditsHover", ref credits);
+            MakeButton("Options", "OptionsHover", ref options);
+            MakeButton("Campaign", "CampaignHover", ref campaign);
+
+            BtnDoStuff();
 
 
-   
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -53,7 +59,7 @@ namespace KnightsVsVikings
 
             Instantiate(background);
         }
-        private void MakeButton(string name, string hoverName)
+        private void MakeButton(string name, string hoverName,ref GUIButton btn)
         {
             GameObject go = new GameObject( );
             CSpriteRenderer sr = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
@@ -66,12 +72,18 @@ namespace KnightsVsVikings
             
             Texture2D texture1 = sr.Sprite;
             Texture2D texture2 = hover.Sprite;
-            GUIButton button = new GUIButton(sr, texture1, texture2, Color.White, Color.White);
-            go.AddComponent<GUIButton>(button);
+            btn = new GUIButton(sr, texture1, texture2, Color.White, Color.White);
+            go.AddComponent<GUIButton>(btn);
+            
 
             Instantiate(go);
 
             position = position * 1.3f; //this is to relocate the next button further up
+        }
+
+        private void BtnDoStuff()
+        {
+            quitGame.OnClick = () => { Console.WriteLine("Quit"); };
         }
     }
 }
