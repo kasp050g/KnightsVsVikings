@@ -60,6 +60,7 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
             AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
             AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
+            AddSprite(content.Load<Texture2D>("Images/UI/CampaignHover"), "CampaignHover");
             AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
             AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
             AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
