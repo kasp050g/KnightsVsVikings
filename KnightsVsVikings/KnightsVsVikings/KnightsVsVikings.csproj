@@ -69,6 +69,7 @@
     <Compile Include="Script\MainSystem\Enum\EAnimationType.cs" />
     <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
     <Compile Include="Script\MainSystem\Random\TextureSheet2D.cs" />
+    <Compile Include="Script\TheGame\Components\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Script\TheGame\Components\Unit\StateMachine\StateMachine.cs" />
     <Compile Include="Script\TheGame\Components\Unit\StateMachine\UnitState\IdleState.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\UFootman.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
@@ -101,6 +102,11 @@
     <Compile Include="Script\MainSystem\Settings\MouseSettings.cs" />
     <Compile Include="Script\MainSystem\Static\Input.cs" />
     <Compile Include="Script\MainSystem\Static\Time.cs" />
+    <Compile Include="Script\TheGame\StateMachine\BaseState.cs" />
+    <Compile Include="Script\TheGame\StateMachine\FiniteStateMachine.cs" />
+    <Compile Include="Script\TheGame\StateMachine\FsmState.cs" />
+    <Compile Include="Script\TheGame\StateMachine\Interface\IFsmState.cs" />
+    <Compile Include="Script\TheGame\StateMachine\Interface\IState.cs" />
     <Compile Include="Script\TheGame\Scenes\GameScene.cs" />
     <Compile Include="Script\TheGame\Scenes\MainMenuScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\AsmundScene.cs" />
@@ -108,6 +114,9 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
+    <Compile Include="Script\TheGame\StateMachine\JamenTestlololol.cs" />
+    <Compile Include="Script\TheGame\Test\Test State\UnitIdle.cs" />
+    <Compile Include="Script\TheGame\Test\Test State\UnitRun.cs" />
     <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
     <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
     <Compile Include="Script\TheGame\Test\Test_Unit.cs" />

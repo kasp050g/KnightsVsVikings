@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public enum EFacingDirection
+    public interface IFsmState<T> : IState<FiniteStateMachine<T>, T>
     {
-        Up,
-        Down,
-        Left,
-        Rigth
     }
 }

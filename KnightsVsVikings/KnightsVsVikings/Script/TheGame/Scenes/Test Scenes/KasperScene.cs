@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KnightsVsVikings.Script.MainSystem.Enum;
+using KnightsVsVikings.Script.TheGame.StateMachine;
 using KnightsVsVikings.Script.TheGame.Test;
 using MainSystemFramework;
 
@@ -36,6 +37,15 @@ namespace KnightsVsVikings
 
         public void TestZone()
         {
+            GameObject tmp = new GameObject();
+            Instantiate(tmp);
+
+
+
+
+
+
+
             TestUnit(EFactions.Knights, EUnitType.Worker, 0);
             TestUnit(EFactions.Knights, EUnitType.Bowman, 1);
             TestUnit(EFactions.Knights, EUnitType.Spearman, 2);
@@ -54,8 +64,12 @@ namespace KnightsVsVikings
         {
             Test_JAmen test_JAmen = new Test_JAmen();
             GameObject tmp = test_JAmen.Jamen(factions, unitType);
+            
             tmp.Transform.Position -= new Microsoft.Xna.Framework.Vector2(650 - 150 * number, 0);
             Instantiate(tmp);
+
+
+            
         }
     }
 }

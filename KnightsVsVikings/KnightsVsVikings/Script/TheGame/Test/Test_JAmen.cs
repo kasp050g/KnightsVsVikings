@@ -35,8 +35,8 @@ namespace KnightsVsVikings
             CWorker worker = new CWorker();
             jamen.AddComponent<CWorker>(worker);
 
-            Test_Unit test = new Test_Unit();
-            jamen.AddComponent<Test_Unit>(test);
+            CMove move = new CMove();
+            jamen.AddComponent<CMove>(move);
 
             return jamen;
         }

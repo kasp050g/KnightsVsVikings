@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class UFootman : CUnit
+    public class CFootman : CUnit
     {
         public override void Awake()
         {

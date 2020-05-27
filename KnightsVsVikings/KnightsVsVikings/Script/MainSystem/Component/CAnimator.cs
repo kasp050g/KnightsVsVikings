@@ -1,4 +1,5 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
+﻿using KnightsVsVikings;
+using KnightsVsVikings.Script.MainSystem.Enum;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,6 +25,9 @@ namespace MainSystemFramework
         private bool stopAnimator = false;
 
         public bool AnimationLock { get { return (currentAnimation != null ? currentAnimation.AnimationLock : false); } }
+
+        public EFacingDirection FacingDirection { get => facingDirection; set => facingDirection = value; }
+
         public override void Awake()
         {
             base.Awake();
@@ -63,9 +67,10 @@ namespace MainSystemFramework
             {
                 // this is made for this Game.
                 // to 
-                if (currentBlendTree != null && GameObject.Transform.Velocity != new Vector2(0, 0))
+                if (currentBlendTree != null )
                 {
-                    CAnimation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
+                    //CAnimation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
+                    CAnimation tmp = currentBlendTree.FacingCheck(facingDirection);
                     if (currentAnimation != tmp)
                     {
                         currentAnimation = tmp;
