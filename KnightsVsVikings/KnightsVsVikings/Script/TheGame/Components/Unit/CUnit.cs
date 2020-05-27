@@ -206,6 +206,8 @@ namespace KnightsVsVikings
                 default:
                     break;
             }
+
+            //TODO: Get stats from sql here.
         }
     }
 }
