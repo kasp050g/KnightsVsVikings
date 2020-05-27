@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KnightsVsVikings.Script.MainSystem.Enum;
-using KnightsVsVikings.Script.TheGame.StateMachine;
-using KnightsVsVikings.Script.TheGame.Test;
+
 using MainSystemFramework;
 
 namespace KnightsVsVikings

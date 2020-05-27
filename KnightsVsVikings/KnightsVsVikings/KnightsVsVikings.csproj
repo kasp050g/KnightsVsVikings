@@ -114,12 +114,10 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
-    <Compile Include="Script\TheGame\StateMachine\JamenTestlololol.cs" />
-    <Compile Include="Script\TheGame\Test\Test State\UnitIdle.cs" />
-    <Compile Include="Script\TheGame\Test\Test State\UnitRun.cs" />
+    <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitIdle.cs" />
+    <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitRun.cs" />
     <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
     <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
-    <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -144,6 +142,7 @@
   <ItemGroup>
     <Folder Include="Content\Images\Characters\" />
     <Folder Include="Content\Images\Tiles\" />
+    <Folder Include="Script\TheGame\Test\Test State\" />
     <Folder Include="Script\TheGame\Unit\" />
     <Folder Include="Script\WorldEditor\" />
   </ItemGroup>
