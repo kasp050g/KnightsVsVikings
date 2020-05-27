@@ -416,7 +416,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/UI/Options.png
 
-#begin Images/UI/Quit.png
+#begin Images/UI/QuitGame.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -426,5 +426,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/UI/Quit.png
+/build:Images/UI/QuitGame.png
 
