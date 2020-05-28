@@ -20,6 +20,7 @@ namespace KnightsVsVikings
         GUIButton campaign;
 
         GameObject MainMenuGameObject = new GameObject();
+        GameObject CampaignMenuGameObject = new GameObject();
         public MainMenuUI(Scene myScene)
         {
             this.myScene = myScene;
@@ -30,13 +31,15 @@ namespace KnightsVsVikings
             MouseSettings.Instance.IsMouseVisible(true);
             CreateBackground();
 
-            MakeButton("QuitGame", "QuitGameHover", ref quitGame);
-            MakeButton("Credits", "CreditsHover", ref credits);
-            MakeButton("Options", "OptionsHover", ref options);
-            MakeButton("Campaign", "CampaignHover", ref campaign);
+            MakeButton("QuitGame", "QuitGameHover", ref quitGame, true);
+            MakeButton("Credits", "CreditsHover", ref credits, true);
+            MakeButton("Options", "OptionsHover", ref options, true);
+            MakeButton("Campaign", "CampaignHover", ref campaign, true);
+
 
             BtnDoStuff();
             myScene.Instantiate(MainMenuGameObject);
+            myScene.Instantiate(CampaignMenuGameObject);
 
         }
         private void CreateBackground()
@@ -50,7 +53,7 @@ namespace KnightsVsVikings
 
             myScene.Instantiate(background);
         }
-        private void MakeButton(string name, string hoverName, ref GUIButton btn)
+        private void MakeButton(string name, string hoverName, ref GUIButton btn, bool main)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
@@ -59,23 +62,33 @@ namespace KnightsVsVikings
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<GUIImage>(image);
             go.Transform.Scale = go.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540);
-            go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
-
+            
             Texture2D texture1 = sr.Sprite;
             Texture2D texture2 = hover.Sprite;
             btn = new GUIButton(sr, texture1, texture2, Color.White, Color.White);
             go.AddComponent<GUIButton>(btn);
 
-            go.MyParent = MainMenuGameObject;
-
             myScene.Instantiate(go);
 
-            position = position * 1.3f; //this is to relocate the next button further up
+            if (main == false)
+            {
+                go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
+                go.MyParent = MainMenuGameObject;
+                position = position * 1.3f; //this is to relocate the next button further up
+            }
+            else
+            {
+                go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
+                go.MyParent = MainMenuGameObject;
+                position = position * 1.3f; //this is to relocate the next button further up
+            }
         }
 
         private void BtnDoStuff()
         {
-            quitGame.OnClick = () => { MainMenuGameObject.IsActive = false ; };
+            quitGame.OnClick = () => { /*TODO EXIT GAME*/ ; };
+            campaign.OnClick = () => { MainMenuGameObject.IsActive = false ; };
+            campaign.OnClick = () => { CampaignMenuGameObject.IsActive = true ; };
         }
     }
 }
