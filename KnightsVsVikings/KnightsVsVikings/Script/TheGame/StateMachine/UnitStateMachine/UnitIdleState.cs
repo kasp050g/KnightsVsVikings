@@ -8,15 +8,10 @@ namespace KnightsVsVikings
 {
     public class UnitIdleState : FsmState<CUnit>
     {
+        float time = 0;
         public UnitIdleState()
         {
            
-        }
-        float time = 0;
-        public override void Act(float deltaTime)
-        {
-            base.Act(deltaTime);
-            time += deltaTime;
         }
 
         public override void Begin()
@@ -40,6 +35,12 @@ namespace KnightsVsVikings
             {
                 Machine.ChangeState<UnitMoveToPositionState>();
             }
+        }
+
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
+            time += deltaTime;
         }
     }
 }

@@ -24,11 +24,6 @@ namespace KnightsVsVikings
             base.End();
             Console.WriteLine("Unit Run Slut");
         }
-        public override void Act(float deltaTime)
-        {
-            base.Act(deltaTime);
-            time += deltaTime;
-        }
 
         public override void Reason()
         {
@@ -37,6 +32,12 @@ namespace KnightsVsVikings
             {
                 Machine.ChangeState<UnitIdleState>();
             }
+        }
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
+            time += deltaTime;
+            
         }
     }
 }

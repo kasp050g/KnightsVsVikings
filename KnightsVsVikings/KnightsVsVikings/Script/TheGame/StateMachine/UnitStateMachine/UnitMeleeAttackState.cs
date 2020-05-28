@@ -17,14 +17,15 @@ namespace KnightsVsVikings
         {
             base.End();
         }
-        public override void Act(float deltaTime)
-        {
-            base.Act(deltaTime);
-        }
 
         public override void Reason()
         {
             base.Reason();
+        }
+
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
         }
     }
 }
