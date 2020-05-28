@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
-    public interface ISQLiteTable
+    interface ISQLiteRepository
     {
-        string TableName { get; set; }
-        ISQLiteDBProvider Provider { get; }
-        ISQLiteMapper Mapper { get; }
+        ISQLiteTable[] RepositoryTables { get; }
     }
 }

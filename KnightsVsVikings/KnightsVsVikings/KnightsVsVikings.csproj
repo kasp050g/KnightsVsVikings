@@ -46,6 +46,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\DictionaryExtend.cs" />
+    <Compile Include="ExtensionMethods\ObjectExtend.cs" />
+    <Compile Include="ExtensionMethods\StringExtend.cs" />
+    <Compile Include="ExtensionMethods\TypeExtend.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +105,7 @@
     <Compile Include="Script\MainSystem\Settings\MouseSettings.cs" />
     <Compile Include="Script\MainSystem\Static\Input.cs" />
     <Compile Include="Script\MainSystem\Static\Time.cs" />
+    <Compile Include="Script\TheGame\Patterns\CommandPattern\ICommand.cs" />
     <Compile Include="Script\TheGame\Scenes\GameScene.cs" />
     <Compile Include="Script\TheGame\Scenes\MainMenuScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\AsmundScene.cs" />
@@ -110,12 +115,35 @@
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
     <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
     <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteRowBase.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteDBProvider.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteMapper.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteRepository.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteRow.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteInput.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteMultiple.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteSingle.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteOutput.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\CommandMethodExtensions.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\DeleteRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\GetRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\InsertRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\RenameTableCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\UpdateRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLiteHelper.cs" />
+    <Compile Include="SQLiteFramework\TableContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.2\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
@@ -136,6 +164,7 @@
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Unit\" />
     <Folder Include="Script\WorldEditor\" />
+    <Folder Include="SQLiteFramework\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

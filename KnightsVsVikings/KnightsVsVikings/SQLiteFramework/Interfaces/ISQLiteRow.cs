@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
-    public interface ISQLiteTable
+    public interface ISQLiteRow
     {
-        string TableName { get; set; }
-        ISQLiteDBProvider Provider { get; }
-        ISQLiteMapper Mapper { get; }
+        int ID { get; set; }
+        ISQLiteTable LocatedInTable { get; set; }
     }
 }

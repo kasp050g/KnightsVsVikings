@@ -1,4 +1,10 @@
-﻿using System;
+﻿using KnightsVsVikings.ExtensionMethods;
+using KnightsVsVikings.SQLiteFramework.Framework.Global;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
+using System;
+using System.Data.SQLite;
+using System.Reflection;
 
 namespace KnightsVsVikings
 {

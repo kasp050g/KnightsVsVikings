@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
-    public interface ISQLiteTable
+    public interface ISQLiteMapper
     {
-        string TableName { get; set; }
-        ISQLiteDBProvider Provider { get; }
-        ISQLiteMapper Mapper { get; }
+        List<ISQLiteRow> MapRowsFromReader(IDataReader reader, ISQLiteTable readFromTable);
     }
 }
