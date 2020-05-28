@@ -136,7 +136,9 @@
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
+    <None Include="Content\Font\MediaevalFont.spritefont" />
     <None Include="Content\Font\NormalFont.spritefont" />
+    <None Include="Content\Font\vinque.ttf" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
