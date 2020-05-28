@@ -1,5 +1,4 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,27 +6,26 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class UnitRun : FsmState<CUnit>
+    public class UnitIdleState : FsmState<CUnit>
     {
         float time = 0;
-        public override void Act(float deltaTime)
+        public UnitIdleState()
         {
-            base.Act(deltaTime);
-            time += deltaTime;
+           
         }
 
         public override void Begin()
         {
             base.Begin();
             time = 0;
-            Console.WriteLine("Unit Run Start");
-            Context.Animator.PlayAnimation($"{EUnitAnimationType.Run}");
+            Console.WriteLine("Unit Ilde Start");
+            Context.Animator.PlayAnimation($"{EUnitAnimationType.Idle}");
         }
 
         public override void End()
         {
             base.End();
-            Console.WriteLine("Unit Run Slut");
+            Console.WriteLine("Unit Idle slut");
         }
 
         public override void Reason()
@@ -35,8 +33,14 @@ namespace KnightsVsVikings
             base.Reason();
             if (time > 3)
             {
-                Machine.ChangeState<UnitIdle>();
+                Machine.ChangeState<UnitMoveToPositionState>();
             }
+        }
+
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
+            time += deltaTime;
         }
     }
 }

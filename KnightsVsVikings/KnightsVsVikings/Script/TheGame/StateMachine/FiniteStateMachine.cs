@@ -11,7 +11,7 @@ namespace KnightsVsVikings
         //
         // Summary:
         //     A shared context which all states have access to.
-        public T Context { get; }
+        public T Context { get; private set; }
         //
         // Summary:
         //     The active state.
@@ -32,10 +32,10 @@ namespace KnightsVsVikings
         // Parameters:
         //   context:
         //     A shared context for the states.
-        public FiniteStateMachine(T context)
-        {
-            this.Context = context;
-        }
+        //public FiniteStateMachine(T context)
+        //{
+        //    this.Context = context;
+        //}
         //
         // Summary:
         //     Creates a new Finite State Machine and changes the state to startState. If you
@@ -68,7 +68,7 @@ namespace KnightsVsVikings
         //
         // Type parameters:
         //   TState:
-        public void ChangeState<TState>() where TState : IFsmState<T>
+        public TState ChangeState<TState>() where TState : IFsmState<T>
         {
             PreviousState = CurrentState;
 
@@ -77,7 +77,7 @@ namespace KnightsVsVikings
             PreviousState.End();
             CurrentState.Begin();
 
-            //return this.;
+            return (TState)CurrentState;
         }
         //
         // Summary:
@@ -91,6 +91,20 @@ namespace KnightsVsVikings
         //   TState:
         public TState ChangeState<TState>(TState state) where TState : IFsmState<T>
         {
+            if (CurrentState != null)
+                CurrentState.End();
+
+            PreviousState = CurrentState;
+            CurrentState = state;
+
+            if (CurrentState != null)
+            {
+                AddState(state);
+                CurrentState.Machine = this;
+                CurrentState.Context = Context;
+                CurrentState.Begin();
+            }
+
             return state;
         }
         //
@@ -142,7 +156,7 @@ namespace KnightsVsVikings
         // Parameters:
         //   state:
         //     The state to register.
-        public void RegisterState(IFsmState<T> state)
+        public void AddState(IFsmState<T> state)
         {
             state.Machine = this;
             state.Context = Context;

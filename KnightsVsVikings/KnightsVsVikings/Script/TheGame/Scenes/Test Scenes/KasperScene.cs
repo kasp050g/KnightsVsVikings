@@ -45,30 +45,37 @@ namespace KnightsVsVikings
 
 
 
-            TestUnit(EFactions.Knights, EUnitType.Worker, 0);
-            TestUnit(EFactions.Knights, EUnitType.Bowman, 1);
-            TestUnit(EFactions.Knights, EUnitType.Spearman, 2);
-            TestUnit(EFactions.Knights, EUnitType.Footman, 3);
+            TestUnit(EFaction.Knights, EUnitType.Worker, 0);
+            TestUnit(EFaction.Knights, EUnitType.Bowman, 1);
+            TestUnit(EFaction.Knights, EUnitType.Spearman, 2);
+            TestUnit(EFaction.Knights, EUnitType.Footman, 3);
 
-            TestUnit(EFactions.Vikings, EUnitType.Worker, 4);
-            TestUnit(EFactions.Vikings, EUnitType.Bowman, 5);
-            TestUnit(EFactions.Vikings, EUnitType.Spearman, 6);
-            TestUnit(EFactions.Vikings, EUnitType.Footman, 7);
+            TestUnit(EFaction.Vikings, EUnitType.Worker, 4);
+            TestUnit(EFaction.Vikings, EUnitType.Bowman, 5);
+            TestUnit(EFaction.Vikings, EUnitType.Spearman, 6);
+            TestUnit(EFaction.Vikings, EUnitType.Footman, 7);
 
             Test_ButtonJamen test_J = new Test_ButtonJamen(this);
-            test_J.JamenTest();
+            //test_J.JamenTest();
         }
 
-        public void TestUnit(EFactions factions, EUnitType unitType,int number)
+        public void TestUnit(EFaction factions, EUnitType unitType, int number)
         {
-            Test_JAmen test_JAmen = new Test_JAmen();
-            GameObject tmp = test_JAmen.Jamen(factions, unitType);
-            
-            tmp.Transform.Position -= new Microsoft.Xna.Framework.Vector2(650 - 150 * number, 0);
-            Instantiate(tmp);
+            GameObject go = new GameObject();
+            CSpriteRenderer sp = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
+            CAnimator animator = new CAnimator();
+            CUnit unit = new CUnit(ETeam.team01, unitType, factions);
+            CMove move = new CMove();
+            go.AddComponent<CUnit>(unit);
+            go.AddComponent<CMove>(move);
+            go.AddComponent<CSpriteRenderer>(sp);
+            go.AddComponent<CAnimator>(animator);
+
+            go.Transform.Position -= new Microsoft.Xna.Framework.Vector2(650 - 150 * number, 0);
+            Instantiate(go);
 
 
-            
+
         }
     }
 }
