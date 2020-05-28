@@ -75,9 +75,6 @@
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CWorker.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\StateMachine\State.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\StateMachine\StateMachine.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\StateMachine\UnitState\IdleState.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
@@ -122,7 +119,7 @@
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitMoveToPositionState.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitRangeAttackState.cs" />
     <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
-    <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
+    <Compile Include="Script\TheGame\Test_ContentUploader\NewButtonTest_Kasper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

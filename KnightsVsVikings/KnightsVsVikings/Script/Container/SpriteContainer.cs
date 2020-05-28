@@ -87,6 +87,7 @@ namespace MainSystemFramework
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
 
+            UI(content);
             AnimationsSheet(content);
         }
 
