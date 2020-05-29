@@ -351,6 +351,42 @@
 /processorParam:TextureFormat=Color
 /build:Images/TileSheet/Grassland128x128.png
 
+#begin Images/UI/ActionBar/ActionBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/ActionBar/ActionBar.png
+
+#begin Images/UI/ActionBar/Slot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/ActionBar/Slot.png
+
+#begin Images/UI/ActionBar/SlotNameBar.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/ActionBar/SlotNameBar.png
+
 #begin Images/UI/Button/Button_A_Long_active.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -579,6 +615,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/UI/Icon/Game_Icon/SGI_88.png
 
+#begin Images/UI/Icon/UI_Icon/KnightsCampaign.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/KnightsCampaign.png
+
 #begin Images/UI/Icon/UI_Icon/UI_Icon_Play.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -626,6 +674,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/UI/Icon/UI_Icon/UI_Icon_SoundOn.png
+
+#begin Images/UI/Icon/UI_Icon/VikingsCampaign.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/VikingsCampaign.png
 
 #begin Images/UI/Load Game.jpg
 /importer:TextureImporter
