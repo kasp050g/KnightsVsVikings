@@ -56,10 +56,29 @@ namespace KnightsVsVikings
             go.Transform.Position = pos * GraphicsSetting.Instance.ScreenScale + go.MyParent.Transform.Position;
 
             SlotShowBar(new Vector2(sr.Sprite.Width / 2, sr.Sprite.Height)* go.Transform.Scale, go);
+            ImageInSlot(new Vector2(sr.Sprite.Width, sr.Sprite.Height) * go.Transform.Scale, go);
 
             myScene.Instantiate(go);
 
             btn.OnClick = () => { actionBar.IsActive = false; };
+        }
+
+        public void ImageInSlot(Vector2 size, GameObject myParent)
+        {
+            GameObject go = new GameObject();
+            CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.TileSprite.Grass01);
+            GUIImage image = new GUIImage(sr, false, false, Color.White, EOriginPosition.TopLeft, 0.13f);
+            go.AddComponent<CSpriteRenderer>(sr);
+            go.AddComponent<GUIImage>(image);
+
+            float x = size.X / (size.X / sr.Sprite.Width);
+            float y = size.Y / (size.Y / sr.Sprite.Height);
+
+            go.MyParent = myParent;
+            go.Transform.Scale = new Vector2(size.X / sr.SpriteSheet.Rectangle.Width * 0.6f, size.Y / sr.SpriteSheet.Rectangle.Height *0.6f);
+            go.Transform.Position = go.MyParent.Transform.Position /*+ new Vector2(sr.SpriteSheet.Rectangle.Width * 0.2f, sr.SpriteSheet.Rectangle.Height * 0.2f)*/;
+
+            myScene.Instantiate(go);
         }
 
         public void SlotShowBar(Vector2 pos,GameObject myParent)
@@ -81,10 +100,11 @@ namespace KnightsVsVikings
         public void TextToSlotBar(string text,Vector2 size,GameObject myParent)
         {
             GameObject go = new GameObject();
-            GUIText guiText = new GUIText(SpriteContainer.Instance.NormalFont,Color.White,new Vector2(1,1), text,EOriginPosition.BottomMid);
+            GUIText guiText = new GUIText(SpriteContainer.Instance.NormalFont,Color.White,new Vector2(0.4f,0.4f), text,EOriginPosition.BottomMid);
             go.AddComponent<GUIText>(guiText);
 
             guiText.LayerDepth = 0.13f;
+            guiText.FontScale = guiText.FontScale * GraphicsSetting.Instance.ScreenScale;
             go.MyParent = myParent;
             go.Transform.Scale = size;
             go.Transform.Position = myParent.Transform.Position - size / 2;
