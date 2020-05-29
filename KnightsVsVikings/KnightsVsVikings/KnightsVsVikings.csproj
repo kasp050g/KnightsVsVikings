@@ -120,6 +120,8 @@
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitRangeAttackState.cs" />
     <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
     <Compile Include="Script\TheGame\UILogic\MainMenuUI.cs" />
+    <Compile Include="Script\TheGame\Test_ContentUploader\NewButtonTest_Kasper.cs" />
+    <Compile Include="Script\WorldEditor\Tile\CTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
@@ -148,7 +150,6 @@
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
     <Folder Include="Script\TheGame\Unit\" />
-    <Folder Include="Script\WorldEditor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

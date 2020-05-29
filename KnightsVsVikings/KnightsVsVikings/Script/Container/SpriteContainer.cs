@@ -60,7 +60,7 @@ namespace MainSystemFramework
             Pixel = content.Load<Texture2D>("Images/MainSystem/Pixel");
 
             //Interface
-            //AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
+            AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
             //AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
             //AddSprite(content.Load<Texture2D>("Images/UI/QuitGameHover"), "QuitGameHover");
             //AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
@@ -71,6 +71,8 @@ namespace MainSystemFramework
             //AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
             //AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
             //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
 
             // Tile Sheet
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
@@ -87,6 +89,7 @@ namespace MainSystemFramework
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
 
+            UI(content);
             AnimationsSheet(content);
         }
 
@@ -131,8 +134,7 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOn"), "UI_Icon_SoundOn");
 
             // UI Button
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
+
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_ready"), "Button_tiny_black");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_red"), "Button_tiny_red");
         }
