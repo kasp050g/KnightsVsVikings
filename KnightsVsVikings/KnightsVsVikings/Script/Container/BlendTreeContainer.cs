@@ -30,18 +30,18 @@ namespace MainSystemFramework
 
         public void MakeBlend()
         {
-            MakeBlend(EFactions.Knights, EUnitType.Worker);
-            MakeBlend(EFactions.Knights, EUnitType.Bowman);
-            MakeBlend(EFactions.Knights, EUnitType.Footman);
-            MakeBlend(EFactions.Knights, EUnitType.Spearman);
+            MakeBlend(EFaction.Knights, EUnitType.Worker);
+            MakeBlend(EFaction.Knights, EUnitType.Bowman);
+            MakeBlend(EFaction.Knights, EUnitType.Footman);
+            MakeBlend(EFaction.Knights, EUnitType.Spearman);
 
-            MakeBlend(EFactions.Vikings, EUnitType.Worker);
-            MakeBlend(EFactions.Vikings, EUnitType.Bowman);
-            MakeBlend(EFactions.Vikings, EUnitType.Footman);
-            MakeBlend(EFactions.Vikings, EUnitType.Spearman);
+            MakeBlend(EFaction.Vikings, EUnitType.Worker);
+            MakeBlend(EFaction.Vikings, EUnitType.Bowman);
+            MakeBlend(EFaction.Vikings, EUnitType.Footman);
+            MakeBlend(EFaction.Vikings, EUnitType.Spearman);
         }
 
-        private void MakeBlend(EFactions factionName, EUnitType unitType)
+        private void MakeBlend(EFaction factionName, EUnitType unitType)
         {
             CraftBlend(factionName, unitType, EUnitAnimationType.Idle);
             CraftBlend(factionName, unitType, EUnitAnimationType.Run);
@@ -52,7 +52,7 @@ namespace MainSystemFramework
             CraftBlend(factionName, unitType, EUnitAnimationType.Cast);
         }
 
-        private void CraftBlend(EFactions factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
+        private void CraftBlend(EFaction factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
             CBlendTree blendTree = new CBlendTree(
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Up{unitAnimationType}"],
@@ -64,7 +64,7 @@ namespace MainSystemFramework
             Blendtrees.Add($"{factionName}{unitType}{unitAnimationType}", blendTree);
         }
 
-        public CBlendTree GetUnitBlendTree(EFactions factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
+        public CBlendTree GetUnitBlendTree(EFaction factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
             return Blendtrees[$"{factionName}{unitType}{unitAnimationType}"];
         }

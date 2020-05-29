@@ -31,14 +31,17 @@ namespace MainSystemFramework
         private Dictionary<string, List<Texture2D>> spriteList = new Dictionary<string, List<Texture2D>>();
         private Dictionary<string, List<TextureSheet2D>> spriteSheetList = new Dictionary<string, List<TextureSheet2D>>();
         private SpriteFont normalFont;
+        private SpriteFont mediaevalFont;
 
         public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
         public Dictionary<string, TextureSheet2D> SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
         public Dictionary<string, List<Texture2D>> SpriteList { get => spriteList; set => spriteList = value; }
         public Dictionary<string, List<TextureSheet2D>> SpriteSheetList { get => spriteSheetList; set => spriteSheetList = value; }
-        public SpriteFont NormalFont { get => normalFont; set => normalFont = value; }
+        public SpriteFont NormalFont { get => normalFont;private set => normalFont = value; }
+        public SpriteFont MediaevalFont { get => mediaevalFont;private set => mediaevalFont = value; }
 
         public Texture2D Pixel { get; set; }
+        public Color TextColor { get; } = new Color(200, 182, 157);
 
         public SpriteContainer()
         {
@@ -49,6 +52,7 @@ namespace MainSystemFramework
         {
             // Normal Font
             NormalFont = content.Load<SpriteFont>("Font/NormalFont");
+            MediaevalFont = content.Load<SpriteFont>("Font/MediaevalFont");
 
             // The Pixel
             AddSprite(content.Load<Texture2D>("Images/MainSystem/Pixel"), "Pixel");
@@ -56,17 +60,17 @@ namespace MainSystemFramework
             Pixel = content.Load<Texture2D>("Images/MainSystem/Pixel");
 
             //Interface
-            AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
-            AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
-            AddSprite(content.Load<Texture2D>("Images/UI/QuitGameHover"), "QuitGameHover");
-            AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
-            AddSprite(content.Load<Texture2D>("Images/UI/OptionsHover"), "OptionsHover");
-            AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
-            AddSprite(content.Load<Texture2D>("Images/UI/CampaignHover"), "CampaignHover");
-            AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
-            AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
-            AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
-            AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
+            //AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
+            //AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
+            //AddSprite(content.Load<Texture2D>("Images/UI/QuitGameHover"), "QuitGameHover");
+            //AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
+            //AddSprite(content.Load<Texture2D>("Images/UI/OptionsHover"), "OptionsHover");
+            //AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
+            //AddSprite(content.Load<Texture2D>("Images/UI/CampaignHover"), "CampaignHover");
+            //AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
+            //AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
+            //AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
+            //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
 
             // Tile Sheet
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
@@ -102,6 +106,35 @@ namespace MainSystemFramework
         private void AddSpriteList(List<TextureSheet2D> TextureSheet2Ds, string name)
         {
             SpriteSheetList.Add(name, TextureSheet2Ds);
+        }
+
+        private void UI(ContentManager content)
+        {
+            // The Game Icon
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_09"), "BowmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_10"), "ArcheryRangeIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_100"), "SpearmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_121"), "BlacksmithIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_136"), "TowerIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_157"), "WorkerIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_159"), "TownHallIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_19"), "BarracksIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_49"), "GatheringStationIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_51"), "FieldIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "KnightFootmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_88"), "VikingFootmanIcon");
+
+            // UI Icon
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_Play"), "ArrowRigth");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_PlayBackwards"), "ArrowLeft");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOff"), "UI_Icon_SoundOff");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOn"), "UI_Icon_SoundOn");
+
+            // UI Button
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_ready"), "Button_tiny_black");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_red"), "Button_tiny_red");
         }
 
         private void AnimationsSheet(ContentManager content)
