@@ -53,8 +53,6 @@ namespace MainSystemFramework
 
             Position += newMove * moveSpeed * Time.deltaTime;
 
-            MoveCamare();
-
             Matrix position = Matrix.CreateTranslation(
                 -this.Position.X,
                 -this.Position.Y,

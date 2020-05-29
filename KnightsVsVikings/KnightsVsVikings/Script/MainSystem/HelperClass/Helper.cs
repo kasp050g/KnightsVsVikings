@@ -148,7 +148,65 @@ namespace MainSystemFramework
             //Console.WriteLine("Error: in |Class: Helper|Method: UpdateOrigin| dint work as it neeed to");
             //go.Transform.Origin = new Vector2(0,0);
         }
+        public static void UpdateOrigin(GameObject go, TextureSheet2D spriteSheet, EOriginPosition originPositionEnum)
+        {
+            // --- Top ---
 
+            // top left
+            if (EOriginPosition.TopLeft == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2(0, 0);
+            }
+            // top mid
+            else if (EOriginPosition.TopMid == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width / 2f, 0);
+            }
+            // top rigth
+            else if (EOriginPosition.TopRight == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width, 0);
+            }
+
+            // --- Mid ---
+
+            // mid left
+            else if (EOriginPosition.MidLeft == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2(0, (float)spriteSheet.Rectangle.Height / 2f);
+            }
+            // mid 
+            else if (EOriginPosition.Mid == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width / 2f, (float)spriteSheet.Rectangle.Height / 2f);
+            }
+            // mid rigth
+            else if (EOriginPosition.MidRight == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width, (float)spriteSheet.Rectangle.Height / 2f);
+            }
+
+            // --- Bottom ---
+
+            // bottom left
+            else if (EOriginPosition.BottomLeft == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2(0, (float)spriteSheet.Rectangle.Height);
+            }
+            // bottom mid
+            else if (EOriginPosition.BottomMid == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width / 2f, (float)spriteSheet.Rectangle.Height);
+            }
+            // bottom rigth
+            else if (EOriginPosition.BottomRight == originPositionEnum)
+            {
+                go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width, (float)spriteSheet.Rectangle.Height);
+            }
+
+            //Console.WriteLine("Error: in |Class: Helper|Method: UpdateOrigin| dint work as it neeed to");
+            //go.Transform.Origin = new Vector2(0,0);
+        }
         public static void UpdateOriginText(string text, Rectangle rectangle,SpriteFont spriteFont,Vector2 Scale, EOriginPosition originPositionEnum,ref Vector2 newPositon)
         {
             // --- Top ---

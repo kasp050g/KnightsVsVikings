@@ -25,10 +25,10 @@ namespace MainSystemFramework
         #endregion
 
         private SceneContainer sceneContainer = new SceneContainer();
-        private CameraFollow camera = new CameraFollow();
+        private CameraRTS camera = new CameraRTS();
         private Scene currentScene;
 
-        public CameraFollow Camera { get => camera; set => camera = value; }
+        public CameraRTS Camera { get => camera; set => camera = value; }
         public SceneContainer SceneContainer { get => sceneContainer; set => sceneContainer = value; }
         // TODO : fix
         public Scene CurrentScene

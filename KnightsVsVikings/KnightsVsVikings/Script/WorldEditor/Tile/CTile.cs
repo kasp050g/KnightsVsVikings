@@ -1,4 +1,5 @@
 ﻿using MainSystemFramework;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,10 @@ namespace KnightsVsVikings
 {
     public class CTile : Component
     {
+        private Vector2 tileSize = new Vector2(128, 128);
+
+        public Vector2 TileSize { get => tileSize; set => tileSize = value; }
+
         public override void Awake()
         {
             base.Awake();

@@ -8,13 +8,13 @@ namespace KnightsVsVikings
 {
     public enum ETeam
     {
-        team01,
-        team02,
-        team03,
-        team04,
-        team05,
-        team06,
-        team07,
-        team08,
+        Team01,
+        Team02,
+        Team03,
+        Team04,
+        Team05,
+        Team06,
+        Team07,
+        Team08,
     }
 }
