@@ -34,7 +34,7 @@ namespace KnightsVsVikings
 
         private void TestZone()
         {
-            ActionBarUI actionBarUI = new ActionBarUI(this);
+            WorldEditorActionBarUI actionBarUI = new WorldEditorActionBarUI(this);
             actionBarUI.MakeUI();
 
             TileGrid tileGrid = new TileGrid(this);

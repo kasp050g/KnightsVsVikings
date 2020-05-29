@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class ActionBarUI
+    public class WorldEditorActionBarUI
     {
         GameObject actionBar;
         Scene myScene;
-        public ActionBarUI(Scene myScene)
+        public WorldEditorActionBarUI(Scene myScene)
         {
             this.myScene = myScene;
         }
@@ -35,8 +35,10 @@ namespace KnightsVsVikings
             go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer("ActionBar");
             GUIImage image = new GUIImage(sr, false, true, Color.White, EOriginPosition.BottomMid, 0.1f);
+
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<GUIImage>(image);
+
             go.Transform.Scale = new Vector2(0.5f, 0.5f) * GraphicsSetting.Instance.ScreenScale;
             go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 2, GraphicsSetting.Instance.ScreenSize.Y * 1.04f);
 
@@ -72,6 +74,7 @@ namespace KnightsVsVikings
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(image);
             GUIImage GUIImage = new GUIImage(sr, false, false, Color.White, EOriginPosition.Mid, 0.13f);
+
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<GUIImage>(GUIImage);
 
@@ -87,6 +90,7 @@ namespace KnightsVsVikings
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer("SlotNameBar");
             GUIImage image = new GUIImage(sr, false, true, Color.White, EOriginPosition.Mid, 0.11f);
+
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<GUIImage>(image);
 
@@ -102,6 +106,7 @@ namespace KnightsVsVikings
         {
             GameObject go = new GameObject();
             GUIText guiText = new GUIText(SpriteContainer.Instance.NormalFont, Color.White, new Vector2(0.4f, 0.4f), text, EOriginPosition.BottomMid);
+
             go.AddComponent<GUIText>(guiText);
 
             guiText.LayerDepth = 0.13f;
