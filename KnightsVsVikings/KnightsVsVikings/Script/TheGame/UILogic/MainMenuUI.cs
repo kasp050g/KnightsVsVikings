@@ -13,14 +13,20 @@ namespace KnightsVsVikings
     {
         Scene myScene;
 
-        GameObject MainMenuGameObject = new GameObject();
-        GameObject CampaignMenuGameObject = new GameObject();
+        GameObject MainMenuGO = new GameObject();
+        GameObject CampaignMenuGO = new GameObject();
+        GameObject VikingsCampaignGO = new GameObject();
+        GameObject KnightsCampaignGO = new GameObject();
 
         GUIButton quitGame;
         GUIButton credits;
         GUIButton options;
         GUIButton campaign;
-        GUIButton back;
+        GUIButton backToMain;
+        GUIButton backToCampaign;
+        GUIButton vikingsCampaign;
+        GUIButton knightsCampaign;
+        GUIButton startGame;
         public MainMenuUI(Scene myScene)
         {
             this.myScene = myScene;
@@ -29,27 +35,39 @@ namespace KnightsVsVikings
         public void MakeUI()
         {
             MouseSettings.Instance.IsMouseVisible(true);
-            
 
-            myScene.Instantiate(MainMenuGameObject);
-            myScene.Instantiate(CampaignMenuGameObject);
+            myScene.Instantiate(MainMenuGO);
+            myScene.Instantiate(CampaignMenuGO);
+            myScene.Instantiate(VikingsCampaignGO);
+            myScene.Instantiate(KnightsCampaignGO);
             
-            CampaignMenuGameObject.IsActive = false;
+            CampaignMenuGO.IsActive = false;
+            VikingsCampaignGO.IsActive = false;
+            KnightsCampaignGO.IsActive = false;
 
             Texture2D texture1 = SpriteContainer.Instance.Sprite["Button_A_Long_black"];
             Texture2D texture2 = SpriteContainer.Instance.Sprite["Button_A_Long_red"];
            
+            //Main Menu
             MakeButton(texture1, texture2, "Campaign", new Vector2(10, 20), ref campaign, "main");
             MakeButton(texture1, texture2, "Options", new Vector2(10, 160), ref options, "main");
             MakeButton(texture1, texture2, "Credits", new Vector2(10, 300), ref credits, "main");
             MakeButton(texture1, texture2, "Exit Game", new Vector2(10, 600), ref quitGame, "main");
             
-            MakeButton(texture1, texture2, "Vikings", new Vector2(280, 400), ref quitGame, "campaign");
-            MakeButton(texture1, texture2, "Knights", new Vector2(620, 400), ref quitGame, "campaign");
-            MakeButton(texture1, texture2, "Back", new Vector2(440, 600), ref back, "campaign");
-
+            //Campaign Menu
+            MakeButton(texture1, texture2, "Vikings", new Vector2(280, 400), ref vikingsCampaign, "campaign");
+            MakeButton(texture1, texture2, "Knights", new Vector2(620, 400), ref knightsCampaign, "campaign");
+            MakeButton(texture1, texture2, "Back", new Vector2(440, 600), ref backToMain, "campaign");
             CreateCampaignIcons("VikingsCampaign", new Vector2(320, 180));
             CreateCampaignIcons("KnightsCampaign", new Vector2(620, 180));
+
+            //Vikings Menu
+            MakeButton(texture1, texture2, "Back", new Vector2(440, 600), ref backToCampaign, "vikings");
+            MakeButton(texture1, texture2, "Chapter 1", new Vector2(100, 100), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 2", new Vector2(100, 200), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 3", new Vector2(100, 300), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 4", new Vector2(100, 400), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 5", new Vector2(100, 500), ref startGame, "vikings");
 
             BtnDoStuff();
         }
@@ -71,13 +89,16 @@ namespace KnightsVsVikings
 
             if (parent == "main")
             {
-                go.MyParent = MainMenuGameObject;
+                go.MyParent = MainMenuGO;
             }
            else if (parent == "campaign")
             {
-                go.MyParent = CampaignMenuGameObject;
+                go.MyParent = CampaignMenuGO;
             }
-
+            else if (parent == "vikings")
+            {
+                go.MyParent = VikingsCampaignGO;
+            }
             myScene.Instantiate(go);
         }
 
@@ -101,18 +122,22 @@ namespace KnightsVsVikings
             go.AddComponent<CSpriteRenderer>(backgroundSR);
             go.AddComponent<GUIImage>(backgroundImage);
             myScene.Instantiate(go);
-            go.MyParent = CampaignMenuGameObject;
+            go.MyParent = CampaignMenuGO;
         }
 
         private void BtnDoStuff()
         {
-           //quitGame.OnClick = () => { /*TODO EXIT GAME*/ ; };
-            campaign.OnClick = () => { CampaignMenuGameObject.IsActive = true; MainMenuGameObject.IsActive = false;  };
-            options.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            back.OnClick = () => { CampaignMenuGameObject.IsActive = false; MainMenuGameObject.IsActive = true; };
-            credits.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            quitGame.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            //campaign.OnClick = () => { CampaignMenuGameObject.IsActive = true; };
+            campaign.OnClick = () => { CampaignMenuGO.IsActive = true; MainMenuGO.IsActive = false;  };
+            backToMain.OnClick = () => { CampaignMenuGO.IsActive = false; MainMenuGO.IsActive = true; };
+            backToCampaign.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };
+            vikingsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
+            knightsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
+            startGame.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };//HERE THE GAME STARTS!
+            
+            options.OnClick = () => { MainMenuGO.IsActive = false; };
+            credits.OnClick = () => { MainMenuGO.IsActive = false; };
+            quitGame.OnClick = () => { MainMenuGO.IsActive = false; }; //HERE THE GAME QUITS
+          
         }
     }
 }
