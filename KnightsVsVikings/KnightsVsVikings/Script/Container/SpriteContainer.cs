@@ -71,8 +71,7 @@ namespace MainSystemFramework
             //AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
             //AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
             //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
+
       
 
             // Tile Sheet
@@ -137,10 +136,17 @@ namespace MainSystemFramework
 
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");
-            // UI Button
 
+            // UI Button
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_ready"), "Button_tiny_black");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_red"), "Button_tiny_red");
+
+            // UI World Editor 
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar"), "ActionBar");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/Slot"), "Slot");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/SlotNameBar"), "SlotNameBar");
         }
 
         private void AnimationsSheet(ContentManager content)
