@@ -212,7 +212,7 @@ namespace MainSystemFramework
             else if (EOriginPosition.BottomMid == originPositionEnum)
             {
                 var x = (rectangle.X + (rectangle.Width / 2)) - (spriteFont.MeasureString(text).X / 2) * Scale.X;
-                var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 2) * Scale.Y;
+                var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 1) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
             // bottom rigth

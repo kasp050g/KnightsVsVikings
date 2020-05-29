@@ -12,6 +12,9 @@ namespace KnightsVsVikings
         public override void Initialize()
         {
             base.Initialize();
+            MouseSettings.Instance.IsMouseVisible(true);
+            ActionBarUI actionBarUI = new ActionBarUI(this);
+            actionBarUI.MakeUI();
         }
 
         public override void OnSwitchAwayFromThisScene()

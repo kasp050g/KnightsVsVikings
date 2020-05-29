@@ -98,6 +98,11 @@ namespace MainSystemFramework
                         component.Update();
                     }
                 }
+            //TODO: Kasper ting lige over den her.
+            if(MyParent != null && IsActive != MyParent.IsActive)
+            {
+                IsActive = MyParent.IsActive;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
