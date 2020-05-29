@@ -69,7 +69,7 @@ namespace KnightsVsVikings
             MakeButton(texture1, texture2, "Chapter 4", new Vector2(100, 400), ref startGame, "vikings");
             MakeButton(texture1, texture2, "Chapter 5", new Vector2(100, 500), ref startGame, "vikings");
 
-            BtnDoStuff();
+            ButtonFunctions();
         }
 
         private void MakeButton(Texture2D texture1, Texture2D texture2, string text, Vector2 pos, ref GUIButton btn, string parent)
@@ -125,7 +125,7 @@ namespace KnightsVsVikings
             go.MyParent = CampaignMenuGO;
         }
 
-        private void BtnDoStuff()
+        private void ButtonFunctions()
         {
             campaign.OnClick = () => { CampaignMenuGO.IsActive = true; MainMenuGO.IsActive = false;  };
             backToMain.OnClick = () => { CampaignMenuGO.IsActive = false; MainMenuGO.IsActive = true; };
