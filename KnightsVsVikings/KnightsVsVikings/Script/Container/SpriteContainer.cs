@@ -73,6 +73,7 @@ namespace MainSystemFramework
             //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
+      
 
             // Tile Sheet
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
@@ -132,7 +133,10 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_PlayBackwards"), "ArrowLeft");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOff"), "UI_Icon_SoundOff");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOn"), "UI_Icon_SoundOn");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOn"), "UI_Icon_SoundOn");
 
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");
             // UI Button
 
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_ready"), "Button_tiny_black");
