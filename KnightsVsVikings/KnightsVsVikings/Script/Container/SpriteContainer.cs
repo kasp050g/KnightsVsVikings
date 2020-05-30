@@ -148,8 +148,10 @@ namespace MainSystemFramework
 
             // UI World Editor 
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar"), "ActionBar");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar02"), "ActionBar02");
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/Slot"), "Slot");
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/SlotNameBar"), "SlotNameBar");
+
         }
 
         private void AnimationsSheet(ContentManager content)
