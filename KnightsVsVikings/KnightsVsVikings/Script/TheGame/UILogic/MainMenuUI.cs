@@ -34,6 +34,8 @@ namespace KnightsVsVikings
 
         public void MakeUI()
         {
+           
+
             MouseSettings.Instance.IsMouseVisible(true);
 
             myScene.Instantiate(MainMenuGO);
@@ -116,11 +118,11 @@ namespace KnightsVsVikings
         private void CreateCampaignIcons(string name, Vector2 pos)
         {
             GameObject go = new GameObject();
-            CSpriteRenderer backgroundSR = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
+            CSpriteRenderer iconSR = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
             go.Transform.Position = pos;
-            GUIImage backgroundImage = new GUIImage(backgroundSR, false, false);
-            go.AddComponent<CSpriteRenderer>(backgroundSR);
-            go.AddComponent<GUIImage>(backgroundImage);
+            GUIImage iconImage = new GUIImage(iconSR, false, false);
+            go.AddComponent<CSpriteRenderer>(iconSR);
+            go.AddComponent<GUIImage>(iconImage);
             myScene.Instantiate(go);
             go.MyParent = CampaignMenuGO;
         }
