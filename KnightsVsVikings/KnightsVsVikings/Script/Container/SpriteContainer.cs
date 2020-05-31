@@ -32,6 +32,7 @@ namespace MainSystemFramework
         private Dictionary<string, List<TextureSheet2D>> spriteSheetList = new Dictionary<string, List<TextureSheet2D>>();
         private SpriteFont normalFont;
         private SpriteFont mediaevalFont;
+        private TileSprite tileSprite = new TileSprite();
 
         public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
         public Dictionary<string, TextureSheet2D> SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
@@ -42,6 +43,7 @@ namespace MainSystemFramework
 
         public Texture2D Pixel { get; set; }
         public Color TextColor { get; } = new Color(200, 182, 157);
+        public TileSprite TileSprite { get => tileSprite; set => tileSprite = value; }
 
         public SpriteContainer()
         {
@@ -71,8 +73,7 @@ namespace MainSystemFramework
             //AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
             //AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
             //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
-            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
+
       
 
             // Tile Sheet
@@ -92,6 +93,7 @@ namespace MainSystemFramework
 
             UI(content);
             AnimationsSheet(content);
+            Tiles();
         }
 
         private void AddSprite(Texture2D texture2D, string name)
@@ -136,10 +138,19 @@ namespace MainSystemFramework
 
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");
-            // UI Button
 
+            // UI Button
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
+            AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_aimed"), "Button_A_Long_black");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_ready"), "Button_tiny_black");
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_tiny_red"), "Button_tiny_red");
+
+            // UI World Editor 
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar"), "ActionBar");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar02"), "ActionBar02");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/Slot"), "Slot");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/SlotNameBar"), "SlotNameBar");
+
         }
 
         private void AnimationsSheet(ContentManager content)
@@ -180,6 +191,44 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/Characters/Vikings/Worker/VikingsWorkerDown"), "VikingsWorkerDown");
             AddSprite(content.Load<Texture2D>("Images/Characters/Vikings/Worker/VikingsWorkerSide"), "VikingsWorkerSide");
             AddSprite(content.Load<Texture2D>("Images/Characters/Vikings/Worker/VikingsWorkerUp"), "VikingsWorkerUp");
+        }
+
+        private void Tiles()
+        {
+            Vector2 tileSize = new Vector2(1 * 128, 1 * 128);
+            Texture2D tileSheet = sprite["Grassland128x128"];
+
+            // Grass Tile
+            TileSprite.Grass01 = new TextureSheet2D(tileSheet, RetrunPos(2,2), tileSize);
+            TileSprite.Grass02 = new TextureSheet2D(tileSheet, RetrunPos(3,2), tileSize);
+            TileSprite.Grass03 = new TextureSheet2D(tileSheet, RetrunPos(4,2), tileSize);
+            // Greass-Water tile
+            TileSprite.GrassWater01 = new TextureSheet2D(tileSheet, RetrunPos(11, 8), tileSize);
+            TileSprite.GrassWater02 = new TextureSheet2D(tileSheet, RetrunPos(11, 9), tileSize);
+            TileSprite.GrassWater03 = new TextureSheet2D(tileSheet, RetrunPos(11, 10), tileSize);
+            TileSprite.GrassWater04 = new TextureSheet2D(tileSheet, RetrunPos(11, 11), tileSize);
+            TileSprite.GrassWater05 = new TextureSheet2D(tileSheet, RetrunPos(14, 8), tileSize);
+            TileSprite.GrassWater06 = new TextureSheet2D(tileSheet, RetrunPos(14, 9), tileSize);
+            TileSprite.GrassWater07 = new TextureSheet2D(tileSheet, RetrunPos(14, 10), tileSize);
+            TileSprite.GrassWater08 = new TextureSheet2D(tileSheet, RetrunPos(14, 11), tileSize);
+            TileSprite.GrassWater09 = new TextureSheet2D(tileSheet, RetrunPos(12, 8), tileSize);
+            TileSprite.GrassWater10 = new TextureSheet2D(tileSheet, RetrunPos(13, 8), tileSize);
+            TileSprite.GrassWater11 = new TextureSheet2D(tileSheet, RetrunPos(12, 11), tileSize);
+            TileSprite.GrassWater12 = new TextureSheet2D(tileSheet, RetrunPos(13, 11), tileSize);
+            TileSprite.GrassWater13 = new TextureSheet2D(tileSheet, RetrunPos(15, 8), tileSize);
+            TileSprite.GrassWater14 = new TextureSheet2D(tileSheet, RetrunPos(16, 8), tileSize);
+            TileSprite.GrassWater15 = new TextureSheet2D(tileSheet, RetrunPos(15, 9), tileSize);
+            TileSprite.GrassWater16 = new TextureSheet2D(tileSheet, RetrunPos(16, 9), tileSize);
+            // Water Tile
+            TileSprite.Water01 = new TextureSheet2D(tileSheet, RetrunPos(13, 9), tileSize);
+            TileSprite.Water02 = new TextureSheet2D(tileSheet, RetrunPos(12, 9), tileSize);
+            TileSprite.Water03 = new TextureSheet2D(tileSheet, RetrunPos(12, 10), tileSize);
+            TileSprite.Water04 = new TextureSheet2D(tileSheet, RetrunPos(13, 10), tileSize);
+        }
+
+        private Vector2 RetrunPos(int x, int y)
+        {
+            return new Vector2((x - 1) * 128, (y - 1) * 128);
         }
     }
 }

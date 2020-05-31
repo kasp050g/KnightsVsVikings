@@ -22,7 +22,7 @@ namespace MainSystemFramework
         #endregion
 
         #region Properties 
-        public Texture2D Sprite { get => sprite;  set => sprite = value; }
+        public Texture2D Sprite { get => sprite; set => sprite = value; }
         public TextureSheet2D SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
         public Color Color { get => color; set => color = value; }
         public SpriteEffects SpriteEffects { get => spriteEffects; set => spriteEffects = value; }
@@ -68,7 +68,14 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
-            Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            if (spriteSheet != null)
+            {
+                Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);
+            }
+            else
+            {
+                Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            }
         }
         public void SetSprite(string spriteName)
         {
@@ -134,7 +141,14 @@ namespace MainSystemFramework
         public void SetOrigin(EOriginPosition originPositionEnum)
         {
             this.originPositionEnum = originPositionEnum;
-            Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            if (spriteSheet != null)
+            {
+                Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);
+            }
+            else
+            {
+                Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            }
         }
 
         #endregion

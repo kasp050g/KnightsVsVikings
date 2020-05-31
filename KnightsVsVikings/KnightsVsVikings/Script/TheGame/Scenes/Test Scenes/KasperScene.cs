@@ -68,7 +68,7 @@ namespace KnightsVsVikings
             GameObject go = new GameObject();
             CSpriteRenderer sp = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
             CAnimator animator = new CAnimator();
-            CUnit unit = new CUnit(ETeam.team01, unitType, factions);
+            CUnit unit = new CUnit(ETeam.Team01, unitType, factions);
             CMove move = new CMove();
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
