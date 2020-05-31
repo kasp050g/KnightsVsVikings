@@ -51,11 +51,11 @@ namespace MainSystemFramework
                 newMove *= 3;
             }
 
-            Position += newMove * moveSpeed * Time.deltaTime;
+            Position += newMove * (int)(moveSpeed * Time.deltaTime);
 
             Matrix position = Matrix.CreateTranslation(
-                -this.Position.X,
-                -this.Position.Y,
+                -Position.X,
+                -Position.Y,
                 0);
 
             Matrix offset = Matrix.CreateTranslation(

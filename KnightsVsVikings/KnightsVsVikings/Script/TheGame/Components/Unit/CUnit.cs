@@ -151,19 +151,19 @@ namespace KnightsVsVikings
         {
             Vector2 newVel = new Vector2(0, 0);
 
-            if (Input.GetKey(Keys.W))
+            if (Input.GetKey(Keys.Up))
             {
                 newVel += new Vector2(0, -1);
             }
-            if (Input.GetKey(Keys.S))
+            if (Input.GetKey(Keys.Down))
             {
                 newVel += new Vector2(0, 1);
             }
-            if (Input.GetKey(Keys.A))
+            if (Input.GetKey(Keys.Left))
             {
                 newVel += new Vector2(-1, 0);
             }
-            if (Input.GetKey(Keys.D))
+            if (Input.GetKey(Keys.Right))
             {
                 newVel += new Vector2(1, 0);
             }
