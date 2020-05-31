@@ -28,31 +28,32 @@ namespace KnightsVsVikings
             Texture2D wood = SpriteContainer.Instance.Sprite["Wood"];
             Texture2D food = SpriteContainer.Instance.Sprite["Food"];
 
-            CreateBorder(new Vector2(300, 525), texture1, new Vector2(0.8f, 0.45f), 0.1f);
-            CreateBorder(new Vector2(0, 460), texture1, new Vector2(0.43f, 0.6f), 0.1f);
-            CreateBorder(new Vector2(980, 460), texture1, new Vector2(0.43f, 0.6f), 0.1f);
-            CreateBorder(new Vector2(855, 525), texture1, new Vector2(0.18f, 0.29f), 0.1f);
-            CreateBorder(new Vector2(855, 650), texture1, new Vector2(0.18f, 0.16f), 0.1f);
-            
-            CreateBorder(new Vector2(-50, 0), texture1, new Vector2(2.0f, 0.1f), 0.1f);
-            
-            CreateBorder(new Vector2(360, 0), gold, new Vector2(0.15f, 0.15f), 0.3f);
-            CreateBorder(new Vector2(560, 0), iron, new Vector2(0.15f, 0.15f), 0.3f);
-            CreateBorder(new Vector2(760, 0), wood, new Vector2(0.15f, 0.15f), 0.3f);
-            CreateBorder(new Vector2(960, 0), food, new Vector2(0.15f, 0.15f), 0.3f);
+            //lower interface
+            CreateBorder(new Vector2(300, 590), texture1, new Vector2(0.8f, 0.3f), 0.1f); //unit bar
+            CreateBorder(new Vector2(0, 510), texture1, new Vector2(0.43f, 0.475f), 0.1f); //minimap
+            CreateBorder(new Vector2(980, 545), texture1, new Vector2(0.43f, 0.4f), 0.1f); //commands
+            CreateBorder(new Vector2(855, 595), texture1, new Vector2(0.18f, 0.193f), 0.1f); //portrait
+            CreateBorder(new Vector2(855, 680), texture1, new Vector2(0.18f, 0.1f), 0.1f); //menu
 
-            CreateText("Dmg:", new Vector2(350, 550));
-            CreateText("Arm:", new Vector2(350, 610));
+            CreateText("Dmg:", new Vector2(350, 600));
+            CreateText("Arm:", new Vector2(350, 635));
             CreateText("Life:", new Vector2(350, 670));
-            CreateText("12", new Vector2(425, 550));
-            CreateText("2", new Vector2(425, 610));
+            CreateText("12", new Vector2(425, 600));
+            CreateText("2", new Vector2(425, 635));
             CreateText("80", new Vector2(425, 670));
 
-            CreateText("Minimap", new Vector2(90, 470));
-            CreateText("Commands", new Vector2(1060, 470));
-            CreateText("Portrait", new Vector2(870, 530));
-            CreateText("Menu", new Vector2(880, 650));
-            
+            CreateText("Minimap", new Vector2(90, 520));
+            CreateText("Commands", new Vector2(1060, 550));
+            CreateText("Portrait", new Vector2(870, 600));
+            CreateText("Menu", new Vector2(880, 680));
+
+            //upper interface
+            CreateBorder(new Vector2(-50, 0), texture1, new Vector2(2.0f, 0.06f), 0.1f);
+            CreateBorder(new Vector2(360, 0), gold, new Vector2(0.15f, 0.1f), 0.3f);
+            CreateBorder(new Vector2(560, 0), iron, new Vector2(0.15f, 0.1f), 0.3f);
+            CreateBorder(new Vector2(760, 0), wood, new Vector2(0.15f, 0.1f), 0.3f);
+            CreateBorder(new Vector2(960, 0), food, new Vector2(0.15f, 0.1f), 0.3f);
+
             CreateText("0", new Vector2(400, 0));
             CreateText("0", new Vector2(600, 0));
             CreateText("0", new Vector2(800, 0));
