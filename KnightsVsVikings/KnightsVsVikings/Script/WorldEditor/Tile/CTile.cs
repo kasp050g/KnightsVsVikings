@@ -11,7 +11,7 @@ namespace KnightsVsVikings
 {
     public class CTile : Component
     {
-        private Vector2 tileSize = new Vector2(128, 128);
+        private Vector2 tileSize = new Vector2((int)128, (int)128);
 
         public Vector2 TileSize { get => tileSize; set => tileSize = value; }
 

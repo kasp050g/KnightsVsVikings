@@ -195,7 +195,7 @@ namespace MainSystemFramework
 
         private void Tiles()
         {
-            Vector2 tileSize = new Vector2(1 * 128, 1 * 128);
+            Vector2 tileSize = new Vector2((int)(1 * 128), (int)(1 * 128));
             Texture2D tileSheet = sprite["Grassland128x128"];
 
             // Grass Tile
@@ -228,7 +228,7 @@ namespace MainSystemFramework
 
         private Vector2 RetrunPos(int x, int y)
         {
-            return new Vector2((x - 1) * 128, (y - 1) * 128);
+            return new Vector2((int)((x - 1) * 128), (int)((y - 1) * 128));
         }
     }
 }

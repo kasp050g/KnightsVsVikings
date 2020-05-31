@@ -20,7 +20,8 @@ namespace KnightsVsVikings
 
         public void MakeUI()
         {
-            TheBar(ref actionBar);
+            actionBar = new GameObject();
+            TheBar(out actionBar);
             MakeSlot(new Vector2(-240, -125), SpriteContainer.Instance.TileSprite.Grass02, "1");
             MakeSlot(new Vector2(-170, -125), SpriteContainer.Instance.TileSprite.Grass03, "2");
             MakeSlot(new Vector2(-100, -125), SpriteContainer.Instance.TileSprite.Water01, "3");
@@ -30,7 +31,7 @@ namespace KnightsVsVikings
             MakeSlot(new Vector2(180, -125), SpriteContainer.Instance.TileSprite.Water04, "7");
         }
 
-        public void TheBar(ref GameObject go)
+        public void TheBar(out GameObject go)
         {
             go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer("ActionBar");
