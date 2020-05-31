@@ -139,6 +139,10 @@ namespace MainSystemFramework
 
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Gold"), "Gold");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Iron"), "Iron");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Wood"), "Wood");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Food"), "Food");
 
             // UI Button
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
