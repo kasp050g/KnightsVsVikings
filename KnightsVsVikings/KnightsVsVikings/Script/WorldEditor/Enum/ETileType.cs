@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.WorldEditor.Enum
+namespace KnightsVsVikings
 {
     public enum ETileType
     {
-        grass,
-        sand,
-        water
+        Grass,
+        Sand,
+        Water,
+        WaterGrass
     }
 }

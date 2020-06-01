@@ -123,8 +123,10 @@
     <Compile Include="Script\TheGame\UILogic\MainMenuUI.cs" />
     <Compile Include="Script\TheGame\Test_ContentUploader\NewButtonTest_Kasper.cs" />
     <Compile Include="Script\WorldEditor\Enum\ETileType.cs" />
+    <Compile Include="Script\WorldEditor\PlaceTileWithMouse.cs" />
     <Compile Include="Script\WorldEditor\TileGrid.cs" />
     <Compile Include="Script\WorldEditor\Tile\CTile.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\TestJmaneKolo.cs" />
     <Compile Include="Script\WorldEditor\UILogic\WorldEditorActionBarUI.cs" />
   </ItemGroup>
   <ItemGroup>
