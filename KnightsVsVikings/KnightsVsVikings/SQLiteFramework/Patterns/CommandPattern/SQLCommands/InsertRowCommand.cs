@@ -36,6 +36,11 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
             SQLiteCommand cmd = new SQLiteCommand($"INSERT INTO '{ExecuteOnTable.TableName}' ({RowToInsert.GetPropertiesToString()}) VALUES ({RowToInsert.GetValuesToString()});", (SQLiteConnection)connection);
             cmd.ExecuteNonQuery();
 
+            SQLiteCommand getID = new SQLiteCommand("SELECT last_insert_rowid();", (SQLiteConnection)connection);
+            int lastID = (int)getID.ExecuteScalar();
+
+            RowToInsert.ID = lastID;
+
             connection.Close();
         }
 

@@ -21,7 +21,7 @@ namespace UnitTesting.Lucas_Testing.RemoveLambda
 
             List<PropertyInfo> expected = properties.Where(property => property.Name != "RemoveMe").ToList();
 
-            properties.RemoveAll(baseProperty => baseProperties.Exists(property => property.Name == baseProperty.Name));
+            properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
             expected = expected.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();
             properties = properties.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();

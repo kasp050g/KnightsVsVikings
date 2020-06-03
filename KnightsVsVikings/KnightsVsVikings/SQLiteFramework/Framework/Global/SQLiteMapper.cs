@@ -35,8 +35,8 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
             result.Add(reader.GetInt32(0)); // <= ID, Index, Identifier
 
-            for (int i = 0; i < typeof(T).GetProperties().Length; i++)
-                result.Add(reader.GetValue(i + 1));
+            for (int i = 1; i < typeof(T).GetProperties().Length; i++)
+                result.Add(reader.GetValue(i));
 
             return result;
         }
@@ -45,7 +45,7 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
         {
             List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().Where(property => property.Name != "ID").ToList();
 
-            properties.RemoveAll(baseProperty => baseProperties.Exists(property => property.Name == baseProperty.Name));
+            properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
             return properties.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();
         }
@@ -59,7 +59,6 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
             for (int i = 0; i < properties.Count; i++)
                 properties.ElementAt(i).SetValue(row, values[i]);
-                //properties.ElementAt(i).SetValue(row, values[i]);
 
             return row;
         }
