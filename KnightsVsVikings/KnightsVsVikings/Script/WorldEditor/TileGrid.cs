@@ -11,16 +11,23 @@ namespace KnightsVsVikings
 {
     public class TileGrid
     {
+        private int gridSizeX = 25;
+        private int gridSizeY = 25;
         private Scene myScene;
-        public GameObject[,] groundTileGrid = new GameObject[10,10];
-        public GameObject[,] obstacleTileGrid = new GameObject[10,10];
-        public GameObject[,] resourceTileGrid = new GameObject[10,10];
-        public GameObject[,] buildingTileGrid = new GameObject[10,10];
-        public GameObject[,] unitTileGrid = new GameObject[10,10];
+        public GameObject[,] groundTileGrid;
+        public GameObject[,] obstacleTileGrid;
+        public GameObject[,] resourceTileGrid;
+        public GameObject[,] buildingTileGrid;
+        public GameObject[,] unitTileGrid;
 
         public TileGrid(Scene myScene)
         {
             this.myScene = myScene;
+            groundTileGrid = new GameObject[gridSizeX, gridSizeY];
+            obstacleTileGrid = new GameObject[gridSizeX, gridSizeY];
+            resourceTileGrid = new GameObject[gridSizeX, gridSizeY];
+            buildingTileGrid = new GameObject[gridSizeX, gridSizeY];
+            unitTileGrid = new GameObject[gridSizeX, gridSizeY];
         }
         public void MakeTileGrid()
         {
@@ -37,13 +44,17 @@ namespace KnightsVsVikings
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(textureSheet);
             CTile tile = new CTile();
+            CResourceTile resourceTile = new CResourceTile();
 
             sr.LayerDepth = 0f;
 
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CTile>(tile);
+            go.AddComponent<CResourceTile>(resourceTile);
+            
 
             go.Transform.Position = new Vector2((int)pos.X,(int)pos.Y) * tile.TileSize;
+            go.Transform.Scale = new Vector2(1.0f, 1.0f);
 
             myScene.Instantiate(go);
             return go;

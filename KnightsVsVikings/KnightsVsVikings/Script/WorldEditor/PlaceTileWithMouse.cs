@@ -11,12 +11,15 @@ namespace KnightsVsVikings
 {
     public class PlaceTileWithMouse
     {
-        int sizeOfTile = 128;
+        int sizeOfTile = 128 /2;
         Scene myScene;
-        GameObject gameObject;
+        GameObject gameObjectTileMouse;
+        CSpriteRenderer sr;
 
-        ETileType tileType;
+        ETileType groundTileType;
+        EResourcesType resourcesType;
         TileGrid tileGrid;
+        ECurrentSelectedTileObject CurrentSelectedTileObject;
 
         public PlaceTileWithMouse(Scene myScene, TileGrid tileGrid)
         {
@@ -26,53 +29,56 @@ namespace KnightsVsVikings
 
         public void MadeTileShow()
         {
-            gameObject = new GameObject();
-            CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.TileSprite.Grass01);
+            gameObjectTileMouse = new GameObject();
+            sr = new CSpriteRenderer(SpriteContainer.Instance.TileSprite.Grass01);
             CTile tile = new CTile();
 
             sr.LayerDepth = 0.01f;
             sr.Color = Color.Gray;
 
-            gameObject.AddComponent<CSpriteRenderer>(sr);
-            gameObject.AddComponent<CTile>(tile);
+            gameObjectTileMouse.AddComponent<CSpriteRenderer>(sr);
+            gameObjectTileMouse.AddComponent<CTile>(tile);
 
-            myScene.Instantiate(gameObject);
+            myScene.Instantiate(gameObjectTileMouse);
         }
 
         public void Update()
         {
-            if (gameObject.IsActive == true && myScene.IsMouseOverUI == false)
+            if (gameObjectTileMouse.IsActive == true && myScene.IsMouseOverUI == false)
             {
                 MoveTileShow();
             }
 
             if (Input.GetMouseButtonDown(EMyMouseButtons.RightButton))
             {
-                gameObject.IsActive = false;
+                gameObjectTileMouse.IsActive = false;
             }
 
             if (Input.GetKeyDown(Keys.U))
             {
-                UpdateGrid();
+                UpdateGrid(tileGrid.groundTileGrid);
             }
         }
 
-        public void UpdateGrid()
+        public void UpdateGrid(GameObject[,] _tileGrid)
         {
-            for (int x = 0; x < tileGrid.groundTileGrid.GetLength(0); x++)
+            for (int x = 0; x < _tileGrid.GetLength(0); x++)
             {
-                for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
+                for (int y = 0; y < _tileGrid.GetLength(1); y++)
                 {
-                    GetTileData(ref tileGrid.groundTileGrid, new Vector2(x, y));
+                    GetTileData(ref _tileGrid, new Vector2(x, y));
                 }
             }
         }
 
         public void PickTile(ETileType tileType, TextureSheet2D image)
         {
-            this.tileType = tileType;
-            gameObject.IsActive = true;
+            this.groundTileType = tileType;
+            CurrentSelectedTileObject = ECurrentSelectedTileObject.Ground;
+            gameObjectTileMouse.IsActive = true;
             TextureSheet2D tmp;
+
+            sr.OffSet = new Vector2(0, 0);
 
             switch (tileType)
             {
@@ -90,7 +96,43 @@ namespace KnightsVsVikings
                     break;
             }
 
-            gameObject.GetComponent<CSpriteRenderer>().SetSprite(image);
+            gameObjectTileMouse.GetComponent<CSpriteRenderer>().SetSprite(image);
+        }
+
+        public void PickTile(EResourcesType resourcesType, TextureSheet2D image)
+        {
+            this.resourcesType = resourcesType;
+            gameObjectTileMouse.IsActive = true;
+            CurrentSelectedTileObject = ECurrentSelectedTileObject.Resource;
+            TextureSheet2D tmp;
+
+            switch (resourcesType)
+            {
+                case EResourcesType.Nothing:
+                    tmp = SpriteContainer.Instance.TileSprite.Delete;
+                    sr.OffSet = new Vector2(0 * -sizeOfTile, 0 * -sizeOfTile);
+                    break;
+                case EResourcesType.Gold:
+                    tmp = SpriteContainer.Instance.TileSprite.Gold;
+                    sr.OffSet = new Vector2(0 * -sizeOfTile, 1 * -sizeOfTile);
+                    break;
+                case EResourcesType.Stone:
+                    tmp = SpriteContainer.Instance.TileSprite.Stone;
+                    sr.OffSet = new Vector2(0 * -sizeOfTile, 1 * -sizeOfTile);
+                    break;
+                case EResourcesType.Wood:
+                    tmp = SpriteContainer.Instance.TileSprite.Wood;
+                    sr.OffSet = new Vector2(1 * -sizeOfTile, 4 * -sizeOfTile);
+                    break;
+                case EResourcesType.Food:
+                    tmp = SpriteContainer.Instance.TileSprite.Wheatfield;
+                    sr.OffSet = new Vector2(1 * -sizeOfTile, 1 * -sizeOfTile);
+                    break;
+                default:
+                    break;
+            }
+
+            gameObjectTileMouse.GetComponent<CSpriteRenderer>().SetSprite(image);
         }
 
 
@@ -123,7 +165,7 @@ namespace KnightsVsVikings
                 positonY = -sizeOfTile;
             }
 
-            gameObject.Transform.Position = new Vector2(positonX, positonY);
+            gameObjectTileMouse.Transform.Position = new Vector2(positonX, positonY);
 
             if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
             {
@@ -131,19 +173,80 @@ namespace KnightsVsVikings
                 {
                     for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
                     {
-                        if (tileGrid.groundTileGrid[x, y].Transform.Position == gameObject.Transform.Position)
+                        if (tileGrid.groundTileGrid[x, y].Transform.Position == gameObjectTileMouse.Transform.Position)
                         {
-                            PlaceTile(x, y);
+                            switch (CurrentSelectedTileObject)
+                            {
+                                case ECurrentSelectedTileObject.Ground:
+                                    PlaceTile(x, y);
+                                    break;
+                                case ECurrentSelectedTileObject.Resource:
+                                    PlaceResource(x, y);
+                                    break;
+                                case ECurrentSelectedTileObject.Unit:
+                                    break;
+                                case ECurrentSelectedTileObject.Build:
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
                 }
             }
         }
 
+        public void PlaceResource(int x, int y)
+        {
+            TextureSheet2D tmp = null;
+            Vector2 _offset = new Vector2(0, 0);
+
+            switch (resourcesType)
+            {
+                case EResourcesType.Nothing:
+                    //tmp = SpriteContainer.Instance.TileSprite.Delete;
+                    //_offset = new Vector2(0, 0);
+                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
+                    break;
+                case EResourcesType.Gold:
+                    //tmp = SpriteContainer.Instance.TileSprite.Gold;
+                    //_offset = new Vector2(0, -128);
+                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
+                    break;
+                case EResourcesType.Stone:
+                    //tmp = SpriteContainer.Instance.TileSprite.Stone;
+                    //_offset = new Vector2(0, -128);
+                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
+                    break;
+                case EResourcesType.Wood:
+                    //tmp = SpriteContainer.Instance.TileSprite.Wood;
+                    //_offset = new Vector2(-128, -4 * 128);
+                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
+                    break;
+                case EResourcesType.Food:
+                    //tmp = SpriteContainer.Instance.TileSprite.Wheatfield;
+                    //_offset = new Vector2(-128, -128);
+                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
+                    break;
+                default:
+                    break;
+            }
+
+            if (tmp != null)
+            {
+                tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(tmp);
+                //tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().OffSet = _offset;
+            }
+
+            //tileGrid.groundTileGrid[x, y].GetComponent<CTile>().ResourcesType = resourcesType;
+
+            UpdateGrid(tileGrid.groundTileGrid);
+        }
+
         public void PlaceTile(int x, int y)
         {
             TextureSheet2D tmp;
-            switch (tileType)
+            switch (groundTileType)
             {
                 case ETileType.Grass:
                     tmp = SpriteContainer.Instance.TileSprite.Grass01;
@@ -160,9 +263,9 @@ namespace KnightsVsVikings
             }
 
             tileGrid.groundTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(tmp);
-            tileGrid.groundTileGrid[x, y].GetComponent<CTile>().TileType = tileType;
-            tileGrid.groundTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(gameObject.GetComponent<CSpriteRenderer>().SpriteSheet);
-            UpdateGrid();
+            tileGrid.groundTileGrid[x, y].GetComponent<CTile>().TileType = groundTileType;
+
+            UpdateGrid(tileGrid.groundTileGrid);
         }
 
         public void GetTileData(ref GameObject[,] groundTileGrid, Vector2 gridPos)
@@ -195,22 +298,10 @@ namespace KnightsVsVikings
                 }
             }
 
-            //int randomVal = Random.Range(0, 100);
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.White;
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = true;
 
-            //if (randomVal < 15)
-            //{
-            //    tileData.sprite = waterSprites[46];
-            //}
-            //else if (randomVal >= 15 && randomVal < 35)
-            //{
-
-            //    tileData.sprite = waterSprites[48];
-            //}
-            //else
-            //{
-            //    tileData.sprite = waterSprites[47];
-            //}
-            if(groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType != ETileType.Water)
+            if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType != ETileType.Water)
             {
                 if (com[0] == 'W' && com[1] == 'E' && com[2] == 'E' && com[3] == 'E' && com[4] == 'E' && com[5] == 'E' && com[6] == 'E' && com[7] == 'E')
                 {
@@ -227,10 +318,27 @@ namespace KnightsVsVikings
                 else if (com[0] == 'E' && com[1] == 'E' && com[2] == 'E' && com[3] == 'E' && com[4] == 'E' && com[5] == 'E' && com[6] == 'E' && com[7] == 'E')
                 {
                     // No Water
-                    //_tile.TileType = ETileType.Grass;
-                    //_sr.SpriteSheet = SpriteContainer.Instance.TileSprite.Grass01;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.Grass;
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = false;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Grass01);
+
+                    if(groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().ResourcesType != EResourcesType.Nothing)
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied = true;
+                    }
+                    else
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied = false;
+                    }
+
+                    if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied == true)
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.Blue;
+                    }
+                    else
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.Red;
+                    }
                 }
                 else if (com[0] == 'E' && com[1] == 'E' && com[2] == 'E' && com[3] == 'E' && com[4] == 'E' && com[5] == 'W' && com[6] == 'E' && com[7] == 'E')
                 {
@@ -245,74 +353,60 @@ namespace KnightsVsVikings
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater01);
                 }
                 //--- to the side
-                else if ( com[1] == 'W'  && com[3] == 'E' && com[4] == 'E' && com[5] == 'E' && com[6] == 'E' && com[7] == 'E')
+                else if (com[1] == 'W' && com[3] == 'E' && com[4] == 'E' && com[5] == 'E' && com[6] == 'E' && com[7] == 'E')
                 {
                     // Left
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater06);
                 }
-                else if (com[0] == 'E' && com[1] == 'E' && com[2] == 'E' && com[3] == 'E' && com[4] == 'E' &&  com[6] == 'W' )
+                else if (com[0] == 'E' && com[1] == 'E' && com[2] == 'E' && com[3] == 'E' && com[4] == 'E' && com[6] == 'W')
                 {
                     // Rigth
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater02);
                 }
-                else if (com[0] == 'E' && com[1] == 'E' &&  com[3] == 'E' && com[4] == 'W' && com[5] == 'E' && com[6] == 'E' )
+                else if (com[0] == 'E' && com[1] == 'E' && com[3] == 'E' && com[4] == 'W' && com[5] == 'E' && com[6] == 'E')
                 {
                     // Top
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater09);
                 }
-                else if ( com[1] == 'E' && com[2] == 'E' && com[3] == 'W' && com[4] == 'E' &&  com[6] == 'E' && com[7] == 'E')
+                else if (com[1] == 'E' && com[2] == 'E' && com[3] == 'W' && com[4] == 'E' && com[6] == 'E' && com[7] == 'E')
                 {
                     // Bottom
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater12);
                 }
                 //--- 2 side
-                else if ( com[1] == 'W'  && com[3] == 'W' && com[4] == 'E' && com[6] == 'E' && com[7] == 'E')
+                else if (com[1] == 'W' && com[3] == 'W' && com[4] == 'E' && com[6] == 'E' && com[7] == 'E')
                 {
                     // Left Bottom
-                    //_tile.TileType = ETileType.WaterGrass;
-                    //_sr.SpriteSheet = SpriteContainer.Instance.TileSprite.GrassWater15;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater13);
                 }
-                else if (com[1] == 'W'  && com[3] == 'E' && com[4] == 'W' && com[5] == 'E' && com[6] == 'E' )
+                else if (com[1] == 'W' && com[3] == 'E' && com[4] == 'W' && com[5] == 'E' && com[6] == 'E')
                 {
                     // Left Top
-                    //_tile.TileType = ETileType.WaterGrass;
-                    //_sr.SpriteSheet = SpriteContainer.Instance.TileSprite.GrassWater13;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater15);
                 }
-                else if (com[1] == 'E' && com[2] == 'E' && com[3] == 'W' && com[4] == 'E'  && com[6] == 'W' )
+                else if (com[1] == 'E' && com[2] == 'E' && com[3] == 'W' && com[4] == 'E' && com[6] == 'W')
                 {
                     // Rigth Bottom
-                    //_tile.TileType = ETileType.WaterGrass;
-                    //_sr.SpriteSheet = SpriteContainer.Instance.TileSprite.GrassWater16;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater14);
                 }
-                else if (com[0] == 'E' && com[1] == 'E' &&  com[3] == 'E' && com[4] == 'W'  && com[6] == 'W' )
+                else if (com[0] == 'E' && com[1] == 'E' && com[3] == 'E' && com[4] == 'W' && com[6] == 'W')
                 {
                     // Rigth Top
-                    //_tile.TileType = ETileType.WaterGrass;
-                    //_sr.SpriteSheet = SpriteContainer.Instance.TileSprite.GrassWater14;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.WaterGrass;
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.GrassWater16);
                 }
                 else
                 {
                     // Error Tile
-
                 }
             }
-
-
-
-
-
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using MainSystemFramework;
+﻿using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,55 +9,32 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class WorldEditorActionBarUI
+    public class GroundTileGridBar
     {
-        GameObject actionBar;
+        public GameObject mainGameObject;
         Scene myScene;
         PlaceTileWithMouse placeTile;
-        public WorldEditorActionBarUI(Scene myScene, PlaceTileWithMouse placeTile)
+        public GroundTileGridBar(Scene myScene, GameObject go, PlaceTileWithMouse placeTile)
         {
             this.myScene = myScene;
+            this.mainGameObject = new GameObject();
+            this.mainGameObject.MyParent = go;
             this.placeTile = placeTile;
         }
 
-        public void MakeUI()
+        public void MadeUI()
         {
-            actionBar = new GameObject();
-            TheBar(out actionBar);
+            mainGameObject.Transform.Position = mainGameObject.MyParent.Transform.Position;
+
             int postion = -275;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.Grass03, "1", ETileType.Grass);
+            MakeSlot(new Vector2(postion, -100), SpriteContainer.Instance.TileSprite.Grass03, "1", ETileType.Grass);
             postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.Water01, "2", ETileType.Water);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.Water01, "3", ETileType.Water);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.GrassWater12, "4", ETileType.Grass);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.GrassWater13, "5", ETileType.Grass);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.GrassWater14, "6", ETileType.Grass);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.GrassWater15, "7", ETileType.Grass);
-            postion += 70;
-            MakeSlot(new Vector2(postion, -125), SpriteContainer.Instance.TileSprite.GrassWater16, "8", ETileType.Grass);
+            MakeSlot(new Vector2(postion, -100), SpriteContainer.Instance.TileSprite.Water01, "2", ETileType.Water);
+
+            myScene.Instantiate(mainGameObject);
         }
 
-        public void TheBar(out GameObject go)
-        {
-            go = new GameObject();
-            CSpriteRenderer sr = new CSpriteRenderer("ActionBar");
-            GUIImage image = new GUIImage(sr, false, true, Color.White, EOriginPosition.BottomMid, 0.1f);
-
-            go.AddComponent<CSpriteRenderer>(sr);
-            go.AddComponent<GUIImage>(image);
-
-            go.Transform.Scale = new Vector2(0.55f, 0.5f) * GraphicsSetting.Instance.ScreenScale;
-            go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 2, GraphicsSetting.Instance.ScreenSize.Y * 1.04f);
-
-            myScene.Instantiate(go);
-        }
-
-        public void MakeSlot(Vector2 pos, TextureSheet2D image, string text,ETileType tileType)
+        public void MakeSlot(Vector2 pos, TextureSheet2D image, string text, ETileType tileType)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer("Slot");
@@ -70,7 +46,8 @@ namespace KnightsVsVikings
             go.AddComponent<GUIButton>(btn);
 
             sr.LayerDepth = 0.12f;
-            go.MyParent = actionBar;
+            go.MyParent = mainGameObject;
+            go.SetMyParent(mainGameObject);
             go.Transform.Scale = new Vector2(0.5f, 0.5f) * GraphicsSetting.Instance.ScreenScale;
             go.Transform.Position = pos * GraphicsSetting.Instance.ScreenScale + go.MyParent.Transform.Position;
 
@@ -79,7 +56,7 @@ namespace KnightsVsVikings
 
             myScene.Instantiate(go);
 
-            btn.OnClick += () => { placeTile.PickTile(tileType,image); };
+            btn.OnClick += () => { placeTile.PickTile(tileType, image); };
         }
 
         public void ImageInSlot(Vector2 size, GameObject myParent, TextureSheet2D image)
@@ -92,6 +69,7 @@ namespace KnightsVsVikings
             go.AddComponent<GUIImage>(GUIImage);
 
             go.MyParent = myParent;
+            go.SetMyParent(myParent);
             go.Transform.Scale = new Vector2(size.X / sr.SpriteSheet.Rectangle.Width * 0.6f, size.Y / sr.SpriteSheet.Rectangle.Height * 0.6f);
             go.Transform.Position = go.MyParent.Transform.Position + new Vector2(size.X / 2, size.Y / 2);
 
@@ -108,6 +86,7 @@ namespace KnightsVsVikings
             go.AddComponent<GUIImage>(image);
 
             go.MyParent = myParent;
+            go.SetMyParent(myParent);
             go.Transform.Scale = new Vector2(0.5f, 0.5f) * GraphicsSetting.Instance.ScreenScale;
             go.Transform.Position = pos + go.MyParent.Transform.Position;
 
@@ -125,6 +104,7 @@ namespace KnightsVsVikings
             guiText.LayerDepth = 0.13f;
             guiText.FontScale = guiText.FontScale * GraphicsSetting.Instance.ScreenScale;
             go.MyParent = myParent;
+            go.SetMyParent(myParent);
             go.Transform.Scale = size;
             go.Transform.Position = myParent.Transform.Position - size / 2;
 

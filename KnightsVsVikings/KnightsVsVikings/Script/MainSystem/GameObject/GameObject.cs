@@ -12,6 +12,7 @@ namespace MainSystemFramework
         private Dictionary<string, Component> components = new Dictionary<string, Component>();
 
         public GameObject MyParent { get; set; }
+        public List<GameObject> MyChildren { get; set; } = new List<GameObject>();
         public bool IsActive { get; set; }
         public Scene MyScene { get; set; }
         public Transform Transform { get; private set; }
@@ -99,7 +100,7 @@ namespace MainSystemFramework
                     }
                 }
             //TODO: Kasper ting lige over den her.
-            if(MyParent != null && IsActive != MyParent.IsActive)
+            if (MyParent != null && IsActive != MyParent.IsActive)
             {
                 IsActive = MyParent.IsActive;
             }
@@ -126,6 +127,28 @@ namespace MainSystemFramework
 
             // TODO: Destory gmaeobject in gamework list.
             //GameWorld.Instance.RemoveGameObject(this);
+        }
+
+        public void SetMyParent(GameObject go)
+        {
+            MyParent = go;
+            go.MyChildren.Add(this);
+            SetIsActive(IsActive);
+        }
+
+        public void RemoveMyParent(GameObject go)
+        {
+            go.MyParent = null;
+            MyChildren.Remove(go);
+        }
+
+        public void SetIsActive(bool isActive)
+        {
+            IsActive = isActive;
+            foreach (GameObject go in MyChildren)
+            {
+                go.SetIsActive(isActive);
+            }
         }
     }
 }

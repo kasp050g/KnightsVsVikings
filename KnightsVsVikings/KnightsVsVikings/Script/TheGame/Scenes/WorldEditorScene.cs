@@ -42,10 +42,11 @@ namespace KnightsVsVikings
             placeTile = new PlaceTileWithMouse(this, tileGrid);
             placeTile.MadeTileShow();
 
-            WorldEditorActionBarUI actionBarUI = new WorldEditorActionBarUI(this, placeTile);
-            actionBarUI.MakeUI();
+            //WorldEditorActionBarUI actionBarUI = new WorldEditorActionBarUI(this, placeTile);
+            //actionBarUI.MakeUI();
 
-
+            WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile);
+            worldEditorUI.MadeUI();
         }
     }
 }

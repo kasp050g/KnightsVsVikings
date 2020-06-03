@@ -198,7 +198,10 @@ namespace MainSystemFramework
         {
             Vector2 tileSize = new Vector2((int)(1 * 128), (int)(1 * 128));
             Texture2D tileSheet = sprite["Grassland128x128"];
+            Texture2D objectSheet = sprite["ExtraObjects128x128"];
 
+            // Delete
+            tileSprite.Delete = new TextureSheet2D(objectSheet, RetrunPos(10, 5), tileSize);
             // Grass Tile
             TileSprite.Grass01 = new TextureSheet2D(tileSheet, RetrunPos(2,2), tileSize);
             TileSprite.Grass02 = new TextureSheet2D(tileSheet, RetrunPos(3,2), tileSize);
@@ -225,6 +228,16 @@ namespace MainSystemFramework
             TileSprite.Water02 = new TextureSheet2D(tileSheet, RetrunPos(12, 9), tileSize);
             TileSprite.Water03 = new TextureSheet2D(tileSheet, RetrunPos(12, 10), tileSize);
             TileSprite.Water04 = new TextureSheet2D(tileSheet, RetrunPos(13, 10), tileSize);
+            // Bridge Tile
+            TileSprite.BridgeLeft01 = new TextureSheet2D(tileSheet, RetrunPos(8, 4), new Vector2(128,2*128));
+            TileSprite.BridgeLeft02 = new TextureSheet2D(tileSheet, RetrunPos(9, 4), new Vector2(128,2*128));
+            TileSprite.BridgeLeft03 = new TextureSheet2D(tileSheet, RetrunPos(10, 4), new Vector2(128,2*128));
+            // Resources
+            TileSprite.Gold = new TextureSheet2D(objectSheet, RetrunPos(16, 11), new Vector2(1*128,2*128));
+            TileSprite.Stone = new TextureSheet2D(objectSheet, RetrunPos(16, 13), new Vector2(1*128,2*128));
+            TileSprite.Wheatfield = new TextureSheet2D(objectSheet, RetrunPos(14, 6), new Vector2(3*128,3*128));
+            TileSprite.Wood = new TextureSheet2D(objectSheet, RetrunPos(6, 12), new Vector2(3*128,5*128));
+
         }
 
         private Vector2 RetrunPos(int x, int y)
