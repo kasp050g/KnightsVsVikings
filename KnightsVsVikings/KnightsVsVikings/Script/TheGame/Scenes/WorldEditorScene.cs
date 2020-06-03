@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KnightsVsVikings.Script.WorldEditor;
 using MainSystemFramework;
 
 namespace KnightsVsVikings
@@ -12,6 +13,8 @@ namespace KnightsVsVikings
         public override void Initialize()
         {
             base.Initialize();
+            MouseSettings.Instance.IsMouseVisible(true);
+            TestZone();
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -27,6 +30,15 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
+        }
+
+        private void TestZone()
+        {
+            WorldEditorActionBarUI actionBarUI = new WorldEditorActionBarUI(this);
+            actionBarUI.MakeUI();
+
+            TileGrid tileGrid = new TileGrid(this);
+            tileGrid.MakeTileGrid();
         }
     }
 }

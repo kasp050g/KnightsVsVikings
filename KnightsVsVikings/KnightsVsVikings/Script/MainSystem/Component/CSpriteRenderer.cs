@@ -12,6 +12,7 @@ namespace MainSystemFramework
     {
         #region Fields
         private Texture2D sprite;
+        private TextureSheet2D spriteSheet;
         private Color color = Color.White;
         private SpriteEffects spriteEffects = SpriteEffects.None;
         private float layerDepth = 0;
@@ -22,6 +23,7 @@ namespace MainSystemFramework
 
         #region Properties 
         public Texture2D Sprite { get => sprite; set => sprite = value; }
+        public TextureSheet2D SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
         public Color Color { get => color; set => color = value; }
         public SpriteEffects SpriteEffects { get => spriteEffects; set => spriteEffects = value; }
         public float LayerDepth { get => layerDepth; set => layerDepth = value; }
@@ -46,27 +48,16 @@ namespace MainSystemFramework
             rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
 
-        public CSpriteRenderer(string spriteName)
+        public CSpriteRenderer(TextureSheet2D spriteSheet)
         {
-            SetSprite(spriteName);
+            this.spriteSheet = spriteSheet;
+            this.sprite = spriteSheet.Sprite;
+            this.rectangle = spriteSheet.Rectangle;
         }
 
-        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum)
+        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum = EOriginPosition.TopLeft, float layerDepth = 0, Color? color = null)
         {
-            this.OriginPositionEnum = originPositionEnum;
-            SetSprite(spriteName);
-        }
-
-        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth)
-        {
-            this.layerDepth = layerDepth;
-            this.OriginPositionEnum = originPositionEnum;
-            SetSprite(spriteName);
-        }
-
-        public CSpriteRenderer(string spriteName, EOriginPosition originPositionEnum, float layerDepth, Color color)
-        {
-            this.color = color;
+            this.color = color ?? Color.White;
             this.layerDepth = layerDepth;
             this.OriginPositionEnum = originPositionEnum;
             SetSprite(spriteName);
@@ -77,12 +68,40 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
-            Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            if (spriteSheet != null)
+            {
+                Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);
+            }
+            else
+            {
+                Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            }
         }
         public void SetSprite(string spriteName)
         {
-            sprite = SpriteContainer.Instance.Sprite[spriteName];
+            if (SpriteContainer.Instance.Sprite.ContainsKey(spriteName))
+            {
+                sprite = SpriteContainer.Instance.Sprite[spriteName];
+                rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
+            }
+            else if (SpriteContainer.Instance.SpriteSheet.ContainsKey(spriteName))
+            {
+                spriteSheet = SpriteContainer.Instance.SpriteSheet[spriteName];
+                sprite = spriteSheet.Sprite;
+                rectangle = spriteSheet.Rectangle;
+            }
+        }
+        public void SetSprite(Texture2D spriteName)
+        {
+            spriteSheet = null;
+            sprite = spriteName;
             rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
+        }
+        public void SetSprite(TextureSheet2D spriteName)
+        {
+            spriteSheet = spriteName;
+            sprite = spriteName.Sprite;
+            rectangle = spriteName.Rectangle;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -122,7 +141,14 @@ namespace MainSystemFramework
         public void SetOrigin(EOriginPosition originPositionEnum)
         {
             this.originPositionEnum = originPositionEnum;
-            Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            if (spriteSheet != null)
+            {
+                Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);
+            }
+            else
+            {
+                Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
+            }
         }
 
         #endregion

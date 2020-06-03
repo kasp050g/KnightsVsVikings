@@ -15,7 +15,7 @@ namespace MainSystemFramework
         Color color = Color.White;
         Color fontColor = Color.Black;
         Color placeholderFontColor = Color.Gray;
-        Texture2D image;
+        //Texture2D image;
         SpriteFont spriteFont;
         Vector2 fontScale = new Vector2(1, 1);
         string placeholderText = "";
@@ -28,7 +28,7 @@ namespace MainSystemFramework
         #region Properties
         public Color Color { get => color; set => color = value; }
         public Color FontColor { get => fontColor; set => fontColor = value; }
-        public Texture2D Image { get => image; set => image = value; }
+        //public Texture2D Image { get => image; set => image = value; }
         public SpriteFont SpriteFont { get => spriteFont; set => spriteFont = value; }
         public Vector2 FontScale { get => fontScale; set => fontScale = value; }
         public string PlaceholderText { get => placeholderText; set => placeholderText = value; }
@@ -39,7 +39,7 @@ namespace MainSystemFramework
         public GUIInputField(CSpriteRenderer spriteRenderer, Texture2D image, Color color, SpriteFont spriteFont, Color fontColor, Vector2 fontScale, string placeholderText)
         {
             this.SpriteRenderer = spriteRenderer;
-            this.image = image;
+            //this.image = image;
             this.color = color;
             this.spriteFont = spriteFont;
             this.fontColor = fontColor;

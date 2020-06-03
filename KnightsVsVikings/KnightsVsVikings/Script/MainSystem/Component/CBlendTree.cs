@@ -1,4 +1,5 @@
-﻿using KnightsVsVikings.Script.MainSystem.Enum;
+﻿using KnightsVsVikings;
+using KnightsVsVikings.Script.MainSystem.Enum;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
