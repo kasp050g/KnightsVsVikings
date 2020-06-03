@@ -139,6 +139,10 @@ namespace MainSystemFramework
 
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Gold"), "Gold");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Iron"), "Iron");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Wood"), "Wood");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/Food"), "Food");
 
             // UI Button
             AddSprite(content.Load<Texture2D>("Images/UI/Button/Button_A_Long_active"), "Button_A_Long_red");
@@ -148,8 +152,10 @@ namespace MainSystemFramework
 
             // UI World Editor 
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar"), "ActionBar");
+            AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/ActionBar02"), "ActionBar02");
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/Slot"), "Slot");
             AddSprite(content.Load<Texture2D>("Images/UI/ActionBar/SlotNameBar"), "SlotNameBar");
+
         }
 
         private void AnimationsSheet(ContentManager content)

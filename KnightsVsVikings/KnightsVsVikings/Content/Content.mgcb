@@ -363,6 +363,18 @@
 /processorParam:TextureFormat=Color
 /build:Images/UI/ActionBar/ActionBar.png
 
+#begin Images/UI/ActionBar/ActionBar02.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/ActionBar/ActionBar02.png
+
 #begin Images/UI/ActionBar/Slot.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -579,6 +591,42 @@
 /processorParam:TextureFormat=Color
 /build:Images/UI/Icon/Game_Icon/SGI_88.png
 
+#begin Images/UI/Icon/UI_Icon/Food.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/Food.jpg
+
+#begin Images/UI/Icon/UI_Icon/Gold.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/Gold.jpg
+
+#begin Images/UI/Icon/UI_Icon/Iron.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/Iron.png
+
 #begin Images/UI/Icon/UI_Icon/KnightsCampaign.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -650,6 +698,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/UI/Icon/UI_Icon/VikingsCampaign.png
+
+#begin Images/UI/Icon/UI_Icon/Wood.jpg
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/UI/Icon/UI_Icon/Wood.jpg
 
 #begin Images/UI/Map.jpg
 /importer:TextureImporter
