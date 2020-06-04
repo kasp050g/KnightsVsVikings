@@ -15,7 +15,7 @@ namespace MainSystemFramework
 
         #region Methods 
         public bool IsEnabled { get; set; } = true;
-        public GameObject GameObject { get; set; }
+        public GameObject GameObject { get; set; } = new GameObject();
         #endregion
 
         #region Constructors 

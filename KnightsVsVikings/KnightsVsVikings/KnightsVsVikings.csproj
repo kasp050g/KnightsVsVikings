@@ -46,6 +46,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\ArrayExtend.cs" />
     <Compile Include="ExtensionMethods\DictionaryExtend.cs" />
     <Compile Include="ExtensionMethods\ObjectExtend.cs" />
     <Compile Include="ExtensionMethods\StringExtend.cs" />
@@ -74,6 +75,11 @@
     <Compile Include="Script\MainSystem\Enum\EAnimationType.cs" />
     <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
     <Compile Include="Script\MainSystem\Random\TextureSheet2D.cs" />
+    <Compile Include="Script\TheGame\Calculator.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
     <Compile Include="Script\TheGame\Components\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
@@ -82,6 +88,7 @@
     <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
+    <Compile Include="Script\TheGame\Enum\ECellType.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
@@ -104,8 +111,9 @@
     <Compile Include="Script\MainSystem\Settings\MouseSettings.cs" />
     <Compile Include="Script\MainSystem\Static\Input.cs" />
     <Compile Include="Script\MainSystem\Static\Time.cs" />
-    <Compile Include="Script\TheGame\Generics\Singleton.cs" />
-    <Compile Include="Script\TheGame\Generics\Singletons.cs" />
+    <Compile Include="Script\TheGame\LevelInformation.cs" />
+    <Compile Include="Script\TheGame\Patterns\SingletonPattern\Singleton.cs" />
+    <Compile Include="Script\TheGame\Patterns\SingletonPattern\Singletons.cs" />
     <Compile Include="Script\TheGame\Patterns\CommandPattern\ICommand.cs" />
     <Compile Include="Script\TheGame\StateMachine\BaseState.cs" />
     <Compile Include="Script\TheGame\StateMachine\FiniteStateMachine.cs" />
@@ -131,6 +139,7 @@
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteRepository.cs" />
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteRow.cs" />
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteStatsModel.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteInput.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteMultiple.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteSingle.cs" />
@@ -186,8 +195,6 @@
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
     <Folder Include="Script\TheGame\Unit\" />
-    <Folder Include="Script\WorldEditor\" />
-    <Folder Include="SQLiteFramework\Models\TheGame\" />
     <Folder Include="SQLiteFramework\Models\WorldEditor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
