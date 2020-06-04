@@ -39,7 +39,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
             SQLiteCommand getID = new SQLiteCommand("SELECT last_insert_rowid();", (SQLiteConnection)connection);
             int lastID = (int)getID.ExecuteScalar();
 
-            RowToInsert.ID = lastID;
+            RowToInsert.Id = lastID;
 
             connection.Close();
         }

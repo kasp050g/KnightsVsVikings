@@ -19,6 +19,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         private static DeleteRowCommand deleteCommand = new DeleteRowCommand();
         private static GetRowCommand getCommand = new GetRowCommand();
         private static RenameTableCommand renameCommand = new RenameTableCommand();
+        private static UpdateRowCommand updateCommand = new UpdateRowCommand();
 
 
         // Insert Command --
@@ -36,7 +37,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // Delete Command --
         public static void Delete(this ISQLiteTable table, int id)
         {
-            DeleteRow(table, typeof(SQLiteRowBase).GetProperty("ID"), id);
+            DeleteRow(table, typeof(SQLiteRowBase).GetProperty("Id"), id);
         }
 
         public static void Delete(this ISQLiteTable table, PropertyInfo property, object data)
@@ -48,7 +49,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // Get Command --
         public static ISQLiteRow Get(this ISQLiteTable table, int id)
         {
-            return GetRow(table, typeof(SQLiteRowBase).GetProperty("ID"), id).First();
+            return GetRow(table, typeof(SQLiteRowBase).GetProperty("Id"), id).First();
         }
 
         public static ISQLiteRow Get(this ISQLiteTable table, PropertyInfo property, object data)
@@ -77,6 +78,25 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
             renameCommand.Execute();
         }
         // -- Rename Command
+
+        // Update Command --
+        public static void Update(this ISQLiteTable table, params KeyValuePair<PropertyInfo, object>[] updatedData)
+        {
+            UpdateRow(table, null, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));
+        }
+
+        public static void Update(this ISQLiteTable table, int id, params KeyValuePair<PropertyInfo, object>[] updatedData)
+        {
+            int[] idToArray = new int[] { id };
+
+            UpdateRow(table, idToArray, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));
+        }
+
+        public static void Update(this ISQLiteTable table, int[] ids, params KeyValuePair<PropertyInfo, object>[] updatedData)
+        {
+            UpdateRow(table, ids, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));
+        }
+        // -- Update Command
 
         // Command Methods --
         private static ISQLiteRow InsertRow(ISQLiteTable table, ISQLiteRow row, bool unique)
@@ -110,6 +130,15 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
             getCommand.Execute();
 
             return getCommand.ResultRows;
+        }
+
+        private static void UpdateRow(ISQLiteTable table, int[] ids, Dictionary<PropertyInfo, object> updatedData)
+        {
+            updateCommand.ExecuteOnTable = table;
+            updateCommand.Ids = ids;
+            updateCommand.UpdatedData = updatedData;
+
+            updateCommand.Execute();
         }
         // -- Command Methods
     }

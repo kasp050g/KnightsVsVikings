@@ -139,7 +139,28 @@
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteRepository.cs" />
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteRow.cs" />
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingGotPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCampaignChapterModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCanBuildPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCanBuildUnitModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteFactionModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLitePassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteProjectileTypeModel.cs" />
     <Compile Include="SQLiteFramework\Models\TheGame\SQLiteStatsModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitGotPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteResourceTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteResourceWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteTileTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteTileWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteUnitTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteUnitWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteWorldEditorModel.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteInput.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteMultiple.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteSingle.cs" />
@@ -195,7 +216,6 @@
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
     <Folder Include="Script\TheGame\Unit\" />
-    <Folder Include="SQLiteFramework\Models\WorldEditor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

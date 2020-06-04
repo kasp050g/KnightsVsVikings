@@ -1,4 +1,5 @@
-﻿using KnightsVsVikings.SQLiteFramework.Interfaces;
+﻿using KnightsVsVikings.ExtensionMethods;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
 using KnightsVsVikings.SQLiteFramework.Interfaces.Patterns.CommandPattern;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,8 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
     class UpdateRowCommand : ICommandSQLiteSingle
     {
         public ISQLiteTable ExecuteOnTable { get; set; }
-        public object Data { get; set; } = null;
-        public object[] MultipleData { get; set; } = null;
-        //public ISQLiteRow UpdateData { get; set; } = null;
+        public int[] Ids { get; set; } = null;
+        public Dictionary<PropertyInfo, object> UpdatedData { get; set; } = new Dictionary<PropertyInfo, object>();
 
         public void Execute()
         {
@@ -25,11 +25,26 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 
             SQLiteCommand cmd;
 
-            if (Data != null)
-                cmd = new SQLiteCommand($"UPDATE '{ExecuteOnTable.TableName}' SET ", (SQLiteConnection)connection);
+            if (Ids.Length == 1)
+                cmd = new SQLiteCommand($"UPDATE '{ExecuteOnTable.TableName}' SET {UpdateDataToQuery(UpdatedData)} WHERE Id = {Ids[0]};", (SQLiteConnection)connection);
+            else if (Ids.Length > 1)
+                cmd = new SQLiteCommand($"UPDATE '{ExecuteOnTable.TableName}' SET {UpdateDataToQuery(UpdatedData)} WHERE Id IN ({string.Join(", ", Ids)});", (SQLiteConnection)connection);
+            else
+                cmd = new SQLiteCommand($"UPDATE '{ExecuteOnTable.TableName}' SET {UpdateDataToQuery(UpdatedData)};", (SQLiteConnection)connection);
 
+            cmd.ExecuteNonQuery();
 
-                connection.Close();
+            connection.Close();
+        }
+
+        private string UpdateDataToQuery(Dictionary<PropertyInfo, object> pairs)
+        {
+            List<string> result = new List<string>();
+
+            foreach (KeyValuePair<PropertyInfo, object> pair in pairs)
+                result.Add($"{pair.Key.Name} = {pair.Value.ObjectToSQLiteString()}");
+
+            return string.Join(", ", result);
         }
     }
 }

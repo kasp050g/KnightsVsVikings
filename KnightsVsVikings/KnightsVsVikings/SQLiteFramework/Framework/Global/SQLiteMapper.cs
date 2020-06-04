@@ -47,7 +47,7 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
             properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
-            return properties.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();
+            return properties.AsEnumerable().OrderBy(property => property.Name != "Id").ToList();
         }
 
         private ISQLiteRow CreateRow(IDataReader reader)

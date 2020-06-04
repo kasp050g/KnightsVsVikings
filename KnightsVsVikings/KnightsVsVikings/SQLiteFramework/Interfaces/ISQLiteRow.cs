@@ -8,7 +8,7 @@ namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
     public interface ISQLiteRow
     {
-        int ID { get; set; }
+        int Id { get; set; }
         ISQLiteTable LocatedInTable { get; set; }
     }
 }

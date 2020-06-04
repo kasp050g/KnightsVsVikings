@@ -10,7 +10,7 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 {
     public class SQLiteRowBase : ISQLiteRow
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public ISQLiteTable LocatedInTable { get; set; }
 
@@ -21,7 +21,7 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
         public SQLiteRowBase(int id, ISQLiteTable locatedInTable) : this(locatedInTable)
         {
-            ID = id;
+            Id = id;
         }
     }
 }
