@@ -15,7 +15,7 @@ namespace MainSystemFramework
         public List<GameObject> MyChildren { get; set; } = new List<GameObject>();
         public bool IsActive { get; set; }
         public Scene MyScene { get; set; }
-        public Transform Transform { get; private set; }
+        public Transform Transform { get; set; }
         public string Tag { get; set; }
         public Dictionary<string, Component> Components { get => components; set => components = value; }
 

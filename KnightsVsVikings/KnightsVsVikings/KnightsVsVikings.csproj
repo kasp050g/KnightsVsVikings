@@ -46,6 +46,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ExtensionMethods\ArrayExtend.cs" />
+    <Compile Include="ExtensionMethods\DictionaryExtend.cs" />
+    <Compile Include="ExtensionMethods\ObjectExtend.cs" />
+    <Compile Include="ExtensionMethods\StringExtend.cs" />
+    <Compile Include="ExtensionMethods\TypeExtend.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +75,11 @@
     <Compile Include="Script\MainSystem\Enum\EAnimationType.cs" />
     <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
     <Compile Include="Script\MainSystem\Random\TextureSheet2D.cs" />
+    <Compile Include="Script\TheGame\Calculator.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
     <Compile Include="Script\TheGame\Components\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
@@ -78,6 +88,7 @@
     <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
+    <Compile Include="Script\TheGame\Enum\ECellType.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
     <Compile Include="Script\MainSystem\Enum\EMyInputState.cs" />
@@ -100,6 +111,10 @@
     <Compile Include="Script\MainSystem\Settings\MouseSettings.cs" />
     <Compile Include="Script\MainSystem\Static\Input.cs" />
     <Compile Include="Script\MainSystem\Static\Time.cs" />
+    <Compile Include="Script\TheGame\LevelInformation.cs" />
+    <Compile Include="Script\TheGame\Patterns\SingletonPattern\Singleton.cs" />
+    <Compile Include="Script\TheGame\Patterns\SingletonPattern\Singletons.cs" />
+    <Compile Include="Script\TheGame\Patterns\CommandPattern\ICommand.cs" />
     <Compile Include="Script\TheGame\StateMachine\BaseState.cs" />
     <Compile Include="Script\TheGame\StateMachine\FiniteStateMachine.cs" />
     <Compile Include="Script\TheGame\StateMachine\FsmState.cs" />
@@ -112,6 +127,52 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
+    <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
+    <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteRowBase.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteDBProvider.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteMapper.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteRepository.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteRow.cs" />
+    <Compile Include="SQLiteFramework\Interfaces\ISQLiteTable.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingGotPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteBuildingTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCampaignChapterModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCanBuildPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteCanBuildUnitModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteFactionModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLitePassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteProjectileTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteStatsModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitGotPassiveModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitModel.cs" />
+    <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteResourceTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteResourceWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteTileTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteTileWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteUnitTypeWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteUnitWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteWorldEditorModel.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteInput.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteMultiple.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ICommandSQLiteSingle.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\ISQLiteOutput.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\CommandMethodExtensions.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\DeleteRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\GetRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\InsertRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\RenameTableCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\UpdateRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLiteHelper.cs" />
+    <Compile Include="SQLiteFramework\TableContainer.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitChaseMyTargetState.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitDieState.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitGatheringState.cs" />
@@ -138,6 +199,7 @@
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.112.1, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.112.2\lib\net40\System.Data.SQLite.dll</HintPath>
     </Reference>
