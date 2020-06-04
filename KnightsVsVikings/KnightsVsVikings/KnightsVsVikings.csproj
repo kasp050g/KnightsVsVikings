@@ -145,6 +145,49 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\MainSystem\Pixel.png" />
+    <Content Include="Content\Images\TileSheet\ExtraObjects128x128.png" />
+    <Content Include="Content\Images\TileSheet\Grassland128x128.png" />
+    <Content Include="Content\Images\UI\ActionBar\ActionBar.png" />
+    <Content Include="Content\Images\UI\ActionBar\ActionBar02.png" />
+    <Content Include="Content\Images\UI\ActionBar\Slot.png" />
+    <Content Include="Content\Images\UI\ActionBar\SlotNameBar.png" />
+    <Content Include="Content\Images\UI\Button\Button_A_Long_active.png" />
+    <Content Include="Content\Images\UI\Button\Button_A_Long_aimed.png" />
+    <Content Include="Content\Images\UI\Button\Button_tiny_ready.png" />
+    <Content Include="Content\Images\UI\Button\Button_tiny_red.png" />
+    <Content Include="Content\Images\UI\Campaign.png" />
+    <Content Include="Content\Images\UI\CampaignHover.png" />
+    <Content Include="Content\Images\UI\Credits.png" />
+    <Content Include="Content\Images\UI\CreditsHover.png" />
+    <Content Include="Content\Images\UI\CustomBattles.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_09.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_10.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_100.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_121.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_136.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_157.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_159.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_19.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_49.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_51.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_63.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_88.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Food.jpg" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Gold.jpg" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Iron.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\KnightsCampaign.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_Play.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_PlayBackwards.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_SoundOff.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_SoundOn.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\VikingsCampaign.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Wood.jpg" />
+    <Content Include="Content\Images\UI\Load Game.jpg" />
+    <Content Include="Content\Images\UI\Map.jpg" />
+    <Content Include="Content\Images\UI\Options.png" />
+    <Content Include="Content\Images\UI\OptionsHover.png" />
+    <Content Include="Content\Images\UI\QuitGame.png" />
+    <Content Include="Content\Images\UI\QuitGameHover.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
