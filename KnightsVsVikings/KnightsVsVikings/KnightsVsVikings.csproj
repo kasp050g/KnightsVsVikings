@@ -127,8 +127,6 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
-    <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
-    <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
@@ -195,6 +193,7 @@
     <Compile Include="Script\WorldEditor\UILogic\WorldEditorUI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
