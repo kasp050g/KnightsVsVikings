@@ -117,18 +117,19 @@ namespace MainSystemFramework
         private void UI(ContentManager content)
         {
             // The Game Icon
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_157"), "WorkerIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_88"), "VikingFootmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "KnightFootmanIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_09"), "BowmanIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_10"), "ArcheryRangeIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_100"), "SpearmanIcon");
+
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_10"), "ArcheryRangeIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_121"), "BlacksmithIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_136"), "TowerIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_157"), "WorkerIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_159"), "TownHallIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_19"), "BarracksIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_49"), "GatheringStationIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_51"), "FieldIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "KnightFootmanIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_88"), "VikingFootmanIcon");
 
             // UI Icon
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_Play"), "ArrowRigth");

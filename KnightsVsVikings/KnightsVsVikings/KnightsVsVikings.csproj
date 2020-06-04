@@ -131,7 +131,6 @@
     <Compile Include="Script\WorldEditor\Tile\CTile.cs" />
     <Compile Include="Script\WorldEditor\UILogic\GroundTileGridBar.cs" />
     <Compile Include="Script\WorldEditor\UILogic\ResourceTileGridBar.cs" />
-    <Compile Include="Script\WorldEditor\UILogic\WorldEditorActionBarUI.cs" />
     <Compile Include="Script\WorldEditor\UILogic\WorldEditorUI.cs" />
   </ItemGroup>
   <ItemGroup>

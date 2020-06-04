@@ -131,7 +131,7 @@ namespace MainSystemFramework
                 // SpriteEffects
                 this.SpriteEffects,
                 // LayerDepth
-                this.LayerDepth + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000
+                this.LayerDepth /*+ GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000*/
             );
         }
 

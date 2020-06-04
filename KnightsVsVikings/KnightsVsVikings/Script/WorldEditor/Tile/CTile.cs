@@ -19,6 +19,7 @@ namespace KnightsVsVikings
         public EResourcesType ResourcesType { get; set; }
         public bool IsBlock { get; set; }
         public bool IsOccupied { get; set; }
+        public bool IsCanBuildHere { get; set; } = true;
 
         public CTile()
         {
