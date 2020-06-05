@@ -280,7 +280,7 @@ namespace KnightsVsVikings
             {
                 if (buildingTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CBuilding>().BuildingType != EBuildingType.Field)
                 {
-                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    //groundTileGrid[(int)gridPos.X, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
 
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
                     groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
