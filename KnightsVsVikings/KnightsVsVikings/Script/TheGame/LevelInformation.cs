@@ -8,6 +8,6 @@ namespace KnightsVsVikings.Script.TheGame
 {
     public class LevelInformation
     {
-        public byte TILE_SIZE { get; } = 128;
+        public byte TileSize { get; } = 64;
     }
 }

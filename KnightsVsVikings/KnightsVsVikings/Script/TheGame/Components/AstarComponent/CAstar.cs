@@ -47,10 +47,10 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             {
                 Vector2 posToGrid = ownerUnit.Target.Transform.Position;
 
-                targetCell = AstarGrid[(int)(posToGrid.X / Singletons.LevelInformationSingleton.TILE_SIZE), (int)(posToGrid.Y / Singletons.LevelInformationSingleton.TILE_SIZE)];
+                targetCell = AstarGrid[(int)(posToGrid.X / Singletons.LevelInformationSingleton.TileSize), (int)(posToGrid.Y / Singletons.LevelInformationSingleton.TileSize)];
 
-                ownerGridPos = new Vector2(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TILE_SIZE,
-                                            ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TILE_SIZE);
+                ownerGridPos = new Vector2(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize,
+                                            ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize);
              //   if (targetCell == null)
              //       targetCell = CheckForTarget();
 
@@ -199,8 +199,8 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
                 if (currentCell.GridPos == pathList.Last().GridPos)
                 {
-                    ownerUnit.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * Singletons.LevelInformationSingleton.TILE_SIZE,
-                                                                          currentCell.GridPos.Y * Singletons.LevelInformationSingleton.TILE_SIZE);
+                    ownerUnit.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize,
+                                                                          currentCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize);
                     ResetAstar();
                 }
 
@@ -208,8 +208,8 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
             else
             {
-                ownerUnit.MoveToLocation(new Vector2(currentCell.GridPos.X * Singletons.LevelInformationSingleton.TILE_SIZE,
-                                                     currentCell.GridPos.Y * Singletons.LevelInformationSingleton.TILE_SIZE));
+                ownerUnit.MoveToLocation(new Vector2(currentCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize,
+                                                     currentCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize));
             }
         }
 
