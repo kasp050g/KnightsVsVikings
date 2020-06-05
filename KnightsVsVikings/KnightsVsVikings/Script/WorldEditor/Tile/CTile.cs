@@ -20,6 +20,7 @@ namespace KnightsVsVikings
         public bool IsBlock { get; set; }
         public bool IsOccupied { get; set; }
         public bool IsCanBuildHere { get; set; } = true;
+        public bool IsUnitOccupied { get; set; }
 
         public CTile()
         {

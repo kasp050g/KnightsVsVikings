@@ -10,11 +10,12 @@ namespace KnightsVsVikings
     public class WorldEditorScene : Scene
     {
         PlaceTileWithMouse placeTile;
+        TileGrid tileGrid;
         public override void Initialize()
         {
             base.Initialize();
             MouseSettings.Instance.IsMouseVisible(true);
-
+            
             TestZone();
         }
 
@@ -32,11 +33,17 @@ namespace KnightsVsVikings
         {
             base.Update();
             placeTile.Update();
+
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.O))
+            {
+                tileGrid.ShowGridColor = !tileGrid.ShowGridColor;
+                tileGrid.UpdateGrid();
+            }
         }
 
         private void TestZone()
         {
-            TileGrid tileGrid = new TileGrid(this);
+            tileGrid = new TileGrid(this);
             tileGrid.MakeTileGrid();
 
             placeTile = new PlaceTileWithMouse(this, tileGrid);

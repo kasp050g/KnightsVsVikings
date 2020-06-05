@@ -33,6 +33,7 @@ namespace MainSystemFramework
         private SpriteFont normalFont;
         private SpriteFont mediaevalFont;
         private TileSprite tileSprite = new TileSprite();
+        private UnitImageSprite unitImageSprite = new UnitImageSprite();
 
         public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
         public Dictionary<string, TextureSheet2D> SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
@@ -44,6 +45,7 @@ namespace MainSystemFramework
         public Texture2D Pixel { get; set; }
         public Color TextColor { get; } = new Color(200, 182, 157);
         public TileSprite TileSprite { get => tileSprite; set => tileSprite = value; }
+        public UnitImageSprite UnitImageSprite { get => unitImageSprite; set => unitImageSprite = value; }
 
         public SpriteContainer()
         {
@@ -88,6 +90,7 @@ namespace MainSystemFramework
             UI(content);
             AnimationsSheet(content);
             Tiles();
+            UnitImage();
         }
 
         private void AddSprite(Texture2D texture2D, string name)
@@ -256,6 +259,30 @@ namespace MainSystemFramework
             TileSprite.Wheatfield = new TextureSheet2D(objectSheet, RetrunPos(14, 6), new Vector2(3*128,3*128));
             TileSprite.Wood = new TextureSheet2D(objectSheet, RetrunPos(6, 12), new Vector2(3*128,5*128));
 
+        }
+
+        private void UnitImage()
+        {
+            Vector2 tileSize = new Vector2((int)(1 * 256), (int)(1 * 256));
+            Texture2D knightBowmanSheet = sprite["KnightsBowmanDown"];
+            Texture2D knightFootmanSheet = sprite["KnightsFootmanDown"];
+            Texture2D knightSpearSheet = sprite["KnightsSpearmanDown"];
+            Texture2D knightWorkerSheet = sprite["KnightsWorkerDown"];
+
+            Texture2D vikingBowmanSheet = sprite["VikingsBowmanDown"];
+            Texture2D vikingFootmanSheet = sprite["VikingsFootmanDown"];
+            Texture2D vikingSpearSheet = sprite["VikingsSpearmanDown"];
+            Texture2D vikingWorkerSheet = sprite["VikingsWorkerDown"];
+
+            unitImageSprite.KnightBowman = new TextureSheet2D(knightBowmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightFootman = new TextureSheet2D(knightFootmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightSpear = new TextureSheet2D(knightSpearSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightWorker = new TextureSheet2D(knightWorkerSheet, RetrunPos(1, 1), tileSize);
+
+            unitImageSprite.VikingBowman = new TextureSheet2D(vikingBowmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingFootman = new TextureSheet2D(vikingFootmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingSpear = new TextureSheet2D(vikingSpearSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingWorker = new TextureSheet2D(vikingWorkerSheet, RetrunPos(1, 1), tileSize);
         }
 
         private Vector2 RetrunPos(int x, int y)

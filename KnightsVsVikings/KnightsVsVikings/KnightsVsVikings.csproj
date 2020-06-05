@@ -61,6 +61,7 @@
     <Compile Include="Script\Container\SceneContainer.cs" />
     <Compile Include="Script\Container\SpriteContainer.cs" />
     <Compile Include="Script\Container\SupSpriteContainer\TileSprite.cs" />
+    <Compile Include="Script\Container\SupSpriteContainer\UnitImageSprite.cs" />
     <Compile Include="Script\MainSystem\Cameras\Camera.cs" />
     <Compile Include="Script\MainSystem\Cameras\CameraFollow.cs" />
     <Compile Include="Script\MainSystem\Cameras\CameraRTS.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\BuildingFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\Factory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
     <Compile Include="Script\TheGame\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Enum\ECellType.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Script\WorldEditor\Enum\EBuildingType.cs" />
     <Compile Include="Script\WorldEditor\Tile\CBuilding.cs" />
     <Compile Include="Script\WorldEditor\UILogic\BuildingTileGridBar.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\UnitTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
