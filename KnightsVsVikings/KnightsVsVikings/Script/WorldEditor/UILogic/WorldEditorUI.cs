@@ -15,9 +15,11 @@ namespace KnightsVsVikings
         GameObject actionBar;
         GroundTileGridBar groundTile;
         ResourceTileGridBar resourceTileGridBar;
+        BuildingTileGridBar buildingTileGridBar;
 
         GUIButton groundBtn;
-        GUIButton ResourcesBtn;
+        GUIButton resourcesBtn;
+        GUIButton builingsBtn;
 
         PlaceTileWithMouse placeTile;
 
@@ -36,19 +38,27 @@ namespace KnightsVsVikings
 
             resourceTileGridBar = new ResourceTileGridBar(myScene, actionBar, placeTile);
             resourceTileGridBar.MadeUI();
+            resourceTileGridBar.mainGameObject.SetIsActive(false);
+
+            buildingTileGridBar = new BuildingTileGridBar(myScene, actionBar, placeTile);
+            buildingTileGridBar.MadeUI();
+            buildingTileGridBar.mainGameObject.SetIsActive(false);
 
             groundBtn = TopButtom(new Vector2(-270, -30), "Ground Tile");
-            ResourcesBtn = TopButtom(new Vector2(-150, -30), "Resources");
+            resourcesBtn = TopButtom(new Vector2(-150, -30), "Resources");
+            builingsBtn = TopButtom(new Vector2(-40, -30), "Buildings");
 
 
             groundBtn.OnClick += () => { OverLayButtom(); groundTile.mainGameObject.SetIsActive(true); };
-            ResourcesBtn.OnClick += () => { OverLayButtom(); resourceTileGridBar.mainGameObject.SetIsActive(true); };
+            resourcesBtn.OnClick += () => { OverLayButtom(); resourceTileGridBar.mainGameObject.SetIsActive(true); };
+            builingsBtn.OnClick += () => { OverLayButtom(); buildingTileGridBar.mainGameObject.SetIsActive(true); };
         }
 
         private void OverLayButtom()
         {
             groundTile.mainGameObject.SetIsActive(false);
             resourceTileGridBar.mainGameObject.SetIsActive(false);
+            buildingTileGridBar.mainGameObject.SetIsActive(false);
         }
 
 

@@ -11,9 +11,12 @@ namespace KnightsVsVikings
 {
     public class TileGrid
     {
-        private int gridSizeX = 25;
-        private int gridSizeY = 25;
+        private int gridSizeX = 50;
+        private int gridSizeY = 50;
         private Scene myScene;
+
+        public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
+
         public GameObject[,] groundTileGrid;
         public GameObject[,] obstacleTileGrid;
         public GameObject[,] resourceTileGrid;
@@ -43,7 +46,7 @@ namespace KnightsVsVikings
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(textureSheet);
-            CTile tile = new CTile();
+            CTile tile = new CTile(TileSize);
             CResourceTile resourceTile = new CResourceTile();
 
             sr.LayerDepth = 0f;
@@ -53,7 +56,7 @@ namespace KnightsVsVikings
             go.AddComponent<CResourceTile>(resourceTile);
             
 
-            go.Transform.Position = new Vector2((int)pos.X,(int)pos.Y) * tile.TileSize;
+            go.Transform.Position = new Vector2((int)pos.X,(int)pos.Y) * TileSize;
             go.Transform.Scale = new Vector2(1.0f, 1.0f);
 
             myScene.Instantiate(go);

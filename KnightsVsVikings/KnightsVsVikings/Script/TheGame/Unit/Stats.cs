@@ -25,7 +25,5 @@ namespace KnightsVsVikings
         public int GatheringAmount = 0;
         public float GatheringSpeed = 0;
         public int GatheringCapacity = 0;
-
-
     }
 }

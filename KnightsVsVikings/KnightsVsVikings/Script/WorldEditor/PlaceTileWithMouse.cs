@@ -11,13 +11,18 @@ namespace KnightsVsVikings
 {
     public class PlaceTileWithMouse
     {
-        int sizeOfTile = 128 /2;
+        int sizeOfTile = 128 / 2;
         Scene myScene;
         GameObject gameObjectTileMouse;
         CSpriteRenderer sr;
 
+        BuildingFactory buildingFactory = new BuildingFactory();
+
+        EFaction faction;
+        ETeam team;
         ETileType groundTileType;
         EResourcesType resourcesType;
+        EBuildingType buildingType;
         TileGrid tileGrid;
         ECurrentSelectedTileObject CurrentSelectedTileObject;
 
@@ -56,19 +61,75 @@ namespace KnightsVsVikings
 
             if (Input.GetKeyDown(Keys.U))
             {
-                UpdateGrid(tileGrid.groundTileGrid);
+                UpdateGrid(tileGrid);
             }
         }
 
-        public void UpdateGrid(GameObject[,] _tileGrid)
+        public void UpdateGrid(TileGrid _tileGrid)
         {
-            for (int x = 0; x < _tileGrid.GetLength(0); x++)
+            for (int x = 0; x < _tileGrid.groundTileGrid.GetLength(0); x++)
             {
-                for (int y = 0; y < _tileGrid.GetLength(1); y++)
+                for (int y = 0; y < _tileGrid.groundTileGrid.GetLength(1); y++)
                 {
-                    GetTileData(_tileGrid, new Vector2(x, y));
+                    GetTileData(_tileGrid.groundTileGrid, new Vector2(x, y));
                 }
             }
+
+            for (int x = 0; x < _tileGrid.groundTileGrid.GetLength(0); x++)
+            {
+                for (int y = 0; y < _tileGrid.groundTileGrid.GetLength(1); y++)
+                {
+                    CheckForBuildReset(_tileGrid.buildingTileGrid, _tileGrid.groundTileGrid, new Vector2(x, y));
+                }
+            }
+
+            for (int x = 0; x < _tileGrid.groundTileGrid.GetLength(0); x++)
+            {
+                for (int y = 0; y < _tileGrid.groundTileGrid.GetLength(1); y++)
+                {
+                    CheckForBuild(_tileGrid.buildingTileGrid, _tileGrid.groundTileGrid, new Vector2(x, y));
+                }
+            }
+        }
+
+        public void PickTile(EBuildingType buildingType)
+        {
+            this.buildingType = buildingType;
+            CurrentSelectedTileObject = ECurrentSelectedTileObject.Build;
+            gameObjectTileMouse.IsActive = true;
+            TextureSheet2D tmp = SpriteContainer.Instance.TileSprite.Delete;
+
+            sr.OffSet = new Vector2(1 * -sizeOfTile, 3 * -sizeOfTile);
+
+            switch (buildingType)
+            {
+                case EBuildingType.TownHall:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.ArcheryRange:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.Blacksmith:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.Tower:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.Barracks:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.GatheringStation:
+                    tmp = SpriteContainer.Instance.SpriteSheet["GrayTent"];
+                    break;
+                case EBuildingType.Field:
+                    tmp = SpriteContainer.Instance.TileSprite.Wheatfield;
+                    sr.OffSet = new Vector2(1 * -sizeOfTile, 1 * -sizeOfTile);
+                    break;
+                default:
+                    break;
+            }
+
+            gameObjectTileMouse.GetComponent<CSpriteRenderer>().SetSprite(tmp);
         }
 
         public void PickTile(ETileType tileType, TextureSheet2D image)
@@ -186,6 +247,7 @@ namespace KnightsVsVikings
                                 case ECurrentSelectedTileObject.Unit:
                                     break;
                                 case ECurrentSelectedTileObject.Build:
+                                    PlaceBuild(x, y);
                                     break;
                                 default:
                                     break;
@@ -194,6 +256,87 @@ namespace KnightsVsVikings
                     }
                 }
             }
+        }
+
+        public void PlaceBuild(int x, int y)
+        {
+            TextureSheet2D tmp = null;
+            Vector2 _offset = new Vector2(0, 0);
+
+            GameObject go = buildingFactory.Creaft(buildingType);
+
+            go.Transform.Position = new Vector2((x - 1) * tileGrid.TileSize.X, (y - 3) * tileGrid.TileSize.Y);
+
+
+
+            switch (buildingType)
+            {
+                case EBuildingType.TownHall:
+
+                    break;
+                case EBuildingType.ArcheryRange:
+                    break;
+                case EBuildingType.Blacksmith:
+                    break;
+                case EBuildingType.Tower:
+                    break;
+                case EBuildingType.Barracks:
+                    break;
+                case EBuildingType.GatheringStation:
+                    break;
+                case EBuildingType.Field:
+                    go.Transform.Position = new Vector2((x - 1) * tileGrid.TileSize.X, (y - 1) * tileGrid.TileSize.Y);
+                    break;
+                default:
+                    break;
+            }
+
+            if (buildingType != EBuildingType.Field)
+            {
+                switch (team)
+                {
+                    case ETeam.Team01:
+                        go.GetComponent<CSpriteRenderer>().Color = Color.Red;
+                        break;
+                    case ETeam.Team02:
+                        go.GetComponent<CSpriteRenderer>().Color = Color.Blue;
+                        break;
+                    case ETeam.Team03:
+                        go.GetComponent<CSpriteRenderer>().Color = Color.Green;
+                        break;
+                    case ETeam.Team04:
+                        go.GetComponent<CSpriteRenderer>().Color = Color.Yellow;
+                        break;
+                    case ETeam.Team05:
+                        break;
+                    case ETeam.Team06:
+                        break;
+                    case ETeam.Team07:
+                        break;
+                    case ETeam.Team08:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
+            if (tileGrid.buildingTileGrid[x, y] != null)
+            {
+                myScene.Destroy(tileGrid.buildingTileGrid[x, y]);
+            }
+
+            if (buildingType != EBuildingType.Nothing)
+            {
+                myScene.Instantiate(go);
+                tileGrid.buildingTileGrid[x, y] = go;
+            }
+            else
+            {
+                tileGrid.buildingTileGrid[x, y] = null;
+            }
+
+            UpdateGrid(tileGrid);
         }
 
         public void PlaceResource(int x, int y)
@@ -240,7 +383,7 @@ namespace KnightsVsVikings
 
             //tileGrid.groundTileGrid[x, y].GetComponent<CTile>().ResourcesType = resourcesType;
 
-            UpdateGrid(tileGrid.groundTileGrid);
+            UpdateGrid(tileGrid);
         }
 
         public void PlaceTile(int x, int y)
@@ -265,7 +408,7 @@ namespace KnightsVsVikings
             tileGrid.groundTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(tmp);
             tileGrid.groundTileGrid[x, y].GetComponent<CTile>().TileType = groundTileType;
 
-            UpdateGrid(tileGrid.groundTileGrid);
+            UpdateGrid(tileGrid);
         }
 
         public void GetTileData(GameObject[,] groundTileGrid, Vector2 gridPos)
@@ -416,6 +559,45 @@ namespace KnightsVsVikings
             else
             {
                 groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.Red;
+            }
+        }
+
+        private void CheckForBuildReset(GameObject[,] buildingTileGrid, GameObject[,] groundTileGrid, Vector2 gridPos)
+        {
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = true;
+        }
+
+        private void CheckForBuild(GameObject[,] buildingTileGrid, GameObject[,] groundTileGrid, Vector2 gridPos)
+        {
+            if (buildingTileGrid[(int)gridPos.X, (int)gridPos.Y] != null)
+            {
+                if (buildingTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CBuilding>().BuildingType != EBuildingType.Field)
+                {
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
+
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X + 1, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X + 1, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                }
+                else
+                {
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X + 1, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y + 1].GetComponent<CTile>().IsCanBuildHere = false;
+
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X + 1, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = false;
+
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X - 1, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                    groundTileGrid[(int)gridPos.X + 1, (int)gridPos.Y - 1].GetComponent<CTile>().IsCanBuildHere = false;
+                }
+
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using MainSystemFramework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,24 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class CWorker : CUnit
+    public class CStats : Component
     {
+        ETeam team;
+        EFaction faction;
+        Stats stats;
+
+        public ETeam Team { get => team; set => team = value; }
+        public EFaction Faction { get => faction; set => faction = value; }
+        public Stats Stats { get => stats; set => stats = value; }
+
+        //Stats baseStats;
+        //Stats currentStats;
+
+        //List<Passive> passives = new List<Passive>();
+        public CStats()
+        {
+
+        }
         public override void Awake()
         {
             base.Awake();
@@ -32,6 +49,11 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
+        }
+
+        public void UpdatePassives()
+        {
+
         }
     }
 }

@@ -79,15 +79,14 @@
     <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
-    <Compile Include="Script\TheGame\Components\CMove.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CWorker.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\BuildingFactory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\Factory.cs" />
+    <Compile Include="Script\TheGame\Unit\Passive.cs" />
+    <Compile Include="Script\TheGame\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Enum\ECellType.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
@@ -127,6 +126,9 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
+    <Compile Include="Script\WorldEditor\Enum\EBuildingType.cs" />
+    <Compile Include="Script\WorldEditor\Tile\CBuilding.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\BuildingTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
@@ -263,7 +265,6 @@
     <Folder Include="Content\Images\Characters\" />
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
-    <Folder Include="Script\TheGame\Unit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
