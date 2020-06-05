@@ -53,6 +53,7 @@ namespace MainSystemFramework
 
         public virtual void Update()
         {
+            IsMouseOverUI = false;
             CheckForGUI();
             if (!pauseGame)
             {
@@ -83,7 +84,7 @@ namespace MainSystemFramework
             CallDestroyGameObject();
             CallInstantiate();
             SceneController.Instance.Camera.Update();
-            IsMouseOverUI = false;
+
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

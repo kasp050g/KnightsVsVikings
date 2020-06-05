@@ -1,7 +1,6 @@
 ﻿using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame.Enum;
 using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
-using KnightsVsVikings.Script.WorldEditor.Enum;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

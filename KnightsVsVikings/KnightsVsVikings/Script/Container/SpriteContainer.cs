@@ -33,6 +33,7 @@ namespace MainSystemFramework
         private SpriteFont normalFont;
         private SpriteFont mediaevalFont;
         private TileSprite tileSprite = new TileSprite();
+        private UnitImageSprite unitImageSprite = new UnitImageSprite();
 
         public Dictionary<string, Texture2D> Sprite { get => sprite; set => sprite = value; }
         public Dictionary<string, TextureSheet2D> SpriteSheet { get => spriteSheet; set => spriteSheet = value; }
@@ -44,6 +45,7 @@ namespace MainSystemFramework
         public Texture2D Pixel { get; set; }
         public Color TextColor { get; } = new Color(200, 182, 157);
         public TileSprite TileSprite { get => tileSprite; set => tileSprite = value; }
+        public UnitImageSprite UnitImageSprite { get => unitImageSprite; set => unitImageSprite = value; }
 
         public SpriteContainer()
         {
@@ -80,20 +82,15 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
             AddSprite(content.Load<Texture2D>("Images/TileSheet/Grassland128x128"), "Grassland128x128");
 
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 4 * 128), new Vector2(3*128, 4*128)), "GrayTent");
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 8 * 128), new Vector2(3*128, 4*128)), "BlueTent");
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 12 * 128), new Vector2(3*128, 4*128)), "RedTent");
 
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(4 * 128, 3 * 128), new Vector2(2*128, 3*128)), "WoodSign");
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(8 * 128, 5 * 128), new Vector2(1*128, 1*128)), "SignIconBlacksmith");
-            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(5 * 128, 6 * 128), new Vector2(1*128, 1*128)), "SignIconTailoring");
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
             //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
-
+            Build(content);
             UI(content);
             AnimationsSheet(content);
             Tiles();
+            UnitImage();
         }
 
         private void AddSprite(Texture2D texture2D, string name)
@@ -114,21 +111,41 @@ namespace MainSystemFramework
             SpriteSheetList.Add(name, TextureSheet2Ds);
         }
 
+        private void Build(ContentManager content)
+        {
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 4 * 128), new Vector2(3 * 128, 4 * 128)), "GrayTent");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 8 * 128), new Vector2(3 * 128, 4 * 128)), "BlueTent");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 12 * 128), new Vector2(3 * 128, 4 * 128)), "RedTent");
+
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(4 * 128, 3 * 128), new Vector2(2 * 128, 3 * 128)), "WoodSign");
+
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(6 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Axe");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(7 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Pot");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(8 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Food");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(6 * 128, 5 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_AM");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(7 * 128, 5 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Book");
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(8 * 128, 5 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_BS");
+
+            AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(5 * 128, 6 * 128), new Vector2(1 * 128, 1 * 128)), "SignIconTailoring");
+        }
+
         private void UI(ContentManager content)
         {
             // The Game Icon
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_157"), "WorkerIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "FootmanIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_09"), "BowmanIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_10"), "ArcheryRangeIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_100"), "SpearmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_88"), "VikingFootmanIcon");
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "KnightFootmanIcon");
+
+            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_10"), "ArcheryRangeIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_121"), "BlacksmithIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_136"), "TowerIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_157"), "WorkerIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_159"), "TownHallIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_19"), "BarracksIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_49"), "GatheringStationIcon");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_51"), "FieldIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_63"), "KnightFootmanIcon");
-            AddSprite(content.Load<Texture2D>("Images/UI/Icon/Game_Icon/SGI_88"), "VikingFootmanIcon");
 
             // UI Icon
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_Play"), "ArrowRigth");
@@ -200,9 +217,12 @@ namespace MainSystemFramework
 
         private void Tiles()
         {
-            Vector2 tileSize = new Vector2(1 * 128, 1 * 128);
+            Vector2 tileSize = new Vector2((int)(1 * 128), (int)(1 * 128));
             Texture2D tileSheet = sprite["Grassland128x128"];
+            Texture2D objectSheet = sprite["ExtraObjects128x128"];
 
+            // Delete
+            tileSprite.Delete = new TextureSheet2D(objectSheet, RetrunPos(10, 5), tileSize);
             // Grass Tile
             TileSprite.Grass01 = new TextureSheet2D(tileSheet, RetrunPos(2,2), tileSize);
             TileSprite.Grass02 = new TextureSheet2D(tileSheet, RetrunPos(3,2), tileSize);
@@ -229,11 +249,45 @@ namespace MainSystemFramework
             TileSprite.Water02 = new TextureSheet2D(tileSheet, RetrunPos(12, 9), tileSize);
             TileSprite.Water03 = new TextureSheet2D(tileSheet, RetrunPos(12, 10), tileSize);
             TileSprite.Water04 = new TextureSheet2D(tileSheet, RetrunPos(13, 10), tileSize);
+            // Bridge Tile
+            TileSprite.BridgeLeft01 = new TextureSheet2D(tileSheet, RetrunPos(8, 4), new Vector2(128,2*128));
+            TileSprite.BridgeLeft02 = new TextureSheet2D(tileSheet, RetrunPos(9, 4), new Vector2(128,2*128));
+            TileSprite.BridgeLeft03 = new TextureSheet2D(tileSheet, RetrunPos(10, 4), new Vector2(128,2*128));
+            // Resources
+            TileSprite.Gold = new TextureSheet2D(objectSheet, RetrunPos(16, 11), new Vector2(1*128,2*128));
+            TileSprite.Stone = new TextureSheet2D(objectSheet, RetrunPos(16, 13), new Vector2(1*128,2*128));
+            TileSprite.Wheatfield = new TextureSheet2D(objectSheet, RetrunPos(14, 6), new Vector2(3*128,3*128));
+            TileSprite.Wood = new TextureSheet2D(objectSheet, RetrunPos(6, 12), new Vector2(3*128,5*128));
+
+        }
+
+        private void UnitImage()
+        {
+            Vector2 tileSize = new Vector2((int)(1 * 256), (int)(1 * 256));
+            Texture2D knightBowmanSheet = sprite["KnightsBowmanDown"];
+            Texture2D knightFootmanSheet = sprite["KnightsFootmanDown"];
+            Texture2D knightSpearSheet = sprite["KnightsSpearmanDown"];
+            Texture2D knightWorkerSheet = sprite["KnightsWorkerDown"];
+
+            Texture2D vikingBowmanSheet = sprite["VikingsBowmanDown"];
+            Texture2D vikingFootmanSheet = sprite["VikingsFootmanDown"];
+            Texture2D vikingSpearSheet = sprite["VikingsSpearmanDown"];
+            Texture2D vikingWorkerSheet = sprite["VikingsWorkerDown"];
+
+            unitImageSprite.KnightBowman = new TextureSheet2D(knightBowmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightFootman = new TextureSheet2D(knightFootmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightSpear = new TextureSheet2D(knightSpearSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.KnightWorker = new TextureSheet2D(knightWorkerSheet, RetrunPos(1, 1), tileSize);
+
+            unitImageSprite.VikingBowman = new TextureSheet2D(vikingBowmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingFootman = new TextureSheet2D(vikingFootmanSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingSpear = new TextureSheet2D(vikingSpearSheet, RetrunPos(1, 1), tileSize);
+            unitImageSprite.VikingWorker = new TextureSheet2D(vikingWorkerSheet, RetrunPos(1, 1), tileSize);
         }
 
         private Vector2 RetrunPos(int x, int y)
         {
-            return new Vector2((x - 1) * 128, (y - 1) * 128);
+            return new Vector2((int)((x - 1) * 128), (int)((y - 1) * 128));
         }
     }
 }

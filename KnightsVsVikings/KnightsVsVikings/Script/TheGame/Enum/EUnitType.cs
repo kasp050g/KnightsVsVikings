@@ -8,6 +8,7 @@ namespace KnightsVsVikings
 {
     public enum EUnitType
     {
+        Nothing,
         Worker,
         Bowman,
         Footman,

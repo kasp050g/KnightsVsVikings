@@ -9,35 +9,23 @@ namespace KnightsVsVikings
 {
     public class UnitMoveToPositionState : FsmState<CUnit>
     {
-        float time = 0;
-
         public override void Begin()
         {
             base.Begin();
-            time = 0;
-            Console.WriteLine("Unit Run Start");
-            Context.Animator.PlayAnimation($"{EUnitAnimationType.Run}");
         }
 
         public override void End()
         {
             base.End();
-            Console.WriteLine("Unit Run Slut");
         }
 
         public override void Reason()
         {
             base.Reason();
-            if (time > 3)
-            {
-                Machine.ChangeState<UnitIdleState>();
-            }
         }
         public override void Act(float deltaTime)
         {
-            base.Act(deltaTime);
-            time += deltaTime;
-            
+            base.Act(deltaTime);            
         }
     }
 }

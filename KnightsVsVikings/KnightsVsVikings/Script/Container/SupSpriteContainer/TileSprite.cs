@@ -8,6 +8,8 @@ namespace MainSystemFramework
 {
     public class TileSprite
     {
+        public TextureSheet2D Delete { get; set; }
+
         public TextureSheet2D Grass01 { get; set; }
         public TextureSheet2D Grass02 { get; set; }
         public TextureSheet2D Grass03 { get; set; }
@@ -31,5 +33,17 @@ namespace MainSystemFramework
         public TextureSheet2D Water02 { get; set; }
         public TextureSheet2D Water03 { get; set; }
         public TextureSheet2D Water04 { get; set; }
+
+        public TextureSheet2D BridgeLeft01 { get; set; }
+        public TextureSheet2D BridgeLeft02 { get; set; }
+        public TextureSheet2D BridgeLeft03 { get; set; }
+
+
+        public TextureSheet2D Gold { get; set; }
+        public TextureSheet2D Stone { get; set; }
+        public TextureSheet2D Wood { get; set; }
+        public TextureSheet2D Wheatfield { get; set; }
+
+
     }
 }

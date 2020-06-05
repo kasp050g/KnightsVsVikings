@@ -37,15 +37,6 @@ namespace KnightsVsVikings
 
         public void TestZone()
         {
-            GameObject tmp = new GameObject();
-            Instantiate(tmp);
-
-
-
-
-
-
-
             TestUnit(EFaction.Knights, EUnitType.Worker, 0);
             TestUnit(EFaction.Knights, EUnitType.Bowman, 1);
             TestUnit(EFaction.Knights, EUnitType.Spearman, 2);
@@ -56,8 +47,8 @@ namespace KnightsVsVikings
             TestUnit(EFaction.Vikings, EUnitType.Spearman, 6);
             TestUnit(EFaction.Vikings, EUnitType.Footman, 7);
 
-            NewButtonTest_Kasper btn_Test = new NewButtonTest_Kasper(this);
-            btn_Test.MadeUI();
+            //NewButtonTest_Kasper btn_Test = new NewButtonTest_Kasper(this);
+            //btn_Test.MadeUI();
 
             Test_ButtonJamen test_J = new Test_ButtonJamen(this);
             test_J.JamenTest();
@@ -70,6 +61,7 @@ namespace KnightsVsVikings
             CAnimator animator = new CAnimator();
             CUnit unit = new CUnit(ETeam.Team01, unitType, factions);
             CMove move = new CMove();
+
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
             go.AddComponent<CSpriteRenderer>(sp);
@@ -77,9 +69,6 @@ namespace KnightsVsVikings
 
             go.Transform.Position -= new Microsoft.Xna.Framework.Vector2(650 - 150 * number, 0);
             Instantiate(go);
-
-
-
         }
     }
 }

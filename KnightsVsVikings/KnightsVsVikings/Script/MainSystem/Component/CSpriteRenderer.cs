@@ -104,8 +104,15 @@ namespace MainSystemFramework
             rectangle = spriteName.Rectangle;
         }
 
+        public void RemoveImage()
+        {
+            spriteSheet = null;
+            sprite = null;
+        }
+
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if(sprite != null)
             spriteBatch.Draw(
                 // Texture2D
                 this.Sprite,
@@ -124,7 +131,7 @@ namespace MainSystemFramework
                 // SpriteEffects
                 this.SpriteEffects,
                 // LayerDepth
-                this.LayerDepth
+                this.LayerDepth /*+ GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000*/
             );
         }
 

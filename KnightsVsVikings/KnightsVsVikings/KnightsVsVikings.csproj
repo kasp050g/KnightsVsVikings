@@ -61,6 +61,7 @@
     <Compile Include="Script\Container\SceneContainer.cs" />
     <Compile Include="Script\Container\SpriteContainer.cs" />
     <Compile Include="Script\Container\SupSpriteContainer\TileSprite.cs" />
+    <Compile Include="Script\Container\SupSpriteContainer\UnitImageSprite.cs" />
     <Compile Include="Script\MainSystem\Cameras\Camera.cs" />
     <Compile Include="Script\MainSystem\Cameras\CameraFollow.cs" />
     <Compile Include="Script\MainSystem\Cameras\CameraRTS.cs" />
@@ -79,15 +80,15 @@
     <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
-    <Compile Include="Script\TheGame\Components\CMove.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CBowman.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CSpearman.cs" />
+    <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CWorker.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\Passive.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\Stats.cs" />
-    <Compile Include="Script\TheGame\Components\Unit\CFootman.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\BuildingFactory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\Factory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
+    <Compile Include="Script\TheGame\Unit\Passive.cs" />
+    <Compile Include="Script\TheGame\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Enum\ECellType.cs" />
     <Compile Include="Script\TheGame\Enum\EFactions.cs" />
     <Compile Include="Script\MainSystem\Enum\EInputState.cs" />
@@ -127,8 +128,10 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\LukasScene.cs" />
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
-    <Compile Include="Script\TheGame\Test\Test_JAmen.cs" />
-    <Compile Include="Script\TheGame\Test\Test_Unit.cs" />
+    <Compile Include="Script\WorldEditor\Enum\EBuildingType.cs" />
+    <Compile Include="Script\WorldEditor\Tile\CBuilding.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\BuildingTileGridBar.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\UnitTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
@@ -183,12 +186,19 @@
     <Compile Include="Script\TheGame\Test\Test_ButtonJamen.cs" />
     <Compile Include="Script\TheGame\UILogic\MainMenuUI.cs" />
     <Compile Include="Script\TheGame\Test_ContentUploader\NewButtonTest_Kasper.cs" />
+    <Compile Include="Script\WorldEditor\Enum\ECurrentSelectedTileObject.cs" />
+    <Compile Include="Script\WorldEditor\Enum\EResourcesType.cs" />
     <Compile Include="Script\WorldEditor\Enum\ETileType.cs" />
+    <Compile Include="Script\WorldEditor\PlaceTileWithMouse.cs" />
     <Compile Include="Script\WorldEditor\TileGrid.cs" />
+    <Compile Include="Script\WorldEditor\Tile\CResourceTile.cs" />
     <Compile Include="Script\WorldEditor\Tile\CTile.cs" />
-    <Compile Include="Script\WorldEditor\UILogic\WorldEditorActionBarUI.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\GroundTileGridBar.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\ResourceTileGridBar.cs" />
+    <Compile Include="Script\WorldEditor\UILogic\WorldEditorUI.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -201,6 +211,49 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\MainSystem\Pixel.png" />
+    <Content Include="Content\Images\TileSheet\ExtraObjects128x128.png" />
+    <Content Include="Content\Images\TileSheet\Grassland128x128.png" />
+    <Content Include="Content\Images\UI\ActionBar\ActionBar.png" />
+    <Content Include="Content\Images\UI\ActionBar\ActionBar02.png" />
+    <Content Include="Content\Images\UI\ActionBar\Slot.png" />
+    <Content Include="Content\Images\UI\ActionBar\SlotNameBar.png" />
+    <Content Include="Content\Images\UI\Button\Button_A_Long_active.png" />
+    <Content Include="Content\Images\UI\Button\Button_A_Long_aimed.png" />
+    <Content Include="Content\Images\UI\Button\Button_tiny_ready.png" />
+    <Content Include="Content\Images\UI\Button\Button_tiny_red.png" />
+    <Content Include="Content\Images\UI\Campaign.png" />
+    <Content Include="Content\Images\UI\CampaignHover.png" />
+    <Content Include="Content\Images\UI\Credits.png" />
+    <Content Include="Content\Images\UI\CreditsHover.png" />
+    <Content Include="Content\Images\UI\CustomBattles.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_09.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_10.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_100.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_121.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_136.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_157.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_159.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_19.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_49.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_51.png" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_63.PNG" />
+    <Content Include="Content\Images\UI\Icon\Game_Icon\SGI_88.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Food.jpg" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Gold.jpg" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Iron.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\KnightsCampaign.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_Play.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_PlayBackwards.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_SoundOff.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\UI_Icon_SoundOn.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\VikingsCampaign.png" />
+    <Content Include="Content\Images\UI\Icon\UI_Icon\Wood.jpg" />
+    <Content Include="Content\Images\UI\Load Game.jpg" />
+    <Content Include="Content\Images\UI\Map.jpg" />
+    <Content Include="Content\Images\UI\Options.png" />
+    <Content Include="Content\Images\UI\OptionsHover.png" />
+    <Content Include="Content\Images\UI\QuitGame.png" />
+    <Content Include="Content\Images\UI\QuitGameHover.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -215,7 +268,6 @@
     <Folder Include="Content\Images\Characters\" />
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
-    <Folder Include="Script\TheGame\Unit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
