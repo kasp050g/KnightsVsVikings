@@ -13,12 +13,20 @@ namespace KnightsVsVikings
     {
         Scene myScene;
 
-        GameObject MainMenuGameObject = new GameObject();
+        GameObject MainMenuGO = new GameObject();
+        GameObject CampaignMenuGO = new GameObject();
+        GameObject VikingsCampaignGO = new GameObject();
+        GameObject KnightsCampaignGO = new GameObject();
 
         GUIButton quitGame;
         GUIButton credits;
         GUIButton options;
         GUIButton campaign;
+        GUIButton backToMain;
+        GUIButton backToCampaign;
+        GUIButton vikingsCampaign;
+        GUIButton knightsCampaign;
+        GUIButton startGame;
         public MainMenuUI(Scene myScene)
         {
             this.myScene = myScene;
@@ -26,20 +34,47 @@ namespace KnightsVsVikings
 
         public void MakeUI()
         {
+           
+
             MouseSettings.Instance.IsMouseVisible(true);
+
+            myScene.Instantiate(MainMenuGO);
+            myScene.Instantiate(CampaignMenuGO);
+            myScene.Instantiate(VikingsCampaignGO);
+            myScene.Instantiate(KnightsCampaignGO);
+            
+            CampaignMenuGO.IsActive = false;
+            VikingsCampaignGO.IsActive = false;
+            KnightsCampaignGO.IsActive = false;
 
             Texture2D texture1 = SpriteContainer.Instance.Sprite["Button_A_Long_black"];
             Texture2D texture2 = SpriteContainer.Instance.Sprite["Button_A_Long_red"];
+           
+            //Main Menu
+            MakeButton(texture1, texture2, "Campaign", new Vector2(10, 20), ref campaign, "main");
+            MakeButton(texture1, texture2, "Options", new Vector2(10, 160), ref options, "main");
+            MakeButton(texture1, texture2, "Credits", new Vector2(10, 300), ref credits, "main");
+            MakeButton(texture1, texture2, "Exit Game", new Vector2(10, 600), ref quitGame, "main");
+            
+            //Campaign Menu
+            MakeButton(texture1, texture2, "Vikings", new Vector2(280, 400), ref vikingsCampaign, "campaign");
+            MakeButton(texture1, texture2, "Knights", new Vector2(620, 400), ref knightsCampaign, "campaign");
+            MakeButton(texture1, texture2, "Back", new Vector2(440, 600), ref backToMain, "campaign");
+            CreateCampaignIcons("VikingsCampaign", new Vector2(320, 180));
+            CreateCampaignIcons("KnightsCampaign", new Vector2(620, 180));
 
-            MakeButton(texture1, texture2, "Campaign", new Vector2(10, 20), ref campaign);
-            MakeButton(texture1, texture2, "Options", new Vector2(10, 160), ref options);
-            MakeButton(texture1, texture2, "Credits", new Vector2(10, 300), ref credits);
-            MakeButton(texture1, texture2, "Exit Game", new Vector2(10, 600), ref quitGame);
+            //Vikings Menu
+            MakeButton(texture1, texture2, "Back", new Vector2(440, 600), ref backToCampaign, "vikings");
+            MakeButton(texture1, texture2, "Chapter 1", new Vector2(100, 100), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 2", new Vector2(100, 200), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 3", new Vector2(100, 300), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 4", new Vector2(100, 400), ref startGame, "vikings");
+            MakeButton(texture1, texture2, "Chapter 5", new Vector2(100, 500), ref startGame, "vikings");
 
-            BtnDoStuff();
+            ButtonFunctions();
         }
 
-        private void MakeButton(Texture2D texture1, Texture2D texture2, string text, Vector2 pos, ref GUIButton btn)
+        private void MakeButton(Texture2D texture1, Texture2D texture2, string text, Vector2 pos, ref GUIButton btn, string parent)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer();
@@ -54,55 +89,21 @@ namespace KnightsVsVikings
             go.Transform.Position = pos;
             sr.LayerDepth = 0.5f;
 
-            go.MyParent = MainMenuGameObject;
-
-            
-            myScene.Instantiate(MainMenuGameObject);
-           
-
+            if (parent == "main")
+            {
+                go.MyParent = MainMenuGO;
+            }
+           else if (parent == "campaign")
+            {
+                go.MyParent = CampaignMenuGO;
+            }
+            else if (parent == "vikings")
+            {
+                go.MyParent = VikingsCampaignGO;
+            }
             myScene.Instantiate(go);
-
-           
-
-           
-
-
         }
-        //Scene myScene;
 
-        //float position = 1.25f; //this is the starting position of the first created button
-        //GUIButton quitGame;
-        //GUIButton credits;
-        //GUIButton options;
-        //GUIButton campaign;
-
-        //GameObject MainMenuGameObject = new GameObject();
-        //GameObject CampaignMenuGameObject = new GameObject();
-        //public MainMenuUI(Scene myScene)
-        //{
-        //    this.myScene = myScene;
-
-        //    MakeButton("QuitGame", "QuitGameHover", ref quitGame, true);
-        //    MakeButton("Credits", "CreditsHover", ref credits, true);
-        //    MakeButton("Options", "OptionsHover", ref options, true);
-        //    MakeButton("Campaign", "CampaignHover", ref campaign, true);
-        //}
-        //public void 
-        //{
-        //    MouseSettings.Instance.IsMouseVisible(true);
-        //    CreateBackground();
-
-        //    MakeButton("QuitGame", "QuitGameHover", ref quitGame, true);
-        //    MakeButton("Credits", "CreditsHover", ref credits, true);
-        //    MakeButton("Options", "OptionsHover", ref options, true);
-        //    MakeButton("Campaign", "CampaignHover", ref campaign, true);
-
-
-        //    BtnDoStuff();
-        //    myScene.Instantiate(MainMenuGameObject);
-        //    myScene.Instantiate(CampaignMenuGameObject);
-
-        //}
         private void CreateBackground()
         {
             GameObject background = new GameObject();
@@ -114,45 +115,31 @@ namespace KnightsVsVikings
 
             myScene.Instantiate(background);
         }
-        //private void MakeButton(string name, string hoverName, ref GUIButton btn, bool main)
-        //{
-        //    GameObject go = new GameObject();
-        //    CSpriteRenderer sr = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
-        //    CSpriteRenderer hover = new CSpriteRenderer(hoverName, EOriginPosition.TopLeft, 0.02f);
-        //    GUIImage image = new GUIImage(sr, false, false);
-        //    go.AddComponent<CSpriteRenderer>(sr);
-        //    go.AddComponent<GUIImage>(image);
-        //    go.Transform.Scale = go.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(1222, 540);
-
-        //    Texture2D texture1 = sr.Sprite;
-        //    Texture2D texture2 = hover.Sprite;
-        //    btn = new GUIButton(sr, texture1, texture2, Color.White, Color.White);
-        //    go.AddComponent<GUIButton>(btn);
-
-        //    myScene.Instantiate(go);
-
-        //    if (main == false)
-        //    {
-        //        go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
-        //        go.MyParent = MainMenuGameObject;
-        //        position = position * 1.3f; //this is to relocate the next button further up
-        //    }
-        //    else
-        //    {
-        //        go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X / 100, GraphicsSetting.Instance.ScreenSize.Y / position);
-        //        go.MyParent = MainMenuGameObject;
-        //        position = position * 1.3f; //this is to relocate the next button further up
-        //    }
-        //}
-
-        private void BtnDoStuff()
+        private void CreateCampaignIcons(string name, Vector2 pos)
         {
-           //quitGame.OnClick = () => { /*TODO EXIT GAME*/ ; };
-            campaign.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            options.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            credits.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            quitGame.OnClick = () => { MainMenuGameObject.IsActive = false; };
-            //campaign.OnClick = () => { CampaignMenuGameObject.IsActive = true; };
+            GameObject go = new GameObject();
+            CSpriteRenderer iconSR = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
+            go.Transform.Position = pos;
+            GUIImage iconImage = new GUIImage(iconSR, false, false);
+            go.AddComponent<CSpriteRenderer>(iconSR);
+            go.AddComponent<GUIImage>(iconImage);
+            myScene.Instantiate(go);
+            go.MyParent = CampaignMenuGO;
+        }
+
+        private void ButtonFunctions()
+        {
+            campaign.OnClick = () => { CampaignMenuGO.IsActive = true; MainMenuGO.IsActive = false;  };
+            backToMain.OnClick = () => { CampaignMenuGO.IsActive = false; MainMenuGO.IsActive = true; };
+            backToCampaign.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };
+            vikingsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
+            knightsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
+            startGame.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };//HERE THE GAME STARTS!
+            
+            options.OnClick = () => { MainMenuGO.IsActive = false; };
+            credits.OnClick = () => { MainMenuGO.IsActive = false; };
+            quitGame.OnClick = () => { MainMenuGO.IsActive = false; }; //HERE THE GAME QUITS
+          
         }
     }
 }

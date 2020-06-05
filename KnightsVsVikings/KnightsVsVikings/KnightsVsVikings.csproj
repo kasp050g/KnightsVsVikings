@@ -190,6 +190,7 @@
     <Compile Include="Script\WorldEditor\Enum\EResourcesType.cs" />
     <Compile Include="Script\WorldEditor\Enum\ETileType.cs" />
     <Compile Include="Script\WorldEditor\PlaceTileWithMouse.cs" />
+    <Compile Include="Script\TheGame\UILogic\BattleUI.cs" />
     <Compile Include="Script\WorldEditor\TileGrid.cs" />
     <Compile Include="Script\WorldEditor\Tile\CResourceTile.cs" />
     <Compile Include="Script\WorldEditor\Tile\CTile.cs" />

@@ -17,7 +17,10 @@ namespace KnightsVsVikings
         {
             base.Initialize();
 
-            MainMenuUI tmp = new MainMenuUI(this);
+            //MainMenuUI tmp = new MainMenuUI(this);
+            //tmp.MakeUI();
+
+            BattleUI tmp = new BattleUI(this);
             tmp.MakeUI();
 
         }
