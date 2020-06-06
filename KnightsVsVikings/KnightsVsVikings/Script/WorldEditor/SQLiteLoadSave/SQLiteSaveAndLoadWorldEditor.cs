@@ -102,66 +102,133 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             DoTheSQLSave(grounds,builings,units,resources);
         }
 
-        private void DoTheSQLSave(List<SQLite_Ground> grounds, List<SQLite_Building> buildings, List<SQLite_Unit> units, List<SQLite_Resource> resources,int ID = 0)
+        private void DoTheSQLSave(List<SQLite_Ground> grounds, List<SQLite_Building> buildings, List<SQLite_Unit> units, List<SQLite_Resource> resources, int ID = 0)
         {
             // TODO: Save in it the SQLite
             ISQLiteRow worldData = new SQLiteWorldEditorModel(Singletons.TableContainerSingleton.WorldEditorTable, "DefaultWorld");
 
             Singletons.TableContainerSingleton.WorldEditorTable.Insert(worldData);
 
+            List<ISQLiteRow> groundsSQLite = new List<ISQLiteRow>(),
+                             unitsSQLite = new List<ISQLiteRow>(),
+                             buildingsSQLite = new List<ISQLiteRow>(),
+                             resourcesSQLite = new List<ISQLiteRow>();
+
             foreach (SQLite_Ground ground in grounds)
             {
-                Singletons.TableContainerSingleton.TileWorldEditorTable.Insert(
+                groundsSQLite.Add(
                     new SQLiteTileWorldEditorModel(
-                        Singletons.TableContainerSingleton.TileWorldEditorTable,
-                        worldData.Id,
-                        (int)ground.tileType,
-                        ground.X,
-                        ground.Y
-                        ));
+                    Singletons.TableContainerSingleton.TileWorldEditorTable,
+                    worldData.Id,
+                    (int)ground.tileType,
+                    ground.X,
+                    ground.Y)
+                    );
             }
 
-            foreach(SQLite_Building building in buildings)
+            foreach (SQLite_Building building in buildings)
             {
-                Singletons.TableContainerSingleton.BuildingWorldEditorTable.Insert(
+                buildingsSQLite.Add(
                     new SQLiteBuildingWorldEditorModel(
-                        Singletons.TableContainerSingleton.BuildingWorldEditorTable,
-                        worldData.Id,
-                        (int)building.BuildingType,
-                        (int)building.Team,
-                        (int)building.Faction,
-                        building.X,
-                        building.Y
-                        ));
+                    Singletons.TableContainerSingleton.BuildingWorldEditorTable,
+                    worldData.Id,
+                    (int)building.BuildingType,
+                    (int)building.Team,
+                    (int)building.Faction,
+                    building.X,
+                    building.Y)
+                    );
             }
 
             foreach (SQLite_Unit unit in units)
             {
-                Singletons.TableContainerSingleton.UnitWorldEditorTable.Insert(
+                unitsSQLite.Add(
                     new SQLiteUnitWorldEditorModel(
-                        Singletons.TableContainerSingleton.UnitWorldEditorTable,
-                        worldData.Id,
-                        (int)unit.UnitType,
-                        (int)unit.Team,
-                        (int)unit.Faction,
-                        unit.X,
-                        unit.Y
-                        ));
+                    Singletons.TableContainerSingleton.UnitWorldEditorTable,
+                    worldData.Id,
+                    (int)unit.UnitType,
+                    (int)unit.Team,
+                    (int)unit.Faction,
+                    unit.X,
+                    unit.Y)
+                    );
             }
 
             foreach (SQLite_Resource resource in resources)
             {
-                Singletons.TableContainerSingleton.ResourceWorldEditorTable.Insert(
-                    new SQLiteResourceWorldEditorModel(
-                        Singletons.TableContainerSingleton.ResourceWorldEditorTable,
-                        worldData.Id,
-                        (int)resource.resourcesType,
-                        resource.X,
-                        resource.Y
-                        ));
+                resourcesSQLite.Add(
+                    new SQLiteResourceWorldEditorModel
+                    (Singletons.TableContainerSingleton.ResourceWorldEditorTable,
+                    worldData.Id,
+                    (int)resource.resourcesType,
+                    resource.X,
+                    resource.Y)
+                    );
             }
 
-            List<ISQLiteRow> x = Singletons.TableContainerSingleton.BuildingWorldEditorTable.GetAll();
+            if(groundsSQLite.Count != 0)
+            Singletons.TableContainerSingleton.TileWorldEditorTable.InsertMultiple(groundsSQLite);
+
+            if (buildingsSQLite.Count != 0)
+                Singletons.TableContainerSingleton.BuildingWorldEditorTable.InsertMultiple(buildingsSQLite);
+
+            if (unitsSQLite.Count != 0)
+                Singletons.TableContainerSingleton.UnitWorldEditorTable.InsertMultiple(unitsSQLite);
+
+            if (resourcesSQLite.Count != 0)
+                Singletons.TableContainerSingleton.ResourceWorldEditorTable.InsertMultiple(resourcesSQLite);
+
+            //foreach (SQLite_Ground ground in grounds)
+            //{
+            //    Singletons.TableContainerSingleton.TileWorldEditorTable.Insert(
+            //        new SQLiteTileWorldEditorModel(
+            //            Singletons.TableContainerSingleton.TileWorldEditorTable,
+            //            worldData.Id,
+            //            (int)ground.tileType,
+            //            ground.X,
+            //            ground.Y
+            //            ));
+            //}
+            //
+            //foreach(SQLite_Building building in buildings)
+            //{
+            //    Singletons.TableContainerSingleton.BuildingWorldEditorTable.Insert(
+            //        new SQLiteBuildingWorldEditorModel(
+            //            Singletons.TableContainerSingleton.BuildingWorldEditorTable,
+            //            worldData.Id,
+            //            (int)building.BuildingType,
+            //            (int)building.Team,
+            //            (int)building.Faction,
+            //            building.X,
+            //            building.Y
+            //            ));
+            //}
+            //
+            //foreach (SQLite_Unit unit in units)
+            //{
+            //    Singletons.TableContainerSingleton.UnitWorldEditorTable.Insert(
+            //        new SQLiteUnitWorldEditorModel(
+            //            Singletons.TableContainerSingleton.UnitWorldEditorTable,
+            //            worldData.Id,
+            //            (int)unit.UnitType,
+            //            (int)unit.Team,
+            //            (int)unit.Faction,
+            //            unit.X,
+            //            unit.Y
+            //            ));
+            //}
+            //
+            //foreach (SQLite_Resource resource in resources)
+            //{
+            //    Singletons.TableContainerSingleton.ResourceWorldEditorTable.Insert(
+            //        new SQLiteResourceWorldEditorModel(
+            //            Singletons.TableContainerSingleton.ResourceWorldEditorTable,
+            //            worldData.Id,
+            //            (int)resource.resourcesType,
+            //            resource.X,
+            //            resource.Y
+            //            ));
+            //}
         }
         #endregion
 

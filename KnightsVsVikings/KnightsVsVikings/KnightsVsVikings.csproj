@@ -182,6 +182,7 @@
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\CommandMethodExtensions.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\DeleteRowCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\GetRowCommand.cs" />
+    <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\InsertMultipleRowsCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\InsertRowCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\RenameTableCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\UpdateRowCommand.cs" />
