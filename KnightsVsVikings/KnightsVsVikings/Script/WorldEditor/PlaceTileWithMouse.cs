@@ -310,7 +310,7 @@ namespace KnightsVsVikings
 
             GameObject go = buildingFactory.Creaft(buildingType,faction,team);
 
-            go.Transform.Position = new Vector2((x - 1) * tileGrid.TileSize.X, (y - 3) * tileGrid.TileSize.Y);
+            go.Transform.Position = new Vector2(x  * tileGrid.TileSize.X, y  * tileGrid.TileSize.Y);
 
             switch (buildingType)
             {

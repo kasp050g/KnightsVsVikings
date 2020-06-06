@@ -64,33 +64,19 @@ namespace MainSystemFramework
             Pixel = content.Load<Texture2D>("Images/MainSystem/Pixel");
 
             //Interface
-            AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");
-            //AddSprite(content.Load<Texture2D>("Images/UI/QuitGame"), "QuitGame");
-            //AddSprite(content.Load<Texture2D>("Images/UI/QuitGameHover"), "QuitGameHover");
-            //AddSprite(content.Load<Texture2D>("Images/UI/Options"), "Options");
-            //AddSprite(content.Load<Texture2D>("Images/UI/OptionsHover"), "OptionsHover");
-            //AddSprite(content.Load<Texture2D>("Images/UI/Campaign"), "Campaign");
-            //AddSprite(content.Load<Texture2D>("Images/UI/CampaignHover"), "CampaignHover");
-            //AddSprite(content.Load<Texture2D>("Images/UI/Load Game"), "LoadGame");
-            //AddSprite(content.Load<Texture2D>("Images/UI/CustomBattles"), "CustomBattles");
-            //AddSprite(content.Load<Texture2D>("Images/UI/Credits"), "Credits");
-            //AddSprite(content.Load<Texture2D>("Images/UI/CreditsHover"), "CreditsHover");
-
-      
+            AddSprite(content.Load<Texture2D>("Images/UI/Map"), "Map");      
 
             // Tile Sheet
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
             AddSprite(content.Load<Texture2D>("Images/TileSheet/Grassland128x128"), "Grassland128x128");
 
 
-            //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
-            //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
-            //AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(2 * 128, 3 * 128), new Vector2(3*128, 4*128)), "SignIcon");
             Build(content);
             UI(content);
             AnimationsSheet(content);
             Tiles();
             UnitImage();
+            RandomImages(content);
         }
 
         private void AddSprite(Texture2D texture2D, string name)
@@ -109,6 +95,12 @@ namespace MainSystemFramework
         private void AddSpriteList(List<TextureSheet2D> TextureSheet2Ds, string name)
         {
             SpriteSheetList.Add(name, TextureSheet2Ds);
+        }
+
+        private void RandomImages(ContentManager content)
+        {
+            AddSprite(content.Load<Texture2D>("Images/Characters/UnitStuff/IsSelected"), "IsSelected");
+            AddSprite(content.Load<Texture2D>("Images/Characters/UnitStuff/shadow"), "shadow");
         }
 
         private void Build(ContentManager content)

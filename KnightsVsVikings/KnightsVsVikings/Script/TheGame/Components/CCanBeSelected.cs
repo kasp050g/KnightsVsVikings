@@ -14,7 +14,7 @@ namespace KnightsVsVikings
         private bool isSelected;
         private CSpriteRenderer spriteRenderer;
         private Texture2D Sprite;
-        private Vector2 offSet = new Vector2(0,0);
+        private Vector2 offSet = new Vector2(1,20);
 
         public virtual Rectangle SelectedCollisionBox
         {
@@ -31,8 +31,10 @@ namespace KnightsVsVikings
         public override void Awake()
         {
             base.Awake();
-            spriteRenderer.GameObject.GetComponent<CSpriteRenderer>();
-            Sprite = SpriteContainer.Instance.Sprite["SlotNameBar"];
+
+            //Sprite = SpriteContainer.Instance.Sprite["SlotNameBar"];
+            Sprite = SpriteContainer.Instance.Sprite["IsSelected"];
+
         }
         public override void Start()
         {
@@ -60,12 +62,11 @@ namespace KnightsVsVikings
                 // Origin
                 this.GameObject.Transform.Origin,
                 // Scale
-                this.GameObject.Transform.Scale,
+                this.GameObject.Transform.Scale * 0.8f,
                 // SpriteEffects
                 SpriteEffects.None,
                 // LayerDepth
-                //this.LayerDepth + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000
-                1
+                0.29f + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000                
             );
         }
 
