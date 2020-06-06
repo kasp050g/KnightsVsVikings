@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
 {
-    class SQLiteUnitModel : SQLiteRowBase
+    class SQLiteUnitModel : SQLiteRowBase, ISQLiteRow
     {
 
         public int FactionId { get; set; }
@@ -16,18 +16,21 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
         public int ProjectileTypeId { get; set; }
         public int StatsId { get; set; }
         public string Name { get; set; }
-        public string DisplayImageName { get; set; }
-        public string DisplayIconName { get; set; }
+        //public string DisplayImageName { get; set; }
+        //public string DisplayIconName { get; set; }
 
-        public SQLiteUnitModel(ISQLiteTable locatedInTable, int factionId, int unitTypeId, int projectileTypeId, int statsId, string name, string displayImageName, string displayIconName) : base(locatedInTable)
+        public SQLiteUnitModel()
+        { }
+
+        public SQLiteUnitModel(ISQLiteTable locatedInTable, int factionId, int unitTypeId, int projectileTypeId, int statsId, string name) : base(locatedInTable)//, string displayImageName, string displayIconName) : base(locatedInTable)
         {
             FactionId = factionId;
             UnitTypeId = unitTypeId;
             ProjectileTypeId = projectileTypeId;
             StatsId = statsId;
             Name = name;
-            DisplayImageName = displayImageName;
-            DisplayIconName = displayIconName;
+            //DisplayImageName = displayImageName;
+            //DisplayIconName = displayIconName;
         }
     }
 }

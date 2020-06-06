@@ -2,6 +2,7 @@
 using KnightsVsVikings.SQLiteFramework.Interfaces;
 using KnightsVsVikings.SQLiteFramework.Models.TheGame;
 using KnightsVsVikings.SQLiteFramework.Models.WorldEditor;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,39 @@ namespace KnightsVsVikings.SQLiteFramework
 
         private void AddRows()
         {
+            ISQLiteRow knightSpearmanStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 1
+            ISQLiteRow knightFootmanStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 2
+            ISQLiteRow knightArcherStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 3
+            ISQLiteRow knightWorkerStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 4
 
+            ISQLiteRow vikingSpearmanStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 5
+            ISQLiteRow vikingFootmanStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 6
+            ISQLiteRow vikingArcherStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 7
+            ISQLiteRow vikingWorkerStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50)); // -- 8
+
+            ISQLiteRow knightFaction = FactionTable.Insert(new SQLiteFactionModel(FactionTable, EFaction.Knights.ToString())); // -- 1
+            ISQLiteRow vikingsFaction = FactionTable.Insert(new SQLiteFactionModel(FactionTable, EFaction.Vikings.ToString())); // -- 2
+
+            SQLiteUnitModel knightSpearmanUnit = new SQLiteUnitModel(UnitTable, knightFaction.Id, (int)EUnitType.Spearman, 0, knightSpearmanStats.Id, "Spearman");
+            SQLiteUnitModel knightFootmanUnit = new SQLiteUnitModel(UnitTable, knightFaction.Id, (int)EUnitType.Footman, 0, knightFootmanStats.Id, "Footman");
+            SQLiteUnitModel knightArcherUnit = new SQLiteUnitModel(UnitTable, knightFaction.Id, (int)EUnitType.Bowman, 0, knightArcherStats.Id, "Bowman");
+            SQLiteUnitModel knightWorkerUnit = new SQLiteUnitModel(UnitTable, knightFaction.Id, (int)EUnitType.Worker, 0, knightWorkerStats.Id, "Worker");
+
+            SQLiteUnitModel vikingSpearmanUnit = new SQLiteUnitModel(UnitTable, vikingsFaction.Id, (int)EUnitType.Spearman, 0, vikingSpearmanStats.Id, "Spearman");
+            SQLiteUnitModel vikingFootmanUnit = new SQLiteUnitModel(UnitTable, vikingsFaction.Id, (int)EUnitType.Footman, 0, vikingFootmanStats.Id, "Footman");
+            SQLiteUnitModel vikingArcherUnit = new SQLiteUnitModel(UnitTable, vikingsFaction.Id, (int)EUnitType.Bowman, 0, vikingArcherStats.Id, "Bowman");
+            SQLiteUnitModel vikingWorkerUnit = new SQLiteUnitModel(UnitTable, vikingsFaction.Id, (int)EUnitType.Worker, 0, vikingWorkerStats.Id, "Worker");
+
+
+            UnitTable.Insert(knightSpearmanUnit); // -- 1
+            UnitTable.Insert(knightFootmanUnit); // -- 2
+            UnitTable.Insert(knightArcherUnit); // -- 3
+            UnitTable.Insert(knightWorkerUnit); // -- 4
+
+            UnitTable.Insert(vikingSpearmanUnit); // -- 5
+            UnitTable.Insert(vikingFootmanUnit); // -- 6
+            UnitTable.Insert(vikingArcherUnit); // -- 7
+            UnitTable.Insert(vikingWorkerUnit); // -- 8
         }
     }
 }

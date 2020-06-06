@@ -9,21 +9,20 @@ namespace KnightsVsVikings
     public class Stats
     {
         // Make
-        public int FoodCost = 0;
-        public int GoldCost = 0;
-        public int TreeCost = 0;
-        public int StoneCost = 0;        
-        public float BuildTime = 0;
+        public int FoodCost { get; set; } = 0;
+        public int GoldCost { get; set; } = 0;
+        public int WoodCost { get; set; } = 0;
+        public int StoneCost { get; set; } = 0;        
+        public float BuildTime { get; set; } = 0;
         // Combat
-        public int Health = 0;
-        public int Damage = 0;
-        public int Armor = 0;
-        public int Speed = 0;
-        public int Range = 0;
-        public int AggroRange = 0;
+        public int Health { get; set; } = 0;
+        public int Damage { get; set; } = 0;
+        public int Armor { get; set; } = 0;
+        public float Speed { get; set; } = 0;
+        public int Range { get; set; } = 0;
         // Gathering
-        public int GatheringAmount = 0;
-        public float GatheringSpeed = 0;
-        public int GatheringCapacity = 0;
+        public int GatheringAmount { get; set; } = 0;
+        public float GatheringSpeed { get; set; } = 0;
+        public int GatheringCapacity { get; set; } = 0;
     }
 }

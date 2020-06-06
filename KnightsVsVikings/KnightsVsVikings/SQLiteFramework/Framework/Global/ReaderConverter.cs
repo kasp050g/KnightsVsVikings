@@ -22,6 +22,12 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
                 case TypeCode.String:
                     return reader.GetString(index);
 
+                case TypeCode.Double:
+                    return reader.GetFloat(index);
+
+                case TypeCode.Single:
+                    return reader.GetFloat(index);
+
                 default:
                     return reader.GetValue(index);
             }

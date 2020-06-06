@@ -1,5 +1,11 @@
 ﻿using KnightsVsVikings;
+using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.SQLiteFramework.Framework.Global;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Models.TheGame;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +13,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -20,7 +27,7 @@ namespace KnightsVsVikings
 
         private CAnimator animator;
         private CMove move;
-        private CStats stats;
+        private CStats stats = new CStats();
 
         private FiniteStateMachine<CUnit> StateMachine;
 
@@ -216,7 +223,7 @@ namespace KnightsVsVikings
         }
 
         private void MadeUnit()
-        {        
+        {
             // Add Animations
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Idle));
             animator.AddAnimation(BlendTreeContainer.Instance.GetUnitBlendTree(faction, unitType, EUnitAnimationType.Run));
@@ -252,6 +259,72 @@ namespace KnightsVsVikings
             }
 
             //TODO: Get stats from sql here.
+            //int index = 0;
+            //
+            //switch (Faction)
+            //{
+            //    case EFaction.Knights:
+            //        switch(UnitType)
+            //        {
+            //            case EUnitType.Footman:
+            //                index = 1;
+            //                break;
+            //
+            //            case EUnitType.Spearman:
+            //                index = 2;
+            //                break;
+            //
+            //            case EUnitType.Bowman:
+            //                index = 3;
+            //                break;
+            //
+            //            case EUnitType.Worker:
+            //                index = 4;
+            //                break;
+            //        }
+            //        break;
+            //
+            //    case EFaction.Vikings:
+            //        switch (UnitType)
+            //        {
+            //            case EUnitType.Footman:
+            //
+            //                break;
+            //
+            //            case EUnitType.Spearman:
+            //
+            //                break;
+            //
+            //            case EUnitType.Bowman:
+            //
+            //                break;
+            //
+            //            case EUnitType.Worker:
+            //
+            //                break;
+            //        }
+            //        break;
+            //}
+
+
+            //ISQLiteRow myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(1);
+            ISQLiteRow factionRow = Singletons.TableContainerSingleton.FactionTable.Get(PropertyFinder<SQLiteFactionModel>.Find(x => x.Name), Faction.ToString());
+            List<ISQLiteRow> unitRow = Singletons.TableContainerSingleton.UnitTable.GetMultiple(PropertyFinder<SQLiteUnitModel>.Find(x => x.FactionId), factionRow.Id);
+            ISQLiteRow myStatsRow = null;
+
+            foreach (SQLiteUnitModel row in unitRow)
+                if (row.UnitTypeId == (int)unitType)
+                {
+                    myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(row.StatsId);
+                    break;
+                }
+
+            List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().ToList();
+            myStatsProperties.RemoveAll(property => property.Name == "Id" || property.Name == "LocatedInTable");
+            List<PropertyInfo> statsProperties = stats.Stats.GetType().GetProperties().ToList();
+
+            for (int i = 0; i < myStatsProperties.Count - 1; i++)
+                statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
         }
     }
 }
