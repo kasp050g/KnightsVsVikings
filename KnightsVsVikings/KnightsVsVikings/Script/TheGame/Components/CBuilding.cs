@@ -1,9 +1,15 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.SQLiteFramework.Framework.Global;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Models.TheGame;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +23,7 @@ namespace KnightsVsVikings
 
         private GameObject woodSing;
         private GameObject icon;
-        private CStats stats;
+        private CStats stats = new CStats();
 
         public EBuildingType BuildingType { get => buildingType; set => buildingType = value; }
         public EFaction Faction { get => faction; set => faction = value; }
@@ -110,6 +116,24 @@ namespace KnightsVsVikings
 
             GameObject.MyScene.Instantiate(woodSing);
             GameObject.MyScene.Instantiate(icon);
+
+            ISQLiteRow factionRow = Singletons.TableContainerSingleton.FactionTable.Get(PropertyFinder<SQLiteFactionModel>.Find(x => x.Name), Faction.ToString());
+            List<ISQLiteRow> buildingRow = Singletons.TableContainerSingleton.BuildingTable.GetMultiple(PropertyFinder<SQLiteBuildingModel>.Find(x => x.FactionId), factionRow.Id);
+            ISQLiteRow myStatsRow = null;
+
+            foreach (SQLiteBuildingModel row in buildingRow)
+                if (row.BuildingTypeId == (int)buildingType)
+                {
+                    myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(row.StatsId);
+                    break;
+                }
+
+            List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().ToList();
+            myStatsProperties.RemoveAll(property => property.Name == "Id" || property.Name == "LocatedInTable");
+            List<PropertyInfo> statsProperties = stats.Stats.GetType().GetProperties().ToList();
+
+            for (int i = 0; i < myStatsProperties.Count - 1; i++)
+                statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
         }
     }
 }

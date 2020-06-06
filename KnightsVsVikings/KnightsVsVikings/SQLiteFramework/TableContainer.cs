@@ -107,6 +107,54 @@ namespace KnightsVsVikings.SQLiteFramework
             UnitTable.Insert(vikingFootmanUnit); // -- 6
             UnitTable.Insert(vikingArcherUnit); // -- 7
             UnitTable.Insert(vikingWorkerUnit); // -- 8
+
+            ISQLiteRow vikingArcheryRangeStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 9
+            ISQLiteRow vikingBarracksStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 10
+            ISQLiteRow vikingBlacksmithStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 11
+            ISQLiteRow vikingFieldStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 12
+            ISQLiteRow vikingGatheringStationStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 13
+            ISQLiteRow vikingTowerStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 250, 125, 50, 10, 5f, 400, 40, 2, 0f, 10, 10, 0f, 50)); // -- 14
+            ISQLiteRow vikingTownHallStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 15
+
+            ISQLiteRow knightArcheryRangeStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 9
+            ISQLiteRow knightBarracksStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 10
+            ISQLiteRow knightBlacksmithStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 11
+            ISQLiteRow knightFieldStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 12
+            ISQLiteRow knightGatheringStationStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 13
+            ISQLiteRow knightTowerStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 250, 125, 50, 10, 5f, 400, 40, 2, 0f, 10, 10, 0f, 50)); // -- 14
+            ISQLiteRow knightTownHallStats = StatsTable.Insert(new SQLiteStatsModel(StatsTable, 500, 250, 100, 10, 5f, 800, 0, 2, 0f, 10, 10, 0f, 50)); // -- 15
+
+            SQLiteBuildingModel vikingArcheryRangeBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.ArcheryRange, 0, vikingArcheryRangeStats.Id, "ArcheryRange");
+            SQLiteBuildingModel vikingBarracksBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.Barracks, 0, vikingBarracksStats.Id, "Barracks");
+            SQLiteBuildingModel vikingBlacksmithBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.Blacksmith, 0, vikingBlacksmithStats.Id, "Blacksmith");
+            SQLiteBuildingModel vikingFieldBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.Field, 0, vikingFieldStats.Id, "Field");
+            SQLiteBuildingModel vikingGatheringStationBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.GatheringStation, 0, vikingGatheringStationStats.Id, "GatheringStation");
+            SQLiteBuildingModel vikingTowerBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.Tower, 0, vikingTowerStats.Id, "Tower");
+            SQLiteBuildingModel vikingTownHallBuilding = new SQLiteBuildingModel(BuildingTable, vikingsFaction.Id, (int)EBuildingType.TownHall, 0, vikingTownHallStats.Id, "TownHall");
+
+            SQLiteBuildingModel knightArcheryRangeBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.ArcheryRange, 0, knightArcheryRangeStats.Id, "ArcheryRange");
+            SQLiteBuildingModel knightBarracksBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.Barracks, 0, knightBarracksStats.Id, "Barracks");
+            SQLiteBuildingModel knightBlacksmithBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.Blacksmith, 0, knightBlacksmithStats.Id, "Blacksmith");
+            SQLiteBuildingModel knightFieldBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.Field, 0, knightFieldStats.Id, "Field");
+            SQLiteBuildingModel knightGatheringStationBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.GatheringStation, 0, knightGatheringStationStats.Id, "GatheringStation");
+            SQLiteBuildingModel knightTowerBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.Tower, 0, knightTowerStats.Id, "Tower");
+            SQLiteBuildingModel knightTownHallBuilding = new SQLiteBuildingModel(BuildingTable, knightFaction.Id, (int)EBuildingType.TownHall, 0, knightTownHallStats.Id, "TownHall");
+
+            BuildingTable.Insert(vikingArcheryRangeBuilding); // -- 1
+            BuildingTable.Insert(vikingBarracksBuilding); // -- 2
+            BuildingTable.Insert(vikingBlacksmithBuilding); // -- 3
+            BuildingTable.Insert(vikingFieldBuilding); // -- 4
+            BuildingTable.Insert(vikingGatheringStationBuilding); // -- 5
+            BuildingTable.Insert(vikingTowerBuilding); // -- 6
+            BuildingTable.Insert(vikingTownHallBuilding); // -- 7
+
+            BuildingTable.Insert(knightArcheryRangeBuilding); // -- 8
+            BuildingTable.Insert(knightBarracksBuilding); // -- 9
+            BuildingTable.Insert(knightBlacksmithBuilding); // -- 10
+            BuildingTable.Insert(knightFieldBuilding); // -- 11
+            BuildingTable.Insert(knightGatheringStationBuilding); // -- 12
+            BuildingTable.Insert(knightTowerBuilding); // -- 13
+            BuildingTable.Insert(knightTownHallBuilding); // -- 14
         }
     }
 }
