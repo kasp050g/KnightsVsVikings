@@ -182,7 +182,7 @@ namespace KnightsVsVikings
 
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.White;
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = true;
-            
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Water01);
 
             if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType != ETileType.Water)
             {
@@ -285,11 +285,12 @@ namespace KnightsVsVikings
                 else
                 {
                     // Error Tile
+                    
                 }
             }
             else
             {
-                groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Water01);
+                
             }
         }
 

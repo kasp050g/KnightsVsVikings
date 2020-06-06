@@ -10,9 +10,9 @@ namespace KnightsVsVikings
 {
     public class CStats : Component
     {
-        ETeam team;
-        EFaction faction;
-        Stats stats;
+        private ETeam team;
+        private EFaction faction;
+        private Stats stats = new Stats();
 
         public ETeam Team { get => team; set => team = value; }
         public EFaction Faction { get => faction; set => faction = value; }

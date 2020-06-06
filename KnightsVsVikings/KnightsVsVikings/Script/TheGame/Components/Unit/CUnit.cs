@@ -16,11 +16,11 @@ namespace KnightsVsVikings
 {
     public class CUnit : Component
     {
-        private Stats stats = new Stats();
         private List<Passive> passives = new List<Passive>();
 
         private CAnimator animator;
         private CMove move;
+        private CStats stats;
 
         private FiniteStateMachine<CUnit> StateMachine;
 
@@ -51,7 +51,7 @@ namespace KnightsVsVikings
             base.Awake();
             animator = GameObject.GetComponent<CAnimator>();
             move = GameObject.GetComponent<CMove>();
-
+            stats = GameObject.GetComponent<CStats>();
             MadeUnit();
         }
         public override void Start()
@@ -96,17 +96,17 @@ namespace KnightsVsVikings
         }
         public void UnitTakeDamage(int damage)
         {
-            damage -= stats.Armor;
+            damage -= stats.Stats.Armor;
             if (damage <= 0)
             {
-                stats.Health -= 1;
+                stats.Stats.Health -= 1;
             }
             else
             {
-                stats.Health -= damage;
+                stats.Stats.Health -= damage;
             }
 
-            if (stats.Health <= 0)
+            if (stats.Stats.Health <= 0)
             {
                 UnitDie();
             }
