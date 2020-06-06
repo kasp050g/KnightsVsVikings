@@ -39,6 +39,10 @@ namespace KnightsVsVikings
                 tileGrid.ShowGridColor = !tileGrid.ShowGridColor;
                 tileGrid.UpdateGrid();
             }
+            if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.I))
+            {
+                SceneController.Instance.CurrentScene = SceneController.Instance.SceneContainer.Scenes[0];
+            }
         }
 
         private void TestZone()

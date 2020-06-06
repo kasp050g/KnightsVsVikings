@@ -128,12 +128,14 @@ namespace MainSystemFramework
             {
                 if (tmpColliders[i].GameObject.IsActive && (tmpColliders[i].GameObject.MyParent != null ? tmpColliders[i].GameObject.MyParent.IsActive : true) && tmpColliders[i].OnCollisionEnter(mouseRectangle))
                 {
+                Console.WriteLine(DateTime.Now);
                     mousePositionHit.Add(tmpColliders[i]);
                 }
             }
 
             if (mousePositionHit.Count > 0)
             {
+                Console.WriteLine(DateTime.Now);
                 FindLargetsGuiLayerDepth(mousePositionHit.ToArray()).MouseIsHovering = true;
             }
         }
