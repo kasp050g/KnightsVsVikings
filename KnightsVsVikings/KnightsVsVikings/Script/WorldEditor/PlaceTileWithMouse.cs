@@ -334,36 +334,6 @@ namespace KnightsVsVikings
                     break;
             }
 
-            if (buildingType != EBuildingType.Field)
-            {
-                switch (team)
-                {
-                    case ETeam.Team01:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Red;
-                        break;
-                    case ETeam.Team02:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Blue;
-                        break;
-                    case ETeam.Team03:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Green;
-                        break;
-                    case ETeam.Team04:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Yellow;
-                        break;
-                    case ETeam.Team05:
-                        break;
-                    case ETeam.Team06:
-                        break;
-                    case ETeam.Team07:
-                        break;
-                    case ETeam.Team08:
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-
             if (tileGrid.buildingTileGrid[x, y] != null)
             {
                 myScene.Destroy(tileGrid.buildingTileGrid[x, y]);

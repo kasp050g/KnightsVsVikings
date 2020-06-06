@@ -148,7 +148,6 @@ namespace KnightsVsVikings
                     myScene.Destroy(item);
             }
             #endregion
-
         }
 
         public void GetTileData(GameObject[,] groundTileGrid, Vector2 gridPos)
@@ -286,7 +285,12 @@ namespace KnightsVsVikings
                 else
                 {
                     // Error Tile
+                    
                 }
+            }
+            else
+            {
+                
             }
         }
 
