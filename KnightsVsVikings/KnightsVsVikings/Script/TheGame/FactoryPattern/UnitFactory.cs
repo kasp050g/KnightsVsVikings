@@ -32,9 +32,11 @@ namespace KnightsVsVikings
             CAnimator animator = new CAnimator();
             CUnit unit = new CUnit(team, unitType, faction);
             CMove move = new CMove();
+            CStats stats = new CStats();
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
+            go.AddComponent<CStats>(stats);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
 

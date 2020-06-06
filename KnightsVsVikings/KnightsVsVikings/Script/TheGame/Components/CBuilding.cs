@@ -17,6 +17,7 @@ namespace KnightsVsVikings
 
         private GameObject woodSing;
         private GameObject icon;
+        private CStats stats;
 
         public EBuildingType BuildingType { get => buildingType; set => buildingType = value; }
         public EFaction Faction { get => faction; set => faction = value; }
@@ -31,6 +32,7 @@ namespace KnightsVsVikings
         public override void Awake()
         {
             base.Awake();
+            stats = GameObject.GetComponent<CStats>();
             if (buildingType != EBuildingType.Field)
             {
                 BuildSing();

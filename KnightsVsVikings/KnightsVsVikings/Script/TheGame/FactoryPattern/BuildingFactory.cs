@@ -31,12 +31,14 @@ namespace KnightsVsVikings
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.SpriteSheet["GrayTent"]);
             CBuilding building = new CBuilding(buildingType,faction,team);
+            CStats stats = new CStats();
 
             sr.LayerDepth = 0.2f;
             go.Transform.Scale *= 0.5f;
 
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CBuilding>(building);
+            go.AddComponent<CStats>(stats);
 
             switch (buildingType)
             {
