@@ -36,6 +36,12 @@ namespace KnightsVsVikings.ExtensionMethods
                 case TypeCode.UInt64:
                     return "INTEGER";
 
+                case TypeCode.Double:
+                    return "REAL";
+
+                case TypeCode.Single:
+                    return "REAL";
+
                 case TypeCode.Boolean:
                     return "INTEGER";
 

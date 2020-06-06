@@ -22,10 +22,12 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
         public void Execute()
         {
             if (IsUnique)
+            {
                 if (!CheckIfRowExists())
                     CodeToExecute();
-                else
-                    CodeToExecute();
+            }
+            else
+                CodeToExecute();
         }
 
         private void CodeToExecute()
@@ -37,7 +39,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
             cmd.ExecuteNonQuery();
 
             SQLiteCommand getID = new SQLiteCommand("SELECT last_insert_rowid();", (SQLiteConnection)connection);
-            int lastID = (int)getID.ExecuteScalar();
+            int lastID = Convert.ToInt32(getID.ExecuteScalar());
 
             RowToInsert.Id = lastID;
 

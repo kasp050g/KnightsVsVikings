@@ -34,8 +34,10 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 
             SQLiteDataReader reader = cmd.ExecuteReader();
 
-            try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
-            catch { ResultRows = null; }
+            ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable);
+
+            //try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
+            //catch { ResultRows = null; }
 
             connection.Close();
         }

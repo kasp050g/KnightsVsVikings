@@ -1,4 +1,5 @@
 ﻿using KnightsVsVikings.ExtensionMethods;
+using KnightsVsVikings.SQLiteFramework.Framework.Global;
 using KnightsVsVikings.SQLiteFramework.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,9 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
         {
             List<string> result = new List<string>();
 
-            PropertyInfo[] properties = row.GetType().GetProperties();
+            List<PropertyInfo> properties = row.GetType().GetProperties().ToList();
+
+            properties = properties.RemoveAllBaseProperties();
 
             foreach (PropertyInfo property in properties)
                 result.Add(property.Name);
@@ -27,12 +30,31 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
         {
             List<string> result = new List<string>();
 
-            PropertyInfo[] properties = row.GetType().GetProperties();
+            List<PropertyInfo> properties = row.GetType().GetProperties().ToList();
+
+            properties = properties.RemoveAllBaseProperties();
 
             foreach (PropertyInfo property in properties)
-                result.Add((string)property.GetValue(row).ObjectToSQLiteString());
+                result.Add(Convert.ToString(property.GetValue(row).ObjectToSQLiteString()));
 
             return string.Join(", ", result);
+        }
+        public static List<PropertyInfo> RemoveBaseProperties(this List<PropertyInfo> properties)
+        {
+            List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().Where(property => property.Name != "Id").ToList();
+
+            properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
+
+            return properties.AsEnumerable().OrderBy(property => property.Name != "Id").ToList();
+        }
+
+        public static List<PropertyInfo> RemoveAllBaseProperties(this List<PropertyInfo> properties)
+        {
+            List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().ToList();
+
+            properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
+
+            return properties.AsEnumerable().OrderBy(property => property.Name != "Id").ToList();
         }
     }
 }

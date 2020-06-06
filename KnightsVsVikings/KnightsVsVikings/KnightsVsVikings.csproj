@@ -141,6 +141,7 @@
     <Compile Include="Script\WorldEditor\UILogic\LoadSaveUIBar.cs" />
     <Compile Include="Script\WorldEditor\UILogic\UnitTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\ReaderConverter.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteRowBase.cs" />

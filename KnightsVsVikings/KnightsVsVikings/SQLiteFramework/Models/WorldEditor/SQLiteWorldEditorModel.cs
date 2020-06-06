@@ -12,6 +12,9 @@ namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
     {
         public string Name { get; set; }
 
+        public SQLiteWorldEditorModel()
+        { }
+
         public SQLiteWorldEditorModel(ISQLiteTable locatedInTable, string name) : base(locatedInTable)
         {
             Name = name;
