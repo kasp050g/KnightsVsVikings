@@ -223,6 +223,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Characters\Knights\Bowman\KnightsBowmanDown.png" />
+    <Content Include="Content\Images\Characters\Knights\Bowman\KnightsBowmanSide.png" />
+    <Content Include="Content\Images\Characters\Knights\Bowman\KnightsBowmanUp.png" />
+    <Content Include="Content\Images\Characters\Knights\Footman\KnightsFootmanDown.png" />
+    <Content Include="Content\Images\Characters\Knights\Footman\KnightsFootmanSide.png" />
+    <Content Include="Content\Images\Characters\Knights\Footman\KnightsFootmanUp.png" />
+    <Content Include="Content\Images\Characters\Knights\Spearman\KnightsSpearmanDown.png" />
+    <Content Include="Content\Images\Characters\Knights\Spearman\KnightsSpearmanSide.png" />
+    <Content Include="Content\Images\Characters\Knights\Spearman\KnightsSpearmanUp.png" />
+    <Content Include="Content\Images\Characters\Knights\Worker\KnightsWorkerDown.png" />
+    <Content Include="Content\Images\Characters\Knights\Worker\KnightsWorkerSide.png" />
+    <Content Include="Content\Images\Characters\Knights\Worker\KnightsWorkerUp.png" />
+    <Content Include="Content\Images\Characters\UnitStuff\IsSelected.png" />
+    <Content Include="Content\Images\Characters\UnitStuff\shadow.png" />
+    <Content Include="Content\Images\Characters\Vikings\Bowman\VikingsBowmanDown.png" />
+    <Content Include="Content\Images\Characters\Vikings\Bowman\VikingsBowmanSide.png" />
+    <Content Include="Content\Images\Characters\Vikings\Bowman\VikingsBowmanUp.png" />
+    <Content Include="Content\Images\Characters\Vikings\Footman\VikingsFootManDown.png" />
+    <Content Include="Content\Images\Characters\Vikings\Footman\VikingsFootManSide.png" />
+    <Content Include="Content\Images\Characters\Vikings\Footman\VikingsFootManUp.png" />
+    <Content Include="Content\Images\Characters\Vikings\Spearman\VikingsSpearmanDown.png" />
+    <Content Include="Content\Images\Characters\Vikings\Spearman\VikingsSpearmanSide.png" />
+    <Content Include="Content\Images\Characters\Vikings\Spearman\VikingsSpearmanUp.png" />
+    <Content Include="Content\Images\Characters\Vikings\Worker\VikingsWorkerDown.png" />
+    <Content Include="Content\Images\Characters\Vikings\Worker\VikingsWorkerSide.png" />
+    <Content Include="Content\Images\Characters\Vikings\Worker\VikingsWorkerUp.png" />
     <Content Include="Content\Images\MainSystem\Pixel.png" />
     <Content Include="Content\Images\TileSheet\ExtraObjects128x128.png" />
     <Content Include="Content\Images\TileSheet\Grassland128x128.png" />
@@ -278,7 +304,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Images\Characters\" />
     <Folder Include="Content\Images\Tiles\" />
     <Folder Include="Script\TheGame\Test\Test State\" />
   </ItemGroup>

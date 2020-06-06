@@ -33,7 +33,9 @@ namespace KnightsVsVikings
             CBuilding building = new CBuilding(buildingType,faction,team);
             CStats stats = new CStats();
 
-            sr.LayerDepth = 0.2f;
+            sr.LayerDepth = 0.3f;
+            sr.OriginPositionEnum = EOriginPosition.TopLeft;
+            sr.OffSet = new Vector2(-1 * 128/2, -3*128/2);
             go.Transform.Scale *= 0.5f;
 
             go.AddComponent<CSpriteRenderer>(sr);

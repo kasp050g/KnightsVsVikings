@@ -33,12 +33,14 @@ namespace KnightsVsVikings
             CUnit unit = new CUnit(team, unitType, faction);
             CMove move = new CMove();
             CStats stats = new CStats();
+            CCanBeSelected canBeSelected = new CCanBeSelected();
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
             go.AddComponent<CStats>(stats);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
+            go.AddComponent<CCanBeSelected>(canBeSelected);
 
             switch (team)
             {

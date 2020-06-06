@@ -16,7 +16,7 @@ namespace KnightsVsVikings
         private TextureSheet2D spriteSheet;
         private Color color = Color.White;
         private SpriteEffects spriteEffects = SpriteEffects.None;
-        private float layerDepth = 0.01f;
+        private float layerDepth = 0.3f;
         private EOriginPosition originPositionEnum = EOriginPosition.TopLeft;
         private Vector2 offSet = new Vector2(0, 0);
         private Rectangle rectangle;

@@ -67,17 +67,19 @@ namespace KnightsVsVikings
         {
             woodSing = new GameObject();
             CSpriteRenderer sr01 = new CSpriteRenderer(SpriteContainer.Instance.SpriteSheet["WoodSign"]);
-            sr01.LayerDepth = 0.25f;
+            sr01.LayerDepth = 0.30000004f;
+            sr01.OffSet = new Vector2(-1*128/2,-2*128/2);
             woodSing.AddComponent<CSpriteRenderer>(sr01);
             woodSing.Transform.Scale *= 0.5f;
-            woodSing.Transform.Position = GameObject.Transform.Position + new Vector2(0 * 128 / 2 - 25, 1 * 128 / 2 + 10);
+            woodSing.Transform.Position = GameObject.Transform.Position;
 
             icon = new GameObject();
             CSpriteRenderer sr02 = new CSpriteRenderer();
-            sr02.LayerDepth = 0.251f;
+            sr02.LayerDepth = 0.30000008f;
+            sr02.OffSet = new Vector2(0 * 128 / 2, -1 * 128 / 2);
             icon.AddComponent<CSpriteRenderer>(sr02);
             icon.Transform.Scale *= 0.5f;
-            icon.Transform.Position = woodSing.Transform.Position + new Vector2(1 * 128 / 2, 1 * 128 / 2);
+            icon.Transform.Position = woodSing.Transform.Position;
 
             switch (buildingType)
             {
