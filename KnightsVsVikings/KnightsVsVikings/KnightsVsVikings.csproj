@@ -131,7 +131,7 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
     <Compile Include="Script\WorldEditor\Enum\EBuildingType.cs" />
-    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Builing.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Building.cs" />
     <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Resource.cs" />
     <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Unit.cs" />
     <Compile Include="Script\WorldEditor\SQLiteLoadSave\SQLiteSaveAndLoadWorldEditor.cs" />
@@ -163,6 +163,7 @@
     <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitGotPassiveModel.cs" />
     <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitModel.cs" />
     <Compile Include="SQLiteFramework\Models\TheGame\SQLiteUnitTypeModel.cs" />
+    <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteBuildingWorldEditorModel.cs" />
     <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadTypeWorldEditorModel.cs" />
     <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteDoodadWorldEditorModel.cs" />
     <Compile Include="SQLiteFramework\Models\WorldEditor\SQLiteResourceTypeWorldEditorModel.cs" />
