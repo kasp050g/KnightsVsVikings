@@ -39,8 +39,8 @@ namespace KnightsVsVikings
         public void MakeTileGrid()
         {
             // Test SQLite
-            //TestSqlite();
-            LoadfromSQLite(1);
+            TestSqlite();
+            //LoadfromSQLite(1);
         }
         public void LoadfromSQLite(int mapID)
         {
