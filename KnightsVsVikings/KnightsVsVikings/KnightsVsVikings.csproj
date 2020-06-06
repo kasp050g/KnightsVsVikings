@@ -90,6 +90,7 @@
     <Compile Include="Script\TheGame\FactoryPattern\ResourcesFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\TileFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
+    <Compile Include="Script\TheGame\SelectedObject.cs" />
     <Compile Include="Script\TheGame\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Unit\Stats.cs" />
     <Compile Include="Script\TheGame\Enum\ECellType.cs" />

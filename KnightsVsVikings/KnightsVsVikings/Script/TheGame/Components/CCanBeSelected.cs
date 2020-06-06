@@ -31,6 +31,8 @@ namespace KnightsVsVikings
             }
         }
 
+        public bool IsSelected { get => isSelected; set => isSelected = value; }
+
         public override void Awake()
         {
             base.Awake();
@@ -45,6 +47,7 @@ namespace KnightsVsVikings
         public override void Destroy()
         {
             base.Destroy();
+            GameObject.MyScene.SelectedEnabled.Remove(this);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
