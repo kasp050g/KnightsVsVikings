@@ -17,6 +17,9 @@ namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
         public int Xpos { get; set; }
         public int Ypos { get; set; }
 
+        public SQLiteUnitWorldEditorModel()
+        { }
+
         public SQLiteUnitWorldEditorModel(ISQLiteTable locatedInTable, int worldId, int unitTypeId, int team, int faction, int xpos, int ypos) : base(locatedInTable)
         {
             WorldId = worldId;

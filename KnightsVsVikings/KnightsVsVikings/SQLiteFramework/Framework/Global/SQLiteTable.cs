@@ -1,6 +1,7 @@
 ﻿using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.ExtensionMethods.Dictionary;
 using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Models.TheGame;
 using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
 using System;
 using System.Collections.Generic;

@@ -15,6 +15,9 @@ namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
         public int Xpos { get; set; }
         public int Ypos { get; set; }
 
+        public SQLiteResourceWorldEditorModel()
+        { }
+
         public SQLiteResourceWorldEditorModel(ISQLiteTable locatedInTable, int worldId, int resourceTypeId, int xpos, int ypos) : base(locatedInTable)
         {
             WorldId = worldId;
