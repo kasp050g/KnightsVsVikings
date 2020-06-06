@@ -15,6 +15,9 @@ namespace KnightsVsVikings
         private CSpriteRenderer spriteRenderer;
         private Texture2D Sprite;
         private Vector2 offSet = new Vector2(1,20);
+        private Texture2D textureCollisionBox;
+        private int outlineThickness = 2;
+        private Color outlineColor = Color.LawnGreen;
 
         public virtual Rectangle SelectedCollisionBox
         {
@@ -23,18 +26,16 @@ namespace KnightsVsVikings
                 return new Rectangle(
                     (int)GameObject.Transform.Position.X - (int)(GameObject.Transform.Origin.X * GameObject.Transform.Scale.X) + 1,
                     (int)GameObject.Transform.Position.Y - (int)(GameObject.Transform.Origin.Y * GameObject.Transform.Scale.Y) + 1,
-                    (int)(1),
-                    (int)(1));
+                    (int)(64),
+                    (int)(64));
             }
         }
 
         public override void Awake()
         {
             base.Awake();
-
-            //Sprite = SpriteContainer.Instance.Sprite["SlotNameBar"];
             Sprite = SpriteContainer.Instance.Sprite["IsSelected"];
-
+            textureCollisionBox = SpriteContainer.Instance.Pixel;
         }
         public override void Start()
         {
@@ -48,6 +49,7 @@ namespace KnightsVsVikings
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if(isSelected)
             spriteBatch.Draw(
                 // Texture2D
                 this.Sprite,
@@ -68,11 +70,26 @@ namespace KnightsVsVikings
                 // LayerDepth
                 0.29f + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000                
             );
+            DrawCollisionBox(spriteBatch);
         }
 
         public override void Update()
         {
             base.Update();
+        }
+
+        private void DrawCollisionBox(SpriteBatch spriteBatch)
+        {
+            Rectangle collisionBox = SelectedCollisionBox;
+            Rectangle bottomLine = new Rectangle(collisionBox.X, collisionBox.Y + collisionBox.Height, collisionBox.Width + outlineThickness, outlineThickness);
+            Rectangle rigthLine = new Rectangle(collisionBox.X + collisionBox.Width, collisionBox.Y, outlineThickness, collisionBox.Height);
+            Rectangle leftLine = new Rectangle(collisionBox.X, collisionBox.Y, outlineThickness, collisionBox.Height);
+            Rectangle topLine = new Rectangle(collisionBox.X, collisionBox.Y, collisionBox.Width, outlineThickness);
+
+            spriteBatch.Draw(textureCollisionBox, bottomLine, null, outlineColor, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(textureCollisionBox, rigthLine, null, outlineColor, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(textureCollisionBox, leftLine, null, outlineColor, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(textureCollisionBox, topLine, null, outlineColor, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
     }
 }
