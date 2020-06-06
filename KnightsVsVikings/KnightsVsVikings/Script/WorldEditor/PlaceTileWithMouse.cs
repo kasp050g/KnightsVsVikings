@@ -217,8 +217,8 @@ namespace KnightsVsVikings
 
         public void MoveTileShow()
         {
-            int mousex = Mouse.GetState().Position.X;
-            int mousey = Mouse.GetState().Position.Y;
+            int mousex = MouseSettings.Instance.GetMouseState().X;
+            int mousey = MouseSettings.Instance.GetMouseState().Y;
             Vector2 newPosition = new Vector2(mousex, mousey);
 
             Vector2 worldPosition = Vector2.Transform(newPosition, Matrix.Invert(SceneController.Instance.Camera.Transform));

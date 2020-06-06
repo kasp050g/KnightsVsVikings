@@ -14,7 +14,7 @@ namespace KnightsVsVikings
         public override void Initialize()
         {
             base.Initialize();
-            MouseSettings.Instance.IsMouseVisible(true);
+            MouseSettings.Instance.SetMouseVisible(true);
             
             TestZone();
         }
