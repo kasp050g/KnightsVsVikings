@@ -13,8 +13,8 @@ namespace KnightsVsVikings
     public class TileGrid
     {
         private SQLiteSaveAndLoadWorldEditor SQliteSaveAndLoad = new SQLiteSaveAndLoadWorldEditor();
-        private int gridSizeX = 25;
-        private int gridSizeY = 25;
+        private int gridSizeX = 5;
+        private int gridSizeY = 5;
         private Scene myScene;
 
         public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
@@ -45,7 +45,8 @@ namespace KnightsVsVikings
         {
             ResetGrid();
             
-            SQliteSaveAndLoad.LoadSQLite(this, mapID);
+            SQliteSaveAndLoad.LoadSQLite(this, mapID,myScene);
+            UpdateGrid();
         }
 
         public void SaveToSQLite()
@@ -122,28 +123,28 @@ namespace KnightsVsVikings
             #region RemoveAll
             foreach (GameObject item in groundTileGrid)
             {
-                if(item != null)
-                item.Destroy();
+                if (item != null)
+                    myScene.Destroy(item);
             }
             foreach (GameObject item in obstacleTileGrid)
             {
                 if (item != null)
-                    item.Destroy();
+                    myScene.Destroy(item);
             }
             foreach (GameObject item in resourceTileGrid)
             {
                 if (item != null)
-                    item.Destroy();
+                    myScene.Destroy(item);
             }
             foreach (GameObject item in buildingTileGrid)
             {
                 if (item != null)
-                    item.Destroy();
+                    myScene.Destroy(item);
             }
             foreach (GameObject item in unitTileGrid)
             {
                 if (item != null)
-                    item.Destroy();
+                    myScene.Destroy(item);
             }
             #endregion
 

@@ -166,7 +166,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
         #endregion
 
         #region Load
-        public void LoadSQLite(TileGrid tileGrid,int ID)
+        public void LoadSQLite(TileGrid tileGrid,int ID,Scene myScene)
         {
             List<SQLite_Ground> grounds = LoadGround(ID);
             List<SQLite_Building> builings = LoadBuilding(ID);
@@ -177,6 +177,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 GameObject go = TileFactory.Instance.Creaft(item.tileType);
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
+                myScene.Instantiate(go);
                 tileGrid.groundTileGrid[item.X, item.Y] = go;
             }
 
@@ -184,6 +185,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 GameObject go = BuildingFactory.Instance.Creaft(item.BuildingType, item.Faction, item.Team);
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
+                myScene.Instantiate(go);
                 tileGrid.buildingTileGrid[item.X, item.Y] = go;
             }
 
@@ -191,6 +193,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 GameObject go = UnitFactory.Instance.Creaft(item.UnitType, item.Faction, item.Team);
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
+                myScene.Instantiate(go);
                 tileGrid.unitTileGrid[item.X, item.Y] = go;
             }
 
@@ -198,6 +201,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 GameObject go = ResourcesFactory.Instance.Creaft(item.resourcesType);
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
+                myScene.Instantiate(go);
                 tileGrid.resourceTileGrid[item.X, item.Y] = go;
             }
         }
