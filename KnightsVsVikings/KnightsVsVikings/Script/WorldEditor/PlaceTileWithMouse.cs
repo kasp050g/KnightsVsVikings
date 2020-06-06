@@ -283,31 +283,7 @@ namespace KnightsVsVikings
 
             go.Transform.Position = new Vector2((x - 0) * tileGrid.TileSize.X, (y - 0) * tileGrid.TileSize.Y);
 
-            switch (team)
-            {
-                case ETeam.Team01:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightPink;
-                    break;
-                case ETeam.Team02:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightBlue;
-                    break;
-                case ETeam.Team03:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightGreen;
-                    break;
-                case ETeam.Team04:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.Yellow;
-                    break;
-                case ETeam.Team05:
-                    break;
-                case ETeam.Team06:
-                    break;
-                case ETeam.Team07:
-                    break;
-                case ETeam.Team08:
-                    break;
-                default:
-                    break;
-            }
+
 
             if (tileGrid.unitTileGrid[x, y] != null)
             {
