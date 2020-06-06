@@ -43,7 +43,7 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
         private List<PropertyInfo> RemoveBaseProperties(List<PropertyInfo> properties)
         {
-            List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().Where(property => property.Name != "ID").ToList();
+            List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().Where(property => property.Name != "Id").ToList();
 
             properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
