@@ -52,7 +52,7 @@ namespace KnightsVsVikings
             //WorldEditorActionBarUI actionBarUI = new WorldEditorActionBarUI(this, placeTile);
             //actionBarUI.MakeUI();
 
-            WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile);
+            WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile,tileGrid);
             worldEditorUI.MadeUI();
         }
     }

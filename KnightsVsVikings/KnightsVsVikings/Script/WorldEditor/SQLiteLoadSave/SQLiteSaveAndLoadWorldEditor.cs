@@ -34,10 +34,10 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
                 {
-                    if (tileGrid.groundTileGrid != null)
+                    if (tileGrid.groundTileGrid[x, y] != null)
                     {
                         SQLite_Ground ground = new SQLite_Ground();
-                        ground.tileType = tileGrid.groundTileGrid[x, y].AddComponent<CTile>().TileType;
+                        ground.tileType = tileGrid.groundTileGrid[x, y].GetComponent<CTile>().TileType;
                         ground.X = x;
                         ground.Y = y;
 
@@ -50,12 +50,12 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 for (int y = 0; y < tileGrid.buildingTileGrid.GetLength(1); y++)
                 {
-                    if (tileGrid.buildingTileGrid != null)
+                    if (tileGrid.buildingTileGrid[x,y] != null)
                     {
                         SQLite_Building building = new SQLite_Building();
-                        building.BuildingType = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().BuildingType;
-                        building.Team = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().Team;
-                        building.Faction = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().Faction;
+                        building.BuildingType = tileGrid.buildingTileGrid[x, y].GetComponent<CBuilding>().BuildingType;
+                        building.Team = tileGrid.buildingTileGrid[x, y].GetComponent<CBuilding>().Team;
+                        building.Faction = tileGrid.buildingTileGrid[x, y].GetComponent<CBuilding>().Faction;
                         building.X = x;
                         building.Y = y;
 
@@ -68,12 +68,12 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 for (int y = 0; y < tileGrid.unitTileGrid.GetLength(1); y++)
                 {
-                    if (tileGrid.unitTileGrid != null)
+                    if (tileGrid.unitTileGrid[x, y] != null)
                     {
                         SQLite_Unit unit = new SQLite_Unit();
-                        unit.UnitType = tileGrid.unitTileGrid[x, y].AddComponent<CUnit>().UnitType;
-                        unit.Team = tileGrid.unitTileGrid[x, y].AddComponent<CUnit>().Team;
-                        unit.Faction = tileGrid.unitTileGrid[x, y].AddComponent<CUnit>().Faction;
+                        unit.UnitType = tileGrid.unitTileGrid[x, y].GetComponent<CUnit>().UnitType;
+                        unit.Team = tileGrid.unitTileGrid[x, y].GetComponent<CUnit>().Team;
+                        unit.Faction = tileGrid.unitTileGrid[x, y].GetComponent<CUnit>().Faction;
                         unit.X = x;
                         unit.Y = y;
 
@@ -86,10 +86,10 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             {
                 for (int y = 0; y < tileGrid.resourceTileGrid.GetLength(1); y++)
                 {
-                    if (tileGrid.unitTileGrid != null)
+                    if (tileGrid.unitTileGrid[x, y] != null)
                     {
                         SQLite_Resource resource = new SQLite_Resource();
-                        resource.resourcesType = tileGrid.resourceTileGrid[x, y].AddComponent<CResourceTile>().ResourcesType;
+                        resource.resourcesType = tileGrid.resourceTileGrid[x, y].GetComponent<CResourceTile>().ResourcesType;
                         resource.X = x;
                         resource.Y = y;
 
