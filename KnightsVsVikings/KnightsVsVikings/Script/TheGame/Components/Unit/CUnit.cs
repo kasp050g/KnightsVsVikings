@@ -16,21 +16,25 @@ namespace KnightsVsVikings
 {
     public class CUnit : Component
     {
-        protected Stats stats = new Stats();
-        protected List<Passive> passives = new List<Passive>();
+        private Stats stats = new Stats();
+        private List<Passive> passives = new List<Passive>();
 
-        protected CAnimator animator;
-        protected CMove move;
+        private CAnimator animator;
+        private CMove move;
 
-        protected FiniteStateMachine<CUnit> StateMachine;
+        private FiniteStateMachine<CUnit> StateMachine;
 
-        protected ETeam team;
-        protected EUnitType unitType;
-        protected EFaction faction;
+        private ETeam team;
+        private EUnitType unitType;
+        private EFaction faction;
 
         public GameObject Target { get; protected set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
         public bool IsAlive { get; set; }
+
+        public ETeam Team { get => team; set => team = value; }
+        public EUnitType UnitType { get => unitType; set => unitType = value; }
+        public EFaction Faction { get => faction; set => faction = value; }
 
         public CUnit()
         {

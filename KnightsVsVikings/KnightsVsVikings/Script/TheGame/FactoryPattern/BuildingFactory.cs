@@ -9,12 +9,27 @@ namespace KnightsVsVikings
 {
     public class BuildingFactory : Factory
     {
-        public GameObject Creaft(EBuildingType buildingType)
+        #region Singleton
+        private static BuildingFactory instance;
+        public static BuildingFactory Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new BuildingFactory();
+                }
+                return instance;
+            }
+        }
+        #endregion
+
+        public GameObject Creaft(EBuildingType buildingType,EFaction faction,ETeam team)
         {
             // Main GameObject
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.SpriteSheet["GrayTent"]);
-            CBuilding building = new CBuilding(buildingType);
+            CBuilding building = new CBuilding(buildingType,faction,team);
 
             sr.LayerDepth = 0.2f;
             go.Transform.Scale *= 0.5f;

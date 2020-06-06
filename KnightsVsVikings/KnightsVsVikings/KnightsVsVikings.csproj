@@ -86,6 +86,8 @@
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\BuildingFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\Factory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\ResourcesFactory.cs" />
+    <Compile Include="Script\TheGame\FactoryPattern\TileFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
     <Compile Include="Script\TheGame\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Unit\Stats.cs" />
@@ -129,7 +131,12 @@
     <Compile Include="Script\TheGame\Scenes\Test Scenes\PickScene.cs" />
     <Compile Include="Script\TheGame\Scenes\WorldEditorScene.cs" />
     <Compile Include="Script\WorldEditor\Enum\EBuildingType.cs" />
-    <Compile Include="Script\WorldEditor\Tile\CBuilding.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Builing.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Resource.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Unit.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\SQLiteSaveAndLoadWorldEditor.cs" />
+    <Compile Include="Script\WorldEditor\SQLiteLoadSave\LoadSaveContainer\SQLite_Ground.cs" />
+    <Compile Include="Script\TheGame\Components\CBuilding.cs" />
     <Compile Include="Script\WorldEditor\UILogic\BuildingTileGridBar.cs" />
     <Compile Include="Script\WorldEditor\UILogic\UnitTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />

@@ -20,6 +20,14 @@ namespace KnightsVsVikings
         private EOriginPosition originPositionEnum = EOriginPosition.TopLeft;
         private Vector2 offSet = new Vector2(0, 0);
         private Rectangle rectangle;
+        private int tileSize = 128 / 2;
+        private EResourcesType resourcesType = EResourcesType.Nothing;
+        private TextureSheet2D delete;
+        private TextureSheet2D gold;
+        private TextureSheet2D stone;
+        private TextureSheet2D wood;
+        private TextureSheet2D food;
+        private CTile tile;
         #endregion
 
         #region Properties 
@@ -31,18 +39,17 @@ namespace KnightsVsVikings
         public EOriginPosition OriginPositionEnum { get => originPositionEnum; set => originPositionEnum = value; }
         public Vector2 OffSet { get => offSet; set => offSet = value; }
         public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
+        public EResourcesType ResourcesType { get => resourcesType; set => resourcesType = value; }
         #endregion
 
-        int tileSize = 128 / 2;
+        public CResourceTile()
+        {
 
-        EResourcesType resourcesType = EResourcesType.Nothing;
-        TextureSheet2D delete;
-        TextureSheet2D gold;
-        TextureSheet2D stone;
-        TextureSheet2D wood;
-        TextureSheet2D food;
-
-        CTile tile;
+        }
+        public CResourceTile(EResourcesType resourcesType)
+        {
+            this.resourcesType = resourcesType;
+        }
 
         public override void Awake()
         {
@@ -51,14 +58,13 @@ namespace KnightsVsVikings
             gold = SpriteContainer.Instance.TileSprite.Gold;
             stone = SpriteContainer.Instance.TileSprite.Stone;
             wood = SpriteContainer.Instance.TileSprite.Wood;
-            food = SpriteContainer.Instance.TileSprite.Wheatfield;            
+            food = SpriteContainer.Instance.TileSprite.Wheatfield;
+            UpdateResourcesSprite(resourcesType);
         }
 
         public override void Start()
         {
             base.Start();
-            tile = GameObject.GetComponent<CTile>();
-            UpdateResourcesSprite(EResourcesType.Nothing);
         }
 
         public override void Destroy()
@@ -125,7 +131,7 @@ namespace KnightsVsVikings
                     break;
             }
 
-            tile.ResourcesType = resourcesType;
+            //tile.ResourcesType = resourcesType;
         }
 
         private void SetSprite(TextureSheet2D spriteName)
