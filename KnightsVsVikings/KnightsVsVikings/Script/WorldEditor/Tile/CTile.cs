@@ -18,13 +18,17 @@ namespace KnightsVsVikings
         public ETileType TileType { get; set; }
         public EResourcesType ResourcesType { get; set; }
         public bool IsBlock { get; set; }
-        public bool IsOccupied { get; set; }
+        public bool IsResourceOccupied { get; set; }
         public bool IsCanBuildHere { get; set; } = true;
         public bool IsUnitOccupied { get; set; }
 
         public CTile()
         {
 
+        }
+        public CTile(ETileType tileType)
+        {
+            this.TileType = tileType;
         }
         public CTile(Vector2 tileSize)
         {

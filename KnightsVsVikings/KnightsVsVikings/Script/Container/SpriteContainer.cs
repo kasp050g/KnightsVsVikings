@@ -152,7 +152,6 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_PlayBackwards"), "ArrowLeft");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOff"), "UI_Icon_SoundOff");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/UI_Icon_SoundOn"), "UI_Icon_SoundOn");
-      
 
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/VikingsCampaign"), "VikingsCampaign");
             AddSprite(content.Load<Texture2D>("Images/UI/Icon/UI_Icon/KnightsCampaign"), "KnightsCampaign");

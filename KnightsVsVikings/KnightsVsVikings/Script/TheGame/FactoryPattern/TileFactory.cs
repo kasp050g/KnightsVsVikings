@@ -8,38 +8,35 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class UnitFactory : Factory
+    public class TileFactory : Factory
     {
         #region Singleton
-        private static UnitFactory instance;
-        public static UnitFactory Instance
+        private static TileFactory instance;
+        public static TileFactory Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new UnitFactory();
+                    instance = new TileFactory();
                 }
                 return instance;
             }
         }
         #endregion
-        public GameObject Creaft(EUnitType unitType, EFaction faction, ETeam team)
+
+        public GameObject Creaft(ETileType tileType)
         {
             // Main GameObject
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
-            CAnimator animator = new CAnimator();
-            CUnit unit = new CUnit(team, unitType, faction);
-            CMove move = new CMove();
+            CTile tile = new CTile(tileType);
 
-            go.AddComponent<CUnit>(unit);
-            go.AddComponent<CMove>(move);
             go.AddComponent<CSpriteRenderer>(sr);
-            go.AddComponent<CAnimator>(animator);
+            go.AddComponent<CTile>(tile);
 
-            sr.LayerDepth = 0.3f;
-            sr.OffSet = new Vector2(-0.75f * 128, -0.9f * 128);
+            sr.LayerDepth = 0.0001f;
+
             go.Transform.Scale *= 1.0f;
 
             return go;

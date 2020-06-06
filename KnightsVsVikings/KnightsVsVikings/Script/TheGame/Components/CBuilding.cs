@@ -11,15 +11,22 @@ namespace KnightsVsVikings
 {
     public class CBuilding : Component
     {
-        EBuildingType buildingType;
-        GameObject woodSing;
-        GameObject icon;
+        private EBuildingType buildingType;
+        private ETeam team;
+        private EFaction faction;
+
+        private GameObject woodSing;
+        private GameObject icon;
 
         public EBuildingType BuildingType { get => buildingType; set => buildingType = value; }
+        public EFaction Faction { get => faction; set => faction = value; }
+        public ETeam Team { get => team; set => team = value; }
 
-        public CBuilding(EBuildingType buildingType)
+        public CBuilding(EBuildingType buildingType, EFaction faction, ETeam team)
         {
             this.buildingType = buildingType;
+            this.faction = faction;
+            this.team = team;
         }
         public override void Awake()
         {
