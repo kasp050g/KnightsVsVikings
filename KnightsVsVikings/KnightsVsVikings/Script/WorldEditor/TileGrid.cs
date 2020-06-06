@@ -12,7 +12,7 @@ namespace KnightsVsVikings
 {
     public class TileGrid
     {
-        private SQLiteSaveAndLoadWorldEditor jamen = new SQLiteSaveAndLoadWorldEditor();
+        private SQLiteSaveAndLoadWorldEditor SQliteSaveAndLoad = new SQLiteSaveAndLoadWorldEditor();
         private int gridSizeX = 50;
         private int gridSizeY = 50;
         private Scene myScene;
@@ -45,12 +45,12 @@ namespace KnightsVsVikings
         {
             ResetGrid();
             
-            jamen.LoadSQLite(this, mapID);
+            SQliteSaveAndLoad.LoadSQLite(this, mapID);
         }
 
         public void SaveToSQLite()
         {
-            jamen.SaveSQLite(this);
+            SQliteSaveAndLoad.SaveSQLite(this);
         }
 
         #region TEST!
