@@ -24,6 +24,9 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
         public float GatheringSpeed { get; set; }
         public int GatheringCapacity { get; set; }
 
+        public SQLiteStatsModel()
+        { }
+
         public SQLiteStatsModel(ISQLiteTable locatedInTable, int foodCost, int goldCost, int woodCost, int stoneCost, float buildTime, int health, int damage, int armor, float speed, int range, int gatheringAmount, float gatheringSpeed, int gatheringCapacity) : base(locatedInTable)
         {
             FoodCost = foodCost;

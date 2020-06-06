@@ -28,16 +28,16 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
             SQLiteCommand cmd;
 
             if (Column != null && Data != null)
-                cmd = new SQLiteCommand($"SELECT * FROM '{ExecuteOnTable.TableName}' WHERE {Column.Name} = {Data.ObjectToSQLiteString()};", (SQLiteConnection)connection);
+                cmd = new SQLiteCommand($"SELECT * FROM {ExecuteOnTable.TableName} WHERE {Column.Name} = {Data.ObjectToSQLiteString()}", (SQLiteConnection)connection);
             else
-                cmd = new SQLiteCommand($"SELECT * FROM '{ExecuteOnTable.TableName}';", (SQLiteConnection)connection);
+                cmd = new SQLiteCommand($"SELECT * FROM {ExecuteOnTable.TableName}", (SQLiteConnection)connection);
 
             SQLiteDataReader reader = cmd.ExecuteReader();
 
-            //ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable);
+            ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable);
 
-            try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
-            catch { ResultRows = null; }
+            //try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
+            //catch { ResultRows = null; }
 
             connection.Close();
         }
