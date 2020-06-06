@@ -204,7 +204,6 @@ namespace MainSystemFramework
 
                 if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
                 {
-                    Console.WriteLine("click");
                     if (currentUpdate == true)
                     {
                         lastUpdate = true;
