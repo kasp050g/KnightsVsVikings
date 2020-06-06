@@ -16,7 +16,6 @@ namespace KnightsVsVikings
             base.Initialize();
             TestZone();
             MouseSettings.Instance.IsMouseVisible(true);
-
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -47,8 +46,8 @@ namespace KnightsVsVikings
             TestUnit(EFaction.Vikings, EUnitType.Spearman, 6);
             TestUnit(EFaction.Vikings, EUnitType.Footman, 7);
 
-            //NewButtonTest_Kasper btn_Test = new NewButtonTest_Kasper(this);
-            //btn_Test.MadeUI();
+            NewButtonTest_Kasper btn_Test = new NewButtonTest_Kasper(this);
+            btn_Test.MadeUI();
 
             Test_ButtonJamen test_J = new Test_ButtonJamen(this);
             test_J.JamenTest();

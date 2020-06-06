@@ -172,9 +172,11 @@ namespace MainSystemFramework
 
         public override void Update()
         {
+            
             if (MouseIsHovering)
             {
-                if(mouseOverButtonCheck == false)
+                Console.WriteLine(MouseIsHovering);
+                if (mouseOverButtonCheck == false)
                 {
                     mouseOverButtonCheck = true;
                     if ((imageSheet != null ? ImageSheetHovering != null && SpriteRenderer.SpriteSheet != ImageSheetHovering : ImageHovering != null && SpriteRenderer.Sprite != ImageHovering))

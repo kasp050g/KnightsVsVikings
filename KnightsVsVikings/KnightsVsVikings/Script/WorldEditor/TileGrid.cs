@@ -39,7 +39,8 @@ namespace KnightsVsVikings
         public void MakeTileGrid()
         {
             // Test SQLite
-            TestSqlite();
+            //TestSqlite();
+            LoadfromSQLite(1);
         }
         public void LoadfromSQLite(int mapID)
         {
@@ -182,6 +183,7 @@ namespace KnightsVsVikings
 
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.White;
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = true;
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Water01);
 
             if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType != ETileType.Water)
             {
