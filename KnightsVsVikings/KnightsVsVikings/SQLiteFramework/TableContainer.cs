@@ -28,6 +28,7 @@ namespace KnightsVsVikings.SQLiteFramework
         public ISQLiteTable DoodadTypeWorldEditorTable { get; set; }
         public ISQLiteTable ResourceWorldEditorTable { get; set; }
         public ISQLiteTable ResourceTypeWorldEditorTable { get; set; }
+        public ISQLiteTable BuildingWorldEditorTable { get; set; }
         public ISQLiteTable TileWorldEditorTable { get; set; }
         public ISQLiteTable TileTypeWorldEditorTable { get; set; }
         public ISQLiteTable WorldEditorTable { get; set; }
@@ -60,6 +61,7 @@ namespace KnightsVsVikings.SQLiteFramework
             ResourceWorldEditorTable = new SQLiteTable<SQLiteResourceWorldEditorModel>("ResourceWorldEditorTable", provider);
             ResourceTypeWorldEditorTable = new SQLiteTable<SQLiteResourceTypeWorldEditorModel>("ResourceTypeWorldEditorTable", provider);
             TileWorldEditorTable = new SQLiteTable<SQLiteTileWorldEditorModel>("TileWorldEditorTable", provider);
+            BuildingWorldEditorTable = new SQLiteTable<SQLiteBuildingWorldEditorModel>("BuildingWorldEditorTable", provider);
             TileTypeWorldEditorTable = new SQLiteTable<SQLiteTileTypeWorldEditorModel>("TileTypeWorldEditorTable", provider);
             WorldEditorTable = new SQLiteTable<SQLiteWorldEditorModel>("WorldEditorTable", provider);
             CampaignChapterTable = new SQLiteTable<SQLiteCampaignChapterModel>("CampaignChapterTable", provider);

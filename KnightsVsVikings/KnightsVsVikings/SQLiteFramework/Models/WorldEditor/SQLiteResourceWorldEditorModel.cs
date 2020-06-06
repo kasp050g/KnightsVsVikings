@@ -12,15 +12,13 @@ namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
     {
         public int WorldId { get; set; }
         public int ResourceTypeId { get; set; }
-        public int Team { get; set; }
         public int Xpos { get; set; }
         public int Ypos { get; set; }
 
-        public SQLiteResourceWorldEditorModel(ISQLiteTable locatedInTable, int worldId, int resourceTypeId, int team, int xpos, int ypos) : base(locatedInTable)
+        public SQLiteResourceWorldEditorModel(ISQLiteTable locatedInTable, int worldId, int resourceTypeId, int xpos, int ypos) : base(locatedInTable)
         {
             WorldId = worldId;
             ResourceTypeId = resourceTypeId;
-            Team = team;
             Xpos = xpos;
             Ypos = ypos;
         }

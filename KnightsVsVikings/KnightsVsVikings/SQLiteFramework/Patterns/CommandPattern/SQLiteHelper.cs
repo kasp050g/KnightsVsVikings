@@ -56,6 +56,10 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         {
             return GetRow(table, property, data).First();
         }
+        public static List<ISQLiteRow> GetMultiple(this ISQLiteTable table, int id)
+        {
+            return GetRow(table, typeof(SQLiteRowBase).GetProperty("Id"), id);
+        }
 
         public static List<ISQLiteRow> GetMultiple(this ISQLiteTable table, PropertyInfo property, object data)
         {

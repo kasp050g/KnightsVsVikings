@@ -1,7 +1,12 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Models.WorldEditor;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +26,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
         public void SaveSQLite(TileGrid tileGrid)
         {
             List<SQLite_Ground> grounds = new List<SQLite_Ground>();
-            List<SQLite_Builing> builings = new List<SQLite_Builing>();
+            List<SQLite_Building> builings = new List<SQLite_Building>();
             List<SQLite_Unit> units = new List<SQLite_Unit>();
             List<SQLite_Resource> resources = new List<SQLite_Resource>();
 
@@ -47,7 +52,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
                 {
                     if (tileGrid.buildingTileGrid != null)
                     {
-                        SQLite_Builing building = new SQLite_Builing();
+                        SQLite_Building building = new SQLite_Building();
                         building.BuildingType = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().BuildingType;
                         building.Team = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().Team;
                         building.Faction = tileGrid.buildingTileGrid[x, y].AddComponent<CBuilding>().Faction;
@@ -96,9 +101,64 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             DoTheSQLSave(grounds,builings,units,resources);
         }
 
-        private void DoTheSQLSave(List<SQLite_Ground> grounds, List<SQLite_Builing> builings, List<SQLite_Unit> units, List<SQLite_Resource> resources,int ID = 0)
+        private void DoTheSQLSave(List<SQLite_Ground> grounds, List<SQLite_Building> buildings, List<SQLite_Unit> units, List<SQLite_Resource> resources,int ID = 0)
         {
             // TODO: Save in it the SQLite
+            ISQLiteRow worldData = new SQLiteWorldEditorModel(Singletons.TableContainerSingleton.WorldEditorTable, "DefaultWorld");
+
+            Singletons.TableContainerSingleton.WorldEditorTable.Insert(worldData);
+
+            foreach (SQLite_Ground ground in grounds)
+            {
+                Singletons.TableContainerSingleton.TileWorldEditorTable.Insert(
+                    new SQLiteTileWorldEditorModel(
+                        Singletons.TableContainerSingleton.TileWorldEditorTable,
+                        worldData.Id,
+                        (int)ground.tileType,
+                        ground.X,
+                        ground.Y
+                        ));
+            }
+
+            foreach(SQLite_Building building in buildings)
+            {
+                Singletons.TableContainerSingleton.BuildingWorldEditorTable.Insert(
+                    new SQLiteBuildingWorldEditorModel(
+                        Singletons.TableContainerSingleton.BuildingWorldEditorTable,
+                        worldData.Id,
+                        (int)building.BuildingType,
+                        (int)building.Team,
+                        (int)building.Faction,
+                        building.X,
+                        building.Y
+                        ));
+            }
+
+            foreach (SQLite_Unit unit in units)
+            {
+                Singletons.TableContainerSingleton.UnitWorldEditorTable.Insert(
+                    new SQLiteUnitWorldEditorModel(
+                        Singletons.TableContainerSingleton.UnitWorldEditorTable,
+                        worldData.Id,
+                        (int)unit.UnitType,
+                        (int)unit.Team,
+                        (int)unit.Faction,
+                        unit.X,
+                        unit.Y
+                        ));
+            }
+
+            foreach (SQLite_Resource resource in resources)
+            {
+                Singletons.TableContainerSingleton.ResourceWorldEditorTable.Insert(
+                    new SQLiteResourceWorldEditorModel(
+                        Singletons.TableContainerSingleton.ResourceWorldEditorTable,
+                        worldData.Id,
+                        (int)resource.resourcesType,
+                        resource.X,
+                        resource.Y
+                        ));
+            }
         }
         #endregion
 
@@ -106,7 +166,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
         public void LoadSQLite(TileGrid tileGrid,int ID)
         {
             List<SQLite_Ground> grounds = LoadGround(ID);
-            List<SQLite_Builing> builings = LoadBuilding(ID);
+            List<SQLite_Building> builings = LoadBuilding(ID);
             List<SQLite_Unit> units = LoadUnit(ID);
             List<SQLite_Resource> resources = LoadResource(ID);
 
@@ -117,7 +177,7 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
                 tileGrid.groundTileGrid[item.X, item.Y] = go;
             }
 
-            foreach (SQLite_Builing item in builings)
+            foreach (SQLite_Building item in builings)
             {
                 GameObject go = BuildingFactory.Instance.Creaft(item.BuildingType, item.Faction, item.Team);
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
@@ -143,12 +203,24 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             List<SQLite_Ground> grounds = new List<SQLite_Ground>();
 
             // TODO: Load SQLite ground here
+            List<ISQLiteRow> convert = Singletons.TableContainerSingleton.TileWorldEditorTable.GetMultiple(ID);
+
+            SQLite_Ground ground = new SQLite_Ground();
+
+            for (int i = 0; i < convert.Count; i++)
+            {
+                ground.tileType = (ETileType)(convert.ElementAt(i) as SQLiteTileWorldEditorModel).TileTypeId;
+                ground.X = (convert.ElementAt(i) as SQLiteTileWorldEditorModel).Xpos;
+                ground.Y = (convert.ElementAt(i) as SQLiteTileWorldEditorModel).Ypos;
+
+                grounds.Add(ground);
+            }
 
             return grounds;
         }
-        private List<SQLite_Builing> LoadBuilding(int ID)
+        private List<SQLite_Building> LoadBuilding(int ID)
         {
-            List<SQLite_Builing> builings = new List<SQLite_Builing>();
+            List<SQLite_Building> builings = new List<SQLite_Building>();
 
             // TODO: Load SQlite Build here
 
@@ -159,6 +231,20 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             List<SQLite_Unit> units = new List<SQLite_Unit>();
 
             // TODO: Load SQLite Unit here
+            List<ISQLiteRow> convert = Singletons.TableContainerSingleton.UnitWorldEditorTable.GetMultiple(ID);
+
+            SQLite_Unit unit = new SQLite_Unit();
+
+            for (int i = 0; i < convert.Count; i++)
+            {
+                unit.UnitType = (EUnitType)(convert.ElementAt(i) as SQLiteUnitWorldEditorModel).UnitTypeId;
+                unit.Team = (ETeam)(convert.ElementAt(i) as SQLiteUnitWorldEditorModel).Team;
+                unit.Faction = (EFaction)(convert.ElementAt(i) as SQLiteUnitWorldEditorModel).Faction;
+                unit.X = (convert.ElementAt(i) as SQLiteUnitWorldEditorModel).Xpos;
+                unit.Y = (convert.ElementAt(i) as SQLiteUnitWorldEditorModel).Ypos;
+
+                units.Add(unit);
+            }
 
             return units;
         }
@@ -167,6 +253,18 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
             List<SQLite_Resource> resources = new List<SQLite_Resource>();
 
             // TODO: Load SQLite resources
+            List<ISQLiteRow> convert = Singletons.TableContainerSingleton.ResourceWorldEditorTable.GetMultiple(ID);
+
+            SQLite_Resource resource = new SQLite_Resource();
+
+            for (int i = 0; i < convert.Count; i++)
+            {
+                resource.resourcesType = (EResourcesType)(convert.ElementAt(i) as SQLiteResourceWorldEditorModel).ResourceTypeId;
+                resource.X = (convert.ElementAt(i) as SQLiteResourceWorldEditorModel).Xpos;
+                resource.Y = (convert.ElementAt(i) as SQLiteResourceWorldEditorModel).Ypos;
+
+                resources.Add(resource);
+            }
 
             return resources;
         }

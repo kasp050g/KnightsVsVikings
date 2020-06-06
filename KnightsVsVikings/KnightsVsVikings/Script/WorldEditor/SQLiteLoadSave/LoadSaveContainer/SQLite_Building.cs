@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
 {
-    public class SQLite_Builing
+    public class SQLite_Building
     {
         public EBuildingType BuildingType { get; set; }
         public ETeam Team { get; set; }
