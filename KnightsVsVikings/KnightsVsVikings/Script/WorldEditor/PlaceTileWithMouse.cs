@@ -215,7 +215,6 @@ namespace KnightsVsVikings
             gameObjectTileMouse.GetComponent<CSpriteRenderer>().SetSprite(image);
         }
 
-
         public void MoveTileShow()
         {
             int mousex = Mouse.GetState().Position.X;
@@ -431,52 +430,6 @@ namespace KnightsVsVikings
             }
 
             UpdateGrid(tileGrid);
-
-            // old Resoure
-
-            //TextureSheet2D tmp = null;
-            //Vector2 _offset = new Vector2(0, 0);
-
-            //switch (resourcesType)
-            //{
-            //    case EResourcesType.Nothing:
-            //        //tmp = SpriteContainer.Instance.TileSprite.Delete;
-            //        //_offset = new Vector2(0, 0);
-            //        tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-            //        break;
-            //    case EResourcesType.Gold:
-            //        //tmp = SpriteContainer.Instance.TileSprite.Gold;
-            //        //_offset = new Vector2(0, -128);
-            //        tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-            //        break;
-            //    case EResourcesType.Stone:
-            //        //tmp = SpriteContainer.Instance.TileSprite.Stone;
-            //        //_offset = new Vector2(0, -128);
-            //        tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-            //        break;
-            //    case EResourcesType.Wood:
-            //        //tmp = SpriteContainer.Instance.TileSprite.Wood;
-            //        //_offset = new Vector2(-128, -4 * 128);
-            //        tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-            //        break;
-            //    case EResourcesType.Food:
-            //        //tmp = SpriteContainer.Instance.TileSprite.Wheatfield;
-            //        //_offset = new Vector2(-128, -128);
-            //        tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-            //        break;
-            //    default:
-            //        break;
-            //}
-
-            //if (tmp != null)
-            //{
-            //    tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(tmp);
-            //    //tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().OffSet = _offset;
-            //}
-
-            ////tileGrid.groundTileGrid[x, y].GetComponent<CTile>().ResourcesType = resourcesType;
-
-            //UpdateGrid(tileGrid);
         }
 
         public void PlaceTile(int x, int y)

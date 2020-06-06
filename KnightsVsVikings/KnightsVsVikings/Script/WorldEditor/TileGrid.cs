@@ -1,4 +1,5 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,6 +12,7 @@ namespace KnightsVsVikings
 {
     public class TileGrid
     {
+        private SQLiteSaveAndLoadWorldEditor jamen = new SQLiteSaveAndLoadWorldEditor();
         private int gridSizeX = 50;
         private int gridSizeY = 50;
         private Scene myScene;
@@ -39,9 +41,16 @@ namespace KnightsVsVikings
             // Test SQLite
             TestSqlite();
         }
-        private void LoadfromSQLite(int mapID)
+        public void LoadfromSQLite(int mapID)
         {
-            //TODO: Load from SQLite
+            ResetGrid();
+            
+            jamen.LoadSQLite(this, mapID);
+        }
+
+        public void SaveToSQLite()
+        {
+            jamen.SaveSQLite(this);
         }
 
         #region TEST!
@@ -106,6 +115,38 @@ namespace KnightsVsVikings
                     GetTileData(_tileGrid.groundTileGrid, new Vector2(x, y));
                 }
             }
+        }
+
+        public void ResetGrid()
+        {
+            #region RemoveAll
+            foreach (GameObject item in groundTileGrid)
+            {
+                if(item != null)
+                item.Destroy();
+            }
+            foreach (GameObject item in obstacleTileGrid)
+            {
+                if (item != null)
+                    item.Destroy();
+            }
+            foreach (GameObject item in resourceTileGrid)
+            {
+                if (item != null)
+                    item.Destroy();
+            }
+            foreach (GameObject item in buildingTileGrid)
+            {
+                if (item != null)
+                    item.Destroy();
+            }
+            foreach (GameObject item in unitTileGrid)
+            {
+                if (item != null)
+                    item.Destroy();
+            }
+            #endregion
+
         }
 
         public void GetTileData(GameObject[,] groundTileGrid, Vector2 gridPos)
