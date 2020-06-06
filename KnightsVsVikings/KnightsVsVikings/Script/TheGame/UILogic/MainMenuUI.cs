@@ -43,9 +43,9 @@ namespace KnightsVsVikings
             myScene.Instantiate(VikingsCampaignGO);
             myScene.Instantiate(KnightsCampaignGO);
             
-            CampaignMenuGO.IsActive = false;
-            VikingsCampaignGO.IsActive = false;
-            KnightsCampaignGO.IsActive = false;
+            CampaignMenuGO.SetIsActive(false);
+            VikingsCampaignGO.SetIsActive(false);
+            KnightsCampaignGO.SetIsActive(false);
 
             Texture2D texture1 = SpriteContainer.Instance.Sprite["Button_A_Long_black"];
             Texture2D texture2 = SpriteContainer.Instance.Sprite["Button_A_Long_red"];
@@ -72,13 +72,14 @@ namespace KnightsVsVikings
             MakeButton(texture1, texture2, "Chapter 5", new Vector2(100, 500), ref startGame, "vikings");
 
             ButtonFunctions();
+            CreateBackground();
         }
 
         private void MakeButton(Texture2D texture1, Texture2D texture2, string text, Vector2 pos, ref GUIButton btn, string parent)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer();
-            CreateBackground();
+            
 
             btn = new GUIButton(sr, texture1, texture2, Color.White, Color.White, SpriteContainer.Instance.MediaevalFont, SpriteContainer.Instance.TextColor, new Vector2(1f, 1f), text);
 
@@ -91,15 +92,15 @@ namespace KnightsVsVikings
 
             if (parent == "main")
             {
-                go.MyParent = MainMenuGO;
+                go.SetMyParent(MainMenuGO);
             }
            else if (parent == "campaign")
             {
-                go.MyParent = CampaignMenuGO;
+                go.SetMyParent(CampaignMenuGO);
             }
             else if (parent == "vikings")
             {
-                go.MyParent = VikingsCampaignGO;
+                go.SetMyParent(VikingsCampaignGO);
             }
             myScene.Instantiate(go);
         }
@@ -109,9 +110,11 @@ namespace KnightsVsVikings
             GameObject background = new GameObject();
             CSpriteRenderer backgroundSR = new CSpriteRenderer("Map", EOriginPosition.TopLeft, 0.01f);
             GUIImage backgroundImage = new GUIImage(backgroundSR, false, false);
+            
+            background.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2048, 1536); //2048, 1536 is the image's default size
+            
             background.AddComponent<CSpriteRenderer>(backgroundSR);
             background.AddComponent<GUIImage>(backgroundImage);
-            background.Transform.Scale = GraphicsSetting.Instance.ScreenSize / new Vector2(2048, 1536); //2048, 1536 is the image's default size
 
             myScene.Instantiate(background);
         }
@@ -119,26 +122,29 @@ namespace KnightsVsVikings
         {
             GameObject go = new GameObject();
             CSpriteRenderer iconSR = new CSpriteRenderer(name, EOriginPosition.TopLeft, 0.02f);
-            go.Transform.Position = pos;
             GUIImage iconImage = new GUIImage(iconSR, false, false);
+
+            go.Transform.Position = pos;
+            
             go.AddComponent<CSpriteRenderer>(iconSR);
             go.AddComponent<GUIImage>(iconImage);
+            
+            go.SetMyParent(CampaignMenuGO);
             myScene.Instantiate(go);
-            go.MyParent = CampaignMenuGO;
         }
 
         private void ButtonFunctions()
         {
-            campaign.OnClick = () => { CampaignMenuGO.IsActive = true; MainMenuGO.IsActive = false;  };
-            backToMain.OnClick = () => { CampaignMenuGO.IsActive = false; MainMenuGO.IsActive = true; };
-            backToCampaign.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };
-            vikingsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
-            knightsCampaign.OnClick = () => { CampaignMenuGO.IsActive = false; VikingsCampaignGO.IsActive = true; };
-            startGame.OnClick = () => { CampaignMenuGO.IsActive = true; VikingsCampaignGO.IsActive = false; };//HERE THE GAME STARTS!
+            campaign.OnClick = () => { CampaignMenuGO.SetIsActive(true) ; MainMenuGO.SetIsActive(false);  };
+            backToMain.OnClick = () => { CampaignMenuGO.SetIsActive(false); MainMenuGO.SetIsActive(true); };
+            backToCampaign.OnClick = () => { CampaignMenuGO.SetIsActive(true); VikingsCampaignGO.SetIsActive(false); };
+            vikingsCampaign.OnClick = () => { CampaignMenuGO.SetIsActive(false); VikingsCampaignGO.SetIsActive(true); };
+            knightsCampaign.OnClick = () => { CampaignMenuGO.SetIsActive(false); VikingsCampaignGO.SetIsActive(true); };
+            startGame.OnClick = () => { CampaignMenuGO.SetIsActive(true); VikingsCampaignGO.SetIsActive(false); };//HERE THE GAME STARTS!
             
-            options.OnClick = () => { MainMenuGO.IsActive = false; };
-            credits.OnClick = () => { MainMenuGO.IsActive = false; };
-            quitGame.OnClick = () => { MainMenuGO.IsActive = false; }; //HERE THE GAME QUITS
+            options.OnClick = () => { MainMenuGO.SetIsActive(false); };
+            credits.OnClick = () => { MainMenuGO.SetIsActive(false); };
+            quitGame.OnClick = () => { MainMenuGO.SetIsActive(false); }; //HERE THE GAME QUITS
           
         }
     }

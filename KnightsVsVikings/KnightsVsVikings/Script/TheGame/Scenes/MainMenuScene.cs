@@ -9,9 +9,12 @@ namespace KnightsVsVikings
 {
     public class MainMenuScene : Scene
     {
+        MainMenuUI mainMenuUI;
         public override void Initialize()
         {
             base.Initialize();
+            mainMenuUI = new MainMenuUI(this);
+            mainMenuUI.MakeUI();
         }
 
         public override void OnSwitchAwayFromThisScene()
