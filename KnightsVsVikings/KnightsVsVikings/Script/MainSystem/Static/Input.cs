@@ -61,7 +61,7 @@ namespace MainSystemFramework
 
         private static void MouseButton()
         {
-            MouseState monoMouseState = Mouse.GetState();
+            MouseState monoMouseState = MouseSettings.Instance.GetMouseState();
 
             List<EMyMouseButtons> monoPressedMouseButtons = new List<EMyMouseButtons>();
 

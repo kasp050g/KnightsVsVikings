@@ -36,7 +36,7 @@ namespace KnightsVsVikings
         {
            
 
-            MouseSettings.Instance.IsMouseVisible(true);
+            MouseSettings.Instance.SetMouseVisible(true);
 
             myScene.Instantiate(MainMenuGO);
             myScene.Instantiate(CampaignMenuGO);

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace KnightsVsVikings
 {
@@ -19,6 +20,7 @@ namespace KnightsVsVikings
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             GraphicsSetting.Instance.SetGraphics(graphics);
+            MouseSettings.Instance.Window = Window;
             MouseSettings.Instance.GameWorld = this;
         }
 
@@ -34,7 +36,7 @@ namespace KnightsVsVikings
 
             base.Initialize();
             global.Initialize();
-            
+
 
         }
 
@@ -73,6 +75,8 @@ namespace KnightsVsVikings
             global.Update(gameTime);
 
             base.Update(gameTime);
+
+            MouseSettings.Instance.SetMouseState(Mouse.GetState(Window));
         }
 
         /// <summary>

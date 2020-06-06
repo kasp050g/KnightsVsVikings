@@ -15,7 +15,7 @@ namespace KnightsVsVikings
         {
             base.Initialize();
             TestZone();
-            MouseSettings.Instance.IsMouseVisible(true);
+            MouseSettings.Instance.SetMouseVisible(true);
         }
 
         public override void OnSwitchAwayFromThisScene()

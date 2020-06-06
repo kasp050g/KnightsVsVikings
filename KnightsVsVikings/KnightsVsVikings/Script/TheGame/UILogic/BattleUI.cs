@@ -20,7 +20,7 @@ namespace KnightsVsVikings
         }
         public void MakeUI()
         {
-            MouseSettings.Instance.IsMouseVisible(true);
+            MouseSettings.Instance.SetMouseVisible(true);
 
             Texture2D texture1 = SpriteContainer.Instance.Sprite["ActionBar02"];
             Texture2D gold = SpriteContainer.Instance.Sprite["Gold"];

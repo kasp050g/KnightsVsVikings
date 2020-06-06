@@ -175,7 +175,7 @@ namespace MainSystemFramework
             
             if (MouseIsHovering)
             {
-                Console.WriteLine(MouseIsHovering);
+                //Console.WriteLine(MouseIsHovering);
                 if (mouseOverButtonCheck == false)
                 {
                     mouseOverButtonCheck = true;
@@ -204,6 +204,7 @@ namespace MainSystemFramework
 
                 if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
                 {
+                    Console.WriteLine("click");
                     if (currentUpdate == true)
                     {
                         lastUpdate = true;
