@@ -1,4 +1,5 @@
 ﻿using MainSystemFramework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,35 @@ namespace KnightsVsVikings
                     break;
                 default:
                     break;
+            }
+
+            if (buildingType != EBuildingType.Field)
+            {
+                switch (team)
+                {
+                    case ETeam.Team01:
+                        sr.Color = Color.Red;
+                        break;
+                    case ETeam.Team02:
+                        sr.Color = Color.Blue;
+                        break;
+                    case ETeam.Team03:
+                        sr.Color = Color.Green;
+                        break;
+                    case ETeam.Team04:
+                        sr.Color = Color.Yellow;
+                        break;
+                    case ETeam.Team05:
+                        break;
+                    case ETeam.Team06:
+                        break;
+                    case ETeam.Team07:
+                        break;
+                    case ETeam.Team08:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             return go;
