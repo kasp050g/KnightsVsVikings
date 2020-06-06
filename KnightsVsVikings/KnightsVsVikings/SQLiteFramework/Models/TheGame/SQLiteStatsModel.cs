@@ -14,7 +14,7 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
         public int GoldCost { get; set; }
         public int WoodCost { get; set; }
         public int StoneCost { get; set; }
-        public int BuildTime { get; set; }
+        public float BuildTime { get; set; }
         public int Health { get; set; }
         public int Damage { get; set; }
         public int Armor { get; set; }
@@ -24,7 +24,7 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
         public float GatheringSpeed { get; set; }
         public int GatheringCapacity { get; set; }
 
-        public SQLiteStatsModel(ISQLiteTable locatedInTable, int foodCost, int goldCost, int woodCost, int stoneCost, int buildTime, int health, int damage, int armor, float speed, int range, int gatheringAmount, float gatheringSpeed, int gatheringCapacity) : base(locatedInTable)
+        public SQLiteStatsModel(ISQLiteTable locatedInTable, int foodCost, int goldCost, int woodCost, int stoneCost, float buildTime, int health, int damage, int armor, float speed, int range, int gatheringAmount, float gatheringSpeed, int gatheringCapacity) : base(locatedInTable)
         {
             FoodCost = foodCost;
             GoldCost = goldCost;

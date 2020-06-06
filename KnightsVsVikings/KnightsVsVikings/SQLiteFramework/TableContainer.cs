@@ -2,6 +2,7 @@
 using KnightsVsVikings.SQLiteFramework.Interfaces;
 using KnightsVsVikings.SQLiteFramework.Models.TheGame;
 using KnightsVsVikings.SQLiteFramework.Models.WorldEditor;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,7 +74,8 @@ namespace KnightsVsVikings.SQLiteFramework
 
         private void AddRows()
         {
-
+            SQLiteStatsModel unitBaseStats = new SQLiteStatsModel(StatsTable, 10, 10, 10, 10, 5f, 100, 10, 2, 150f, 10, 10, 150f, 50);
+            StatsTable.Insert(unitBaseStats);
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿using KnightsVsVikings;
 using KnightsVsVikings.Script.TheGame;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.SQLiteFramework.Interfaces;
+using KnightsVsVikings.SQLiteFramework.Models.TheGame;
+using KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +11,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -252,6 +257,13 @@ namespace KnightsVsVikings
             }
 
             //TODO: Get stats from sql here.
+            ISQLiteRow myStats = Singletons.TableContainerSingleton.StatsTable.Get(1);
+
+            List<PropertyInfo> myStatsProperties = myStats.GetType().GetProperties().Where(property => property.Name != "Id").ToList();
+            List<PropertyInfo> statsProperties = stats.GetType().GetProperties().ToList();
+
+            for (int i = 0; i < myStatsProperties.Count; i++)
+                statsProperties[i].SetValue(stats, myStatsProperties[i].GetValue(myStatsProperties));
         }
     }
 }
