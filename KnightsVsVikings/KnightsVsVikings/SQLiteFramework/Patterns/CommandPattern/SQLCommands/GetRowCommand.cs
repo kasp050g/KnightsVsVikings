@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 {
-    class GetRowCommand : ICommandSQLiteSingle, ISQLiteInput, ISQLiteOutput
+    class GetRowCommand : ICommandSQLiteSingle, ISQLiteOutput, ISQLiteInput
     {
         public List<ISQLiteRow> ResultRows { get; private set; } = null;
         public ISQLiteTable ExecuteOnTable { get; set; }
@@ -34,10 +34,10 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 
             SQLiteDataReader reader = cmd.ExecuteReader();
 
-            ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable);
+            //ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable);
 
-            //try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
-            //catch { ResultRows = null; }
+            try { ResultRows = ExecuteOnTable.Mapper.MapRowsFromReader(reader, ExecuteOnTable); }
+            catch { ResultRows = null; }
 
             connection.Close();
         }

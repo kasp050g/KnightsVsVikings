@@ -16,6 +16,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
     public static class SQLiteHelper
     {
         private static InsertRowCommand insertCommand = new InsertRowCommand();
+        private static InsertMultipleRowsCommand insertMultipleCommand = new InsertMultipleRowsCommand();
         private static DeleteRowCommand deleteCommand = new DeleteRowCommand();
         private static GetRowCommand getCommand = new GetRowCommand();
         private static RenameTableCommand renameCommand = new RenameTableCommand();
@@ -33,6 +34,17 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
             return InsertRow(table, row, unique);
         }
         // -- Insert Command
+
+        // Insert Multiple Command --
+        public static void InsertMultiple(this ISQLiteTable table, List<ISQLiteRow> rows)
+        {
+            insertMultipleCommand.ExecuteOnTable = table;
+
+            insertMultipleCommand.ResultRows = rows;
+
+            insertMultipleCommand.Execute();
+        }
+        // -- Insert Multiple Command
 
         // Delete Command --
         public static void Delete(this ISQLiteTable table, int id)

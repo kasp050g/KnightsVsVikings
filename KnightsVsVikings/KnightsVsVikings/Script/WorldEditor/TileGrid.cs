@@ -13,8 +13,8 @@ namespace KnightsVsVikings
     public class TileGrid
     {
         private SQLiteSaveAndLoadWorldEditor SQliteSaveAndLoad = new SQLiteSaveAndLoadWorldEditor();
-        private int gridSizeX = 5;
-        private int gridSizeY = 5;
+        private int gridSizeX = 50;
+        private int gridSizeY = 50;
         private Scene myScene;
 
         public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
@@ -39,8 +39,8 @@ namespace KnightsVsVikings
         public void MakeTileGrid()
         {
             // Test SQLite
-            //TestSqlite();
-            LoadfromSQLite(1);
+            TestSqlite();
+            //LoadfromSQLite(1);
         }
         public void LoadfromSQLite(int mapID)
         {
