@@ -1,4 +1,5 @@
 ﻿using KnightsVsVikings;
+using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame;
 using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using KnightsVsVikings.SQLiteFramework.Framework.Global;
@@ -318,11 +319,12 @@ namespace KnightsVsVikings
                     break;
                 }
 
-            List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().Where(property => property.Name != "Id").ToList();
+            List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().ToList();
+            myStatsProperties.RemoveAll(property => property.Name == "Id" || property.Name == "LocatedInTable");
             List<PropertyInfo> statsProperties = stats.Stats.GetType().GetProperties().ToList();
 
-            for (int i = 0; i < myStatsProperties.Count; i++)
-                statsProperties[i].SetValue(stats.Stats, myStatsProperties[i].GetValue(myStatsProperties));
+            for (int i = 0; i < myStatsProperties.Count - 1; i++)
+                statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
         }
     }
 }
