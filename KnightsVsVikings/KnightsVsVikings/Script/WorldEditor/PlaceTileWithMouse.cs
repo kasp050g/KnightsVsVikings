@@ -336,8 +336,6 @@ namespace KnightsVsVikings
 
             go.Transform.Position = new Vector2((x - 1) * tileGrid.TileSize.X, (y - 3) * tileGrid.TileSize.Y);
 
-
-
             switch (buildingType)
             {
                 case EBuildingType.TownHall:
