@@ -80,6 +80,7 @@
     <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\CCanBeSelected.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />
@@ -141,7 +142,6 @@
     <Compile Include="Script\WorldEditor\UILogic\LoadSaveUIBar.cs" />
     <Compile Include="Script\WorldEditor\UILogic\UnitTileGridBar.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\PropertyFinder.cs" />
-    <Compile Include="SQLiteFramework\Framework\Global\ReaderConverter.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteRowBase.cs" />
@@ -202,7 +202,7 @@
     <Compile Include="Script\WorldEditor\PlaceTileWithMouse.cs" />
     <Compile Include="Script\TheGame\UILogic\BattleUI.cs" />
     <Compile Include="Script\WorldEditor\TileGrid.cs" />
-    <Compile Include="Script\WorldEditor\Tile\CResourceTile.cs" />
+    <Compile Include="Script\TheGame\Components\CResourceTile.cs" />
     <Compile Include="Script\WorldEditor\Tile\CTile.cs" />
     <Compile Include="Script\WorldEditor\UILogic\GroundTileGridBar.cs" />
     <Compile Include="Script\WorldEditor\UILogic\ResourceTileGridBar.cs" />
