@@ -35,7 +35,7 @@ namespace KnightsVsVikings
         private EUnitType unitType;
         private EFaction faction;
 
-        public GameObject Target { get; protected set; } = null;
+        public GameObject Target { get;  set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
         public bool IsAlive { get; set; }
 
