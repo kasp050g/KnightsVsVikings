@@ -36,11 +36,13 @@ namespace KnightsVsVikings
             CStats stats = new CStats();
             CAstar astar = new CAstar(unit);
             CCanBeSelected canBeSelected = new CCanBeSelected();
+            CShadow shadow = new CShadow();
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
             go.AddComponent<CStats>(stats);
             go.AddComponent<CAstar>(astar);
+            go.AddComponent<CShadow>(shadow);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
             go.AddComponent<CCanBeSelected>(canBeSelected);

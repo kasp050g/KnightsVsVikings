@@ -19,10 +19,12 @@ namespace KnightsVsVikings
         {
             base.Initialize();
             MouseSettings.Instance.SetMouseVisible(true);
-            selectedObject = new SelectedObject(this);
-            selectedObject.MakeSelectedZoneUI();
+
             TestZone();
-            unitCommands = new UnitCommands(selectedObject,tileGrid,this);
+
+            selectedObject = new SelectedObject(this,placeTile);
+            selectedObject.MakeSelectedZoneUI();
+            unitCommands = new UnitCommands(selectedObject, tileGrid, this);
             unitCommands.Start();
         }
 

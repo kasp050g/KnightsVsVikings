@@ -100,7 +100,7 @@ namespace MainSystemFramework
         private void RandomImages(ContentManager content)
         {
             AddSprite(content.Load<Texture2D>("Images/Characters/UnitStuff/IsSelected"), "IsSelected");
-            AddSprite(content.Load<Texture2D>("Images/Characters/UnitStuff/shadow"), "shadow");
+            AddSprite(content.Load<Texture2D>("Images/Characters/UnitStuff/shadow"), "Shadow");
         }
 
         private void Build(ContentManager content)
