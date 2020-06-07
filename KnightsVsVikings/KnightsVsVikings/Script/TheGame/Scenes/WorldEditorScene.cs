@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using MainSystemFramework;
 
 namespace KnightsVsVikings
@@ -13,6 +14,7 @@ namespace KnightsVsVikings
         TileGrid tileGrid;
         SelectedObject selectedObject;
         UnitCommands unitCommands;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -65,6 +67,8 @@ namespace KnightsVsVikings
 
             WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile,tileGrid);
             worldEditorUI.MadeUI();
+
+            //Singletons.AstarGlobalSingleton.InitializeGrids(tileGrid.groundTileGrid);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using MainSystemFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
@@ -12,7 +14,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         public Cell[,] GlobalAstarGrid { get; set; }
         public Cell[,] BaseMapGrid { get; set; }
 
-        public void InitializeGrids(int[,] baseGrid)
+        public void InitializeGrids(GameObject[,] baseGrid)
         {
             GlobalAstarGrid = new Cell[baseGrid.GetLength(0), baseGrid.GetLength(1)];
 
@@ -20,19 +22,19 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             GlobalAstarGrid = BaseMapGrid;
         }
 
-        private Cell[,] IntToCellArray(int[,] array)
+        private Cell[,] IntToCellArray(GameObject[,] array)
         {
             Cell[,] result = new Cell[array.GetLength(0), array.GetLength(1)];
 
             for (int x = 0; x < array.GetLength(0); x++)
-                for (int y = 0; x < array.GetLength(1); y++)
-                    switch(array[x, y])
+                for (int y = 0; y < array.GetLength(1); y++)
+                    switch(array[x, y].GetComponent<CTile>().IsBlock)
                     {
-                        case 0:
+                        case false:
                             result[x, y] = new Cell(Enum.ECellType.Default);
                             break;
 
-                        case 1:
+                        case true:
                             result[x, y] = new Cell(Enum.ECellType.Invalid);
                             break;
                     }

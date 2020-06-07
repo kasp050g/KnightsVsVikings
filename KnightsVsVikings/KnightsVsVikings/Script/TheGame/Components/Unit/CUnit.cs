@@ -1,6 +1,7 @@
 ﻿using KnightsVsVikings;
 using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame;
+using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
 using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using KnightsVsVikings.SQLiteFramework.Framework.Global;
 using KnightsVsVikings.SQLiteFramework.Interfaces;
@@ -37,21 +38,23 @@ namespace KnightsVsVikings
 
         public GameObject Target { get;  set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
+        //public CAstar AstarUnit { get; set; }
         public bool IsAlive { get; set; }
-
+        public bool IsMoving { get; set; } = false;
         public ETeam Team { get => team; set => team = value; }
         public EUnitType UnitType { get => unitType; set => unitType = value; }
         public EFaction Faction { get => faction; set => faction = value; }
 
         public CUnit()
         {
-
+            //astar = new CAstar(this);
         }
         public CUnit(ETeam team, EUnitType unitType, EFaction faction)
         {
             this.team = team;
             this.unitType = unitType;
             this.faction = faction;
+            //astar = new CAstar(this);
         }
         public override void Awake()
         {
@@ -84,6 +87,7 @@ namespace KnightsVsVikings
             StateMachine.Update(Time.deltaTime);
             NewAnimation();
             Test();
+            //Move();
         }
         
 

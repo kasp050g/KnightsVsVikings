@@ -1,4 +1,6 @@
-﻿using KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave;
+﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -48,6 +50,15 @@ namespace KnightsVsVikings
             
             SQliteSaveAndLoad.LoadSQLite(this, mapID,myScene);
             UpdateGrid();
+
+            Singletons.AstarGlobalSingleton.InitializeGrids(groundTileGrid);
+
+            foreach (GameObject unit in unitTileGrid)
+                if (unit != null)
+                {
+                    unit.GetComponent<CAstar>().InitiateAstar();
+                    //unit.GetComponent<CAstar>().GetMeBoi(groundTileGrid);
+                }
         }
 
         public void SaveToSQLite()

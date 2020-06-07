@@ -1,4 +1,5 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -33,11 +34,13 @@ namespace KnightsVsVikings
             CUnit unit = new CUnit(team, unitType, faction);
             CMove move = new CMove();
             CStats stats = new CStats();
+            CAstar astar = new CAstar(unit);
             CCanBeSelected canBeSelected = new CCanBeSelected();
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
             go.AddComponent<CStats>(stats);
+            go.AddComponent<CAstar>(astar);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
             go.AddComponent<CCanBeSelected>(canBeSelected);

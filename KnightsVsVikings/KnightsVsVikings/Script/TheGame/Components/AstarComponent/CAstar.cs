@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
-    class CAstar : Component
+    public class CAstar : Component
     {
         private const byte DEFAULT_COST = 10;
 
@@ -33,34 +33,51 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                            closedList = new List<Cell>(),
                            pathList = new List<Cell>();
 
-        private Cell[,] AstarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
+        private Cell[,] AstarGrid = null;// = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
+
+        private GameObject[,] Testing = null;
+        private WorldEditorScene reference = null;
 
         public CAstar(CUnit ownerUnit)
         {
             this.ownerUnit = ownerUnit;
         }
 
+        public void InitiateAstar()
+        {
+            AstarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
+        }
+
+        public void GetMeBoi(WorldEditorScene scene, GameObject[,] arrays)
+        {
+            Testing = arrays;
+            reference = scene;
+        }
+
         public override void Update()
         {
-            if (ownerUnit.Target != null)
+            if (AstarGrid != null)
             {
-                Vector2 posToGrid = ownerUnit.Target.Transform.Position;
+                if (ownerUnit.Target != null)
+                {
+                    Vector2 posToGrid = ownerUnit.Target.Transform.Position;
 
-                targetCell = AstarGrid[(int)(posToGrid.X / Singletons.LevelInformationSingleton.TileSize), (int)(posToGrid.Y / Singletons.LevelInformationSingleton.TileSize)];
+                    targetCell = AstarGrid[(int)(posToGrid.X / Singletons.LevelInformationSingleton.TileSize), (int)(posToGrid.Y / Singletons.LevelInformationSingleton.TileSize)];
 
-                ownerGridPos = new Vector2(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize,
-                                            ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize);
-             //   if (targetCell == null)
-             //       targetCell = CheckForTarget();
+                    ownerGridPos = new Vector2(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize,
+                                                ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize);
+                    //   if (targetCell == null)
+                    //       targetCell = CheckForTarget();
 
-                if (!targetReached)
-                    CheckOpenClosedList();
+                    if (!targetReached)
+                        CheckOpenClosedList();
 
-                else if (!pathFound)
-                    GetPath();
+                    else if (!pathFound)
+                        GetPath();
 
-                else if (pathFound)
-                    FollowPath();
+                    else if (pathFound)
+                        FollowPath();
+                }
             }
             //if (targetCell == null)
             //    targetCell = CheckForTarget();
@@ -96,7 +113,8 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         {
             if (openList.Count == 0 && currentCell == null)
             {
-                currentCell = AstarGrid[(int)(ownerUnit.GameObject.Transform.Position.Y / 128), (int)(ownerUnit.GameObject.Transform.Position.X / 128)];
+                currentCell = AstarGrid[(int)(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize),
+                                        (int)(ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize)];
                 SetupNeighbourCells();
             }
 
@@ -106,7 +124,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             {
                 currentCell = openList.First();
 
-                if (currentCell == targetCell)
+                if (currentCell.GridPos == targetCell.GridPos)
                     targetReached = true;
 
                 closedList.Add(currentCell);
@@ -141,7 +159,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 cell.FGH = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
                 cell.ECellType = ECellType.Open;
             }
-            else if (openList.Contains(cell) && cell.Parent != null)
+            else if (openList.Contains(cell) && cell.Parent != null)//(cell.ECellType == ECellType.Open && openList.Contains(cell))//(openList.Contains(cell) && cell.Parent != null)
             {
                 Cell storeParent = cell.Parent;
                 cell.Parent = parent;
@@ -162,9 +180,24 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 pathList.Remove(currentCell);
                 currentCell.ECellType = ECellType.Default;
 
+                Singletons.AstarGlobalSingleton
+                          .GlobalAstarGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y]
+                          .ECellType = ECellType.Path;
+
+                pathList.Add(targetCell);
+
                 pathFound = true;
 
                 pathList.OrderBy(cell => Vector2.Distance(ownerGridPos, cell.GridPos));
+
+                pathList.RemoveAt(pathList.Count - 1);
+
+                foreach (Cell cell in closedList)
+                {
+                    Testing[(int)cell.GridPos.X, (int)cell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
+                }
+
+                currentCell = null;
             }
             else
             {
@@ -175,19 +208,24 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 pathList.Add(currentCell);
                 closedList.Remove(currentCell);
 
-                if (pathList.Count == 0)
+                if (pathList.Count == 1)
                     currentCell.ECellType = ECellType.Path;
 
                 currentCell = currentCell.Parent;
                 currentCell.ECellType = ECellType.Path;
+
+                //Console.WriteLine($"CurrentCell: X: {currentCell.GridPos.X}, Y: {currentCell.GridPos.Y}");
+                //Console.WriteLine($"Owner Pos: X: {ownerGridPos.X}, Y: {ownerGridPos.Y}");
             }
         }
 
         private void FollowPath()
         {
             if (currentCell == null)
-                if (pathList.Count != 0)
-                    currentCell = pathList.First();
+            {
+                ownerUnit.IsMoving = true;
+                currentCell = pathList.First();
+            }
 
             if (ownerGridPos.ApproximatelyEqual(currentCell.GridPos, 5f))
             {
@@ -200,6 +238,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 {
                     ownerUnit.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize,
                                                                           currentCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize);
+                    
                     ResetAstar();
                 }
 
@@ -219,6 +258,8 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
             targetReached = false;
             pathFound = false;
+
+            ownerUnit.IsMoving = false;
         }
 
         private uint CalculateG(Cell cell)

@@ -11,7 +11,7 @@ namespace KnightsVsVikings
 {
     public class CMove : Component
     {
-        private float speed = 100;
+        private float speed = 100f;
         private Vector2 velocity = new Vector2(0,0);
         private CAnimator animator;
         private CSpriteRenderer spriteRenderer;
@@ -53,12 +53,12 @@ namespace KnightsVsVikings
 
         private void Move()
         {
-            GameObject.Transform.Position += speed * velocity * Time.deltaTime;
+            GameObject.Transform.Position += speed * GameObject.Transform.Velocity * Time.deltaTime;
         }
 
         private void AnimationFacing()
         {
-            Vector2 tmp = Vector2.Normalize(velocity);
+            Vector2 tmp = Vector2.Normalize(GameObject.Transform.Velocity);
             float y = tmp.Y;
             float x = tmp.X;
 

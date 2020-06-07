@@ -12,6 +12,8 @@ namespace KnightsVsVikings
         public override void Begin()
         {
             base.Begin();
+
+            Context.Animator.PlayAnimation("Run");
         }
 
         public override void End()
@@ -22,6 +24,9 @@ namespace KnightsVsVikings
         public override void Reason()
         {
             base.Reason();
+
+            if (!Context.IsMoving)
+                Machine.ChangeState<UnitIdleState>();
         }
         public override void Act(float deltaTime)
         {

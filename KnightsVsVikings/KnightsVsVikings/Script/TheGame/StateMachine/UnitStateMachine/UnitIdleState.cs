@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,8 @@ namespace KnightsVsVikings
         public override void Begin()
         {
             base.Begin();
+
+            Context.Animator.PlayAnimation("Idle");
         }
 
         public override void End()
@@ -26,6 +29,9 @@ namespace KnightsVsVikings
         public override void Reason()
         {
             base.Reason();
+
+            if (Context.IsMoving)
+                Machine.ChangeState<UnitMoveToPositionState>();
         }
 
         public override void Act(float deltaTime)
