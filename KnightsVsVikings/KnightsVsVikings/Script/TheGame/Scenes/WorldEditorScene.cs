@@ -12,6 +12,7 @@ namespace KnightsVsVikings
         PlaceTileWithMouse placeTile;
         TileGrid tileGrid;
         SelectedObject selectedObject;
+        UnitCommands unitCommands;
         public override void Initialize()
         {
             base.Initialize();
@@ -19,6 +20,8 @@ namespace KnightsVsVikings
             selectedObject = new SelectedObject(this);
             selectedObject.MakeSelectedZoneUI();
             TestZone();
+            unitCommands = new UnitCommands(selectedObject,tileGrid,this);
+            unitCommands.Start();
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -36,6 +39,7 @@ namespace KnightsVsVikings
             base.Update();
             placeTile.Update();
             selectedObject.Update();
+            unitCommands.Update();
 
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.O))
             {

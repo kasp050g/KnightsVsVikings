@@ -41,11 +41,11 @@ namespace KnightsVsVikings
 
         public void Update()
         {
-            if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton))
+            if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
             {
                 ClickDown();                
             }
-            if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
+            if (Input.GetMouseButton(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
             {
                 ClickGet();
             }
