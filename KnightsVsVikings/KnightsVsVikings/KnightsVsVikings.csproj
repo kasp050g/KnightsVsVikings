@@ -81,6 +81,7 @@
     <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
     <Compile Include="Script\TheGame\Components\CCanBeSelected.cs" />
+    <Compile Include="Script\TheGame\Components\CShadow.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />

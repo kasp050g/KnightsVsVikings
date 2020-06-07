@@ -57,6 +57,7 @@ namespace KnightsVsVikings
                 case EBuildingType.GatheringStation:
                     break;
                 case EBuildingType.Field:
+                    sr.OffSet = new Vector2(0 * 128 / 2, 0 * 128 / 2);
                     sr.SetSprite(SpriteContainer.Instance.TileSprite.Wheatfield);
                     break;
                 default:

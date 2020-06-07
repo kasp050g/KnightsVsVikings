@@ -18,10 +18,15 @@ namespace KnightsVsVikings
         private Rectangle mouseRectangle;
         private List<GameObject> unitsSelected = new List<GameObject>();
         public List<GameObject> UnitsSelected { get => unitsSelected; private set => unitsSelected = value; }
-
+        PlaceTileWithMouse placeTileWithMouse;
         public SelectedObject(Scene myScene)
         {
             this.myScene = myScene;
+        }
+        public SelectedObject(Scene myScene, PlaceTileWithMouse placeTileWithMouse)
+        {
+            this.myScene = myScene;
+            this.placeTileWithMouse = placeTileWithMouse;
         }
 
         public void MakeSelectedZoneUI()
@@ -41,17 +46,28 @@ namespace KnightsVsVikings
 
         public void Update()
         {
-            if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
+            if (placeTileWithMouse != null && placeTileWithMouse.GameObjectTileMouse.IsActive == false)
             {
-                ClickDown();                
+                if (Input.GetMouseButtonDown(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
+                {
+                    ClickDown();
+                }
+                else if (Input.GetMouseButton(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
+                {
+                    ClickGet();
+                }
+                else if (Input.GetMouseButtonUp(EMyMouseButtons.LeftButton))
+                {
+                    ClickUp();
+                }
             }
-            if (Input.GetMouseButton(EMyMouseButtons.LeftButton) && myScene.IsMouseOverUI == false)
+            else
             {
-                ClickGet();
-            }
-            if (Input.GetMouseButtonUp(EMyMouseButtons.LeftButton))
-            {
-                ClickUp();                
+                for (int i = 0; i < UnitsSelected.Count; i++)
+                {
+                    UnitsSelected[i].GetComponent<CCanBeSelected>().IsSelected = false;
+                }
+                UnitsSelected.Clear();
             }
         }
 
@@ -59,6 +75,8 @@ namespace KnightsVsVikings
         {
             selectedGameObject.SetIsActive(true);
             startSelectedPosition = MouseWorldPosition();
+            endSelectedPosition = MouseWorldPosition();
+            MakeSelectedZone();
         }
 
         private void ClickGet()
