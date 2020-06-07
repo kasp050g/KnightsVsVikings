@@ -1,4 +1,5 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -101,6 +102,8 @@ namespace KnightsVsVikings
 
                     //tileGrid.unitTileGrid[Xpos, Ypos] = selectedObject.UnitsSelected[i]; 
                     //selectedObject.UnitsSelected[i].Transform.Position = gameObject.Transform.Position;    
+                    selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+
                     selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
 
                     GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;

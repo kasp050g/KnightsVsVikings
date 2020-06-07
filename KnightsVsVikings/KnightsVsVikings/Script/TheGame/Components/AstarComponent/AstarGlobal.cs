@@ -30,12 +30,12 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 for (int y = 0; y < array.GetLength(1); y++)
                     switch(array[x, y].GetComponent<CTile>().IsBlock)
                     {
-                        case false:
-                            result[x, y] = new Cell(Enum.ECellType.Default);
-                            break;
-
                         case true:
                             result[x, y] = new Cell(Enum.ECellType.Invalid);
+                            break;
+
+                        case false:
+                            result[x, y] = new Cell(Enum.ECellType.Default);
                             break;
                     }
 

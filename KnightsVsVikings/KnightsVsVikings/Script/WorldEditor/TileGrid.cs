@@ -55,10 +55,7 @@ namespace KnightsVsVikings
 
             foreach (GameObject unit in unitTileGrid)
                 if (unit != null)
-                {
                     unit.GetComponent<CAstar>().InitiateAstar();
-                    //unit.GetComponent<CAstar>().GetMeBoi(groundTileGrid);
-                }
         }
 
         public void SaveToSQLite()
