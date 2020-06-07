@@ -59,6 +59,8 @@ namespace KnightsVsVikings
             animator = GameObject.GetComponent<CAnimator>();
             move = GameObject.GetComponent<CMove>();
             stats = GameObject.GetComponent<CStats>();
+            stats.Team = team;
+            stats.Faction = faction;
             MadeUnit();
         }
         public override void Start()
@@ -101,23 +103,7 @@ namespace KnightsVsVikings
         {
 
         }
-        public void UnitTakeDamage(int damage)
-        {
-            damage -= stats.Stats.Armor;
-            if (damage <= 0)
-            {
-                stats.Stats.Health -= 1;
-            }
-            else
-            {
-                stats.Stats.Health -= damage;
-            }
 
-            if (stats.Stats.Health <= 0)
-            {
-                UnitDie();
-            }
-        }
 
         protected void UnitDie()
         {

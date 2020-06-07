@@ -17,6 +17,7 @@ namespace KnightsVsVikings
             base.Initialize();
             MouseSettings.Instance.SetMouseVisible(true);
             selectedObject = new SelectedObject(this);
+            selectedObject.MakeSelectedZoneUI();
             TestZone();
         }
 
