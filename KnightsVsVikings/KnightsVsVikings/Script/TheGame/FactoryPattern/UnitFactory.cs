@@ -34,18 +34,20 @@ namespace KnightsVsVikings
             CUnit unit = new CUnit(team, unitType, faction);
             CMove move = new CMove();
             CStats stats = new CStats();
-            CAstar astar = new CAstar(unit);
+            //CAstar astar = new CAstar(unit);
             CCanBeSelected canBeSelected = new CCanBeSelected();
             CShadow shadow = new CShadow();
+            C_FollowPath _FollowPath = new C_FollowPath(unit);
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
             go.AddComponent<CStats>(stats);
-            go.AddComponent<CAstar>(astar);
+            //go.AddComponent<CAstar>(astar);
             go.AddComponent<CShadow>(shadow);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
             go.AddComponent<CCanBeSelected>(canBeSelected);
+            go.AddComponent<C_FollowPath>(_FollowPath);
 
             switch (team)
             {

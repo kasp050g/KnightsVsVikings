@@ -14,6 +14,10 @@ namespace KnightsVsVikings
     {
         private Vector2 tileSize = new Vector2((int)128/2, (int)128/2);
 
+        public int H { get; set; }
+        public int G { get; set; }
+        public int F { get; set; }
+        public CTile LastTile { get; set; }
         public Vector2 TileSize { get => tileSize; set => tileSize = value; }
         public ETileType TileType { get; set; }
         public EResourcesType ResourcesType { get; set; }

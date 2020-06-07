@@ -51,11 +51,11 @@ namespace KnightsVsVikings
             SQliteSaveAndLoad.LoadSQLite(this, mapID,myScene);
             UpdateGrid();
 
-            Singletons.AstarGlobalSingleton.InitializeGrids(groundTileGrid);
+            //Singletons.AstarGlobalSingleton.InitializeGrids(groundTileGrid);
 
-            foreach (GameObject unit in unitTileGrid)
-                if (unit != null)
-                    unit.GetComponent<CAstar>().InitiateAstar();
+            //foreach (GameObject unit in unitTileGrid)
+            //    if (unit != null)
+            //        unit.GetComponent<CAstar>().InitiateAstar();
         }
 
         public void SaveToSQLite()
@@ -377,6 +377,7 @@ namespace KnightsVsVikings
                 if (unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CUnit>() != null)
                 {
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
+                    unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<C_FollowPath>().currentTile = groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>();
                 }
             }
         }

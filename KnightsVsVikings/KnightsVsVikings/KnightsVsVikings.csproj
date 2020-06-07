@@ -92,6 +92,8 @@
     <Compile Include="Script\TheGame\FactoryPattern\TileFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
     <Compile Include="Script\TheGame\SelectedObject.cs" />
+    <Compile Include="Script\TheGame\Test\C_FollowPath.cs" />
+    <Compile Include="Script\TheGame\Test\_Astar_Test.cs" />
     <Compile Include="Script\TheGame\UnitCommands.cs" />
     <Compile Include="Script\TheGame\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Unit\Stats.cs" />

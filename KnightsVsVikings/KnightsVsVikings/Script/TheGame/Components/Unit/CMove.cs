@@ -53,12 +53,12 @@ namespace KnightsVsVikings
 
         private void Move()
         {
-            GameObject.Transform.Position += speed * GameObject.Transform.Velocity * Time.deltaTime;
+            GameObject.Transform.Position += speed * velocity * Time.deltaTime;
         }
 
         private void AnimationFacing()
         {
-            Vector2 tmp = Vector2.Normalize(GameObject.Transform.Velocity);
+            Vector2 tmp = Vector2.Normalize(velocity);
             float y = tmp.Y;
             float x = tmp.X;
 

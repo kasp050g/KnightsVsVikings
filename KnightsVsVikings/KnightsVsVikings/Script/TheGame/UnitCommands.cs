@@ -102,11 +102,11 @@ namespace KnightsVsVikings
 
                     //tileGrid.unitTileGrid[Xpos, Ypos] = selectedObject.UnitsSelected[i]; 
                     //selectedObject.UnitsSelected[i].Transform.Position = gameObject.Transform.Position;    
-                    selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+                    //selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
 
-                    selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
+                    selectedObject.UnitsSelected[i].GetComponent<C_FollowPath>().GetAstar(gameObject.GetComponent<CTile>());
 
-                    GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;
+                    //GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;
                 }
             }
         }

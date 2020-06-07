@@ -21,12 +21,9 @@ namespace KnightsVsVikings
             base.Initialize();
             MouseSettings.Instance.SetMouseVisible(true);
 
-            TestZone();
+            MadeStuffInStart();
 
-            selectedObject = new SelectedObject(this,placeTile);
-            selectedObject.MakeSelectedZoneUI();
-            unitCommands = new UnitCommands(selectedObject, tileGrid, this);
-            unitCommands.Start();
+
         }
 
         public override void OnSwitchAwayFromThisScene()
@@ -57,7 +54,7 @@ namespace KnightsVsVikings
             }
         }
 
-        private void TestZone()
+        private void MadeStuffInStart()
         {
             tileGrid = new TileGrid(this);
             tileGrid.MakeTileGrid();
@@ -70,6 +67,24 @@ namespace KnightsVsVikings
 
             WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile,tileGrid);
             worldEditorUI.MadeUI();
+
+            selectedObject = new SelectedObject(this, placeTile);
+            selectedObject.MakeSelectedZoneUI();
+
+            unitCommands = new UnitCommands(selectedObject, tileGrid, this);
+            unitCommands.Start();
+
+            List<CTile> tmp = new List<CTile>();
+
+            for (int x = 0; x < tileGrid.groundTileGrid.GetLength(0); x++)
+            {
+                for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
+                {
+                    tmp.Add(tileGrid.groundTileGrid[x, y].GetComponent<CTile>());
+                }
+            }
+
+            _Astar_Test.Instance.SetTileGrid(tmp);
         }
     }
 }

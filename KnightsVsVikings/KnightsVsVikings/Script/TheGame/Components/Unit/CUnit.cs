@@ -85,8 +85,6 @@ namespace KnightsVsVikings
         {
             base.Update();
             StateMachine.Update(Time.deltaTime);
-            NewAnimation();
-            Test();
             //Move();
         }
         
@@ -114,65 +112,9 @@ namespace KnightsVsVikings
 
         }
 
-        public void NewAnimation()
-        {
-            if (Input.GetKeyDown(Keys.D1) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation(EUnitAnimationType.Idle.ToString());
-            }
-            if (Input.GetKeyDown(Keys.D2) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.Run}");
-            }
-            if (Input.GetKeyDown(Keys.D3) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.BowAttack}");
-            }
-            if (Input.GetKeyDown(Keys.D4) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.SpearAttack}");
-            }
-            if (Input.GetKeyDown(Keys.D5) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.SwordAttack}");
-            }
-            if (Input.GetKeyDown(Keys.D6) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.Die}");
-            }
-            if (Input.GetKeyDown(Keys.D7) && !animator.AnimationLock)
-            {
-                animator.PlayAnimation($"{EUnitAnimationType.Cast}");
-            }
-            if (Input.GetKeyDown(Keys.D8))
-            {
-                animator.Reset();
-            }
-        }
 
-        public void Test()
-        {
-            Vector2 newVel = new Vector2(0, 0);
 
-            if (Input.GetKey(Keys.Up))
-            {
-                newVel += new Vector2(0, -1);
-            }
-            if (Input.GetKey(Keys.Down))
-            {
-                newVel += new Vector2(0, 1);
-            }
-            if (Input.GetKey(Keys.Left))
-            {
-                newVel += new Vector2(-1, 0);
-            }
-            if (Input.GetKey(Keys.Right))
-            {
-                newVel += new Vector2(1, 0);
-            }
 
-            move.Velocity = newVel;
-        }
 
         public void MoveToLocation(Vector2 location)
         {
