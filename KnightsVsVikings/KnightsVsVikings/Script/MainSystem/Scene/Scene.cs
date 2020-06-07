@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsVsVikings;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -25,6 +26,7 @@ namespace MainSystemFramework
         protected List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
         public List<CCollider> Colliders { get; set; } = new List<CCollider>();
+        public List<CCanBeSelected> SelectedEnabled { get; set; } = new List<CCanBeSelected>();
         public List<GUI> UIColliders { get; set; } = new List<GUI>();
         public string Name { get { return name; } set { name = value; } }
         public bool UpdateEnabled { get { return updateEnabled; } set { updateEnabled = value; } }
@@ -232,6 +234,11 @@ namespace MainSystemFramework
                     if (go.GetComponent<CCollider>() != null)
                     {
                         Colliders.Add(go.GetComponent<CCollider>());
+                    }      
+                    
+                    if (go.GetComponent<CCanBeSelected>() != null)
+                    {
+                        SelectedEnabled.Add(go.GetComponent<CCanBeSelected>());
                     }
 
                     if (go.GetComponent<GUI>() != null)

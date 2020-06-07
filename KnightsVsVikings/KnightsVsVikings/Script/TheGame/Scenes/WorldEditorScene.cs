@@ -11,11 +11,13 @@ namespace KnightsVsVikings
     {
         PlaceTileWithMouse placeTile;
         TileGrid tileGrid;
+        SelectedObject selectedObject;
         public override void Initialize()
         {
             base.Initialize();
             MouseSettings.Instance.SetMouseVisible(true);
-            
+            selectedObject = new SelectedObject(this);
+            selectedObject.MakeSelectedZoneUI();
             TestZone();
         }
 
@@ -33,6 +35,7 @@ namespace KnightsVsVikings
         {
             base.Update();
             placeTile.Update();
+            selectedObject.Update();
 
             if (Input.GetKeyDown(Microsoft.Xna.Framework.Input.Keys.O))
             {

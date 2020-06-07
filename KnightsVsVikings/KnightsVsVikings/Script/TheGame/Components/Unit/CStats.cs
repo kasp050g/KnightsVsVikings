@@ -55,5 +55,28 @@ namespace KnightsVsVikings
         {
 
         }
+
+        public void UnitTakeDamage(int damage)
+        {
+            damage -= Stats.Armor;
+            if (damage <= 0)
+            {
+                Stats.Health -= 1;
+            }
+            else
+            {
+                Stats.Health -= damage;
+            }
+
+            if (Stats.Health <= 0)
+            {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+
+        }
     }
 }
