@@ -24,20 +24,20 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         private CUnit ownerUnit = null;
         private Vector2 ownerGridPos = new Vector2();
 
-        private OldCell currentCell = null,
+        private Cell currentCell = null,
                      targetCell = null,
                      pathCell = null;
 
         private bool targetReached = false,
                      pathFound = false;
 
-        private List<OldCell> openList = new List<OldCell>(),
-                           closedList = new List<OldCell>(),
-                           pathList = new List<OldCell>(),
-                           storedPathList = new List<OldCell>();
+        private List<Cell> openList = new List<Cell>(),
+                           closedList = new List<Cell>(),
+                           pathList = new List<Cell>(),
+                           storedPathList = new List<Cell>();
 
-        private OldCell[,] astarGrid = null;// = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
-        private OldCell[,] globalAstarGrid = null;
+        private Cell[,] astarGrid = null;// = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
+        private Cell[,] globalAstarGrid = null;
 
         public OldCAstar(CUnit ownerUnit)
         {
@@ -46,7 +46,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
         public void InitiateAstar()
         {
-            astarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
+            astarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarMatrix();
             globalAstarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid;
         }
 
@@ -144,7 +144,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             try { ModifyNeighbourCells(astarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y - 1], currentCell); } catch { }
         }
 
-        private void ModifyNeighbourCells(OldCell cell, OldCell parent)
+        private void ModifyNeighbourCells(Cell cell, Cell parent)
         {
             if(cell.ECellType == ECellType.Default && globalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType == ECellType.Default)
             {
@@ -152,15 +152,15 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                     openList.Add(cell);
 
                 cell.Parent = parent;
-                cell.FGH = new OldFGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
+                cell.FGH = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
                 cell.ECellType = ECellType.Open;
             }
             else if (openList.Contains(cell) && cell.Parent != null)//(cell.ECellType == ECellType.Open && openList.Contains(cell))//(openList.Contains(cell) && cell.Parent != null)
             {
-                OldCell storeParent = cell.Parent;
+                Cell storeParent = cell.Parent;
                 cell.Parent = parent;
 
-                OldFGH comparePrice = new OldFGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
+                FGH comparePrice = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
 
                 if (comparePrice.F < cell.FGH.F)
                     cell.FGH = comparePrice;
@@ -183,8 +183,6 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 //pathList.Sort();
 
                 storedPathList.AddRange(pathList);
-
-                astarGrid.Print2DArray();
 
                 currentCell = null;
             }
@@ -224,7 +222,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             else if (ownerGridPos.ApproximatelyEqual(pathCell.GridPos, 0.1f))
             {
                 pathList.Remove(pathCell);
-                pathCell.FGH = new OldFGH();
+                pathCell.FGH = new FGH();
                 pathCell.ECellType = ECellType.Default;
                 ownerUnit.GameObject.Transform.Velocity = Vector2.Zero;
 
@@ -258,7 +256,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             closedList.Clear();
             pathList.Clear();
 
-            astarGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarArray();
+            astarGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
 
             ownerUnit.Target = null;
             ownerUnit.IsMoving = false;
@@ -266,17 +264,14 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
             if (storedPathList.Count != 0)
             {
-                foreach (OldCell cell in storedPathList)
+                foreach (Cell cell in storedPathList)
                     globalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType = ECellType.Default;
 
                 storedPathList.Clear();
             }
-
-            Console.WriteLine("Break");
-            Singletons.AstarGlobalSingleton.GlobalAstarGrid.Print2DArray();
         }
 
-        private uint CalculateG(OldCell cell)
+        private uint CalculateG(Cell cell)
         {
             if (cell.Parent != null)
                 return cell.Parent.FGH.G + DEFAULT_COST;

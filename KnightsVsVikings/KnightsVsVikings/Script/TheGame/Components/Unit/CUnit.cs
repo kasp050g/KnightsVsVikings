@@ -202,32 +202,32 @@ namespace KnightsVsVikings
                 SetVelocityY(GameObject.Transform.Position.Y,
                             location.Y);
 
-                Vector2.Normalize(GameObject.Transform.Velocity);
+                Vector2.Normalize(GameObject.GetComponent<CMove>().Velocity);
             }
         }
 
         private void SetVelocityX(float currentPos, float targetPos)
         {
             if (currentPos.ApproximatelyEqual(targetPos, 3f))
-                GameObject.Transform.Velocity = new Vector2(0, GameObject.Transform.Velocity.Y);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(0, GameObject.GetComponent<CMove>().Velocity.Y);
 
             else if (targetPos < currentPos)
-                GameObject.Transform.Velocity = new Vector2(-1, GameObject.Transform.Velocity.Y);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(-1, GameObject.GetComponent<CMove>().Velocity.Y);
 
             else if (targetPos > currentPos)
-                GameObject.Transform.Velocity = new Vector2(1, GameObject.Transform.Velocity.Y);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(1, GameObject.GetComponent<CMove>().Velocity.Y);
         }
 
         private void SetVelocityY(float currentPos, float targetPos)
         {
             if (currentPos.ApproximatelyEqual(targetPos, 3f))
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 0);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(GameObject.GetComponent<CMove>().Velocity.X, 0);
 
             else if (targetPos < currentPos)
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, -1);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(GameObject.GetComponent<CMove>().Velocity.X, -1);
 
             else if (targetPos > currentPos)
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 1);
+                GameObject.GetComponent<CMove>().Velocity = new Vector2(GameObject.GetComponent<CMove>().Velocity.X, 1);
         }
         #endregion
     }

@@ -72,7 +72,7 @@ namespace KnightsVsVikings
                 else
                 {
                     spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    animator.FacingDirection = EFacingDirection.Rigth;
+                    animator.FacingDirection = EFacingDirection.Right;
                 }
             }
             else if (0 < Math.Abs(y))
