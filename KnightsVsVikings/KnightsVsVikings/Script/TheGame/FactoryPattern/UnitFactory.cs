@@ -37,7 +37,7 @@ namespace KnightsVsVikings
             //CAstar astar = new CAstar(unit);
             CCanBeSelected canBeSelected = new CCanBeSelected();
             CShadow shadow = new CShadow();
-            C_FollowPath _FollowPath = new C_FollowPath(unit);
+            CAstar _FollowPath = new CAstar(unit);
 
             go.AddComponent<CUnit>(unit);
             go.AddComponent<CMove>(move);
@@ -47,7 +47,7 @@ namespace KnightsVsVikings
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
             go.AddComponent<CCanBeSelected>(canBeSelected);
-            go.AddComponent<C_FollowPath>(_FollowPath);
+            go.AddComponent<CAstar>(_FollowPath);
 
             switch (team)
             {

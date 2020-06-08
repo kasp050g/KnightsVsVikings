@@ -15,8 +15,8 @@ namespace KnightsVsVikings
     public class TileGrid
     {
         private SQLiteSaveAndLoadWorldEditor SQliteSaveAndLoad = new SQLiteSaveAndLoadWorldEditor();
-        private int gridSizeX = 50;
-        private int gridSizeY = 50;
+        private int gridSizeX = 25;
+        private int gridSizeY = 25;
         private Scene myScene;
 
         public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
@@ -377,7 +377,7 @@ namespace KnightsVsVikings
                 if (unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CUnit>() != null)
                 {
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
-                    unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<C_FollowPath>().currentTile = groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>();
+                    unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CAstar>().currentTile = groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>();
                 }
             }
         }

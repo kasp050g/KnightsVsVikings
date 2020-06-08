@@ -1,292 +1,224 @@
-﻿using KnightsVsVikings.ExtensionMethods;
-using KnightsVsVikings.Script.TheGame.Enum;
-using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
-using MainSystemFramework;
+﻿using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
-using System.IO;
 using System.Linq;
-using System.Net.Sockets;
-using System.Runtime.ExceptionServices;
-using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
+namespace KnightsVsVikings
 {
     public class CAstar : Component
     {
-        private const byte DEFAULT_COST = 10;
+        Stack<CTile> tiles = new Stack<CTile>();
+        public CTile currentTile { get; set; }
+        CTile nextTile;
+        CUnit unit;
+        CMove cMove;
+        EFacingDirection direction;
+        bool directionCheck = false;
+        MasterAstar Astar_Test;
+        List<CTile> tileList;
 
-        private CUnit ownerUnit = null;
-        private Vector2 ownerGridPos = new Vector2();
+        bool runAstar = false;
 
-        private Cell currentCell = null,
-                     targetCell = null,
-                     pathCell = null;
-
-        private bool targetReached = false,
-                     pathFound = false;
-
-        private List<Cell> openList = new List<Cell>(),
-                           closedList = new List<Cell>(),
-                           pathList = new List<Cell>(),
-                           storedPathList = new List<Cell>();
-
-        private Cell[,] astarGrid = null;// = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
-        private Cell[,] globalAstarGrid = null;
-
-        public CAstar(CUnit ownerUnit)
+        public CAstar(CUnit unit)
         {
-            this.ownerUnit = ownerUnit;
+            this.unit = unit;
         }
 
-        public void InitiateAstar()
+        public override void Awake()
         {
-            astarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid.ToAstarArray();
-            globalAstarGrid = Singletons.AstarGlobalSingleton.GlobalAstarGrid;
+            base.Awake();
+            cMove = GameObject.GetComponent<CMove>();
+            Astar_Test = new MasterAstar();
+        }
+
+        public override void Destroy()
+        {
+            base.Destroy();
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+        }
+
+        public override void Start()
+        {
+            base.Start();
         }
 
         public override void Update()
         {
-            if (astarGrid != null)
+            base.Update();
+            if (runAstar)
             {
-                if (ownerUnit.Target != null)
+                MoveUnit();
+            }
+        }
+
+        public void GetAstar(CTile goal,TileGrid tileGrid)
+        {
+            tiles.Clear();
+
+            tileList = new List<CTile>();
+
+            for (int x = 0; x < tileGrid.groundTileGrid.GetLength(0); x++)
+            {
+                for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
                 {
-                    Vector2 posToGrid = ownerUnit.Target.Transform.Position;
-
-                    targetCell = astarGrid[(int)(posToGrid.Y / Singletons.LevelInformationSingleton.TileSize), (int)(posToGrid.X / Singletons.LevelInformationSingleton.TileSize)];
-
-                    ownerGridPos = new Vector2(ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize,
-                                                ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize);
-                    //   if (targetCell == null)
-                    //       targetCell = CheckForTarget();
-
-                    if (!targetReached)
-                        CheckOpenClosedList();
-
-                    else if (!pathFound)
-                        GetPath();
-
-                    else if (pathFound)
-                        FollowPath();
+                    tileList.Add(tileGrid.groundTileGrid[x, y].GetComponent<CTile>());
                 }
             }
-            //if (targetCell == null)
-            //    targetCell = CheckForTarget();
-            //
-            //if (!targetReached && targetCell != null)
-            //    CheckOpenClosedList();
-            //
-            //if (targetReached && !pathFound && targetCell != null)
-            //    GetPath();
-            //
-            //if (pathFound && targetCell != null)
-            //    FollowPath();
+
+            List<CTile> tmp = new List<CTile>(tileList);
+            tiles = Astar_Test.GetAstarWay((GameObject.Transform.Position == currentTile.GameObject.Transform.Position ? currentTile  : nextTile), goal, tmp);
+            
+            directionCheck = true;
+            runAstar = true;
         }
 
-       //private Cell CheckForTarget()
-       //{
-       //    if (openList.Count > 0)
-       //        openList.Clear();
-       //
-       //    if (closedList.Count > 0)
-       //        closedList.Clear();
-       //
-       //    try
-       //    {
-       //        return Singletons.GameWorldSingleton.Components.Where(unit => unit.)
-       //    }
-       //
-       //    catch
-       //    { return null; }
-       //}
-
-        private void CheckOpenClosedList()
+        public void MoveUnit()
         {
-            if (openList.Count == 0 && currentCell == null)
+            if (directionCheck)
             {
-                currentCell = astarGrid[(int)(ownerUnit.GameObject.Transform.Position.Y / Singletons.LevelInformationSingleton.TileSize),
-                                        (int)(ownerUnit.GameObject.Transform.Position.X / Singletons.LevelInformationSingleton.TileSize)];
-                SetupNeighbourCells();
-            }
+                if (nextTile == null)
+                {
+                    nextTile = tiles.Pop();
+                }
+                nextTile.IsUnitOccupied = true;
 
-            openList.Sort();
+                float xPos = Math.Abs(GameObject.Transform.Position.X - nextTile.GameObject.Transform.Position.X);
+                float yPos = Math.Abs(GameObject.Transform.Position.Y - nextTile.GameObject.Transform.Position.Y);
 
-            if (openList.Count != 0)
-            {
-                currentCell = openList.First();
-
-                if (currentCell.GridPos == targetCell.GridPos)
-                    targetReached = true;
-
-                closedList.Add(currentCell);
-                currentCell.ECellType = ECellType.Closed;
-                SetupNeighbourCells();
-                openList.Remove(currentCell);
-            }
-            else
-            {
-                targetCell.BlackListed = true;
-                ResetAstar();
-            }
-        }
-
-        private void SetupNeighbourCells()
-        {
-            try { ModifyNeighbourCells(astarGrid[(int)currentCell.GridPos.X + 1, (int)currentCell.GridPos.Y], currentCell); } catch { }
-            try { ModifyNeighbourCells(astarGrid[(int)currentCell.GridPos.X - 1, (int)currentCell.GridPos.Y], currentCell); } catch { }
-
-            try { ModifyNeighbourCells(astarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y + 1], currentCell); } catch { }
-            try { ModifyNeighbourCells(astarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y - 1], currentCell); } catch { }
-        }
-
-        private void ModifyNeighbourCells(Cell cell, Cell parent)
-        {
-            if(cell.ECellType == ECellType.Default && globalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType == ECellType.Default)
-            {
-                if (!closedList.Contains(cell) && !openList.Contains(cell))
-                    openList.Add(cell);
-
-                cell.Parent = parent;
-                cell.FGH = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
-                cell.ECellType = ECellType.Open;
-            }
-            else if (openList.Contains(cell) && cell.Parent != null)//(cell.ECellType == ECellType.Open && openList.Contains(cell))//(openList.Contains(cell) && cell.Parent != null)
-            {
-                Cell storeParent = cell.Parent;
-                cell.Parent = parent;
-
-                FGH comparePrice = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
-
-                if (comparePrice.F < cell.FGH.F)
-                    cell.FGH = comparePrice;
+                if (GameObject.Transform.Position.X > nextTile.GameObject.Transform.Position.X && xPos > yPos)
+                {
+                    direction = EFacingDirection.Left;
+                    directionCheck = false;
+                }
+                else if (GameObject.Transform.Position.X < nextTile.GameObject.Transform.Position.X && xPos > yPos)
+                {
+                    direction = EFacingDirection.Rigth;
+                    directionCheck = false;
+                }
+                else if (GameObject.Transform.Position.Y < nextTile.GameObject.Transform.Position.Y && xPos < yPos)
+                {
+                    direction = EFacingDirection.Down;
+                    directionCheck = false;
+                }
+                else if (GameObject.Transform.Position.Y > nextTile.GameObject.Transform.Position.Y && xPos < yPos)
+                {
+                    direction = EFacingDirection.Up;
+                    directionCheck = false;
+                }
                 else
-                    cell.Parent = storeParent;
+                {
+                    Console.WriteLine("Error in C_FollowPath");
+                }
             }
+
+            switch (direction)
+            {
+                case EFacingDirection.Up:
+                    if (GameObject.Transform.Position.Y < nextTile.GameObject.Transform.Position.Y)
+                    {
+                        SetNowTile();
+                    }
+                    else
+                    {
+                        cMove.Velocity = new Vector2(0, -1);
+                    }
+                    break;
+                case EFacingDirection.Down:
+                    if (GameObject.Transform.Position.Y > nextTile.GameObject.Transform.Position.Y)
+                    {
+                        SetNowTile();
+                    }
+                    else
+                    {
+                        cMove.Velocity = new Vector2(0, 1);
+                    }
+                    break;
+                case EFacingDirection.Left:
+                    if (GameObject.Transform.Position.X < nextTile.GameObject.Transform.Position.X)
+                    {
+                        SetNowTile();
+                    }
+                    else
+                    {
+                        cMove.Velocity = new Vector2(-1, 0);
+                    }
+                    break;
+                case EFacingDirection.Rigth:
+                    if (GameObject.Transform.Position.X > nextTile.GameObject.Transform.Position.X)
+                    {
+                        SetNowTile();
+                    }
+                    else
+                    {
+                        cMove.Velocity = new Vector2(1, 0);
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
 
-        private void GetPath()
+        private void SetNowTile()
         {
-            if (currentCell.GridPos == ownerGridPos)
-            {
-                pathList.Remove(currentCell);
-                currentCell.ECellType = ECellType.Default;
+            GameObject.Transform.Position = nextTile.GameObject.Transform.Position;
+            currentTile.IsUnitOccupied = false;
+            directionCheck = true;
+            currentTile = nextTile;
+            
+            if (tiles.Count > 0)
+            {                
+                nextTile = tiles.Pop();
 
-                globalAstarGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].ECellType = ECellType.Path;
+                if (nextTile.IsUnitOccupied == true && tiles.Count > 0)
+                {
+                    CTile tmp = nextTile;
+                    int number = tiles.Count;
+                    for (int i = 0; i < number; i++)
+                    {
+                        tmp = tiles.Pop();
+                    }
+                    tiles.Clear();
+                    List<CTile> tmpL = new List<CTile>(tileList);
+                    tiles = Astar_Test.GetAstarWay(currentTile, tmp, tmpL);
 
-                pathFound = true;
-
-                //pathList.Sort();
-
-                storedPathList.AddRange(pathList);
-
-                astarGrid.Print2DArray();
-
-                currentCell = null;
+                    if(tiles.Count > 0)
+                    {
+                        nextTile = tiles.Pop();
+                        directionCheck = true;
+                        runAstar = true;
+                    }
+                    else
+                    {
+                        EndAstar();
+                    }
+                }
+                else if(nextTile.IsUnitOccupied == true)
+                {
+                    EndAstar();
+                }                
             }
             else
             {
-                globalAstarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].ECellType = ECellType.Path;
-
-                pathList.Add(currentCell);
-                closedList.Remove(currentCell);
-
-                if (pathList.Count == 1)
-                    currentCell.ECellType = ECellType.Path;
-
-                currentCell = currentCell.Parent;
-                currentCell.ECellType = ECellType.Path;
-
-                //Console.WriteLine($"CurrentCell: X: {currentCell.GridPos.X}, Y: {currentCell.GridPos.Y}");
-                //Console.WriteLine($"Owner Pos: X: {ownerGridPos.X}, Y: {ownerGridPos.Y}");
+                EndAstar();
             }
         }
 
-        private void FollowPath()
+        private void EndAstar()
         {
-            if (pathCell == null)
-            {
-                ownerUnit.IsMoving = true;
-                pathCell = pathList.First();
-            }
-
-            if (ownerGridPos.ApproximatelyEqual(targetCell.GridPos, 0.1f))
-            {
-                ownerUnit.GameObject.Transform.Position = new Vector2(pathCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize,
-                                                                      pathCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize);
-
-                ResetAstar();
-            }
-            else if (ownerGridPos.ApproximatelyEqual(pathCell.GridPos, 0.1f))
-            {
-                pathList.Remove(pathCell);
-                pathCell.FGH = new FGH();
-                pathCell.ECellType = ECellType.Default;
-                ownerUnit.GameObject.Transform.Velocity = Vector2.Zero;
-
-                //if (pathCell.GridPos == pathList.Last().GridPos)
-                //{
-                //    ownerUnit.GameObject.Transform.Position = new Vector2(pathCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize,
-                //                                                          pathCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize);
-                //    
-                //    ResetAstar();
-                //}
-
-                pathCell = null;
-            }
-            else
-            {
-                ownerUnit.MoveToLocation(new Vector2(pathCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize,
-                                                     pathCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize));
-            }
-        }
-
-        public void ResetAstar()
-        {
-            currentCell = null;
-            targetCell = null;
-            pathCell = null;
-
-            targetReached = false;
-            pathFound = false;
-
-            openList.Clear();
-            closedList.Clear();
-            pathList.Clear();
-
-            astarGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarArray();
-
-            ownerUnit.Target = null;
-            ownerUnit.IsMoving = false;
-            ownerUnit.GameObject.Transform.Velocity = Vector2.Zero;
-
-            if (storedPathList.Count != 0)
-            {
-                foreach (Cell cell in storedPathList)
-                    globalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType = ECellType.Default;
-
-                storedPathList.Clear();
-            }
-
-            Console.WriteLine("Break");
-            Singletons.AstarGlobalSingleton.GlobalAstarGrid.Print2DArray();
-        }
-
-        private uint CalculateG(Cell cell)
-        {
-            if (cell.Parent != null)
-                return cell.Parent.FGH.G + DEFAULT_COST;
-
-            return DEFAULT_COST;
-        }
-
-        private uint CalculateH(Vector2 pos, Vector2 target)
-        {
-            return (uint)Math.Abs(Vector2.Distance(pos, target) * 10);
+            nextTile = null;
+            runAstar = false;
+            cMove.Velocity = new Vector2(0, 0);
+            currentTile.IsUnitOccupied = true;
+            unit.IsMoving = false;
         }
     }
 }

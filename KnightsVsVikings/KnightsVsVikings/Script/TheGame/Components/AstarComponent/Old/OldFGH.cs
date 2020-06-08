@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
-    public struct FGH
+    public struct OldFGH
     {
         public uint F { get => G + H; }
         public uint G { get; set; }
         public uint H { get; set; }
 
-        public FGH(uint g, uint h)
+        public OldFGH(uint g, uint h)
         {
             G = g;
             H = h;

@@ -30,8 +30,11 @@ namespace KnightsVsVikings
         {
             base.Reason();
 
-            if (Context.IsMoving)
+            if (Context.IsMoving == true)
+            {
                 Machine.ChangeState<UnitMoveToPositionState>();
+
+            }
         }
 
         public override void Act(float deltaTime)

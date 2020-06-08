@@ -11,7 +11,7 @@ namespace KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern
 {
     public static class Singletons
     {
-        public static AstarGlobal AstarGlobalSingleton = Singleton<AstarGlobal>.Instance;
+        public static OldAstarGlobal AstarGlobalSingleton = Singleton<OldAstarGlobal>.Instance;
         public static LevelInformation LevelInformationSingleton = Singleton<LevelInformation>.Instance;
         public static TableContainer TableContainerSingleton = Singleton<TableContainer>.Instance;
         public static GameWorld GameWorldSingleton = Singleton<GameWorld>.Instance;

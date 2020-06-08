@@ -38,7 +38,6 @@ namespace KnightsVsVikings
 
         public GameObject Target { get;  set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
-        //public CAstar AstarUnit { get; set; }
         public bool IsAlive { get; set; }
         public bool IsMoving { get; set; } = false;
         public ETeam Team { get => team; set => team = value; }
@@ -47,14 +46,13 @@ namespace KnightsVsVikings
 
         public CUnit()
         {
-            //astar = new CAstar(this);
+
         }
         public CUnit(ETeam team, EUnitType unitType, EFaction faction)
         {
             this.team = team;
             this.unitType = unitType;
             this.faction = faction;
-            //astar = new CAstar(this);
         }
         public override void Awake()
         {
@@ -85,73 +83,6 @@ namespace KnightsVsVikings
         {
             base.Update();
             StateMachine.Update(Time.deltaTime);
-            //Move();
-        }
-        
-
-        protected void UnitIdleBehaviour()
-        {
-
-        }
-        protected void UnitMovementBehaviour()
-        {
-
-        }
-        protected void UnitCombatBehaviour()
-        {
-
-        }
-        protected void UnitDealDamage()
-        {
-
-        }
-
-
-        protected void UnitDie()
-        {
-
-        }
-
-
-
-
-
-        public void MoveToLocation(Vector2 location)
-        {
-            if (Vector2.Distance(GameObject.Transform.Position, location) > 4f)
-            {
-                SetVelocityX(GameObject.Transform.Position.X,
-                            location.X);
-
-                SetVelocityY(GameObject.Transform.Position.Y,
-                            location.Y);
-
-                Vector2.Normalize(GameObject.Transform.Velocity);
-            }
-        }
-
-        private void SetVelocityX(float currentPos, float targetPos)
-        {
-            if (currentPos.ApproximatelyEqual(targetPos, 3f))
-                GameObject.Transform.Velocity = new Vector2(0, GameObject.Transform.Velocity.Y);
-
-            else if (targetPos < currentPos)
-                GameObject.Transform.Velocity = new Vector2(-1, GameObject.Transform.Velocity.Y);
-
-            else if (targetPos > currentPos)
-                GameObject.Transform.Velocity = new Vector2(1, GameObject.Transform.Velocity.Y);
-        }
-
-        private void SetVelocityY(float currentPos, float targetPos)
-        {
-            if (currentPos.ApproximatelyEqual(targetPos, 3f))
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 0);
-
-            else if (targetPos < currentPos)
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, - 1);
-
-            else if (targetPos > currentPos)
-                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 1);
         }
 
         private void MadeUnit()
@@ -258,5 +189,46 @@ namespace KnightsVsVikings
             for (int i = 0; i < myStatsProperties.Count - 1; i++)
                 statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
         }
+
+
+        #region Old Astar Donno if to Delete
+        public void MoveToLocation(Vector2 location)
+        {
+            if (Vector2.Distance(GameObject.Transform.Position, location) > 4f)
+            {
+                SetVelocityX(GameObject.Transform.Position.X,
+                            location.X);
+
+                SetVelocityY(GameObject.Transform.Position.Y,
+                            location.Y);
+
+                Vector2.Normalize(GameObject.Transform.Velocity);
+            }
+        }
+
+        private void SetVelocityX(float currentPos, float targetPos)
+        {
+            if (currentPos.ApproximatelyEqual(targetPos, 3f))
+                GameObject.Transform.Velocity = new Vector2(0, GameObject.Transform.Velocity.Y);
+
+            else if (targetPos < currentPos)
+                GameObject.Transform.Velocity = new Vector2(-1, GameObject.Transform.Velocity.Y);
+
+            else if (targetPos > currentPos)
+                GameObject.Transform.Velocity = new Vector2(1, GameObject.Transform.Velocity.Y);
+        }
+
+        private void SetVelocityY(float currentPos, float targetPos)
+        {
+            if (currentPos.ApproximatelyEqual(targetPos, 3f))
+                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 0);
+
+            else if (targetPos < currentPos)
+                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, -1);
+
+            else if (targetPos > currentPos)
+                GameObject.Transform.Velocity = new Vector2(GameObject.Transform.Velocity.X, 1);
+        }
+        #endregion
     }
 }

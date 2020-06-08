@@ -74,17 +74,6 @@ namespace KnightsVsVikings
             unitCommands = new UnitCommands(selectedObject, tileGrid, this);
             unitCommands.Start();
 
-            List<CTile> tmp = new List<CTile>();
-
-            for (int x = 0; x < tileGrid.groundTileGrid.GetLength(0); x++)
-            {
-                for (int y = 0; y < tileGrid.groundTileGrid.GetLength(1); y++)
-                {
-                    tmp.Add(tileGrid.groundTileGrid[x, y].GetComponent<CTile>());
-                }
-            }
-
-            _Astar_Test.Instance.SetTileGrid(tmp);
         }
     }
 }
