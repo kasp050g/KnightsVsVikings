@@ -96,6 +96,7 @@
     <Compile Include="Script\TheGame\FactoryPattern\ResourcesFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\TileFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
+    <Compile Include="Script\TheGame\GlobalProperties.cs" />
     <Compile Include="Script\TheGame\SelectedObject.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Old\KasperCAstar.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\Old\KasperMasterAstar.cs" />

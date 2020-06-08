@@ -108,7 +108,7 @@ namespace KnightsVsVikings
                     selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
                     selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
                     //selectedObject.UnitsSelected[i].GetComponent<CAstar>().GetAstar(gameObject.GetComponent<CTile>(), tileGrid);
-                    selectedObject.UnitsSelected[i].GetComponent<CUnit>().IsMoving = true;
+                    //selectedObject.UnitsSelected[i].GetComponent<CUnit>().IsMoving = true;
                     //GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;
                 }
             }

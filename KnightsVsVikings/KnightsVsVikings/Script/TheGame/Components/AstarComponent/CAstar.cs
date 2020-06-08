@@ -6,11 +6,13 @@ using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
@@ -20,6 +22,9 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         private const byte DEFAULT_COST = 10;
 
         private byte tileSize = Singletons.LevelInformationSingleton.TileSize;
+
+        private Thread astarThread;
+        //private readonly PerformanceCounter currentCPUUsage = Singletons.GlobalPropertiesSingleton.CPUUsage;//new PerformanceCounter("Processor", "% Processor Time", "_Total");
 
         private Cell startCell = null,
                      currentCell = null,
@@ -32,40 +37,59 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
         private List<Cell> openList = new List<Cell>(),
                            closedList = new List<Cell>(),
-                           pathCloneStack = new List<Cell>();
+                           pathList = new List<Cell>(),
+                           pathCloneList = new List<Cell>();
 
-        private Stack<Cell> pathStack = new Stack<Cell>();
+       // private Stack<Cell> pathList = new Stack<Cell>();
 
         public CAstar(CUnit owner)
         {
             this.owner = owner;
+
+            astarThread = new Thread(AstarThread);
+            astarThread.IsBackground = true;
+            astarThread.Start();
         }
 
-        public override void Update()
+        private void AstarThread()//public override void Update()
         {
-            if (Singletons.AstarGlobalSingleton.BaseMapGrid != null && baseGrid == null)
+            while (GameObject.IsActive)
             {
-                baseGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
-                tileGrid = Singletons.AstarGlobalSingleton.TileGrid;
-                //baseGrid.Print2DArray();
-                //Console.ReadKey();
-            }
+                //if (currentCPUUsage.NextValue() == 100f)
+                //    Thread.Sleep(20);
+                //else
+                    Thread.Sleep(6);
 
-            if (owner.Target != null)
-                if (pathStack.Count == 0)
-                    GetPath();
-                else
-                {
-                    //baseGrid.Print2DArray();
-                    //Console.ReadKey();
-                    FollowPath();
-                }
+                //Console.WriteLine(currentCPUUsage.NextValue());
+
+                    if (Singletons.AstarGlobalSingleton.BaseMapGrid != null && baseGrid == null)
+                    {
+                        baseGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
+                        tileGrid = Singletons.AstarGlobalSingleton.TileGrid;
+                        //baseGrid.Print2DArray();
+                        //Console.ReadKey();
+                    }
+
+                    if (owner.Target != null)
+                        if (pathList.Count == 0)
+                            GetPath();
+                        else
+                        {
+                            //baseGrid.Print2DArray();
+                            //Console.ReadKey();
+                            FollowPath();
+                        }
+            }
         }
 
         public void ResetAstar()
         {
             if (currentCell != null)
-            owner.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * tileSize, currentCell.GridPos.Y * tileSize);
+            {
+                owner.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * tileSize, currentCell.GridPos.Y * tileSize);
+                tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+                tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
+            }
 
             owner.GameObject.GetComponent<CMove>().Velocity = Vector2.Zero;
             //Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].ECellType = ECellType.Default;
@@ -74,21 +98,21 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             targetCell = null;
             startCell = null;
 
-            pathStack.Clear();
+            pathList.Clear();
             openList.Clear();
             closedList.Clear();
 
-            if (pathCloneStack.Count > 0)
+            if (pathCloneList.Count > 0)
             {
-                foreach (Cell cell in pathCloneStack)
+                foreach (Cell cell in pathCloneList)
                     Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y] = Singletons.AstarGlobalSingleton.BaseMapGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y];
 
-                pathCloneStack.Clear();
+                pathCloneList.Clear();
             }
 
             baseGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
 
-            baseGrid.Print2DArray();
+            //baseGrid.Print2DArray();
 
             //runAstar = false;
             //cMove.Velocity = new Vector2(0, 0);
@@ -105,6 +129,9 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             targetCell = baseGrid[(int)owner.Target.Transform.Position.X / tileSize,
                                   (int)owner.Target.Transform.Position.Y / tileSize];
 
+            //tileGrid[(int)startCell.GridPos.X, (int)startCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+            //tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+
             ModifyNeighbourCells(startCell, null);
 
             FindPath();
@@ -114,15 +141,22 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         {
             //while (pathStack.Count != 0)
             //{
-                Vector2 ownerGridPos = new Vector2(owner.GameObject.Transform.Position.X / tileSize,
-                                                   owner.GameObject.Transform.Position.Y / tileSize);
+            Vector2 ownerGridPos = new Vector2(owner.GameObject.Transform.Position.X / tileSize,
+                                               owner.GameObject.Transform.Position.Y / tileSize);
 
             //if (ownerGridPos.ApproximatelyEqual(targetCell.GridPos, 0.05f))
             //    ResetAstar();
             if (ownerGridPos.ApproximatelyEqual(currentCell.GridPos, 0.05f))
             {
-                if (pathStack.Count > 0)
-                    currentCell = pathStack.Pop();
+                CheckNextCell();
+
+                tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+
+                if (pathList.Count > 0)
+                {
+                    currentCell = pathList.First();//pathList.Pop();
+                    pathList.Remove(currentCell);
+                }
 
                 tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
                 Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].ECellType = ECellType.Default;
@@ -140,6 +174,11 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         {
             while (true)
             {
+                //if (currentCPUUsage.NextValue() > 5)
+                //    Thread.Sleep(50);
+                //else
+                    Thread.Sleep(6);
+                //Task.Delay(1);
                 if (openList.Count == 0)
                 {
                     targetCell.BlackListed = true;
@@ -153,10 +192,15 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             
                 SetNeighbourCells();
             }
-            
+
+            tileGrid[(int)startCell.GridPos.X, (int)startCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+
             ReturnPath();
 
-            pathCloneStack = pathStack.ToList();
+            pathList.Reverse();
+            pathCloneList = pathList.ToList();
+
+            //owner.IsMoving = true;
             //while (currentCell != targetCell && openList.Count == 0)
             //    GetNextCell();
             //
@@ -192,7 +236,9 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
         private void ModifyNeighbourCells(Cell cell, Cell parent)
         {
-            if (baseGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType == ECellType.Default)
+            //Thread.Sleep(2);
+
+            if (baseGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType == ECellType.Default && !tileGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
             {
                 if (!closedList.Contains(cell) && !openList.Contains(cell))
                     openList.Add(cell);
@@ -219,9 +265,15 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
         {
             while (true)
             {
+                //if (currentCPUUsage.NextValue() == 100f)
+                //    Thread.Sleep(50);
+                //else
+                    Thread.Sleep(6);
+                //Thread.Sleep(6);
+                //MyEventWaitHandler
                 if (currentCell != null)
                 {
-                    pathStack.Push(currentCell);
+                    pathList.Add(currentCell);//pathList.Push(currentCell);
                     if (currentCell.Parent == startCell)
                         break;
 
@@ -231,6 +283,45 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 else
                     break;
             }
+        }
+
+        private void CheckNextCell()
+        {
+            //if (tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
+            //{
+            //    ResetAstar();
+            //
+            //}
+
+            while(tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
+            {
+                pathList.Remove(pathList.Last());
+                targetCell = pathList.Last();
+                //pathList.Reverse();
+                //targetCell = pathList.Pop();
+                //pathList = pathList.Reverse();
+            }
+
+            //if (pathStack.Peek() != null)
+            //{
+            //    //int x = pathCloneStack.Count;
+            //    bool newTarget = false;
+
+            //    while (tileGrid[(int)pathStack.Peek().GridPos.X, (int)pathStack.Peek().GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
+            //    {
+            //        newTarget = true;
+            //        //if (pathStack.Count == 1)
+            //        //{
+            //        //    pathStack.Push(pathCloneStack.ElementAt(x));
+            //        //    x--;
+            //        //}
+            //        //else
+            //        pathStack.Pop();
+            //    }
+
+            //    if (newTarget)
+            //        targetCell = pathStack.Pop();
+            //}
         }
 
         private uint CalculateG(Cell cell)
