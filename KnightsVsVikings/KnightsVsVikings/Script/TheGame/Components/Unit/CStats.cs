@@ -18,10 +18,6 @@ namespace KnightsVsVikings
         public EFaction Faction { get => faction; set => faction = value; }
         public Stats Stats { get => stats; set => stats = value; }
 
-        //Stats baseStats;
-        //Stats currentStats;
-
-        //List<Passive> passives = new List<Passive>();
         public CStats()
         {
 
@@ -49,11 +45,6 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
-        }
-
-        public void UpdatePassives()
-        {
-
         }
 
         public void UnitTakeDamage(int damage)

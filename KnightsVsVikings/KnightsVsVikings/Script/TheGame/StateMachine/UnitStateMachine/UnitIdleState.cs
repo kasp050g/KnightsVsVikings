@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KnightsVsVikings.Script.MainSystem.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
@@ -18,7 +19,7 @@ namespace KnightsVsVikings
         {
             base.Begin();
 
-            Context.Animator.PlayAnimation("Idle");
+            Context.Animator.PlayAnimation($"{EUnitAnimationType.Idle}");
         }
 
         public override void End()
@@ -33,7 +34,6 @@ namespace KnightsVsVikings
             if (Context.IsMoving == true)
             {
                 Machine.ChangeState<UnitMoveToPositionState>();
-
             }
         }
 

@@ -26,8 +26,8 @@ namespace MainSystemFramework
         }
         #endregion
 
-        private Dictionary<string, CAnimation> animations = new Dictionary<string, CAnimation>();
-        public Dictionary<string, CAnimation> Animations { get => animations; set => animations = value; }
+        private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+        public Dictionary<string, Animation> Animations { get => animations; set => animations = value; }
 
         public void MakeAnimation()
         {
@@ -59,7 +59,13 @@ namespace MainSystemFramework
             vector2_UpIdle.Add(new Vector2(6, 3) * 256);
             vector2_UpIdle.Add(new Vector2(7, 3) * 256);
             vector2_UpIdle.Add(new Vector2(0, 4) * 256);
-            CAnimation UpIdle = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpIdle, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps,true);
+
+            Animation UpIdle = new Animation(
+                SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], 
+                vector2_UpIdle, spriteSize, 
+                $"{factionName}{unitType}Up{unitAnimationType}", 
+                fps,true);
+
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpIdle);
 
             // Idle Down
@@ -71,7 +77,7 @@ namespace MainSystemFramework
             vector2_DownIdle.Add(new Vector2(6, 3) * 256);
             vector2_DownIdle.Add(new Vector2(7, 3) * 256);
             vector2_DownIdle.Add(new Vector2(0, 4) * 256);
-            CAnimation DownIdle = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownIdle, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, true);
+            Animation DownIdle = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownIdle, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownIdle);
 
             // Idle Side
@@ -83,7 +89,7 @@ namespace MainSystemFramework
             vector2_SideIdle.Add(new Vector2(6, 3) * 256);
             vector2_SideIdle.Add(new Vector2(7, 3) * 256);
             vector2_SideIdle.Add(new Vector2(0, 4) * 256);
-            CAnimation SideIdle = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideIdle, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, true);
+            Animation SideIdle = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideIdle, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideIdle);
             #endregion
 
@@ -102,7 +108,7 @@ namespace MainSystemFramework
             vector2_UpRun.Add(new Vector2(1, 5) * 256);
             vector2_UpRun.Add(new Vector2(2, 5) * 256);
             vector2_UpRun.Add(new Vector2(3, 5) * 256);
-            CAnimation UpRun = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpRun, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, true);
+            Animation UpRun = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpRun, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpRun);
             // Run Down
             List<Vector2> vector2_DownRun = new List<Vector2>();
@@ -117,7 +123,7 @@ namespace MainSystemFramework
             vector2_DownRun.Add(new Vector2(1, 5) * 256);
             vector2_DownRun.Add(new Vector2(2, 5) * 256);
             vector2_DownRun.Add(new Vector2(3, 5) * 256);
-            CAnimation DownRun = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownRun, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, true);
+            Animation DownRun = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownRun, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownRun);
             // Run Side
             List<Vector2> vector2_SideRun = new List<Vector2>();
@@ -133,7 +139,7 @@ namespace MainSystemFramework
             vector2_SideRun.Add(new Vector2(7, 5) * 256);
 
             vector2_SideRun.Add(new Vector2(0, 6) * 256);
-            CAnimation SideRun = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideRun, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, true);
+            Animation SideRun = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideRun, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideRun);
             #endregion
 
@@ -148,7 +154,7 @@ namespace MainSystemFramework
             vector2_UpBowAttack.Add(new Vector2(4, 0) * 256);
             vector2_UpBowAttack.Add(new Vector2(5, 0) * 256);
             vector2_UpBowAttack.Add(new Vector2(6, 0) * 256);
-            CAnimation UpBowAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpBowAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false,true);
+            Animation UpBowAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpBowAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false,true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpBowAttack);
 
             // BowAttack Down
@@ -160,7 +166,7 @@ namespace MainSystemFramework
             vector2_DownBowAttack.Add(new Vector2(4, 0) * 256);
             vector2_DownBowAttack.Add(new Vector2(5, 0) * 256);
             vector2_DownBowAttack.Add(new Vector2(6, 0) * 256);
-            CAnimation DownBowAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownBowAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
+            Animation DownBowAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownBowAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownBowAttack);
 
             // BowAttack Side
@@ -172,7 +178,7 @@ namespace MainSystemFramework
             vector2_SideBowAttack.Add(new Vector2(4, 0) * 256);
             vector2_SideBowAttack.Add(new Vector2(5, 0) * 256);
             vector2_SideBowAttack.Add(new Vector2(6, 0) * 256);
-            CAnimation SideBowAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideBowAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
+            Animation SideBowAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideBowAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideBowAttack);
             #endregion
 
@@ -186,7 +192,7 @@ namespace MainSystemFramework
             vector2_UpSwordAttack.Add(new Vector2(7, 5) * 256);
             vector2_UpSwordAttack.Add(new Vector2(0, 6) * 256);
             vector2_UpSwordAttack.Add(new Vector2(1, 6) * 256);
-            CAnimation UpSwordAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpSwordAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
+            Animation UpSwordAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpSwordAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpSwordAttack);
 
             // SwordAttack Down
@@ -197,7 +203,7 @@ namespace MainSystemFramework
             vector2_DownSwordAttack.Add(new Vector2(7, 5) * 256);
             vector2_DownSwordAttack.Add(new Vector2(0, 6) * 256);
             vector2_DownSwordAttack.Add(new Vector2(1, 6) * 256);
-            CAnimation DownSwordAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownSwordAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
+            Animation DownSwordAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownSwordAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownSwordAttack);
 
             // SwordAttack Side
@@ -208,7 +214,7 @@ namespace MainSystemFramework
             vector2_SideSwordAttack.Add(new Vector2(4, 6) * 256);
             vector2_SideSwordAttack.Add(new Vector2(5, 6) * 256);
             vector2_SideSwordAttack.Add(new Vector2(6, 6) * 256);
-            CAnimation SideSwordAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideSwordAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
+            Animation SideSwordAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideSwordAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideSwordAttack);
             #endregion
 
@@ -222,7 +228,7 @@ namespace MainSystemFramework
             vector2_UpSpearAttack.Add(new Vector2(5, 6) * 256);
             vector2_UpSpearAttack.Add(new Vector2(6, 6) * 256);
             vector2_UpSpearAttack.Add(new Vector2(7, 6) * 256);
-            CAnimation UpSpearAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpSpearAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
+            Animation UpSpearAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpSpearAttack, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpSpearAttack);
 
             // SpearAttack Down
@@ -233,7 +239,7 @@ namespace MainSystemFramework
             vector2_DownSpearAttack.Add(new Vector2(5, 6) * 256);
             vector2_DownSpearAttack.Add(new Vector2(6, 6) * 256);
             vector2_DownSpearAttack.Add(new Vector2(7, 6) * 256);
-            CAnimation DownSpearAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownSpearAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
+            Animation DownSpearAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownSpearAttack, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownSpearAttack);
 
             // SpearAttack Side
@@ -244,7 +250,7 @@ namespace MainSystemFramework
             vector2_SideSpearAttack.Add(new Vector2(2, 7) * 256);
             vector2_SideSpearAttack.Add(new Vector2(3, 7) * 256);
             vector2_SideSpearAttack.Add(new Vector2(4, 7) * 256);
-            CAnimation SideSpearAttack = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideSpearAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
+            Animation SideSpearAttack = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideSpearAttack, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideSpearAttack);
             #endregion
 
@@ -261,7 +267,7 @@ namespace MainSystemFramework
             vector2_UpDie.Add(new Vector2(3, 2) * 256);
             vector2_UpDie.Add(new Vector2(4, 2) * 256);
             vector2_UpDie.Add(new Vector2(5, 2) * 256);
-            CAnimation UpDie = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpDie, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false,true,true);
+            Animation UpDie = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpDie, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false,true,true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpDie);
 
             // Die Down
@@ -275,7 +281,7 @@ namespace MainSystemFramework
             vector2_DownDie.Add(new Vector2(3, 2) * 256);
             vector2_DownDie.Add(new Vector2(4, 2) * 256);
             vector2_DownDie.Add(new Vector2(5, 2) * 256);
-            CAnimation DownDie = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownDie, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false,true,true);
+            Animation DownDie = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownDie, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false,true,true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownDie);
 
             // Die Side
@@ -289,7 +295,7 @@ namespace MainSystemFramework
             vector2_SideDie.Add(new Vector2(3, 2) * 256);
             vector2_SideDie.Add(new Vector2(4, 2) * 256);
             vector2_SideDie.Add(new Vector2(5, 2) * 256);
-            CAnimation SideDie = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideDie, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false,true);
+            Animation SideDie = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideDie, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false,true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideDie);
             #endregion
 
@@ -303,7 +309,7 @@ namespace MainSystemFramework
             vector2_UpCast.Add(new Vector2(2, 1) * 256);
             vector2_UpCast.Add(new Vector2(3, 1) * 256);
             vector2_UpCast.Add(new Vector2(4, 1) * 256);
-            CAnimation UpCast = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpCast, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
+            Animation UpCast = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Up"], vector2_UpCast, spriteSize, $"{factionName}{unitType}Up{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Up{unitAnimationType}", UpCast);
 
             // Cast Down
@@ -314,7 +320,7 @@ namespace MainSystemFramework
             vector2_DownCast.Add(new Vector2(2, 1) * 256);
             vector2_DownCast.Add(new Vector2(3, 1) * 256);
             vector2_DownCast.Add(new Vector2(4, 1) * 256);
-            CAnimation DownCast = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownCast, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
+            Animation DownCast = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Down"], vector2_DownCast, spriteSize, $"{factionName}{unitType}Down{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Down{unitAnimationType}", DownCast);
 
             // Cast Side
@@ -325,7 +331,7 @@ namespace MainSystemFramework
             vector2_SideCast.Add(new Vector2(2, 1) * 256);
             vector2_SideCast.Add(new Vector2(3, 1) * 256);
             vector2_SideCast.Add(new Vector2(4, 1) * 256);
-            CAnimation SideCast = new CAnimation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideCast, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
+            Animation SideCast = new Animation(SpriteContainer.Instance.Sprite[$"{factionName}{unitType}Side"], vector2_SideCast, spriteSize, $"{factionName}{unitType}Side{unitAnimationType}", fps, false, true);
             animations.Add($"{factionName}{unitType}Side{unitAnimationType}", SideCast);
             #endregion
         }

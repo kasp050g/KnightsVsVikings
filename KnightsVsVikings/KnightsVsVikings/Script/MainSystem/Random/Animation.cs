@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class CAnimation
+    public class Animation
     {
         // Sprite Array
         public Texture2D[] Sprites { get; private set; }
@@ -25,16 +25,17 @@ namespace MainSystemFramework
         public bool End { get; set; }
         public bool AnimationLock { get; set; }
 
-        public CAnimation(List<Texture2D> sprites, string name, float fps, bool Loop, bool AnimationLock = false)
+        public Animation(List<Texture2D> sprites, string name, float fps, bool Loop, bool AnimationLock = false,bool End = false)
         {
             this.Sprites = sprites.ToArray();
             this.Name = name;
             this.Fps = fps;
             this.Loop = Loop;
+            this.End = End;
             this.AnimationLock = AnimationLock;
             animationType = EAnimationType.SpriteArray;
         }
-        public CAnimation(Texture2D SpriteSheet, List<Vector2> SpritePositions, Vector2 SpriteSize, string name, float fps, bool Loop,bool AnimationLock = false, bool End = false)
+        public Animation(Texture2D SpriteSheet, List<Vector2> SpritePositions, Vector2 SpriteSize, string name, float fps, bool Loop,bool AnimationLock = false, bool End = false)
         {
             this.SpriteSheet = SpriteSheet;
             this.SpritePositions = SpritePositions;

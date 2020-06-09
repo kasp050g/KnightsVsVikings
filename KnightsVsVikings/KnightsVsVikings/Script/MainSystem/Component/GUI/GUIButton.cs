@@ -175,7 +175,6 @@ namespace MainSystemFramework
             
             if (MouseIsHovering)
             {
-                //Console.WriteLine(MouseIsHovering);
                 if (mouseOverButtonCheck == false)
                 {
                     mouseOverButtonCheck = true;

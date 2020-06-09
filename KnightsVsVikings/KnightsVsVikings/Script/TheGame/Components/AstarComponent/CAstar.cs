@@ -75,9 +75,13 @@ namespace KnightsVsVikings
 
             List<CTile> tmp = new List<CTile>(tileList);
             tiles = Astar_Test.GetAstarWay((GameObject.Transform.Position == currentTile.GameObject.Transform.Position ? currentTile  : nextTile), goal, tmp);
-            
-            directionCheck = true;
-            runAstar = true;
+
+            if (tiles.Count > 0)
+            {
+                directionCheck = true;
+                runAstar = true;
+                unit.IsMoving = true;
+            }
         }
 
         public void MoveUnit()

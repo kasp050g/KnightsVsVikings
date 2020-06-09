@@ -130,8 +130,6 @@ namespace KnightsVsVikings
                 default:
                     break;
             }
-
-            //tile.ResourcesType = resourcesType;
         }
 
         private void SetSprite(TextureSheet2D spriteName)

@@ -12,8 +12,7 @@ namespace KnightsVsVikings
         public override void Begin()
         {
             base.Begin();
-
-            Context.Animator.PlayAnimation("Run");
+            Context.Animator.PlayAnimation($"{EUnitAnimationType.Run}");
         }
 
         public override void End()

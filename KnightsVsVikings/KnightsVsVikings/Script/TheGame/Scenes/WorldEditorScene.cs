@@ -73,7 +73,6 @@ namespace KnightsVsVikings
 
             unitCommands = new UnitCommands(selectedObject, tileGrid, this);
             unitCommands.Start();
-
         }
     }
 }

@@ -75,7 +75,7 @@ namespace MainSystemFramework
                 // Calculate degrees.
                 float degrees = MathHelper.ToDegrees((float)Math.Acos(dot));
 
-                // TODO : donno what to write here
+                
                 if (vectorTowardsToVector.Y < 0)
                 {
                     degrees = 360 - degrees;
@@ -144,9 +144,6 @@ namespace MainSystemFramework
             {
                 go.Transform.Origin = new Vector2((float)sprite.Width, (float)sprite.Height);
             }
-
-            //Console.WriteLine("Error: in |Class: Helper|Method: UpdateOrigin| dint work as it neeed to");
-            //go.Transform.Origin = new Vector2(0,0);
         }
         public static void UpdateOrigin(GameObject go, TextureSheet2D spriteSheet, EOriginPosition originPositionEnum)
         {
@@ -203,9 +200,6 @@ namespace MainSystemFramework
             {
                 go.Transform.Origin = new Vector2((float)spriteSheet.Rectangle.Width, (float)spriteSheet.Rectangle.Height);
             }
-
-            //Console.WriteLine("Error: in |Class: Helper|Method: UpdateOrigin| dint work as it neeed to");
-            //go.Transform.Origin = new Vector2(0,0);
         }
         public static void UpdateOriginText(string text, Rectangle rectangle,SpriteFont spriteFont,Vector2 Scale, EOriginPosition originPositionEnum,ref Vector2 newPositon)
         {
@@ -280,9 +274,6 @@ namespace MainSystemFramework
                 var y = (rectangle.Y + (rectangle.Height / 1)) - (spriteFont.MeasureString(text).Y / 1) * Scale.Y;
                 newPositon = new Vector2(x, y);
             }
-
-            //Console.WriteLine("Error: in |Class: Helper|Method: UpdateOrigin| dint work as it neeed to");
-            //go.Transform.Origin = new Vector2(0,0);
         }
     }
 }

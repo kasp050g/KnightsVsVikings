@@ -57,7 +57,5 @@ namespace KnightsVsVikings
         {
             base.Update();
         }
-
-
     }
 }

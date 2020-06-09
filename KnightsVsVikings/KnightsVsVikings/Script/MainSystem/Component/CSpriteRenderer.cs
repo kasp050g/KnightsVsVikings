@@ -68,6 +68,12 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
+
+            if(sprite == null)
+            {
+                sprite = SpriteContainer.Instance.Pixel;
+            }
+
             if (spriteSheet != null)
             {
                 Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);

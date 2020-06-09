@@ -109,9 +109,9 @@
     <Compile Include="Script\MainSystem\GameObject\GameObject.cs" />
     <Compile Include="Script\MainSystem\GameObject\Transform.cs" />
     <Compile Include="Script\MainSystem\HelperClass\Helper.cs" />
-    <Compile Include="Script\MainSystem\Component\CAnimation.cs" />
+    <Compile Include="Script\MainSystem\Random\Animation.cs" />
     <Compile Include="Script\MainSystem\Component\CAnimator.cs" />
-    <Compile Include="Script\MainSystem\Component\CBlendTree.cs" />
+    <Compile Include="Script\MainSystem\Random\BlendTree.cs" />
     <Compile Include="Script\MainSystem\ObserverPattern\GameEvent.cs" />
     <Compile Include="Script\MainSystem\ObserverPattern\IGameListner.cs" />
     <Compile Include="Script\MainSystem\Scene\Scene.cs" />

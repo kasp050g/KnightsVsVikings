@@ -24,9 +24,9 @@ namespace MainSystemFramework
         }
         #endregion
 
-        private Dictionary<string, CBlendTree> blendtrees = new Dictionary<string, CBlendTree>();
+        private Dictionary<string, BlendTree> blendtrees = new Dictionary<string, BlendTree>();
 
-        public Dictionary<string, CBlendTree> Blendtrees { get => blendtrees; set => blendtrees = value; }
+        public Dictionary<string, BlendTree> Blendtrees { get => blendtrees; set => blendtrees = value; }
 
         public void MakeBlend()
         {
@@ -54,7 +54,7 @@ namespace MainSystemFramework
 
         private void CraftBlend(EFaction factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
-            CBlendTree blendTree = new CBlendTree(
+            BlendTree blendTree = new BlendTree(
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Up{unitAnimationType}"],
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Down{unitAnimationType}"],
             AnimationContainer.Instance.Animations[$"{factionName}{unitType}Side{unitAnimationType}"],
@@ -64,7 +64,7 @@ namespace MainSystemFramework
             Blendtrees.Add($"{factionName}{unitType}{unitAnimationType}", blendTree);
         }
 
-        public CBlendTree GetUnitBlendTree(EFaction factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
+        public BlendTree GetUnitBlendTree(EFaction factionName, EUnitType unitType, EUnitAnimationType unitAnimationType)
         {
             return Blendtrees[$"{factionName}{unitType}{unitAnimationType}"];
         }

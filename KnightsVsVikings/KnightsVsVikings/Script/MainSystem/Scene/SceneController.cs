@@ -30,7 +30,7 @@ namespace MainSystemFramework
 
         public CameraRTS Camera { get => camera; set => camera = value; }
         public SceneContainer SceneContainer { get => sceneContainer; set => sceneContainer = value; }
-        // TODO : fix
+        
         public Scene CurrentScene
         {
             get

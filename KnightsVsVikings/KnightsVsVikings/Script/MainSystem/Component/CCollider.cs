@@ -102,6 +102,7 @@ namespace MainSystemFramework
             if (size == new Vector2(0, 0))
             {
                 CSpriteRenderer spriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
+
                 this.size = new Vector2(spriteRenderer.Sprite.Width, spriteRenderer.Sprite.Height);
             }
 

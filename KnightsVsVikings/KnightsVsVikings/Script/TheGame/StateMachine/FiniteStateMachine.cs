@@ -164,9 +164,10 @@ namespace KnightsVsVikings
         }
 
 
-        //
-        // Summary:
-        //     Call this every time the machine should update. Eg. every frame.
+        /// <summary>
+        /// Call this every time the machine should update. Eg. every frame.
+        /// </summary>
+        /// <param name="deltaTime"></param>
         public void Update(float deltaTime)
         {
             var currentState = CurrentState;

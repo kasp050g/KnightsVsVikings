@@ -27,7 +27,6 @@ namespace KnightsVsVikings
 
         public GameObject Creaft(ETileType tileType)
         {
-            // Main GameObject
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
             CTile tile = new CTile(tileType);

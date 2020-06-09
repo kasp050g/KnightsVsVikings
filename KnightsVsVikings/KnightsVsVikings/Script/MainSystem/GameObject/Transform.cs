@@ -21,10 +21,7 @@ namespace MainSystemFramework
         public Vector2 Scale { get { return scale; } set { scale = value; } }
         public Vector2 DrawOffSet { get { return drawOffSet; } set { drawOffSet = value; } }
         public Vector2 Velocity { get => velocity; set => velocity = value; }
-        //public Vector2 Velocity { get; set; } = new Vector2();
         public float Rotation { get { return rotation; } set { rotation = value; } }
-
-
 
         public Vector2 ForwardVector
         {
@@ -70,21 +67,9 @@ namespace MainSystemFramework
             }
         }
 
-
-
         public Transform()
         {
 
         }
-
-        //public void LookAt(Vector2 positionToLookAt)
-        //{
-        //    // TODO: Implement Transform.LookAt (Vector2 positionToLookAt)
-        //}
-
-        //public void LookAt(GameObject gameObjectToLookAt)
-        //{
-        //    // TODO: Implement Transform.LookAt (GameObject gameObjectToLookAt)
-        //}
     }
 }

@@ -70,7 +70,6 @@ namespace MainSystemFramework
             AddSprite(content.Load<Texture2D>("Images/TileSheet/ExtraObjects128x128"), "ExtraObjects128x128");
             AddSprite(content.Load<Texture2D>("Images/TileSheet/Grassland128x128"), "Grassland128x128");
 
-
             Build(content);
             UI(content);
             AnimationsSheet(content);
@@ -105,12 +104,15 @@ namespace MainSystemFramework
 
         private void Build(ContentManager content)
         {
+            // Tent
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 4 * 128), new Vector2(3 * 128, 4 * 128)), "GrayTent");
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 8 * 128), new Vector2(3 * 128, 4 * 128)), "BlueTent");
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(16 * 128, 12 * 128), new Vector2(3 * 128, 4 * 128)), "RedTent");
 
+            // Wood Sign
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(4 * 128, 3 * 128), new Vector2(2 * 128, 3 * 128)), "WoodSign");
 
+            // Icon
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(6 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Axe");
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(7 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Pot");
             AddSprite(new TextureSheet2D(sprite["ExtraObjects128x128"], new Vector2(8 * 128, 4 * 128), new Vector2(1 * 128, 1 * 128)), "SignIcon_Food");

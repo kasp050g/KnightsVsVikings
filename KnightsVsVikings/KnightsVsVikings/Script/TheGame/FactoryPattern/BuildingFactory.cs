@@ -27,7 +27,6 @@ namespace KnightsVsVikings
 
         public GameObject Creaft(EBuildingType buildingType,EFaction faction,ETeam team)
         {
-            // Main GameObject
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.SpriteSheet["GrayTent"]);
             CBuilding building = new CBuilding(buildingType,faction,team);

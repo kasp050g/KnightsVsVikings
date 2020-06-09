@@ -12,7 +12,6 @@ namespace KnightsVsVikings
     public class CCanBeSelected : Component
     {
         private bool isSelected;
-        private CSpriteRenderer spriteRenderer;
         private Texture2D Sprite;
         private Vector2 offSet = new Vector2(1,20);
         private Texture2D textureCollisionBox;
@@ -73,7 +72,9 @@ namespace KnightsVsVikings
                 // LayerDepth
                 0.29f + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000                
             );
+#if DEBUG
             DrawCollisionBox(spriteBatch);
+#endif
         }
 
         public override void Update()

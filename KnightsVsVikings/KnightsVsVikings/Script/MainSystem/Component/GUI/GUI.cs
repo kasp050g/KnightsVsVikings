@@ -85,7 +85,6 @@ namespace MainSystemFramework
                 if (GUImouseBlockCollision.Intersects(other))
                 {
                     GameObject.MyScene.IsMouseOverUI = true;
-                    //mouseIsHovering = true;
                     return true;
                 }
             }

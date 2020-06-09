@@ -14,12 +14,12 @@ namespace MainSystemFramework
     public class CAnimator : Component
     {
         private CSpriteRenderer spriteRenderer;
-        private Dictionary<string, CAnimation> animations = new Dictionary<string, CAnimation>();
-        private Dictionary<string, CBlendTree> blendTrees = new Dictionary<string, CBlendTree>();
+        private Dictionary<string, Animation> animations = new Dictionary<string, Animation>();
+        private Dictionary<string, BlendTree> blendTrees = new Dictionary<string, BlendTree>();
 
         private EFacingDirection facingDirection = EFacingDirection.Down;
-        private CAnimation currentAnimation = null;
-        private CBlendTree currentBlendTree = null;
+        private Animation currentAnimation = null;
+        private BlendTree currentBlendTree = null;
         private float timeElapsed;
         private int currentIndex;
         private bool stopAnimator = false;
@@ -70,7 +70,7 @@ namespace MainSystemFramework
                 if (currentBlendTree != null )
                 {
                     //CAnimation tmp = currentBlendTree.Play(GameObject.Transform.Velocity, spriteRenderer, ref facingDirection);
-                    CAnimation tmp = currentBlendTree.FacingCheck(facingDirection);
+                    Animation tmp = currentBlendTree.FacingCheck(facingDirection);
                     if (currentAnimation != tmp)
                     {
                         currentAnimation = tmp;
@@ -139,11 +139,11 @@ namespace MainSystemFramework
             }
         }
 
-        public void AddAnimation(CAnimation animation)
+        public void AddAnimation(Animation animation)
         {
             animations.Add(animation.Name, animation);
         }
-        public void AddAnimation(CBlendTree blendTree)
+        public void AddAnimation(BlendTree blendTree)
         {
             blendTrees.Add(blendTree.Name, blendTree);
         }

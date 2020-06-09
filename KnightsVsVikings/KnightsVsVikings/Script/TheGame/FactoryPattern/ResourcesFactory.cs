@@ -26,7 +26,6 @@ namespace KnightsVsVikings
 
         public GameObject Creaft(EResourcesType resourcesType)
         {
-            // Main GameObject
             GameObject go = new GameObject();
             CResourceTile resourceTile = new CResourceTile(resourcesType);
 

@@ -28,7 +28,6 @@ namespace MainSystemFramework
 
         public GameWorld GameWorld { get; set; }
         public bool isMouseVisible { get; private set; }
-        public GameWindow Window { get; set; }
         private MouseState MouseState { get; set; }
         public void SetMouseVisible(bool showMouse)
         {

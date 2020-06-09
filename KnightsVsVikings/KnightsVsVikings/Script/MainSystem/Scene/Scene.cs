@@ -63,6 +63,11 @@ namespace MainSystemFramework
                 {
                     if (gameObject.IsActive)
                     {
+                        if (gameObject.IsFristUpdate)
+                        {
+                            gameObject.IsFristUpdate = false;
+                            gameObject.Start();
+                        }
                         gameObject.Update();
                     }
                 }
@@ -77,6 +82,11 @@ namespace MainSystemFramework
             {
                 if (gameObject.IsActive)
                 {
+                    if (gameObject.IsFristUpdate)
+                    {
+                        gameObject.IsFristUpdate = false;
+                        gameObject.Start();
+                    }
                     gameObject.Update();
                 }
             }
@@ -114,14 +124,10 @@ namespace MainSystemFramework
             spriteBatch.End();
         }
 
-
-        // TODO: is extremely poorly optimised: need to find a better way to check if UI.
         public void CheckForGUI()
         {
             MouseState currentMouse = MouseSettings.Instance.GetMouseState();
-            Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
-
-            
+            Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);            
 
             GUI[] tmpColliders = UIColliders.ToArray();
 
@@ -210,8 +216,7 @@ namespace MainSystemFramework
                 foreach (GameObject go in awakeCall)
                 {
                     go.MyScene = this;
-                    go.Awake();
-                    go.Start();
+                    go.Awake();                    
 
                     bool gameobjectIsUI = false;
                     foreach (Component x in go.Components.Values)
@@ -255,7 +260,6 @@ namespace MainSystemFramework
             }
         }
         /// <summary>
-        /// TODO
         /// Remove all GameObjects To Be Remove from current GameObject List.
         /// </summary>
         private void CallDestroyGameObject()
