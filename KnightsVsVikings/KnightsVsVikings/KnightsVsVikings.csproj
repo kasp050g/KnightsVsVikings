@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ExtensionMethods\ArrayExtend.cs" />
     <Compile Include="ExtensionMethods\DictionaryExtend.cs" />
+    <Compile Include="ExtensionMethods\ListExtend.cs" />
     <Compile Include="ExtensionMethods\ObjectExtend.cs" />
     <Compile Include="ExtensionMethods\StringExtend.cs" />
     <Compile Include="ExtensionMethods\TypeExtend.cs" />
@@ -77,13 +78,17 @@
     <Compile Include="Script\MainSystem\Enum\EFacingDirection.cs" />
     <Compile Include="Script\MainSystem\Random\TextureSheet2D.cs" />
     <Compile Include="Script\TheGame\Calculator.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\Old\OldAstarGlobal.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\Old\OldCAstar.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\Old\OldCell.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\Cell.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\FGH.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\AstarGlobal.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldAstarGlobal.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldCAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldCell.cs" />
     <Compile Include="Script\TheGame\Components\CCanBeSelected.cs" />
     <Compile Include="Script\TheGame\Components\CShadow.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\Old\OldFGH.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldFGH.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CUnit.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\BuildingFactory.cs" />
@@ -91,9 +96,10 @@
     <Compile Include="Script\TheGame\FactoryPattern\ResourcesFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\TileFactory.cs" />
     <Compile Include="Script\TheGame\FactoryPattern\UnitFactory.cs" />
+    <Compile Include="Script\TheGame\GlobalProperties.cs" />
     <Compile Include="Script\TheGame\SelectedObject.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\CAstar.cs" />
-    <Compile Include="Script\TheGame\Components\AstarComponent\MasterAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\Old\KasperCAstar.cs" />
+    <Compile Include="Script\TheGame\Components\AstarComponent\Old\KasperMasterAstar.cs" />
     <Compile Include="Script\TheGame\UnitCommands.cs" />
     <Compile Include="Script\TheGame\Unit\Passive.cs" />
     <Compile Include="Script\TheGame\Unit\Stats.cs" />

@@ -1,4 +1,5 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using MainSystemFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,35 +8,36 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class MasterAstar
+    public class KasperMasterAstar
     {
-        public bool runAstar = true;
-        int tileSize = 128 / 2;
-        CTile start;
-        CTile goal;
+        int tileSize = Singletons.LevelInformationSingleton.TileSize;
+        private CTile start;
 
-        CTile currentTile;
+        private CTile goal;
 
-        List<CTile> open = new List<CTile>();
-        List<CTile> close = new List<CTile>();
+        private CTile currentTile;
+
+        private List<CTile> openList = new List<CTile>();
+        private List<CTile> closedList = new List<CTile>();
+        private Stack<CTile> stackTiles = new Stack<CTile>();
 
         public List<CTile> tiles = new List<CTile>();
-        Stack<CTile> stackTiles = new Stack<CTile>();
+        public bool runAstar = true;
+        public int TileSize { get => tileSize; }
 
-        public int TileSize { get => tileSize; set => tileSize = value; }
-        public MasterAstar()
+        public KasperMasterAstar()
         {
 
         }
 
-        public Stack<CTile> GetAstarWay(CTile _myPosition, CTile _endPosition)
+        public Stack<CTile> GetAstarWay(CTile currentPosition, CTile targetPosition)
         {
-            open.Clear();
-            close.Clear();
+            openList.Clear();
+            closedList.Clear();
             stackTiles.Clear();
 
-            start = _myPosition;
-            goal = _endPosition;
+            start = currentPosition;
+            goal = targetPosition;
 
             AddOpen(start, 0);
 
@@ -43,16 +45,16 @@ namespace KnightsVsVikings
 
             return stackTiles;
         }
-        public Stack<CTile> GetAstarWay(CTile _myPosition, CTile _endPosition, List<CTile> _tiles)
+        public Stack<CTile> GetAstarWay(CTile currentPosition, CTile targetPosition, List<CTile> tilesCurrent)
         {
             tiles.Clear();
-            open.Clear();
-            close.Clear();
+            openList.Clear();
+            closedList.Clear();
             stackTiles.Clear();
 
-            start = _myPosition;
-            goal = _endPosition;
-            tiles = _tiles;
+            start = currentPosition;
+            goal = targetPosition;
+            tiles = tilesCurrent;
             AddOpen(start, 0);
 
             MainLoop();
@@ -60,18 +62,16 @@ namespace KnightsVsVikings
             return stackTiles;
         }
 
-        public void SetTileGrid(List<CTile> _tiles)
+        public void SetTileGrid(List<CTile> tilesCurrent)
         {
-            tiles = _tiles;
+            tiles = tilesCurrent;
         }
         public void MainLoop()
         {
             while (runAstar == true)
             {
-                if (open.Count == 0)
-                {
+                if (openList.Count == 0)
                     break;
-                }
 
                 FindLowerCostCell();
 
@@ -87,17 +87,15 @@ namespace KnightsVsVikings
 
         public void FindLowerCostCell()
         {
-            currentTile = open[0];
-            foreach (CTile item in open)
+            currentTile = openList[0];
+            foreach (CTile item in openList)
             {
                 if (currentTile.F > item.F || currentTile.F >= item.F && currentTile.H > item.H)
-                {
                     currentTile = item;
-                }
             }
 
-            open.Remove(currentTile);
-            close.Add(currentTile);
+            openList.Remove(currentTile);
+            closedList.Add(currentTile);
         }
 
         public void AddOpen(CTile cell, int gCost)
@@ -112,19 +110,16 @@ namespace KnightsVsVikings
             while (true)
             {
                 if (y == goal.GameObject.Transform.Position.Y)
-                {
                     break;
-                }
+
                 else
                 {
                     if (goal.GameObject.Transform.Position.Y > y)
-                    {
                         y += tileSize;
-                    }
+
                     else
-                    {
                         y -= tileSize;
-                    }
+
                     distane += 10;
                 }
             }
@@ -132,19 +127,16 @@ namespace KnightsVsVikings
             while (true)
             {
                 if (x == goal.GameObject.Transform.Position.X)
-                {
                     break;
-                }
+
                 else
                 {
                     if (goal.GameObject.Transform.Position.X > x)
-                    {
                         x += tileSize;
-                    }
+
                     else
-                    {
                         x -= tileSize;
-                    }
+
                     distane += 10;
                 }
             }
@@ -154,7 +146,7 @@ namespace KnightsVsVikings
             cell.F = cell.G + cell.H;
             cell.LastTile = currentTile;
 
-            open.Add(cell);
+            openList.Add(cell);
         }
 
 
@@ -211,7 +203,7 @@ namespace KnightsVsVikings
 
         public void BeforOpenAdd(CTile cell, int gCost)
         {
-            if (!close.Contains(cell) && !open.Contains(cell) && cell.IsBlock == false && cell.IsResourceOccupied == false && cell.IsCanBuildHere == true && cell.IsUnitOccupied == false)
+            if (!closedList.Contains(cell) && !openList.Contains(cell) && cell.IsBlock == false && cell.IsResourceOccupied == false && cell.IsCanBuildHere == true && cell.IsUnitOccupied == false)
             {
                 AddOpen(cell, gCost);
             }

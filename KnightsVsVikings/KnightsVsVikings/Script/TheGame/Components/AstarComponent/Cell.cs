@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
-    public class OldCell : IComparable<OldCell>
+    public class Cell : IComparable<Cell>
     {
         public Vector2 GridPos { get; set; } = new Vector2();
         public ECellType ECellType { get; set; } = new ECellType();
-        public OldFGH FGH { get; set; }
-        public OldCell Parent { get; set; } = null;
+        public FGH FGH { get; set; }
+        public Cell Parent { get; set; } = null;
         public bool BlackListed { get; set; } = false;
 
-        public OldCell(ECellType eCellType)
+        public Cell(ECellType eCellType)
         {
             ECellType = eCellType;
         }
 
-        public OldCell(ECellType eCellType, bool isBlackListed) : this(eCellType)
+        public Cell(ECellType eCellType, Vector2 gridPos) : this(eCellType)
         {
-            BlackListed = isBlackListed;
+            GridPos = gridPos;
         }
 
-        public int CompareTo(OldCell other)
+        public int CompareTo(Cell other)
         {
             if (FGH.F == other.FGH.F)
                 return FGH.H.CompareTo(other.FGH.H);

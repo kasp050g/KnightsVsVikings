@@ -11,6 +11,6 @@ namespace KnightsVsVikings
         Up,
         Down,
         Left,
-        Rigth
+        Right
     }
 }

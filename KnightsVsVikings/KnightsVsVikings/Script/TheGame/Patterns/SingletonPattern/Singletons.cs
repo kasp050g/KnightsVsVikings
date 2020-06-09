@@ -1,6 +1,7 @@
 ﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
 using KnightsVsVikings.SQLiteFramework;
 using KnightsVsVikings.SQLiteFramework.Framework.Global;
+using MainSystemFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern
 {
     public static class Singletons
     {
-        public static OldAstarGlobal AstarGlobalSingleton = Singleton<OldAstarGlobal>.Instance;
+        public static AstarGlobal AstarGlobalSingleton = Singleton<AstarGlobal>.Instance;
         public static LevelInformation LevelInformationSingleton = Singleton<LevelInformation>.Instance;
         public static TableContainer TableContainerSingleton = Singleton<TableContainer>.Instance;
-        public static GameWorld GameWorldSingleton = Singleton<GameWorld>.Instance;
+        //public static GlobalProperties GlobalPropertiesSingleton = Singleton<GlobalProperties>.Instance;
+        public static Scene SceneSingleton = Singleton<Scene>.Instance;
     }
 }

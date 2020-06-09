@@ -1,4 +1,5 @@
-﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+﻿using KnightsVsVikings.ExtensionMethods;
+using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -104,7 +105,9 @@ namespace KnightsVsVikings
                     //selectedObject.UnitsSelected[i].Transform.Position = gameObject.Transform.Position;    
                     //selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
 
-                    selectedObject.UnitsSelected[i].GetComponent<CAstar>().GetAstar(gameObject.GetComponent<CTile>(),tileGrid);
+                    selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+                    selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
+                    //selectedObject.UnitsSelected[i].GetComponent<CAstar>().GetAstar(gameObject.GetComponent<CTile>(), tileGrid);
                     //selectedObject.UnitsSelected[i].GetComponent<CUnit>().IsMoving = true;
                     //GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;
                 }

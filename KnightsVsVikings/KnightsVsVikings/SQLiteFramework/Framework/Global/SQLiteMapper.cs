@@ -34,32 +34,17 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
         {
             List<dynamic> result = new List<dynamic>();
 
-            result.Add(reader.GetInt32(0)); // <= ID, Index, Identifier
+            result.Add(reader.GetInt32(0)); // <= Id, Index, Identifier
 
             for (int i = 1; i < typeof(T).GetProperties().Length - 1; i++)
-            {
                 result.Add(reader.Get(properties.ElementAt(i).PropertyType, i));
-            }
-                //result.Add(reader.GetValue(i));
 
             return result;
         }
 
-        //private List<PropertyInfo> RemoveBaseProperties(List<PropertyInfo> properties)
-        //{
-        //    List<PropertyInfo> baseProperties = typeof(SQLiteRowBase).GetProperties().Where(property => property.Name != "Id").ToList();
-        //
-        //    properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
-        //
-        //    return properties.AsEnumerable().OrderBy(property => property.Name != "Id").ToList();
-        //}
-
         private ISQLiteRow CreateRow(IDataReader reader)
         {
-            //ISQLiteRow row = (T)Activator.CreateInstance(typeof(T));
             T row = (T)Activator.CreateInstance(typeof(T));
-
-            //List<PropertyInfo> properties = CommandMethodExtensions.RemoveBaseProperties(typeof(T).GetProperties().ToList());
 
             List<PropertyInfo> properties = typeof(T).GetProperties().ToList().RemoveBaseProperties();
 

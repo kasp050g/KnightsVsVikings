@@ -12,11 +12,9 @@ namespace KnightsVsVikings.ExtensionMethods
 {
     public static class ArrayExtend
     {
-        public static OldCell[,] ToAstarArray(this OldCell[,] array)
+        public static Cell[,] ToAstarMatrix(this Cell[,] array)
         {
-            OldCell[,] result = new OldCell[array.GetLength(0), array.GetLength(1)];
-
-            //Cell[,] result = (Cell[,])array.Clone();
+            Cell[,] result = new Cell[array.GetLength(0), array.GetLength(1)];
 
             for (int x = 0; x < array.GetLength(0); x++)
                 for (int y = 0; y < array.GetLength(1); y++)
@@ -24,15 +22,15 @@ namespace KnightsVsVikings.ExtensionMethods
                     switch (array[x, y].ECellType)
                     {
                         case ECellType.Invalid:
-                            result[x, y] = new OldCell(ECellType.Invalid);
+                            result[x, y] = new Cell(ECellType.Invalid);
                             break;
 
                         case ECellType.Attackable:
-                            result[x, y] = new OldCell(ECellType.Attackable);
+                            result[x, y] = new Cell(ECellType.Attackable);
                             break;
 
                         default:
-                            result[x, y] = new OldCell(ECellType.Default);
+                            result[x, y] = new Cell(ECellType.Default);
                             break;
                     }
                     result[x, y].GridPos = new Vector2(x, y);
@@ -41,7 +39,7 @@ namespace KnightsVsVikings.ExtensionMethods
             return result;
         }
 
-        public static void Print2DArray(this OldCell[,] matrix)
+        public static void Print2DArray(this Cell[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {

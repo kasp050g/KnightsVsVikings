@@ -94,9 +94,12 @@ namespace KnightsVsVikings
                 myScene.SelectedEnabled[i].IsSelected = false;
 
                 if (mouseRectangle.Intersects(myScene.SelectedEnabled[i].SelectedCollisionBox) && myScene.SelectedEnabled[i].GameObject.GetComponent<CStats>().Team == ETeam.Team01)
-                {                    
-                    UnitsSelected.Add(myScene.SelectedEnabled[i].GameObject);
-                    myScene.SelectedEnabled[i].IsSelected = true;
+                {
+                    if (UnitsSelected.Count != 5)
+                    { 
+                        UnitsSelected.Add(myScene.SelectedEnabled[i].GameObject);
+                        myScene.SelectedEnabled[i].IsSelected = true;
+                    }
                 }
             }
 

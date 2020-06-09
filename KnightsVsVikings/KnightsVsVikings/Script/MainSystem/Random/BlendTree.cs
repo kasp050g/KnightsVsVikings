@@ -65,7 +65,7 @@ namespace MainSystemFramework
                 else
                 {
                     spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    facingDirection = EFacingDirection.Rigth;
+                    facingDirection = EFacingDirection.Right;
                     return Rigth;
                 }
             }
@@ -81,7 +81,7 @@ namespace MainSystemFramework
                     return Down;
                 case EFacingDirection.Left:
                     return Left;
-                case EFacingDirection.Rigth:
+                case EFacingDirection.Right:
                     return Rigth;
                 default:
                     return Down;
