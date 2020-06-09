@@ -11,20 +11,20 @@ using UnitTesting.Lucas_Testing.RemoveLambda.Classes;
 namespace UnitTesting.Lucas_Testing.RemoveLambda
 {
     [TestClass]
-    public class Test01
+    public class PropertiesTestA
     {
         [TestMethod]
-        public void RemoveAllLambdaList()
+        public void RemoveBasePropertiesFromProperties()
         {
             List<PropertyInfo> properties = typeof(Inherit).GetProperties().ToList();
-            List<PropertyInfo> baseProperties = typeof(BaseR).GetProperties().Where(property => property.Name != "ID").ToList();
+            List<PropertyInfo> baseProperties = typeof(BaseR).GetProperties().Where(property => property.Name != "Id").ToList();
 
             List<PropertyInfo> expected = properties.Where(property => property.Name != "RemoveMe").ToList();
 
             properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
-            expected = expected.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();
-            properties = properties.AsEnumerable().OrderBy(property => property.Name != "ID").ToList();
+            expected = expected.OrderBy(property => property.Name != "Id").ToList();
+            properties = properties.OrderBy(property => property.Name != "Id").ToList();
 
             Assert.IsTrue(expected.IsEqualsToList(properties));
         }

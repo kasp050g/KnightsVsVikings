@@ -45,7 +45,7 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 
             properties.RemoveAll(property => baseProperties.Exists(baseProperty => baseProperty.Name == property.Name));
 
-            return properties.AsEnumerable().OrderBy(property => property.Name != "Id").ToList();
+            return properties.OrderBy(property => property.Name != "Id").ToList();
         }
 
         public static List<PropertyInfo> RemoveAllBaseProperties(this List<PropertyInfo> properties)

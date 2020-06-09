@@ -10,10 +10,10 @@ using UnitTesting.Lucas_Testing.SetFieldReflection.Classes;
 namespace UnitTesting.Lucas_Testing.SetFieldReflection
 {
     [TestClass]
-    public class Test01
+    public class PropertySetValueReflectionTest
     {
         [TestMethod]
-        public void SetFieldTo()
+        public void SetPropertyTo()
         {
             IBase bob = new ModelBob();
 

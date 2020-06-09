@@ -8,7 +8,7 @@ namespace UnitTesting.Lucas_Testing.RemoveLambda.Classes
 {
     class BaseR
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         
         public string RemoveMe { get; set; }
     }
