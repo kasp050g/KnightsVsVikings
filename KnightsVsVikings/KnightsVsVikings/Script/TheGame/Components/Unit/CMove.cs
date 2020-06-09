@@ -12,7 +12,7 @@ namespace KnightsVsVikings
     public class CMove : Component
     {
         private float speed = 100f;
-        private Vector2 velocity = new Vector2(0,0);
+        private Vector2 velocity = new Vector2(0, 0);
         private CAnimator animator;
         private CSpriteRenderer spriteRenderer;
 
@@ -22,7 +22,7 @@ namespace KnightsVsVikings
         public override void Awake()
         {
             base.Awake();
-            if(GameObject.GetComponent<CAnimator>() != null)
+            if (GameObject.GetComponent<CAnimator>() != null)
             {
                 animator = GameObject.GetComponent<CAnimator>();
                 spriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
@@ -48,7 +48,10 @@ namespace KnightsVsVikings
         {
             base.Update();
             Move();
-            AnimationFacing();
+            if (animator != null)
+            {
+                AnimationFacing();
+            }
         }
 
         private void Move()
@@ -62,7 +65,7 @@ namespace KnightsVsVikings
             float y = tmp.Y;
             float x = tmp.X;
 
-             if(0 < Math.Abs(x) && Math.Abs(x) >= Math.Abs(y))
+            if (0 < Math.Abs(x) && Math.Abs(x) >= Math.Abs(y))
             {
                 if (0 > x)
                 {

@@ -18,9 +18,9 @@ namespace KnightsVsVikings
         public int G { get; set; }
         public int F { get; set; }
         public CTile LastTile { get; set; }
+        public EResourcesType ResourcesType { get; set; }
         public Vector2 TileSize { get => tileSize; set => tileSize = value; }
         public ETileType TileType { get; set; }
-        public EResourcesType ResourcesType { get; set; }
         public bool IsBlock { get; set; }
         public bool IsResourceOccupied { get; set; }
         public bool IsCanBuildHere { get; set; } = true;

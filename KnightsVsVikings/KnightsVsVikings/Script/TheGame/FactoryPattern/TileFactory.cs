@@ -35,7 +35,6 @@ namespace KnightsVsVikings
             go.AddComponent<CTile>(tile);
 
             sr.LayerDepth = 0.0001f;
-
             go.Transform.Scale *= 1.0f;
 
             return go;
