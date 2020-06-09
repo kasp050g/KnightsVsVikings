@@ -49,6 +49,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\EnumBase.cs" />
+    <Compile Include="Enums\EnumCasting.cs" />
     <Compile Include="ExtensionMethodsTest\DictionaryExtendTest.cs" />
     <Compile Include="ExtensionMethodsTest\ListExtendTest.cs" />
     <Compile Include="ExtensionMethodsTest\PropertyFinder.cs" />

@@ -171,6 +171,30 @@
 /processorParam:TextureFormat=Color
 /build:Images/Characters/Knights/Worker/KnightsWorkerUp.png
 
+#begin Images/Characters/UnitStuff/IsSelected.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Characters/UnitStuff/IsSelected.png
+
+#begin Images/Characters/UnitStuff/shadow.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images/Characters/UnitStuff/shadow.png
+
 #begin Images/Characters/Vikings/Bowman/VikingsBowmanDown.png
 /importer:TextureImporter
 /processor:TextureProcessor

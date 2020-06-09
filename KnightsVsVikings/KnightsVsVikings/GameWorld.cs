@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace KnightsVsVikings
 {
@@ -30,12 +31,8 @@ namespace KnightsVsVikings
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
             global.Initialize();
-            
-
         }
 
         /// <summary>
@@ -47,7 +44,6 @@ namespace KnightsVsVikings
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             global.LoadContent(Content);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -56,7 +52,7 @@ namespace KnightsVsVikings
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            
         }
 
         /// <summary>
@@ -69,9 +65,8 @@ namespace KnightsVsVikings
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            MouseSettings.Instance.SetMouseState(Mouse.GetState(Window));
             global.Update(gameTime);
-
             base.Update(gameTime);
         }
 
@@ -82,10 +77,7 @@ namespace KnightsVsVikings
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            // TODO: Add your drawing code here
             global.Draw(spriteBatch);
-
             base.Draw(gameTime);
         }
     }

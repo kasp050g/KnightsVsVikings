@@ -1,4 +1,7 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
+using KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -11,8 +14,9 @@ namespace KnightsVsVikings
 {
     public class TileGrid
     {
-        private int gridSizeX = 50;
-        private int gridSizeY = 50;
+        private SQLiteSaveAndLoadWorldEditor SQliteSaveAndLoad = new SQLiteSaveAndLoadWorldEditor();
+        private int gridSizeX = 25;
+        private int gridSizeY = 25;
         private Scene myScene;
 
         public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
@@ -38,24 +42,40 @@ namespace KnightsVsVikings
         {
             // Test SQLite
             TestSqlite();
+            //LoadfromSQLite(1);
         }
-        private void LoadfromSQLite(int mapID)
+        public void LoadfromSQLite(int mapID)
         {
-            //TODO: Load from SQLite
+            ResetGrid();
+            
+            SQliteSaveAndLoad.LoadSQLite(this, mapID,myScene);
+            UpdateGrid();
+
+            Singletons.AstarGlobalSingleton.InitializeGrids(groundTileGrid);
+
+            //foreach (GameObject unit in unitTileGrid)
+            //    if (unit != null)
+            //        unit.GetComponent<CAstar>().InitiateAstar();
         }
 
+        public void SaveToSQLite()
+        {
+            SQliteSaveAndLoad.SaveSQLite(this);
+        }
+
+        #region TEST!
         private GameObject MadeTile(Vector2 pos,TextureSheet2D textureSheet)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(textureSheet);
             CTile tile = new CTile(TileSize);
-            CResourceTile resourceTile = new CResourceTile();
+            //CResourceTile resourceTile = new CResourceTile();
 
             sr.LayerDepth = 0f;
 
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CTile>(tile);
-            go.AddComponent<CResourceTile>(resourceTile);            
+            //go.AddComponent<CResourceTile>(resourceTile);            
 
             go.Transform.Position = new Vector2((int)pos.X,(int)pos.Y) * TileSize;
             go.Transform.Scale = new Vector2(1.0f, 1.0f);
@@ -74,11 +94,11 @@ namespace KnightsVsVikings
                 }
             }
         }
+        #endregion
 
         public void UpdateGrid()
         {
             TileGrid _tileGrid = this;
-
 
             for (int x = 0; x < _tileGrid.groundTileGrid.GetLength(0); x++)
             {
@@ -94,6 +114,7 @@ namespace KnightsVsVikings
                 {
                     CheckForBuild(_tileGrid.buildingTileGrid, _tileGrid.groundTileGrid, new Vector2(x, y));
                     CheckForUnit(_tileGrid.unitTileGrid, _tileGrid.groundTileGrid, new Vector2(x, y));
+                    CheckForResource(_tileGrid.resourceTileGrid, _tileGrid.groundTileGrid, new Vector2(x, y));
                 }
             }
 
@@ -104,6 +125,37 @@ namespace KnightsVsVikings
                     GetTileData(_tileGrid.groundTileGrid, new Vector2(x, y));
                 }
             }
+        }
+
+        public void ResetGrid()
+        {
+            #region RemoveAll
+            foreach (GameObject item in groundTileGrid)
+            {
+                if (item != null)
+                    myScene.Destroy(item);
+            }
+            foreach (GameObject item in obstacleTileGrid)
+            {
+                if (item != null)
+                    myScene.Destroy(item);
+            }
+            foreach (GameObject item in resourceTileGrid)
+            {
+                if (item != null)
+                    myScene.Destroy(item);
+            }
+            foreach (GameObject item in buildingTileGrid)
+            {
+                if (item != null)
+                    myScene.Destroy(item);
+            }
+            foreach (GameObject item in unitTileGrid)
+            {
+                if (item != null)
+                    myScene.Destroy(item);
+            }
+            #endregion
         }
 
         public void GetTileData(GameObject[,] groundTileGrid, Vector2 gridPos)
@@ -138,6 +190,7 @@ namespace KnightsVsVikings
 
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.White;
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = true;
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Water01);
 
             if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType != ETileType.Water)
             {
@@ -157,7 +210,20 @@ namespace KnightsVsVikings
                 {
                     // No Water
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().TileType = ETileType.Grass;
-                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Grass01);
+                    int random = Helper.GetRandomValue(0, 200);
+                    if(random > 10)
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Grass01);
+                    }
+                    else if(random > 5)
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Grass02);
+                    }
+                    else
+                    {
+                        groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().SetSprite(SpriteContainer.Instance.TileSprite.Grass03);
+                    }
+
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsBlock = false;
 
                     SetTypeOfTile(groundTileGrid, gridPos);
@@ -227,25 +293,21 @@ namespace KnightsVsVikings
                 else
                 {
                     // Error Tile
+                    
                 }
+            }
+            else
+            {
+                
             }
         }
 
         private void SetTypeOfTile(GameObject[,] groundTileGrid, Vector2 gridPos)
         {
-            if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().ResourcesType != EResourcesType.Nothing)
-            {
-                groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied = true;
-            }
-            else
-            {
-                groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied = false;
-            }
-
             // Color Tile Test
             if(ShowGridColor == true)
             {
-                if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsOccupied == true)
+                if (groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsResourceOccupied == true)
                 {
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CSpriteRenderer>().Color = Color.Blue;
                 }
@@ -272,6 +334,7 @@ namespace KnightsVsVikings
         {
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsCanBuildHere = true;
             groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
+            groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsResourceOccupied = false;
         }
 
         private void CheckForBuild(GameObject[,] buildingTileGrid, GameObject[,] groundTileGrid, Vector2 gridPos)
@@ -314,6 +377,18 @@ namespace KnightsVsVikings
                 if (unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CUnit>() != null)
                 {
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
+                    //unitTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CAstar>().CurrentTile = groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>();
+                }
+            }
+        }
+
+        private void CheckForResource(GameObject[,] resourceTileGrid, GameObject[,] groundTileGrid, Vector2 gridPos)
+        {
+            if (resourceTileGrid[(int)gridPos.X, (int)gridPos.Y] != null)
+            {
+                if (resourceTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CResourceTile>() != null)
+                {
+                    groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsResourceOccupied = true;
                 }
             }
         }

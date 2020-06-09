@@ -10,11 +10,14 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
 {
     class SQLiteFactionModel : SQLiteRowBase
     {
-        public string Faction { get; set; }
+        public string Name { get; set; }
 
-        public SQLiteFactionModel(ISQLiteTable locatedInTable, string faction) : base(locatedInTable)
+        public SQLiteFactionModel()
+        { }
+
+        public SQLiteFactionModel(ISQLiteTable locatedInTable, string name) : base(locatedInTable)
         {
-            Faction = faction;
+            Name = name;
         }
     }
 }

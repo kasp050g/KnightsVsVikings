@@ -14,6 +14,9 @@ namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 
         public ISQLiteTable LocatedInTable { get; set; }
 
+        public SQLiteRowBase()
+        { }
+
         public SQLiteRowBase(ISQLiteTable locatedInTable)
         {
             LocatedInTable = locatedInTable;

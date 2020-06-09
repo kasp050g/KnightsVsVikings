@@ -12,6 +12,7 @@ namespace KnightsVsVikings.Script.TheGame.Enum
         Open,
         Closed,
         Path,
-        Invalid
+        Invalid,
+        Attackable
     }
 }

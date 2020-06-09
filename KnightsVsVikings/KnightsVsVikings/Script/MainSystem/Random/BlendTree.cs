@@ -11,16 +11,15 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
-    public class CBlendTree
+    public class BlendTree
     {
         private string name;
-        private CAnimation up;
-        private CAnimation down;
-        private CAnimation left;
-        private CAnimation rigth;
-        //private EFacingDirection facingDirection;
+        private Animation up;
+        private Animation down;
+        private Animation left;
+        private Animation rigth;
 
-        public CBlendTree(CAnimation up, CAnimation down, CAnimation left, CAnimation rigth, string name)
+        public BlendTree(Animation up, Animation down, Animation left, Animation rigth, string name)
         {
             this.up = up;
             this.down = down;
@@ -30,13 +29,12 @@ namespace MainSystemFramework
         }
 
         public string Name { get => name; set => name = value; }
-        public CAnimation Up { get => up; private set => up = value; }
-        public CAnimation Down { get => down; private set => down = value; }
-        public CAnimation Left { get => left; private set => left = value; }
-        public CAnimation Rigth { get => rigth; private set => rigth = value; }
-        //public EFacingDirection FacingDirection { get => facingDirection; set => facingDirection = value; }
+        public Animation Up { get => up; private set => up = value; }
+        public Animation Down { get => down; private set => down = value; }
+        public Animation Left { get => left; private set => left = value; }
+        public Animation Rigth { get => rigth; private set => rigth = value; }
 
-        public CAnimation Play(Vector2 vel, CSpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
+        public Animation Play(Vector2 vel, CSpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
         {
             float y = vel.Y;
             float x = vel.X;
@@ -67,13 +65,13 @@ namespace MainSystemFramework
                 else
                 {
                     spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    facingDirection = EFacingDirection.Rigth;
+                    facingDirection = EFacingDirection.Right;
                     return Rigth;
                 }
             }
         }
 
-        public CAnimation FacingCheck(EFacingDirection facingDirection)
+        public Animation FacingCheck(EFacingDirection facingDirection)
         {
             switch (facingDirection)
             {
@@ -83,7 +81,7 @@ namespace MainSystemFramework
                     return Down;
                 case EFacingDirection.Left:
                     return Left;
-                case EFacingDirection.Rigth:
+                case EFacingDirection.Right:
                     return Rigth;
                 default:
                     return Down;

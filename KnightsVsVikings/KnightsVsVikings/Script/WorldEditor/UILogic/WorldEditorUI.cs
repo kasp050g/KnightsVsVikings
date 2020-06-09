@@ -12,12 +12,15 @@ namespace KnightsVsVikings
     public class WorldEditorUI
     {
         Scene myScene;
+        TileGrid tileGrid;
         GameObject actionBar;
         GameObject actionBarFactionAndTeam;
+        // UI stuff
         GroundTileGridBar groundTile;
         ResourceTileGridBar resourceTileGridBar;
         BuildingTileGridBar buildingTileGridBar;
         UnitTileGridBar unitTileGridBar;
+        LoadSaveUIBar loadSaveUIBar;
 
         GUIButton groundBtn;
         GUIButton resourcesBtn;
@@ -33,10 +36,11 @@ namespace KnightsVsVikings
 
         PlaceTileWithMouse placeTile;
 
-        public WorldEditorUI(Scene myScene, PlaceTileWithMouse placeTile)
+        public WorldEditorUI(Scene myScene, PlaceTileWithMouse placeTile, TileGrid tileGrid)
         {
             this.myScene = myScene;
             this.placeTile = placeTile;
+            this.tileGrid = tileGrid;
         }
 
         public void MadeUI()
@@ -58,6 +62,10 @@ namespace KnightsVsVikings
             unitTileGridBar = new UnitTileGridBar(myScene, actionBar, placeTile);
             unitTileGridBar.MadeUI();
             unitTileGridBar.mainGameObject.SetIsActive(false);
+
+            loadSaveUIBar = new LoadSaveUIBar(myScene,tileGrid);
+            loadSaveUIBar.MakeUI();
+            loadSaveUIBar.mainGameObject.SetIsActive(true);
 
             groundBtn = TopButtom(new Vector2(-270, -30), "Ground Tile");
             resourcesBtn = TopButtom(new Vector2(-150, -30), "Resources");
@@ -189,7 +197,7 @@ namespace KnightsVsVikings
             sr.LayerDepth = 0.02f;
             go.Transform.Scale = new Vector2(0.2f, 0.5f) * GraphicsSetting.Instance.ScreenScale;
             go.Transform.Position = new Vector2(GraphicsSetting.Instance.ScreenSize.X, GraphicsSetting.Instance.ScreenSize.Y * 1);
-            Console.WriteLine(go.Transform.Position);
+
             myScene.Instantiate(go);
 
             return go;

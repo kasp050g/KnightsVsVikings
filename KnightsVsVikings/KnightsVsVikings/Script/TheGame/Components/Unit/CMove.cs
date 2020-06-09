@@ -11,7 +11,7 @@ namespace KnightsVsVikings
 {
     public class CMove : Component
     {
-        private float speed = 100;
+        private float speed = 100f;
         private Vector2 velocity = new Vector2(0,0);
         private CAnimator animator;
         private CSpriteRenderer spriteRenderer;
@@ -72,7 +72,7 @@ namespace KnightsVsVikings
                 else
                 {
                     spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    animator.FacingDirection = EFacingDirection.Rigth;
+                    animator.FacingDirection = EFacingDirection.Right;
                 }
             }
             else if (0 < Math.Abs(y))

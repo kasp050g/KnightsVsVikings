@@ -18,6 +18,7 @@ namespace KnightsVsVikings
 
         BuildingFactory buildingFactory = new BuildingFactory();
         UnitFactory unitFactory = new UnitFactory();
+        ResourcesFactory resourcesFactory = new ResourcesFactory();
 
         EFaction faction;
         ETeam team;
@@ -214,11 +215,10 @@ namespace KnightsVsVikings
             gameObjectTileMouse.GetComponent<CSpriteRenderer>().SetSprite(image);
         }
 
-
         public void MoveTileShow()
         {
-            int mousex = Mouse.GetState().Position.X;
-            int mousey = Mouse.GetState().Position.Y;
+            int mousex = MouseSettings.Instance.GetMouseState().X;
+            int mousey = MouseSettings.Instance.GetMouseState().Y;
             Vector2 newPosition = new Vector2(mousex, mousey);
 
             Vector2 worldPosition = Vector2.Transform(newPosition, Matrix.Invert(SceneController.Instance.Camera.Transform));
@@ -279,35 +279,11 @@ namespace KnightsVsVikings
 
         public void PlaceUnit(int x, int y)
         {
-            GameObject go = unitFactory.Creaft(team, unitType, faction);
+            GameObject go = unitFactory.Creaft(unitType, faction, team);
 
             go.Transform.Position = new Vector2((x - 0) * tileGrid.TileSize.X, (y - 0) * tileGrid.TileSize.Y);
 
-            switch (team)
-            {
-                case ETeam.Team01:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightPink;
-                    break;
-                case ETeam.Team02:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightBlue;
-                    break;
-                case ETeam.Team03:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.LightGreen;
-                    break;
-                case ETeam.Team04:
-                    go.GetComponent<CSpriteRenderer>().Color = Color.Yellow;
-                    break;
-                case ETeam.Team05:
-                    break;
-                case ETeam.Team06:
-                    break;
-                case ETeam.Team07:
-                    break;
-                case ETeam.Team08:
-                    break;
-                default:
-                    break;
-            }
+
 
             if (tileGrid.unitTileGrid[x, y] != null)
             {
@@ -332,11 +308,9 @@ namespace KnightsVsVikings
             TextureSheet2D tmp = null;
             Vector2 _offset = new Vector2(0, 0);
 
-            GameObject go = buildingFactory.Creaft(buildingType);
+            GameObject go = buildingFactory.Creaft(buildingType,faction,team);
 
-            go.Transform.Position = new Vector2((x - 1) * tileGrid.TileSize.X, (y - 3) * tileGrid.TileSize.Y);
-
-
+            go.Transform.Position = new Vector2(x  * tileGrid.TileSize.X, y  * tileGrid.TileSize.Y);
 
             switch (buildingType)
             {
@@ -360,36 +334,6 @@ namespace KnightsVsVikings
                     break;
             }
 
-            if (buildingType != EBuildingType.Field)
-            {
-                switch (team)
-                {
-                    case ETeam.Team01:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Red;
-                        break;
-                    case ETeam.Team02:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Blue;
-                        break;
-                    case ETeam.Team03:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Green;
-                        break;
-                    case ETeam.Team04:
-                        go.GetComponent<CSpriteRenderer>().Color = Color.Yellow;
-                        break;
-                    case ETeam.Team05:
-                        break;
-                    case ETeam.Team06:
-                        break;
-                    case ETeam.Team07:
-                        break;
-                    case ETeam.Team08:
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-
             if (tileGrid.buildingTileGrid[x, y] != null)
             {
                 myScene.Destroy(tileGrid.buildingTileGrid[x, y]);
@@ -410,47 +354,24 @@ namespace KnightsVsVikings
 
         public void PlaceResource(int x, int y)
         {
-            TextureSheet2D tmp = null;
-            Vector2 _offset = new Vector2(0, 0);
+            GameObject go = resourcesFactory.Creaft(resourcesType);
 
-            switch (resourcesType)
+            go.Transform.Position = new Vector2((x - 0) * tileGrid.TileSize.X, (y - 0) * tileGrid.TileSize.Y);
+
+            if (tileGrid.resourceTileGrid[x, y] != null)
             {
-                case EResourcesType.Nothing:
-                    //tmp = SpriteContainer.Instance.TileSprite.Delete;
-                    //_offset = new Vector2(0, 0);
-                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-                    break;
-                case EResourcesType.Gold:
-                    //tmp = SpriteContainer.Instance.TileSprite.Gold;
-                    //_offset = new Vector2(0, -128);
-                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-                    break;
-                case EResourcesType.Stone:
-                    //tmp = SpriteContainer.Instance.TileSprite.Stone;
-                    //_offset = new Vector2(0, -128);
-                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-                    break;
-                case EResourcesType.Wood:
-                    //tmp = SpriteContainer.Instance.TileSprite.Wood;
-                    //_offset = new Vector2(-128, -4 * 128);
-                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-                    break;
-                case EResourcesType.Food:
-                    //tmp = SpriteContainer.Instance.TileSprite.Wheatfield;
-                    //_offset = new Vector2(-128, -128);
-                    tileGrid.groundTileGrid[x, y].GetComponent<CResourceTile>().UpdateResourcesSprite(resourcesType);
-                    break;
-                default:
-                    break;
+                myScene.Destroy(tileGrid.resourceTileGrid[x, y]);
             }
 
-            if (tmp != null)
+            if (resourcesType != EResourcesType.Nothing)
             {
-                tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().SetSprite(tmp);
-                //tileGrid.resourceTileGrid[x, y].GetComponent<CSpriteRenderer>().OffSet = _offset;
+                myScene.Instantiate(go);
+                tileGrid.resourceTileGrid[x, y] = go;
             }
-
-            //tileGrid.groundTileGrid[x, y].GetComponent<CTile>().ResourcesType = resourcesType;
+            else
+            {
+                tileGrid.resourceTileGrid[x, y] = null;
+            }
 
             UpdateGrid(tileGrid);
         }

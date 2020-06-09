@@ -18,6 +18,7 @@ namespace MainSystemFramework
         public Transform Transform { get; set; }
         public string Tag { get; set; }
         public Dictionary<string, Component> Components { get => components; set => components = value; }
+        public bool IsFristUpdate { get; set; } = true;
 
         public GameObject()
         {
@@ -92,6 +93,7 @@ namespace MainSystemFramework
         public void Update()
         {
             if ((MyParent != null ? MyParent.IsActive == true : true))
+            {
                 foreach (Component component in components.Values)
                 {
                     if (component.IsEnabled)
@@ -99,7 +101,8 @@ namespace MainSystemFramework
                         component.Update();
                     }
                 }
-            //TODO: Kasper ting lige over den her.
+            }
+
             if (MyParent != null && IsActive != MyParent.IsActive)
             {
                 IsActive = MyParent.IsActive;
@@ -109,6 +112,7 @@ namespace MainSystemFramework
         public void Draw(SpriteBatch spriteBatch)
         {
             if ((MyParent != null ? MyParent.IsActive == true : true))
+            {
                 foreach (Component component in components.Values)
                 {
                     if (component.IsEnabled)
@@ -116,6 +120,7 @@ namespace MainSystemFramework
                         component.Draw(spriteBatch);
                     }
                 }
+            }
         }
 
         public void Destroy()
@@ -124,9 +129,6 @@ namespace MainSystemFramework
             {
                 component.Destroy();
             }
-
-            // TODO: Destory gmaeobject in gamework list.
-            //GameWorld.Instance.RemoveGameObject(this);
         }
 
         public void SetMyParent(GameObject go)

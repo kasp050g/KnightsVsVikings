@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsVsVikings;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -25,6 +26,7 @@ namespace MainSystemFramework
         protected List<GameObject> gameObjectsToBeDestroyed = new List<GameObject>();
 
         public List<CCollider> Colliders { get; set; } = new List<CCollider>();
+        public List<CCanBeSelected> SelectedEnabled { get; set; } = new List<CCanBeSelected>();
         public List<GUI> UIColliders { get; set; } = new List<GUI>();
         public string Name { get { return name; } set { name = value; } }
         public bool UpdateEnabled { get { return updateEnabled; } set { updateEnabled = value; } }
@@ -61,6 +63,11 @@ namespace MainSystemFramework
                 {
                     if (gameObject.IsActive)
                     {
+                        if (gameObject.IsFristUpdate)
+                        {
+                            gameObject.IsFristUpdate = false;
+                            gameObject.Start();
+                        }
                         gameObject.Update();
                     }
                 }
@@ -75,6 +82,11 @@ namespace MainSystemFramework
             {
                 if (gameObject.IsActive)
                 {
+                    if (gameObject.IsFristUpdate)
+                    {
+                        gameObject.IsFristUpdate = false;
+                        gameObject.Start();
+                    }
                     gameObject.Update();
                 }
             }
@@ -112,13 +124,10 @@ namespace MainSystemFramework
             spriteBatch.End();
         }
 
-
-        // TODO: is extremely poorly optimised: need to find a better way to check if UI.
         public void CheckForGUI()
         {
-
-            MouseState currentMouse = Mouse.GetState();
-            Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);
+            MouseState currentMouse = MouseSettings.Instance.GetMouseState();
+            Rectangle mouseRectangle = new Rectangle(currentMouse.X, currentMouse.Y, 1, 1);            
 
             GUI[] tmpColliders = UIColliders.ToArray();
 
@@ -207,8 +216,7 @@ namespace MainSystemFramework
                 foreach (GameObject go in awakeCall)
                 {
                     go.MyScene = this;
-                    go.Awake();
-                    go.Start();
+                    go.Awake();                    
 
                     bool gameobjectIsUI = false;
                     foreach (Component x in go.Components.Values)
@@ -231,6 +239,11 @@ namespace MainSystemFramework
                     if (go.GetComponent<CCollider>() != null)
                     {
                         Colliders.Add(go.GetComponent<CCollider>());
+                    }      
+                    
+                    if (go.GetComponent<CCanBeSelected>() != null)
+                    {
+                        SelectedEnabled.Add(go.GetComponent<CCanBeSelected>());
                     }
 
                     if (go.GetComponent<GUI>() != null)
@@ -247,7 +260,6 @@ namespace MainSystemFramework
             }
         }
         /// <summary>
-        /// TODO
         /// Remove all GameObjects To Be Remove from current GameObject List.
         /// </summary>
         private void CallDestroyGameObject()

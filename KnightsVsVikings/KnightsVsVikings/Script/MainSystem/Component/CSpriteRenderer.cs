@@ -68,6 +68,12 @@ namespace MainSystemFramework
         public override void Awake()
         {
             base.Awake();
+
+            if(sprite == null)
+            {
+                sprite = SpriteContainer.Instance.Pixel;
+            }
+
             if (spriteSheet != null)
             {
                 Helper.UpdateOrigin(GameObject, spriteSheet, originPositionEnum);
@@ -131,7 +137,7 @@ namespace MainSystemFramework
                 // SpriteEffects
                 this.SpriteEffects,
                 // LayerDepth
-                this.LayerDepth /*+ GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000*/
+                this.LayerDepth + GameObject.Transform.Position.Y / 100000 + GameObject.Transform.Position.X / 110000
             );
         }
 

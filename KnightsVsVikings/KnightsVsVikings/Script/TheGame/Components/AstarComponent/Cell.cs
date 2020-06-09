@@ -21,9 +21,9 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             ECellType = eCellType;
         }
 
-        public Cell(ECellType eCellType, bool isBlackListed) : this(eCellType)
+        public Cell(ECellType eCellType, Vector2 gridPos) : this(eCellType)
         {
-            BlackListed = isBlackListed;
+            GridPos = gridPos;
         }
 
         public int CompareTo(Cell other)
