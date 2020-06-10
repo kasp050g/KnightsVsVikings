@@ -18,7 +18,7 @@ namespace MainSystemFramework
         public Texture2D SpriteSheet { get; set; }
         public List<Vector2> SpritePositions { get; set; }
         public Vector2 SpriteSize { get; set; }
-        public EAnimationType animationType { get; set; }
+        public EAnimationType AnimationType { get; set; }
         public string Name { get; private set; }
         public float Fps { get; private set; }
         public bool Loop { get; set; }
@@ -33,7 +33,7 @@ namespace MainSystemFramework
             this.Loop = Loop;
             this.End = End;
             this.AnimationLock = AnimationLock;
-            animationType = EAnimationType.SpriteArray;
+            AnimationType = EAnimationType.SpriteArray;
         }
         public Animation(Texture2D SpriteSheet, List<Vector2> SpritePositions, Vector2 SpriteSize, string name, float fps, bool Loop,bool AnimationLock = false, bool End = false)
         {
@@ -45,7 +45,7 @@ namespace MainSystemFramework
             this.Loop = Loop;
             this.End = End;
             this.AnimationLock = AnimationLock;
-            animationType = EAnimationType.SpriteSheet;
+            AnimationType = EAnimationType.SpriteSheet;
         }
     }
 }

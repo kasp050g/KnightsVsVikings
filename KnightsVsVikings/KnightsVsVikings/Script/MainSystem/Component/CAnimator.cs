@@ -33,7 +33,7 @@ namespace MainSystemFramework
             base.Awake();
             spriteRenderer = GameObject.GetComponent<CSpriteRenderer>();
 
-            if (currentAnimation.animationType == EAnimationType.SpriteArray)
+            if (currentAnimation.AnimationType == EAnimationType.SpriteArray)
             {
                 spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
             }
@@ -160,7 +160,7 @@ namespace MainSystemFramework
             if (animations.ContainsKey(animationName))
             {
                 currentAnimation = animations[animationName];
-                if (currentAnimation.animationType == EAnimationType.SpriteArray && spriteRenderer != null)
+                if (currentAnimation.AnimationType == EAnimationType.SpriteArray && spriteRenderer != null)
                 {
                     spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
                 }
@@ -170,7 +170,7 @@ namespace MainSystemFramework
                 currentBlendTree = blendTrees[animationName];
                 currentAnimation = currentBlendTree.FacingCheck(facingDirection);
 
-                if (currentAnimation.animationType == EAnimationType.SpriteArray && spriteRenderer != null)
+                if (currentAnimation.AnimationType == EAnimationType.SpriteArray && spriteRenderer != null)
                 {
                     spriteRenderer.Rectangle = new Rectangle(0, 0, (int)currentAnimation.Sprites[0].Width, (int)currentAnimation.Sprites[0].Height);
                 }

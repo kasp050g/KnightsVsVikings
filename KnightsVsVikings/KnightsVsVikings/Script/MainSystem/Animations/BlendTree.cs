@@ -34,43 +34,6 @@ namespace MainSystemFramework
         public Animation Left { get => left; private set => left = value; }
         public Animation Rigth { get => rigth; private set => rigth = value; }
 
-        public Animation Play(Vector2 vel, CSpriteRenderer spriteRenderer, ref EFacingDirection facingDirection)
-        {
-            float y = vel.Y;
-            float x = vel.X;
-
-            if (0 < Math.Abs(y))
-            {
-                if (0 < y)
-                {
-                    spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    facingDirection = EFacingDirection.Up;
-                    return Up;
-                }
-                else
-                {
-                    spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    facingDirection = EFacingDirection.Down;
-                    return Down;
-                }
-            }
-            else
-            {
-                if (0 > x)
-                {
-                    spriteRenderer.SpriteEffects = SpriteEffects.FlipHorizontally;
-                    facingDirection = EFacingDirection.Left;
-                    return Left;
-                }
-                else
-                {
-                    spriteRenderer.SpriteEffects = SpriteEffects.None;
-                    facingDirection = EFacingDirection.Right;
-                    return Rigth;
-                }
-            }
-        }
-
         public Animation FacingCheck(EFacingDirection facingDirection)
         {
             switch (facingDirection)
