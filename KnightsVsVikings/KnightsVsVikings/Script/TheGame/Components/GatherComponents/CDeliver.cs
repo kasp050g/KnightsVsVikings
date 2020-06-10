@@ -18,8 +18,6 @@ namespace KnightsVsVikings.Script.TheGame.Components.GatherComponents
 
             Thread.Sleep(1000);
 
-            Console.WriteLine($"Delivered: {worker.ResourceAmount}");
-
             worker.ResourceAmount = 0;
             worker.LastDeliveredTo = GameObject;
 
