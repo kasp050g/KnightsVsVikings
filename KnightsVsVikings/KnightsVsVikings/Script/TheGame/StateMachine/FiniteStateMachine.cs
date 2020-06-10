@@ -8,46 +8,28 @@ namespace KnightsVsVikings
 {
     public class FiniteStateMachine<T>
     {
-        //
-        // Summary:
-        //     A shared context which all states have access to.
+        /// <summary>
+        /// A shared context which all states have access to.
+        /// </summary>
         public T Context { get; private set; }
-        //
-        // Summary:
-        //     The active state.
+        /// <summary>
+        /// The active state.
+        /// </summary>        
         public IFsmState<T> CurrentState { get; private set; }
-        //
-        // Summary:
-        //     The previously active state.
+        /// <summary>
+        /// The previously active state.
+        /// </summary>
         public IFsmState<T> PreviousState { get; private set; }
+        /// <summary>
+        /// All the state's
+        /// </summary>
         private Dictionary<Type, IFsmState<T>> stateDictionary = new Dictionary<Type, IFsmState<T>>();
 
-        //
-        // Summary:
-        //     Creates a new Finite State Machine. If you need control over how the states are
-        //     created, you can register them manually using Archon.SwissArmyLib.Automata.FiniteStateMachine`1.RegisterState(Archon.SwissArmyLib.Automata.IFsmState{`0}).
-        //     If not, then you can freely use Archon.SwissArmyLib.Automata.FiniteStateMachine`1.ChangeStateAuto``1
-        //     which will create the states using their default constructor.
-        //
-        // Parameters:
-        //   context:
-        //     A shared context for the states.
-        //public FiniteStateMachine(T context)
-        //{
-        //    this.Context = context;
-        //}
-        //
-        // Summary:
-        //     Creates a new Finite State Machine and changes the state to startState. If you
-        //     need control over how the states are created, you can register them manually
-        //     using Archon.SwissArmyLib.Automata.FiniteStateMachine`1.RegisterState(Archon.SwissArmyLib.Automata.IFsmState{`0}).
-        //     If not, then you can freely use Archon.SwissArmyLib.Automata.FiniteStateMachine`1.ChangeStateAuto``1
-        //     which will create the states using their default constructor.
-        //
-        // Parameters:
-        //   context:
-        //
-        //   startState:
+        /// <summary>
+        /// Creates a new Finite State Machine and changes the state to startState.
+        /// </summary>
+        /// <param name="context">Type</param>
+        /// <param name="startState">Start State</param>
         public FiniteStateMachine(T context, IFsmState<T> startState)
         {
             this.Context = context;
@@ -59,15 +41,12 @@ namespace KnightsVsVikings
             stateDictionary.Add(startState.GetType(), startState);
         }
 
-
-
-        //
-        // Summary:
-        //     Changes the active state to the given state type. An instance of that type should
-        //     already had been registered to use this method.
-        //
-        // Type parameters:
-        //   TState:
+        /// <summary>
+        /// hanges the active state to the given state type. An instance of that type should
+        /// already had been registered to use this method.
+        /// </summary>
+        /// <typeparam name="TState">The State you want to change to</typeparam>
+        /// <returns></returns>
         public TState ChangeState<TState>() where TState : IFsmState<T>
         {
             PreviousState = CurrentState;
@@ -79,16 +58,14 @@ namespace KnightsVsVikings
 
             return (TState)CurrentState;
         }
-        //
-        // Summary:
-        //     Changes the active state to a specific state instance. This will (if not null)
-        //     also register the state.
-        //
-        // Parameters:
-        //   state:
-        //
-        // Type parameters:
-        //   TState:
+
+        /// <summary>
+        /// Changes the active state to a specific state instance. This will (if not null)
+        /// also register the state.
+        /// </summary>
+        /// <typeparam name="TState">The State you want to change to</typeparam>
+        /// <param name="state">The State you want to change to and it value</param>
+        /// <returns></returns>
         public TState ChangeState<TState>(TState state) where TState : IFsmState<T>
         {
             if (CurrentState != null)
@@ -107,62 +84,18 @@ namespace KnightsVsVikings
 
             return state;
         }
-        //
-        // Summary:
-        //     Changes the active state to the given state type. If a state of that type isn't
-        //     already registered, it will automatically create a new instance using the empty
-        //     constructor.
-        //
-        // Type parameters:
-        //   TState:
-        //public TState ChangeStateAuto<TState>() where TState : IFsmState<T>, new()
-        //{
 
-        //}
-        //
-        // Summary:
-        //     Checks whether a state type is registered.
-        //
-        // Parameters:
-        //   stateType:
-        //     The state type to check.
-        //
-        // Returns:
-        //     True if registered, false otherwise.
-        //public bool IsStateRegistered(Type stateType)
-        //{
-
-        //}
-        //
-        // Summary:
-        //     Generic version of Archon.SwissArmyLib.Automata.FiniteStateMachine`1.IsStateRegistered(System.Type).
-        //     Checks whether a state type is registered.
-        //
-        // Type parameters:
-        //   TState:
-        //     The state type to check.
-        //
-        // Returns:
-        //     Tru if registered, false otherwise.
-        //public bool IsStateRegistered<TState>() where TState : IFsmState<T>
-        //{
-
-        //}
-        //
-        // Summary:
-        //     Preemptively add a state instance. Useful if the state doesn't have an empty
-        //     constructor and therefore cannot be used with ChangeStateAuto.
-        //
-        // Parameters:
-        //   state:
-        //     The state to register.
+        /// <summary>
+        /// Preemptively add a state instance. Useful if the state doesn't have an empty
+        /// constructor and therefore cannot be used with ChangeStateAuto.
+        /// </summary>
+        /// <param name="state">The state to register.</param>  
         public void AddState(IFsmState<T> state)
         {
             state.Machine = this;
             state.Context = Context;
             stateDictionary.Add(state.GetType(),state);
         }
-
 
         /// <summary>
         /// Call this every time the machine should update. Eg. every frame.
