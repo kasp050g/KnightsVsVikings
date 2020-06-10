@@ -8,7 +8,7 @@ using UnitTesting.Lucas_Testing.SetFieldReflection.Classes;
 
 namespace LucasTesting.GetPropFromVar.Classes
 {
-    public class VarClass : IBaseVarClass
+    public class PropertyClass : IBasePropertyClass
     {
         public int GetMe { get; set; }
         public int GetMeToo { get; set; }

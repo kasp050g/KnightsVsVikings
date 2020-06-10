@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
@@ -14,6 +15,9 @@ namespace KnightsVsVikings
             base.Begin();
 
             Context.Animator.PlayAnimation("Run");
+
+            if (Thread.CurrentThread.Name == "WorkerThread")
+                Thread.CurrentThread.Abort();
         }
 
         public override void End()
@@ -25,7 +29,7 @@ namespace KnightsVsVikings
         {
             base.Reason();
 
-            if (!Context.IsMoving == true)
+            if (!Context.IsMoving)
             {
                 Machine.ChangeState<UnitIdleState>();
 

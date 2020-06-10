@@ -52,6 +52,8 @@ namespace KnightsVsVikings
             UpdateGrid();
 
             Singletons.AstarGlobalSingleton.InitializeGrids(groundTileGrid);
+            Singletons.LevelInformationSingleton.BuildingTileGrid = buildingTileGrid;
+            Singletons.LevelInformationSingleton.ResourcesTileGrid = resourceTileGrid;
 
             //foreach (GameObject unit in unitTileGrid)
             //    if (unit != null)
@@ -391,6 +393,10 @@ namespace KnightsVsVikings
                     groundTileGrid[(int)gridPos.X, (int)gridPos.Y].GetComponent<CTile>().IsResourceOccupied = true;
                 }
             }
+        }
+
+        private void GetDeliverPoint()
+        {
         }
     }
 }

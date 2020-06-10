@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
@@ -24,6 +25,8 @@ namespace KnightsVsVikings
         private GameObject woodSing;
         private GameObject icon;
         private CStats stats = new CStats();
+
+        private Semaphore garrisonCapacity = new Semaphore(6, 6);
 
         public EBuildingType BuildingType { get => buildingType; set => buildingType = value; }
         public EFaction Faction { get => faction; set => faction = value; }
@@ -134,6 +137,20 @@ namespace KnightsVsVikings
 
             for (int i = 0; i < myStatsProperties.Count - 1; i++)
                 statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
+        }
+
+        public void DeliverResource(CUnit worker)
+        {
+            garrisonCapacity.WaitOne();
+
+            Thread.Sleep(1000);
+
+            Console.WriteLine($"Delivered: {worker.ResourceAmount}");
+
+            worker.ResourceAmount = 0;
+            worker.LastDeliveredTo = GameObject;
+
+            garrisonCapacity.Release();
         }
     }
 }

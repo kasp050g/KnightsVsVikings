@@ -56,9 +56,9 @@
     <Compile Include="ExtensionMethodsTest\PropertyFinder.cs" />
     <Compile Include="FieldFromLambda\FieldClass.cs" />
     <Compile Include="FieldFromLambda\Test01.cs" />
-    <Compile Include="GetPropFromVar\Classes\IBaseVarClass.cs" />
-    <Compile Include="GetPropFromVar\Classes\VarClass.cs" />
-    <Compile Include="GetPropFromVar\TestVar.cs" />
+    <Compile Include="GetPropFromVar\Classes\IBasePropertyClass.cs" />
+    <Compile Include="GetPropFromVar\Classes\PropertyClass.cs" />
+    <Compile Include="GetPropFromVar\TestGetProperty.cs" />
     <Compile Include="RemoveLambda\Classes\BaseR.cs" />
     <Compile Include="RemoveLambda\Classes\Inherit.cs" />
     <Compile Include="RemoveLambda\Test01.cs" />

@@ -1,5 +1,6 @@
 ﻿using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -104,9 +105,25 @@ namespace KnightsVsVikings
                     //tileGrid.unitTileGrid[Xpos, Ypos] = selectedObject.UnitsSelected[i]; 
                     //selectedObject.UnitsSelected[i].Transform.Position = gameObject.Transform.Position;    
                     //selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+                    if (selectedObject.UnitsSelected[i].GetComponent<CUnit>().UnitType == EUnitType.Worker)
+                    {
+                        if (gameObject.GetComponent<CTile>().IsResourceOccupied)
+                            selectedObject.UnitsSelected[i].GetComponent<CUnit>().LastGatheredFrom = gameObject;
 
-                    selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
-                    selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
+                        if (!gameObject.GetComponent<CTile>().IsBlock)
+                        {
+                            selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+                            selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
+                        }
+                    }
+                    else
+                    {
+                        if (!gameObject.GetComponent<CTile>().IsBlock && !gameObject.GetComponent<CTile>().IsResourceOccupied)
+                        {
+                            selectedObject.UnitsSelected[i].GetComponent<CAstar>().ResetAstar();
+                            selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target = gameObject;
+                        }
+                    }
                     //selectedObject.UnitsSelected[i].GetComponent<CAstar>().GetAstar(gameObject.GetComponent<CTile>(), tileGrid);
                     //selectedObject.UnitsSelected[i].GetComponent<CUnit>().IsMoving = true;
                     //GameObject xb = selectedObject.UnitsSelected[i].GetComponent<CUnit>().Target;

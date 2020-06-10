@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace LucasTesting.ExtensionMethodsTest
 {
-    public static class PropertyFinder<T> where T : IBaseVarClass
+    public static class PropertyFinder<T> where T : IBasePropertyClass
     {
         public static PropertyInfo Find<TProperty>(Expression<Func<T, TProperty>> expression)
         {
