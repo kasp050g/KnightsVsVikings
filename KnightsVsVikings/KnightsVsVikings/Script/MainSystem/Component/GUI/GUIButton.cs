@@ -255,7 +255,7 @@ namespace MainSystemFramework
                     // SpriteEffects
                     SpriteRenderer.SpriteEffects,
                     // LayerDepth
-                    SpriteRenderer.LayerDepth + 0.00001f
+                    SpriteRenderer.LayerDepth + 0.01f
                 );
             }
         }

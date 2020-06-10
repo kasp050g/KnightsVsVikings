@@ -92,7 +92,7 @@ namespace KnightsVsVikings
 
             go.AddComponent<GUIText>(guiText);
 
-            guiText.LayerDepth = 0.13f;
+            guiText.LayerDepth = 0.15f;
             guiText.FontScale = guiText.FontScale * GraphicsSetting.Instance.ScreenScale;
             guiText.OffsetPosition = new Vector2(padding.X * GraphicsSetting.Instance.ScreenScale.X, padding.Y * GraphicsSetting.Instance.ScreenScale.Y);
             go.MyParent = myParent;

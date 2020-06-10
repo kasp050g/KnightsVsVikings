@@ -78,7 +78,7 @@ namespace KnightsVsVikings
         private void MakeButton(Texture2D texture1, Texture2D texture2, string text, Vector2 pos, ref GUIButton btn, string parent)
         {
             GameObject go = new GameObject();
-            CSpriteRenderer sr = new CSpriteRenderer();
+            CSpriteRenderer sr = new CSpriteRenderer() { LayerDepth = 0.1f };
             
 
             btn = new GUIButton(sr, texture1, texture2, Color.White, Color.White, SpriteContainer.Instance.MediaevalFont, SpriteContainer.Instance.TextColor, new Vector2(1f, 1f), text);
@@ -88,7 +88,6 @@ namespace KnightsVsVikings
 
             go.Transform.Scale = new Vector2(0.3f, 0.3f);
             go.Transform.Position = pos;
-            sr.LayerDepth = 0.5f;
 
             if (parent == "main")
             {

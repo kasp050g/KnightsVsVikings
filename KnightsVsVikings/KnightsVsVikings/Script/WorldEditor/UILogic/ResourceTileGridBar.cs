@@ -108,7 +108,7 @@ namespace KnightsVsVikings
 
             go.AddComponent<GUIText>(guiText);
 
-            guiText.LayerDepth = 0.13f;
+            guiText.LayerDepth = 0.15f;
             guiText.FontScale = guiText.FontScale * GraphicsSetting.Instance.ScreenScale;
             go.MyParent = myParent;
             go.SetMyParent(myParent);
