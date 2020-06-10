@@ -25,6 +25,15 @@ namespace MainSystemFramework
         public bool End { get; set; }
         public bool AnimationLock { get; set; }
 
+        /// <summary>
+        /// Use if the Animation is made with a List of sprites
+        /// </summary>
+        /// <param name="sprites">List of sprites</param>
+        /// <param name="name">Name of the animation</param>
+        /// <param name="fps">How many pictures that is shown per second</param>
+        /// <param name="Loop">Do this animation loop</param>
+        /// <param name="AnimationLock">when this animation is playing it is locked, I cannot shift to another animation</param>
+        /// <param name="End">when it is done playing the full animation it will end this animation and return to the default animation</param>
         public Animation(List<Texture2D> sprites, string name, float fps, bool Loop, bool AnimationLock = false,bool End = false)
         {
             this.Sprites = sprites.ToArray();
@@ -35,6 +44,17 @@ namespace MainSystemFramework
             this.AnimationLock = AnimationLock;
             AnimationType = EAnimationType.SpriteArray;
         }
+        /// <summary>
+        /// Use if the Animation is made with a Sprite Sheet image
+        /// </summary>
+        /// <param name="SpriteSheet">Sprite sheet image</param>
+        /// <param name="SpritePositions">Positions of the </param>
+        /// <param name="SpriteSize"></param>
+        /// <param name="name">Name of the animation</param>
+        /// <param name="fps">How many pictures that is shown per second</param>
+        /// <param name="Loop">Do this animation loop</param>
+        /// <param name="AnimationLock">when this animation is playing it is locked, I cannot shift to another animation</param>
+        /// <param name="End">when it is done playing the full animation it will end this animation and return to the default animation</param>
         public Animation(Texture2D SpriteSheet, List<Vector2> SpritePositions, Vector2 SpriteSize, string name, float fps, bool Loop,bool AnimationLock = false, bool End = false)
         {
             this.SpriteSheet = SpriteSheet;

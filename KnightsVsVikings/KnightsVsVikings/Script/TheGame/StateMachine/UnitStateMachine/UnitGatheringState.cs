@@ -29,6 +29,7 @@ namespace KnightsVsVikings
             workerThread.Name = "WorkerThread";
             workerThread.IsBackground = true;
             workerThread.Start();
+            
         }
 
         public override void End()

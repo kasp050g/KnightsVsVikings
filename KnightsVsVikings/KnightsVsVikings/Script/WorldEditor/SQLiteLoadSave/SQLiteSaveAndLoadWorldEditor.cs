@@ -254,11 +254,11 @@ namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
                 go.Transform.Position = new Vector2(tileSize.X * item.X, tileSize.Y * item.Y);
                 if(item.BuildingType != EBuildingType.Field)
                 {
-                go.Transform.Position = new Vector2((item.X - 1) * tileGrid.TileSize.X, (item.Y - 3) * tileGrid.TileSize.Y);
+                go.Transform.Position = new Vector2((item.X) * tileGrid.TileSize.X, (item.Y ) * tileGrid.TileSize.Y);
                 }
                 else
                 {
-                    go.Transform.Position = new Vector2((item.X - 1) * tileGrid.TileSize.X, (item.Y - 1) * tileGrid.TileSize.Y);
+                    go.Transform.Position = new Vector2((item.X) * tileGrid.TileSize.X, (item.Y) * tileGrid.TileSize.Y);
                 }
                 myScene.Instantiate(go);
                 tileGrid.buildingTileGrid[item.X, item.Y] = go;

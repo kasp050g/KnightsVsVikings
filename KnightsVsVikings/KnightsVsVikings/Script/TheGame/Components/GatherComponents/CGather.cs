@@ -15,7 +15,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.GatherComponents
         public void GatherResource(CUnit worker)
         {
             resourceCapacity.WaitOne();
-
+            worker.Animator.PlayAnimation($"{EUnitAnimationType.Cast}");
             Thread.Sleep(1500);
 
             worker.ResourceAmount = 100;
