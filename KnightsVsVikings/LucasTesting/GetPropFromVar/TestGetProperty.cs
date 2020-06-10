@@ -12,15 +12,15 @@ using System.Threading.Tasks;
 namespace LucasTesting.GetPropFromVar
 {
     [TestClass]
-    public class TestVar
+    public class TestGetProperty
     {
         [TestMethod]
-        public void PropVarTest()
+        public void GetPropertyTest()
         {
-            VarClass varClass = new VarClass();
+            PropertyClass propertyClass = new PropertyClass();
 
-            PropertyInfo actual = PropertyFinder<VarClass>.Find(x => x.GetMe);
-            PropertyInfo expected = varClass.GetType().GetProperty("GetMe");
+            PropertyInfo actual = PropertyFinder<PropertyClass>.Find(x => x.GetMe);
+            PropertyInfo expected = propertyClass.GetType().GetProperty("GetMe");
 
             Assert.AreEqual(expected, actual);
         }

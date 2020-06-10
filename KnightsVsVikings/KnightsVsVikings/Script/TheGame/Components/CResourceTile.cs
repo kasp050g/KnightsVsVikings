@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
@@ -28,6 +29,7 @@ namespace KnightsVsVikings
         private TextureSheet2D wood;
         private TextureSheet2D food;
         private CTile tile;
+        private Semaphore resourceCapacity = new Semaphore(4, 4);
         #endregion
 
         #region Properties 
@@ -130,6 +132,18 @@ namespace KnightsVsVikings
                 default:
                     break;
             }
+        }
+        
+        public void GatherResource(CUnit worker)
+        {
+            resourceCapacity.WaitOne();
+
+            Thread.Sleep(1500);
+
+            worker.ResourceAmount = 100;
+            worker.LastGatheredFrom = GameObject;
+
+            resourceCapacity.Release();
         }
 
         private void SetSprite(TextureSheet2D spriteName)

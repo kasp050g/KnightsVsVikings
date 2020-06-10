@@ -2,6 +2,7 @@
 using KnightsVsVikings.ExtensionMethods;
 using KnightsVsVikings.Script.TheGame;
 using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using KnightsVsVikings.Script.TheGame.Components.GatherComponents;
 using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using KnightsVsVikings.SQLiteFramework.Framework.Global;
 using KnightsVsVikings.SQLiteFramework.Interfaces;
@@ -36,13 +37,48 @@ namespace KnightsVsVikings
         private EUnitType unitType;
         private EFaction faction;
 
+        private GameObject lastGatheredFrom,
+                           lastDeliveredTo;
+
         public GameObject Target { get;  set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
         public bool IsAlive { get; set; }
         public bool IsMoving { get; set; } = false;
+        public bool IsGathering { get; set; } = false;
         public ETeam Team { get => team; set => team = value; }
         public EUnitType UnitType { get => unitType; set => unitType = value; }
         public EFaction Faction { get => faction; set => faction = value; }
+        public int ResourceAmount { get; set; } = 0;
+        public GameObject LastGatheredFrom
+        {
+            get
+            {
+                return lastGatheredFrom;
+            }
+            set
+            {
+                lastGatheredFrom = value;
+
+                if (lastGatheredFrom.GetComponent<CGather>() == null)
+                    lastGatheredFrom.AddComponent<CGather>();
+            }
+        }
+
+        public GameObject LastDeliveredTo
+        {
+            get
+            {
+                return lastDeliveredTo;
+            }
+            set
+            {
+                lastDeliveredTo = value;
+
+                if(lastDeliveredTo.GetComponent<CDeliver>() == null)
+                lastDeliveredTo.AddComponent<CDeliver>();
+            }
+        }
+
 
         public CUnit()
         {
@@ -171,23 +207,42 @@ namespace KnightsVsVikings
 
 
             //ISQLiteRow myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(1);
+            // new Old
             ISQLiteRow factionRow = Singletons.TableContainerSingleton.FactionTable.Get(PropertyFinder<SQLiteFactionModel>.Find(x => x.Name), Faction.ToString());
             List<ISQLiteRow> unitRow = Singletons.TableContainerSingleton.UnitTable.GetMultiple(PropertyFinder<SQLiteUnitModel>.Find(x => x.FactionId), factionRow.Id);
             ISQLiteRow myStatsRow = null;
-
+            
             foreach (SQLiteUnitModel row in unitRow)
                 if (row.UnitTypeId == (int)unitType)
                 {
                     myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(row.StatsId);
                     break;
                 }
-
+            
             List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().ToList();
             myStatsProperties.RemoveAll(property => property.Name == "Id" || property.Name == "LocatedInTable");
             List<PropertyInfo> statsProperties = stats.Stats.GetType().GetProperties().ToList();
-
+            
             for (int i = 0; i < myStatsProperties.Count - 1; i++)
                 statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
+            // new old
+            //ISQLiteRow factionRow = Singletons.RepositoryContainerSingleton.UnitRepository.RepositoryTables.Get(PropertyFinder<SQLiteFactionModel>.Find(x => x.Name), Faction.ToString());
+            //List<ISQLiteRow> unitRow = Singletons.RepositoryContainerSingleton.UnitTable.GetMultiple(PropertyFinder<SQLiteUnitModel>.Find(x => x.FactionId), factionRow.Id);
+            //ISQLiteRow myStatsRow = null;
+            //
+            //foreach (SQLiteUnitModel row in unitRow)
+            //    if (row.UnitTypeId == (int)unitType)
+            //    {
+            //        myStatsRow = Singletons.TableContainerSingleton.StatsTable.Get(row.StatsId);
+            //        break;
+            //    }
+            //
+            //List<PropertyInfo> myStatsProperties = myStatsRow.GetType().GetProperties().ToList();
+            //myStatsProperties.RemoveAll(property => property.Name == "Id" || property.Name == "LocatedInTable");
+            //List<PropertyInfo> statsProperties = stats.Stats.GetType().GetProperties().ToList();
+            //
+            //for (int i = 0; i < myStatsProperties.Count - 1; i++)
+            //    statsProperties.ElementAt(i).SetValue(stats.Stats, myStatsProperties.ElementAt(i).GetValue(myStatsRow));
         }
 
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
@@ -19,7 +20,10 @@ namespace KnightsVsVikings
         {
             base.Begin();
 
-            Context.Animator.PlayAnimation($"{EUnitAnimationType.Idle}");
+            Context.Animator.PlayAnimation("Idle");
+
+            if (Thread.CurrentThread.Name == "WorkerThread")
+                Thread.CurrentThread.Abort();
         }
 
         public override void End()
@@ -35,6 +39,14 @@ namespace KnightsVsVikings
             {
                 Machine.ChangeState<UnitMoveToPositionState>();
             }
+
+            if (Context.LastDeliveredTo != null)
+                if (Context.GameObject.Transform.Position == Context.LastDeliveredTo.Transform.Position)// && Context.ResourceAmount == 0)
+                    Machine.ChangeState<UnitGatheringState>();
+
+            if (Context.LastGatheredFrom != null)
+                if (Context.GameObject.Transform.Position == Context.LastGatheredFrom.Transform.Position)// && Context.ResourceAmount == 0)
+                    Machine.ChangeState<UnitGatheringState>();
         }
 
         public override void Act(float deltaTime)

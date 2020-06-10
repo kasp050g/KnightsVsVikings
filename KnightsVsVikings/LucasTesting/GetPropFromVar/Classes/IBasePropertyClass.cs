@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LucasTesting.GetPropFromVar.Classes
 {
-    public interface IBaseVarClass
+    public interface IBasePropertyClass
     {
         int GetMeToo { get; set; }
     }

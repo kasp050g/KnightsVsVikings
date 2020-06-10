@@ -87,6 +87,8 @@
     <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldCell.cs" />
     <Compile Include="Script\TheGame\Components\CCanBeSelected.cs" />
     <Compile Include="Script\TheGame\Components\CShadow.cs" />
+    <Compile Include="Script\TheGame\Components\GatherComponents\CDeliver.cs" />
+    <Compile Include="Script\TheGame\Components\GatherComponents\CGather.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CStats.cs" />
     <Compile Include="Script\TheGame\Components\AstarComponent\OldOld\OldFGH.cs" />
     <Compile Include="Script\TheGame\Components\Unit\CMove.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="SQLiteFramework\Framework\Global\ReaderConverter.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteDBProvider.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteMapper.cs" />
+    <Compile Include="SQLiteFramework\Framework\Global\SQLiteRepository.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteRowBase.cs" />
     <Compile Include="SQLiteFramework\Framework\Global\SQLiteTable.cs" />
     <Compile Include="SQLiteFramework\Interfaces\ISQLiteDBProvider.cs" />
@@ -198,6 +201,7 @@
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\RenameTableCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLCommands\UpdateRowCommand.cs" />
     <Compile Include="SQLiteFramework\Patterns\CommandPattern\SQLiteHelper.cs" />
+    <Compile Include="SQLiteFramework\RepositoryContainer.cs" />
     <Compile Include="SQLiteFramework\TableContainer.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitChaseMyTargetState.cs" />
     <Compile Include="Script\TheGame\StateMachine\UnitStateMachine\UnitDieState.cs" />

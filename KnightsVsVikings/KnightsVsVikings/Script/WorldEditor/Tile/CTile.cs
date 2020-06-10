@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
@@ -13,6 +14,7 @@ namespace KnightsVsVikings
     public class CTile : Component
     {
         private Vector2 tileSize = new Vector2((int)128/2, (int)128/2);
+        private Semaphore tileCapacity = new Semaphore(4, 4);
 
         public int H { get; set; }
         public int G { get; set; }
@@ -63,6 +65,18 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
+        }
+
+        public void GatherResource(CUnit worker)
+        {
+            tileCapacity.WaitOne();
+
+            Thread.Sleep(1500);
+
+            worker.ResourceAmount = 100;
+            worker.LastGatheredFrom = GameObject;
+
+            tileCapacity.Release();
         }
     }
 }
