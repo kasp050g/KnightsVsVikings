@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper og Lukas
     public class CSelectable : Component
     {
         private bool isSelected;

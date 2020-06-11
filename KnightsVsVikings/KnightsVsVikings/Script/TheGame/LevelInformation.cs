@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame
 {
+    // Lukas
     public class LevelInformation
     {
         public byte TileSize { get; } = 64;

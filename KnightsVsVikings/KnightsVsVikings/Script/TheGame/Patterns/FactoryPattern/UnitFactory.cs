@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper og Lukas
     public class UnitFactory : IFactoryPlayerCreated
     {
         public GameObject Create(string type, EFaction faction, ETeam team)

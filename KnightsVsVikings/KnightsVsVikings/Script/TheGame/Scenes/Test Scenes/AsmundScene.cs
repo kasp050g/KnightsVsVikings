@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 
 namespace KnightsVsVikings
 {

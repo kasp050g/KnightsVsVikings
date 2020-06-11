@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper 
     public class CResourceTile : Component
     {
         #region Fields

@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper og Lukas
     public class CBuilding : Component
     {
         private EBuildingType buildingType;

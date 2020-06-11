@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class CSpriteRenderer : Component
     {
         #region Fields
@@ -83,6 +84,11 @@ namespace MainSystemFramework
                 Helper.UpdateOrigin(GameObject, sprite, originPositionEnum);
             }
         }
+
+        /// <summary>
+        /// Set sprite with string
+        /// </summary>
+        /// <param name="spriteName">String name of the sprite</param>
         public void SetSprite(string spriteName)
         {
             if (SpriteContainer.Instance.Sprite.ContainsKey(spriteName))
@@ -97,12 +103,22 @@ namespace MainSystemFramework
                 rectangle = spriteSheet.Rectangle;
             }
         }
+
+        /// <summary>
+        /// Set sprite with a Texture2D
+        /// </summary>
+        /// <param name="spriteName">type with a Texture2D</param>
         public void SetSprite(Texture2D spriteName)
         {
             spriteSheet = null;
             sprite = spriteName;
             rectangle = new Rectangle(0, 0, Sprite.Width, Sprite.Height);
         }
+
+        /// <summary>
+        /// Set sprite with a TextureSheet2D
+        /// </summary>
+        /// <param name="spriteName">type with a TextureSheet2D</param>
         public void SetSprite(TextureSheet2D spriteName)
         {
             spriteSheet = spriteName;
@@ -151,6 +167,10 @@ namespace MainSystemFramework
             return (CSpriteRenderer)this.MemberwiseClone();
         }
 
+        /// <summary>
+        /// Set origin of the sprite
+        /// </summary>
+        /// <param name="originPositionEnum">origin Position</param>
         public void SetOrigin(EOriginPosition originPositionEnum)
         {
             this.originPositionEnum = originPositionEnum;

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class CAnimator : Component
     {
         private CSpriteRenderer spriteRenderer;
@@ -59,6 +60,9 @@ namespace MainSystemFramework
             base.Draw(spriteBatch);
         }
 
+        /// <summary>
+        /// Update Animation
+        /// </summary>
         private void UpdateAnimation()
         {
             // Check if we got a animation to play if so play it
@@ -85,6 +89,9 @@ namespace MainSystemFramework
             }
         }
 
+        /// <summary>
+        /// Change sprite with the animation
+        /// </summary>
         private void ChangeSprite()
         {
             if (currentAnimation.SpriteSheet != null)
@@ -139,15 +146,28 @@ namespace MainSystemFramework
             }
         }
 
+        /// <summary>
+        /// Add Animation
+        /// </summary>
+        /// <param name="animation"></param>
         public void AddAnimation(Animation animation)
         {
             animations.Add(animation.Name, animation);
         }
+
+        /// <summary>
+        /// Add BlendTree
+        /// </summary>
+        /// <param name="blendTree"></param>
         public void AddAnimation(BlendTree blendTree)
         {
             blendTrees.Add(blendTree.Name, blendTree);
         }
 
+        /// <summary>
+        /// Play animation
+        /// </summary>
+        /// <param name="animationName">Name of animation</param>
         public void PlayAnimation(string animationName)
         {
             currentAnimation = null;
@@ -181,6 +201,9 @@ namespace MainSystemFramework
             }
         }
 
+        /// <summary>
+        /// Reset the animation
+        /// </summary>
         public void Reset()
         {
             stopAnimator = false;

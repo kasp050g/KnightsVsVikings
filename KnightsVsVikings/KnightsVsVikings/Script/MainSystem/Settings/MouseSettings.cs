@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class MouseSettings
     {
         #region Singleton
@@ -26,9 +27,10 @@ namespace MainSystemFramework
         }
         #endregion
 
+        private MouseState MouseState;
         public GameWorld GameWorld { get; set; }
         public bool isMouseVisible { get; private set; }
-        private MouseState MouseState { get; set; }
+
         public void SetMouseVisible(bool showMouse)
         {
             GameWorld.IsMouseVisible = showMouse;

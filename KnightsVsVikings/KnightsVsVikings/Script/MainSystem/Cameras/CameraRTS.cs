@@ -8,10 +8,14 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class CameraRTS : Camera
     {
         private float moveSpeed = 500;
 
+        /// <summary>
+        /// Move speed
+        /// </summary>
         public float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
 
         public override void Update()

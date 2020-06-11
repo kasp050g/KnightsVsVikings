@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper
     public class ResourcesFactory : IFactory
     {
+
         public GameObject Create(string type)
         {
             GameObject go = new GameObject();

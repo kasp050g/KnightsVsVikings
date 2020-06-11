@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper  Fly
     public class Selector
     {
         private Scene myScene;

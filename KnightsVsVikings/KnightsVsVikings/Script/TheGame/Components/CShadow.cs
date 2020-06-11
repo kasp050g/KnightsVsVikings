@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper 
     public class CShadow : Component
     {
         private Texture2D Sprite;

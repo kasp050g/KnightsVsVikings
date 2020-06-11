@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class GameObject
     {
         private Dictionary<string, Component> components = new Dictionary<string, Component>();

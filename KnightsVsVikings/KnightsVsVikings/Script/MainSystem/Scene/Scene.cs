@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class Scene
     {
         protected string name;
@@ -92,11 +93,9 @@ namespace MainSystemFramework
             }
 
             ColliderCheck();
-
             CallDestroyGameObject();
             CallInstantiate();
             SceneController.Instance.Camera.Update();
-
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
@@ -186,6 +185,7 @@ namespace MainSystemFramework
         {
             this.gameObjectsToBeCreated.Add(gameObject);
         }
+
         /// <summary>
         /// Will destroy this gameobject
         /// </summary>
@@ -194,6 +194,7 @@ namespace MainSystemFramework
         {
             this.gameObjectsToBeDestroyed.Add(gameObject);
         }
+
         /// <summary>
         /// Call this to Destroy all GameObjects
         /// </summary>
@@ -202,6 +203,7 @@ namespace MainSystemFramework
             this.gameObjects.Clear();
             this.guis.Clear();
         }
+
         /// <summary>
         /// Add all GameObjects To Be Created to current GameObject List.
         /// </summary>
@@ -259,6 +261,7 @@ namespace MainSystemFramework
                 }
             }
         }
+
         /// <summary>
         /// Remove all GameObjects To Be Remove from current GameObject List.
         /// </summary>

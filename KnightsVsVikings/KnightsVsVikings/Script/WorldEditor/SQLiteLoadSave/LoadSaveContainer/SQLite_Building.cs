@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.WorldEditor.SQLiteLoadSave
 {
+    // Kasper
     public class SQLite_Building
     {
         public EBuildingType BuildingType { get; set; }

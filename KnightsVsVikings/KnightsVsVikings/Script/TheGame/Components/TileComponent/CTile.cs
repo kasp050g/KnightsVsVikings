@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Kasper og Lukas
     public class CTile : Component
     {
         private Vector2 tileSize = new Vector2(Singletons.LevelInformationSingleton.TileSize, Singletons.LevelInformationSingleton.TileSize);

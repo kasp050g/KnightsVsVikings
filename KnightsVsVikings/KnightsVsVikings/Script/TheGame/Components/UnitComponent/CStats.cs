@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    // Kasper
+    // Kasper og Lukas
     public class CStats : Component
     {
         private ETeam team;

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class Camera
     {
         protected Matrix transform;
@@ -20,11 +21,17 @@ namespace MainSystemFramework
             this.Transform = Matrix.CreateTranslation(0, 0, 0);            
         }
 
+        /// <summary>
+        /// Update
+        /// </summary>
         public virtual void Update()
         {
 
         }
 
+        /// <summary>
+        /// Call on scene switch
+        /// </summary>
         public virtual void OnSwitchScene()
         {
             isFirstUpdate = true;

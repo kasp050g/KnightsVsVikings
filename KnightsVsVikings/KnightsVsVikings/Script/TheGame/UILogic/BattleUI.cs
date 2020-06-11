@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace KnightsVsVikings
 {
-    
+    // Asmund
     public class BattleUI
     {
         Scene myScene;

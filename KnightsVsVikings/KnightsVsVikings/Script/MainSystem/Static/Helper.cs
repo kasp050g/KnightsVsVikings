@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public static class Helper
     {
         public static Random random = new Random();

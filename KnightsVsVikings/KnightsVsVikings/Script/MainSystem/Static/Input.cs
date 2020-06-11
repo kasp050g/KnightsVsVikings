@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public static class Input
     {
         // Contains all current use keys
@@ -147,7 +148,6 @@ namespace MainSystemFramework
                 // getPressedKeys is the current keys that are pressed.
                 // keyInLoop is the current key in use as 'GetKey, GetKeyDown, GetKeyUp'
                 // why == false, well we only want to check for GetKeyUp when you release the key.
-                // TODO : why do it need ' _key => _key ==' that i dont know ¯\_(ツ)_/¯
                 if (false == Array.Exists(getPressedKeys, _key => _key == keyInLoop))
                 {
                     if (currentKeys.Value == EInputState.GetKey || currentKeys.Value == EInputState.GetKeyDown)

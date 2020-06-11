@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MainSystemFramework
 {
+    // Kasper  Fly
     public class Global
     {
         public void LoadContent(ContentManager content)
