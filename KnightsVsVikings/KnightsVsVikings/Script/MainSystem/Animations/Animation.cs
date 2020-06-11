@@ -48,8 +48,8 @@ namespace MainSystemFramework
         /// Use if the Animation is made with a Sprite Sheet image
         /// </summary>
         /// <param name="SpriteSheet">Sprite sheet image</param>
-        /// <param name="SpritePositions">Positions of the </param>
-        /// <param name="SpriteSize"></param>
+        /// <param name="SpritePositions">positions of the cut out images of the Sprite sheet</param>
+        /// <param name="SpriteSize">the size of the cut-out images</param>
         /// <param name="name">Name of the animation</param>
         /// <param name="fps">How many pictures that is shown per second</param>
         /// <param name="Loop">Do this animation loop</param>

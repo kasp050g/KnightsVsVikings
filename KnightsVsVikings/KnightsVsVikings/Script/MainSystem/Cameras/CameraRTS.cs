@@ -51,7 +51,7 @@ namespace MainSystemFramework
                 newMove *= 3;
             }
 
-            Position += newMove * (int)(moveSpeed * Time.deltaTime);
+            Position += newMove * (int)(moveSpeed * Time.DeltaTime);
 
             Matrix position = Matrix.CreateTranslation(
                 -Position.X,

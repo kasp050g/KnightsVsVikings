@@ -66,17 +66,5 @@ namespace KnightsVsVikings
         {
             base.Update();
         }
-
-        public void GatherResource(CUnit worker)
-        {
-            tileCapacity.WaitOne();
-
-            Thread.Sleep(1500);
-
-            worker.ResourceAmount = 100;
-            worker.LastGatheredFrom = GameObject;
-
-            tileCapacity.Release();
-        }
     }
 }

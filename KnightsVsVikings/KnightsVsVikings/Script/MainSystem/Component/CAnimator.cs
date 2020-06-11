@@ -77,7 +77,7 @@ namespace MainSystemFramework
                     }
                 }
 
-                timeElapsed += Time.deltaTime;
+                timeElapsed += Time.DeltaTime;
 
                 currentIndex = (int)(timeElapsed * currentAnimation.Fps);
 

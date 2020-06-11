@@ -165,7 +165,7 @@ namespace MainSystemFramework
             {
                 if(currentInputCooldown > 0)
                 {
-                    currentInputCooldown -= Time.deltaTime;
+                    currentInputCooldown -= Time.DeltaTime;
                 }
             }
         }

@@ -56,7 +56,7 @@ namespace KnightsVsVikings
 
         private void Move()
         {
-            GameObject.Transform.Position += speed * velocity * Time.deltaTime;
+            GameObject.Transform.Position += speed * velocity * Time.DeltaTime;
         }
 
         private void AnimationFacing()

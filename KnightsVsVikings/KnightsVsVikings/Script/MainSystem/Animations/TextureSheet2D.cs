@@ -16,6 +16,12 @@ namespace MainSystemFramework
         public Texture2D Sprite { get => sprite; set => sprite = value; }
         public Rectangle Rectangle { get => rectangle; set => rectangle = value; }
 
+        /// <summary>
+        /// A cut out of a sprite sheet.
+        /// </summary>
+        /// <param name="sprite">Sprite sheet image</param>
+        /// <param name="position">position on the Sprite sheet</param>
+        /// <param name="size">the size of the cut out image</param>
         public TextureSheet2D(Texture2D sprite, Vector2 position, Vector2 size)
         {
             this.sprite = sprite;

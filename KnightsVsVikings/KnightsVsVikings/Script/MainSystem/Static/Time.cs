@@ -9,13 +9,13 @@ namespace MainSystemFramework
 {
     public static class Time
     {
-        public static float deltaTime;
-        public static float time;
+        public static float DeltaTime { get; private set; }
+        public static float TotalTime { get; private set; }
 
         public static void Update(GameTime gameTime)
         {
-            Time.deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Time.time = (float)gameTime.TotalGameTime.TotalSeconds;
+            Time.DeltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Time.TotalTime = (float)gameTime.TotalGameTime.TotalSeconds;
         }
     }
 }

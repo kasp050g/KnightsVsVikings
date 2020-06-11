@@ -118,7 +118,7 @@ namespace KnightsVsVikings
         public override void Update()
         {
             base.Update();
-            StateMachine.Update(Time.deltaTime);
+            StateMachine.Update(Time.DeltaTime);
         }
 
         private void MadeUnit()
