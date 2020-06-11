@@ -19,7 +19,7 @@ namespace KnightsVsVikings
         private int gridSizeY = 25;
         private Scene myScene;
 
-        public Vector2 TileSize = new Vector2(128 / 2, 128 / 2);
+        public Vector2 TileSize = new Vector2(Singletons.LevelInformationSingleton.TileSize, Singletons.LevelInformationSingleton.TileSize);
 
         public GameObject[,] groundTileGrid;
         public GameObject[,] obstacleTileGrid;

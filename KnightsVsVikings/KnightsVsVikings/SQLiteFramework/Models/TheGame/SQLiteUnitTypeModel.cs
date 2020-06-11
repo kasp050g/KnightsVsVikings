@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
 {
+    // Lucas
     class SQLiteUnitTypeModel : SQLiteRowBase
     {
         public int UnitType { get; set; }

@@ -1,35 +1,24 @@
-﻿using MainSystemFramework;
+﻿using KnightsVsVikings.Script.TheGame.FactoryPattern;
+using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class BuildingFactory : Factory
+    public class BuildingFactory : IFactoryPlayerCreated
     {
-        #region Singleton
-        private static BuildingFactory instance;
-        public static BuildingFactory Instance
+        public GameObject Create(string type, EFaction faction, ETeam team)
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new BuildingFactory();
-                }
-                return instance;
-            }
-        }
-        #endregion
+            EBuildingType buildingType = (EBuildingType)Enum.Parse(typeof(EBuildingType), type);
 
-        public GameObject Creaft(EBuildingType buildingType,EFaction faction,ETeam team)
-        {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.SpriteSheet["GrayTent"]);
-            CBuilding building = new CBuilding(buildingType,faction,team);
+            CBuilding building = new CBuilding(buildingType, faction, team);
             CStats stats = new CStats();
 
             sr.LayerDepth = 0.3f;

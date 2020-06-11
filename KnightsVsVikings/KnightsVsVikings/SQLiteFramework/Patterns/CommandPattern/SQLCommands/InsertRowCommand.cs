@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 {
+    // Lucas
     class InsertRowCommand : ICommandSQLiteSingle
     {
         public ISQLiteTable ExecuteOnTable { get; set; }

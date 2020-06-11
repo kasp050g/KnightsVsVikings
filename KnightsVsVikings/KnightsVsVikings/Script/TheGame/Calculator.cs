@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame
 {
+    // Lucas
     public static class Calculator
     {
         public static bool ApproximatelyEqual(this float a, float b, float threshold)

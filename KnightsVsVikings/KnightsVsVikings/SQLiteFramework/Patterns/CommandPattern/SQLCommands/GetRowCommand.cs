@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 {
+    // Lucas
     class GetRowCommand : ICommandSQLiteSingle, ISQLiteOutput, ISQLiteInput
     {
         public List<ISQLiteRow> ResultRows { get; private set; } = null;

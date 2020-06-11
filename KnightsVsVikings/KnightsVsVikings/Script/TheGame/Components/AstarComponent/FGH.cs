@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
+    // Lucas
     public struct FGH
     {
         public uint F { get => G + H; }

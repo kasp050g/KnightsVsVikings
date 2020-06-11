@@ -1,5 +1,5 @@
 ﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
-using KnightsVsVikings.Script.TheGame.Components.GatherComponents;
+using KnightsVsVikings.Script.TheGame.Components.GatherComponent;
 using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
+    // Lucas
     public class UnitGatheringState : FsmState<CUnit>
     {
         Thread workerThread;
 
-        private bool workerIsActive = true,
-                     workerEnd = false;
+        private bool workerIsActive = true;
 
         public override void Begin()
         {
@@ -38,14 +38,7 @@ namespace KnightsVsVikings
 
             if (Context.IsMoving == true)
             {
-                //workerThread.Abort();
                 Machine.ChangeState<UnitMoveToPositionState>();
-            }
-
-            if (workerEnd)
-            {
-                //workerThread.Abort();
-                Machine.ChangeState<UnitIdleState>();
             }
         }
 
@@ -78,8 +71,6 @@ namespace KnightsVsVikings
             {
                 Machine.ChangeState<UnitMoveToPositionState>();
             }
-
-            //workerThread.Abort();
         }
 
         private void AutoGatherBehaviour()
@@ -91,7 +82,6 @@ namespace KnightsVsVikings
                 Context.GameObject.GetComponent<CUnit>().Target = Context.LastGatheredFrom;
                 Context.GameObject.GetComponent<CUnit>().IsMoving = true;
                 workerIsActive = false;
-                //workerEnd = true;
             }
 
             if (Context.GameObject.Transform.Position == Context.LastGatheredFrom.Transform.Position)
@@ -101,7 +91,6 @@ namespace KnightsVsVikings
                 Context.GameObject.GetComponent<CUnit>().Target = Context.LastDeliveredTo;
                 Context.GameObject.GetComponent<CUnit>().IsMoving = true;
                 workerIsActive = false;
-                //workerEnd = true;
             }
         }
 

@@ -279,7 +279,7 @@ namespace KnightsVsVikings
 
         public void PlaceUnit(int x, int y)
         {
-            GameObject go = unitFactory.Creaft(unitType, faction, team);
+            GameObject go = unitFactory.Create(unitType.ToString(), faction, team);
 
             go.Transform.Position = new Vector2((x - 0) * tileGrid.TileSize.X, (y - 0) * tileGrid.TileSize.Y);
 
@@ -308,7 +308,7 @@ namespace KnightsVsVikings
             TextureSheet2D tmp = null;
             Vector2 _offset = new Vector2(0, 0);
 
-            GameObject go = buildingFactory.Creaft(buildingType,faction,team);
+            GameObject go = buildingFactory.Create(buildingType.ToString(),faction,team);
 
             go.Transform.Position = new Vector2(x  * tileGrid.TileSize.X, y  * tileGrid.TileSize.Y);
 
@@ -354,7 +354,7 @@ namespace KnightsVsVikings
 
         public void PlaceResource(int x, int y)
         {
-            GameObject go = resourcesFactory.Creaft(resourcesType);
+            GameObject go = resourcesFactory.Create(resourcesType.ToString());
 
             go.Transform.Position = new Vector2((x - 0) * tileGrid.TileSize.X, (y - 0) * tileGrid.TileSize.Y);
 

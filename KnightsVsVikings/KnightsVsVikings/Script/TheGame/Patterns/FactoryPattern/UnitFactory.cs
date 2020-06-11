@@ -1,4 +1,5 @@
 ﻿using KnightsVsVikings.Script.TheGame.Components.AstarComponent;
+using KnightsVsVikings.Script.TheGame.FactoryPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using System;
@@ -9,33 +10,19 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class UnitFactory : Factory
+    public class UnitFactory : IFactoryPlayerCreated
     {
-        #region Singleton
-        private static UnitFactory instance;
-        public static UnitFactory Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new UnitFactory();
-                }
-                return instance;
-            }
-        }
-        #endregion
-        public GameObject Creaft(EUnitType unitType, EFaction faction, ETeam team)
+        public GameObject Create(string type, EFaction faction, ETeam team)
         {
             // Main GameObject
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
             CAnimator animator = new CAnimator();
-            CUnit unit = new CUnit(team, unitType, faction);
+            CUnit unit = new CUnit(team, (EUnitType)Enum.Parse(typeof(EUnitType), type), faction);
             CMove move = new CMove();
             CStats stats = new CStats();
             CAstar astar = new CAstar(unit);
-            CCanBeSelected canBeSelected = new CCanBeSelected();
+            CSelectable canBeSelected = new CSelectable();
             CShadow shadow = new CShadow();
 
             go.AddComponent<CUnit>(unit);
@@ -44,7 +31,7 @@ namespace KnightsVsVikings
             go.AddComponent<CShadow>(shadow);
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CAnimator>(animator);
-            go.AddComponent<CCanBeSelected>(canBeSelected);
+            go.AddComponent<CSelectable>(canBeSelected);
             go.AddComponent<CAstar>(astar);
 
             switch (team)

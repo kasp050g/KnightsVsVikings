@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
 {
+    // Lucas
     class SQLiteBuildingModel : SQLiteRowBase
     {
         public int FactionId { get; set; }
@@ -15,21 +16,17 @@ namespace KnightsVsVikings.SQLiteFramework.Models.TheGame
         public int ProjectileTypeId { get; set; }
         public int StatsId { get; set; }
         public string Name { get; set; }
-        //public string DisplayImageName { get; set; }
-        //public string DisplayIconName { get; set; }
 
         public SQLiteBuildingModel()
         { }
 
-        public SQLiteBuildingModel(ISQLiteTable locatedInTable, int factionId, int buildingTypeId, int projectileTypeId, int statsId, string name) : base(locatedInTable)//, string displayImageName, string displayIconName) : base(locatedInTable)
+        public SQLiteBuildingModel(ISQLiteTable locatedInTable, int factionId, int buildingTypeId, int projectileTypeId, int statsId, string name) : base(locatedInTable)
         {
             FactionId = factionId;
             BuildingTypeId = buildingTypeId;
             ProjectileTypeId = projectileTypeId;
             StatsId = statsId;
             Name = name;
-            //DisplayImageName = displayImageName;
-            //DisplayIconName = displayIconName;
         }
     }
 }

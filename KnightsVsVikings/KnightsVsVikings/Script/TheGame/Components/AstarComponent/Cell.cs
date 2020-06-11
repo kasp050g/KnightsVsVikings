@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
+    // Lucas
     public class Cell : IComparable<Cell>
     {
         public Vector2 GridPos { get; set; } = new Vector2();

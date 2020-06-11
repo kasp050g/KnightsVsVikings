@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Framework.Global
 {
+    // Lucas
+    /// <summary>
+    /// Represents the base call for all SQLite models.
+    /// </summary>
     public class SQLiteRowBase : ISQLiteRow
     {
         public int Id { get; set; }

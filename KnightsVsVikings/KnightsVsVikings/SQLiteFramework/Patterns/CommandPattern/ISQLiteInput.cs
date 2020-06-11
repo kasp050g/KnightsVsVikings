@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
 {
+    // Lucas
     interface ISQLiteInput
     {
         PropertyInfo Column { get; set; }

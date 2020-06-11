@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 {
+    // Lucas
     class UpdateRowCommand : ICommandSQLiteSingle
     {
         public ISQLiteTable ExecuteOnTable { get; set; }

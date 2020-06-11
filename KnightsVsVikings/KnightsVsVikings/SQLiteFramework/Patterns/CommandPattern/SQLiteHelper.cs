@@ -13,6 +13,11 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
 {
+    // Lucas
+
+    /// <summary>
+    /// Extension method to SQLiteTable.
+    /// </summary>
     public static class SQLiteHelper
     {
         private static InsertRowCommand insertCommand = new InsertRowCommand();
@@ -24,11 +29,24 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
 
 
         // Insert Command --
+        /// <summary>
+        /// Inserts a row into a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to insert row to.</param>
+        /// <param name="row">Row to insert.</param>
+        /// <returns>Returns row.</returns>
         public static ISQLiteRow Insert(this ISQLiteTable table, ISQLiteRow row)
         {
             return InsertRow(table, row, false);
         }
 
+        /// <summary>
+        /// Inserts a row into a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to insert row to.</param>
+        /// <param name="row">Row to insert.</param>
+        /// <param name="unique">Defines if the row is unique or not.</param>
+        /// <returns>Returns row.</returns>
         public static ISQLiteRow Insert(this ISQLiteTable table, ISQLiteRow row, bool unique)
         {
             return InsertRow(table, row, unique);
@@ -36,6 +54,11 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // -- Insert Command
 
         // Insert Multiple Command --
+        /// <summary>
+        /// Inserts a list of rows into a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to insert rows to.</param>
+        /// <param name="rows">List of rows to insert.</param>
         public static void InsertMultiple(this ISQLiteTable table, List<ISQLiteRow> rows)
         {
             insertMultipleCommand.ExecuteOnTable = table;
@@ -47,11 +70,22 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // -- Insert Multiple Command
 
         // Delete Command --
+        /// <summary>
+        /// Deletes row from SQLite table.
+        /// </summary>
+        /// <param name="table">Table to delete from.</param>
+        /// <param name="id">Delete by Id.</param>
         public static void Delete(this ISQLiteTable table, int id)
         {
             DeleteRow(table, typeof(SQLiteRowBase).GetProperty("Id"), id);
         }
 
+        /// <summary>
+        /// Deletes row from SQLite table.
+        /// </summary>
+        /// <param name="table">Table to delete from.</param>
+        /// <param name="property">Search in property/column</param>
+        /// <param name="data">Search for data.</param>
         public static void Delete(this ISQLiteTable table, PropertyInfo property, object data)
         {
             DeleteRow(table, property, data);
@@ -59,21 +93,46 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // -- Delete Command
 
         // Get Command --
+        /// <summary>
+        /// Gets a row from a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to get row from.</param>
+        /// <param name="id">Id to find.</param>
+        /// <returns>Returns found row.</returns>
         public static ISQLiteRow Get(this ISQLiteTable table, int id)
         {
             return GetRow(table, typeof(SQLiteRowBase).GetProperty("Id"), id).First();
         }
 
+        /// <summary>
+        /// Gets a row from a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to get row from.</param>
+        /// <param name="property">Search in property/column</param>
+        /// <param name="data">Search for data.</param>
+        /// <returns>Returns found row.</returns>
         public static ISQLiteRow Get(this ISQLiteTable table, PropertyInfo property, object data)
         {
             return GetRow(table, property, data).First();
         }
 
+        /// <summary>
+        /// Gets multiple rows from a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to get row from.</param>
+        /// <param name="property">Search in property/column</param>
+        /// <param name="data">Search for data.</param>
+        /// <returns>Returns list of found rows.</returns>
         public static List<ISQLiteRow> GetMultiple(this ISQLiteTable table, PropertyInfo property, object data)
         {
             return GetRow(table, property, data);
         }
 
+        /// <summary>
+        /// Get all rows from a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to get rows from.</param>
+        /// <returns>Returns a list of all rows.</returns>
         public static List<ISQLiteRow> GetAll(this ISQLiteTable table)
         {
             return GetRow(table, null, null);
@@ -82,6 +141,11 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // -- Get Command
 
         // Rename Command --
+        /// <summary>
+        /// Renames a SQLite table name.
+        /// </summary>
+        /// <param name="table">Table to rename.</param>
+        /// <param name="renameTo">Name to change to.</param>
         public static void Rename(this ISQLiteTable table, string renameTo)
         {
             renameCommand.ExecuteOnTable = table;
@@ -92,11 +156,22 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
         // -- Rename Command
 
         // Update Command --
+        /// <summary>
+        /// Updates a row in a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to update in.</param>
+        /// <param name="updatedData">Updates all rows at the given properties/columns with the paired value.</param>
         public static void Update(this ISQLiteTable table, params KeyValuePair<PropertyInfo, object>[] updatedData)
         {
             UpdateRow(table, null, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));
         }
 
+        /// <summary>
+        /// Updates a row in a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to update in.</param>
+        /// <param name="id">Id of the row to update.</param>
+        /// <param name="updatedData">Updates found row with the given properties/columns with the paired value.</param>
         public static void Update(this ISQLiteTable table, int id, params KeyValuePair<PropertyInfo, object>[] updatedData)
         {
             int[] idToArray = new int[] { id };
@@ -104,6 +179,12 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
             UpdateRow(table, idToArray, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));
         }
 
+        /// <summary>
+        /// Updates a row in a SQLite table.
+        /// </summary>
+        /// <param name="table">Table to update in.</param>
+        /// <param name="ids">Ids of rows to update.</param>
+        /// <param name="updatedData">Updates all found rows with the given properties/columns with the paired value.</param>
         public static void Update(this ISQLiteTable table, int[] ids, params KeyValuePair<PropertyInfo, object>[] updatedData)
         {
             UpdateRow(table, ids, updatedData.ToDictionary(pair => pair.Key, pair => pair.Value));

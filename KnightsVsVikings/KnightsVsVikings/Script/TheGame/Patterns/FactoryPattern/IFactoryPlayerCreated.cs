@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings
+namespace KnightsVsVikings.Script.TheGame.FactoryPattern
 {
-    public abstract class Factory
+    interface IFactoryPlayerCreated
     {
-        
+        GameObject Create(string type, EFaction faction, ETeam team);
     }
 }

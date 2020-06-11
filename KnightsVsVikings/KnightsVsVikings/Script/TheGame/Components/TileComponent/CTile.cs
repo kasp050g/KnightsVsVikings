@@ -1,4 +1,5 @@
 ﻿
+using KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern;
 using MainSystemFramework;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -13,15 +14,8 @@ namespace KnightsVsVikings
 {
     public class CTile : Component
     {
-        private Vector2 tileSize = new Vector2((int)128/2, (int)128/2);
-        private Semaphore tileCapacity = new Semaphore(4, 4);
+        private Vector2 tileSize = new Vector2(Singletons.LevelInformationSingleton.TileSize, Singletons.LevelInformationSingleton.TileSize);
 
-        public int H { get; set; }
-        public int G { get; set; }
-        public int F { get; set; }
-        public CTile LastTile { get; set; }
-        public EResourcesType ResourcesType { get; set; }
-        public Vector2 TileSize { get => tileSize; set => tileSize = value; }
         public ETileType TileType { get; set; }
         public bool IsBlock { get; set; }
         public bool IsResourceOccupied { get; set; }
@@ -45,26 +39,6 @@ namespace KnightsVsVikings
             base.Awake();
             float tmp = tileSize.X / 128;
             GameObject.Transform.Scale = new Vector2(tmp, tmp);
-        }
-
-        public override void Destroy()
-        {
-            base.Destroy();
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            base.Draw(spriteBatch);
-        }
-
-        public override void Start()
-        {
-            base.Start();
-        }
-
-        public override void Update()
-        {
-            base.Update();
         }
     }
 }

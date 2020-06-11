@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces.Patterns.CommandPattern
 {
+    // Lucas
     interface ICommandSQLiteSingle : ICommand
     {
         ISQLiteTable ExecuteOnTable { get; set; }

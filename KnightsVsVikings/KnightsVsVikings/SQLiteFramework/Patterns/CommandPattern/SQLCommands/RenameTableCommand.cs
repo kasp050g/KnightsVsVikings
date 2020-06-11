@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
 {
+    // Lucas
     class RenameTableCommand : ICommandSQLiteSingle
     {
         public ISQLiteTable ExecuteOnTable { get; set; }

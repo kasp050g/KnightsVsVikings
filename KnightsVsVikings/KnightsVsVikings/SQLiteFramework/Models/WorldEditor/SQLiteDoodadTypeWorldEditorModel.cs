@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
 {
+    // Lucas
     class SQLiteDoodadTypeWorldEditorModel : SQLiteRowBase
     {
         public int DoodadType { get; set; }

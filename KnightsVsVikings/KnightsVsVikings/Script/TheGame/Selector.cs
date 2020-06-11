@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class SelectedObject
+    public class Selector
     {
         private Scene myScene;
         private GameObject selectedGameObject;
@@ -19,11 +19,11 @@ namespace KnightsVsVikings
         private List<GameObject> unitsSelected = new List<GameObject>();
         public List<GameObject> UnitsSelected { get => unitsSelected; private set => unitsSelected = value; }
         PlaceTileWithMouse placeTileWithMouse;
-        public SelectedObject(Scene myScene)
+        public Selector(Scene myScene)
         {
             this.myScene = myScene;
         }
-        public SelectedObject(Scene myScene, PlaceTileWithMouse placeTileWithMouse)
+        public Selector(Scene myScene, PlaceTileWithMouse placeTileWithMouse)
         {
             this.myScene = myScene;
             this.placeTileWithMouse = placeTileWithMouse;
@@ -65,7 +65,7 @@ namespace KnightsVsVikings
             {
                 for (int i = 0; i < UnitsSelected.Count; i++)
                 {
-                    UnitsSelected[i].GetComponent<CCanBeSelected>().IsSelected = false;
+                    UnitsSelected[i].GetComponent<CSelectable>().IsSelected = false;
                 }
                 UnitsSelected.Clear();
             }

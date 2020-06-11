@@ -13,7 +13,7 @@ namespace KnightsVsVikings
     {
         PlaceTileWithMouse placeTile;
         TileGrid tileGrid = null;
-        SelectedObject selectedObject;
+        Selector selectedObject;
         UnitCommands unitCommands;
 
         public override void Initialize()
@@ -68,11 +68,11 @@ namespace KnightsVsVikings
             WorldEditorUI worldEditorUI = new WorldEditorUI(this, placeTile,tileGrid);
             worldEditorUI.MadeUI();
 
-            selectedObject = new SelectedObject(this, placeTile);
+            selectedObject = new Selector(this, placeTile);
             selectedObject.MakeSelectedZoneUI();
 
             unitCommands = new UnitCommands(selectedObject, tileGrid, this);
-            unitCommands.Start();
+            //unitCommands.Start();
         }
     }
 }

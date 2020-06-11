@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.TheGame.Components.GatherComponents
+namespace KnightsVsVikings.Script.TheGame.Components.GatherComponent
 {
+    //Lucas
     class CGather : Component
     {
         private Semaphore resourceCapacity = new Semaphore(4, 4);

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
 {
+    // Lucas
     class SQLiteWorldEditorModel : SQLiteRowBase
     {
         public string Name { get; set; }

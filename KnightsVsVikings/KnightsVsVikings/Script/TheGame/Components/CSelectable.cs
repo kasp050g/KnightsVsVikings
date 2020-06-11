@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class CCanBeSelected : Component
+    public class CSelectable : Component
     {
         private bool isSelected;
         private Texture2D Sprite;

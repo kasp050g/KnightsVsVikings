@@ -18,21 +18,19 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 {
+    // Lucas & Kasper
     public class CAstar : Component
     {
         private const byte DEFAULT_COST = 10;
 
         private byte tileSize = Singletons.LevelInformationSingleton.TileSize;
 
-        private bool pathBlocked = false,
-                     exit = false;
+        private bool exit = false;
 
         private Thread astarThread;
-        //private readonly PerformanceCounter currentCPUUsage = Singletons.GlobalPropertiesSingleton.CPUUsage;//new PerformanceCounter("Processor", "% Processor Time", "_Total");
 
         private Cell startCell = null,
                      currentCell = null,
-                     nextCell = null,
                      pathCell = null,
                      targetCell = null;
 
@@ -43,10 +41,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
 
         private List<Cell> openList = new List<Cell>(),
                            closedList = new List<Cell>(),
-                           pathList = new List<Cell>(),
-                           pathCloneList = new List<Cell>();
-
-        // private Stack<Cell> pathList = new Stack<Cell>();
+                           pathList = new List<Cell>();
 
         public CAstar(CUnit owner)
         {
@@ -57,28 +52,22 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             astarThread.Start();
         }
 
-        private void AstarThread()//public override void Update()
+        private void AstarThread()
         {
             while (GameObject.IsActive)
             {
-                //if (currentCPUUsage.NextValue() == 100f)
-                //    Thread.Sleep(20);
-                //else
                 Thread.Sleep(8);
 
                 exit = false;
 
-                //Console.WriteLine(currentCPUUsage.NextValue());
-
+                // Henter informationer til baseGrid og tileGrid, hvis dette ikk er gjort.
                 if (Singletons.AstarGlobalSingleton.BaseMapGrid != null && baseGrid == null)
                 {
                     baseGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
                     tileGrid = Singletons.AstarGlobalSingleton.TileGrid;
-                    //baseGrid.Print2DArray();
-                    //Console.ReadKey();
                 }
 
-                if (owner.Target != null)// && pathCell == null)
+                if (owner.Target != null)
                 {
                     if (pathList.Count == 0)
                         GetPath();
@@ -88,68 +77,45 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
         }
 
+
+        /// <summary>
+        /// Resets the A* algorithm.
+        /// </summary>
         public void ResetAstar()
         {
-            //if (currentCell != null)
-            //{
-            //    owner.GameObject.Transform.Position = new Vector2(currentCell.GridPos.X * tileSize, currentCell.GridPos.Y * tileSize);
-            //    tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
-            //}
-            //Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].ECellType = ECellType.Default;
-
             currentCell = null;
             targetCell = null;
             startCell = null;
             pathCell = null;
 
-            pathBlocked = false;
-
             pathList.Clear();
-            pathCloneList.Clear();
             openList.Clear();
             closedList.Clear();
 
-            //if (pathCloneList.Count > 0)
-            //{
-            //    foreach (Cell cell in pathCloneList)
-            //        Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y] = Singletons.AstarGlobalSingleton.BaseMapGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y];
-            //
-            //    pathCloneList.Clear();
-            //}
-
             baseGrid = Singletons.AstarGlobalSingleton.BaseMapGrid.ToAstarMatrix();
 
-            //baseGrid.Print2DArray();
-
-            //runAstar = false;
-            //cMove.Velocity = new Vector2(0, 0);
-            //CurrentTile.IsUnitOccupied = true;
             owner.Target = null;
             owner.IsMoving = false;
-
-            //if (pathCell != null)
-            //{
-            //    GameObject.Transform.Position = new Vector2(pathCell.GridPos.X * tileSize, pathCell.GridPos.Y * tileSize);
-            //    tileGrid[(int)pathCell.GridPos.X, (int)pathCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
-            //}
-
 
             GameObject.GetComponent<CMove>().Velocity = Vector2.Zero;
 
             exit = true;
-            //pathCell = null;
         }
 
+        /// <summary>
+        /// Finds and return a paths.
+        /// </summary>
         private void GetPath()
         {
                 startCell = baseGrid[(int)GameObject.Transform.Position.X / tileSize,
-                                       (int)GameObject.Transform.Position.Y / tileSize];
+                                     (int)GameObject.Transform.Position.Y / tileSize];
 
                 targetCell = baseGrid[(int)owner.Target.Transform.Position.X / tileSize,
                                       (int)owner.Target.Transform.Position.Y / tileSize];
 
             if (startCell != targetCell)
             {
+                // Hvis målet er blacklisted, altså ikke muligt, at nå frem til, så afslut søgningen.
                 if (targetCell.BlackListed)
                     ResetAstar();
 
@@ -157,8 +123,8 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                     tileGrid[(int)startCell.GridPos.X, (int)startCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
                 else
                     exit = true;
-                //tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
 
+                // Først skal vi have start cellen med på open listen.
                 ModifyNeighbourCells(startCell, null);
 
                 if (targetCell != null)
@@ -166,140 +132,85 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
         }
 
+        /// <summary>
+        /// Follows a found path.
+        /// </summary>
         private void FollowPath()
         {
             Vector2 ownerGridPos = new Vector2(owner.GameObject.Transform.Position.X / tileSize,
                                                owner.GameObject.Transform.Position.Y / tileSize);
 
-            //if (pathCell == targetCell)
-            //    ResetAstar();
-
             if (pathCell == null)
             {
                 owner.IsMoving = true;
                 pathCell = pathList.First();
-                //pathList.Remove(pathCell);
             }
-            
+
+            // Hvis jeg er tæt på mit mål i pathen.
             if (ownerGridPos.ApproximatelyEqual(pathCell.GridPos, 0.1f))
             {
+                // Hvis mit endelig mål er blevet overtaget af en anden enhed, og hvis der ikke er en ressource på mit mål.
                 if (tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied &&
                     !tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsResourceOccupied)
                 {
+                    /* Her bliver der sat om der er placeret en bygning på målet, og denne enhed er en worker.
+                     * Dette bliver gjort siden Workers bruger TownHall som et sted at levere fundne ressourcer.
+                     * Derfor vil man ikke have noget i mod en Worker gå hen på en TownHall.                     * 
+                    */
                     if (!(owner.UnitType == EUnitType.Worker) && tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsCanBuildHere)
                     {
+                        // Hvis overstående ikke er sandt, så finder A* algoritmen et nyt Target i nærheden af det endelige mål,
+                        // og genstarter algoritmen med det nye mål.
                         GameObject storeTarget = ReadjustTarget((int)targetCell.GridPos.X, (int)targetCell.GridPos.Y);
                         ResetAstar();
                         owner.Target = storeTarget;
                     }
-                    //if (storeTarget != null)// && pathCloneList.Count > 8)
-                    //    owner.Target = storeTarget;
-                    //else
-                    //    owner.Target = null;
                 }
                 else if (pathCell.GridPos == targetCell.GridPos)
                 {
+                    // Hvis enheden er på det endelige mål, kan vi nulstille algoritmen.
+
                     GameObject.Transform.Position = new Vector2(pathCell.GridPos.X * tileSize, pathCell.GridPos.Y * tileSize);
                     tileGrid[(int)pathCell.GridPos.X, (int)pathCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
+
+                    pathCell.FGH = new FGH();
+                    pathCell.ECellType = ECellType.Default;
 
                     ResetAstar();
                 }
                 else
                 {
+                    // Hvis enheden ikke er på det endelige mål, men er nået et af målene på pathen, så nulstilles det mål enheden er nået til.
                     pathList.Remove(pathCell);
                     pathCell.FGH = new FGH();
                     pathCell.ECellType = ECellType.Default;
                     GameObject.GetComponent<CMove>().Velocity = Vector2.Zero;
 
-                    //if (pathCell.GridPos == pathList.Last().GridPos)
-                    //{
-                    //    ownerUnit.GameObject.Transform.Position = new Vector2(pathCell.GridPos.Y * Singletons.LevelInformationSingleton.TileSize,
-                    //                                                          pathCell.GridPos.X * Singletons.LevelInformationSingleton.TileSize);
-                    //    
-                    //    ResetAstar();
-                    //}
-
-                    //if (pathCell.GridPos == targetCell.GridPos)
-                    //    ResetAstar();
-                    //else
                     pathCell = null;
                 }
-                }
-                else
-                {
-                    owner.MoveToLocation(new Vector2(pathCell.GridPos.X * tileSize, pathCell.GridPos.Y * tileSize));
-                }
+            }
+            else
+            {
+                // Enheden bevæger sig over mod det nuværende mål i pathen.
+                owner.MoveToLocation(new Vector2(pathCell.GridPos.X * tileSize, pathCell.GridPos.Y * tileSize));
+            }
         }
 
-        //private void FollowPath()
-        //{
-        //    //while (pathStack.Count != 0)
-        //    //{
-        //    Vector2 ownerGridPos = new Vector2(owner.GameObject.Transform.Position.X / tileSize,
-        //                                       owner.GameObject.Transform.Position.Y / tileSize);
-        //
-        //    //if (ownerGridPos.ApproximatelyEqual(targetCell.GridPos, 0.05f))
-        //    //    ResetAstar();
-        //    if (ownerGridPos.ApproximatelyEqual(currentCell.GridPos, 0.05f))
-        //    {
-        //        owner.IsMoving = true;
-        //
-        //        CheckNextCell();
-        //
-        //        //tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
-        //
-        //        if (pathList.Count > 0)
-        //        {
-        //            currentCell = pathList.First();//pathList.Pop();
-        //            pathList.Remove(currentCell);
-        //        }
-        //
-        //        if (currentCell != null)
-        //        {
-        //            Singletons.AstarGlobalSingleton.GlobalAstarGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].ECellType = ECellType.Default;
-        //            tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
-        //        }
-        //
-        //        //if (currentCell == targetCell)
-        //        //{
-        //        //    if (tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-        //        //    {
-        //        //        pathList.Add(pathCloneList.ElementAt(pathCloneList.IndexOf(currentCell) - 1));
-        //        //        targetCell = pathList.Last();
-        //        //    }
-        //        //    else
-        //        //    {
-        //        //        tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = true;
-        //        //        ResetAstar();
-        //        //    }
-        //        //}
-        //        if (currentCell == targetCell || tileGrid[(int)targetCell.GridPos.X, (int)targetCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-        //        {
-        //                ResetAstar();
-        //        }
-        //
-        //        //if (pathBlocked)
-        //        //{
-        //        //    ResetAstar();
-        //        //    owner.Target = tileGrid[(int)nextCell.GridPos.X, (int)nextCell.GridPos.Y];
-        //        //    nextCell = null;
-        //        //}
-        //    }
-        //    else
-        //        owner.MoveToLocation(new Vector2(currentCell.GridPos.X * tileSize,
-        //                                         currentCell.GridPos.Y * tileSize));
-        //    //}
-        //}
-
+        /// <summary>
+        /// Finds a path.
+        /// </summary>
         private void FindPath()
         {
-            while (!exit)//while (true)
+            /* For at finde en path, går vi i gennem et while loop,
+             * indtil den nuværende celle er lig det endelige mål.
+             * Hvis cellen på et tidspunkt bliver lig null, eller den nuværende cell bliver lig null
+             * så stoppes loopet også. Hvis openListen bliver tom, hvilket betyder algoritmen har undersøgt hele banen,
+             * så blacklistes det nuværende mål, dette betyder, at den ikke vil prøve, at finde det mål igen.
+             */
+            while (!exit)
             {
-                //if (currentCPUUsage.NextValue() > 5)
-                //    Thread.Sleep(50);
-                //else
                 Thread.Sleep(5);
-                //Task.Delay(1);
+
                 if (openList.Count == 0)
                 {
                     if (targetCell != null)
@@ -320,29 +231,23 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 SetNeighbourCells();
             }
 
+            // Når while loopet er slut, og vi stadigt har en start celle, så returneres den fundne path.
             if (startCell != null)
             {
                 tileGrid[(int)startCell.GridPos.X, (int)startCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied = false;
 
                 ReturnPath();
 
+                // her skal pathen reverses, siden den går fra mål til enhed, når den finder pathen.
                 pathList.Reverse();
-                pathCloneList = pathList.ToList();
             }
-
-            //owner.IsMoving = true;
-            //while (currentCell != targetCell && openList.Count == 0)
-            //    GetNextCell();
-            //
-            //
-            //pathCloneStack = pathStack.ToArray();
-            //
-            //ReturnPath();
         }
 
+        /// <summary>
+        /// Finds the next cell to explore.
+        /// </summary>
         private void GetNextCell()
         {
-            //currentCell = openList.First();
             if (openList.Count != 0)
             {
                 openList.Sort();
@@ -356,6 +261,9 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
         }
 
+        /// <summary>
+        /// Explores the neighbour cells to the current cell.
+        /// </summary>
         private void SetNeighbourCells()
         {
             // X
@@ -367,15 +275,20 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             try { ModifyNeighbourCells(baseGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y - 1], currentCell); } catch { }
         }
 
+        /// <summary>
+        /// Changes the neighbour cells FGH price.
+        /// </summary>
+        /// <param name="cell">The cell to change the FGH of.</param>
+        /// <param name="parent">The parent of the cell.</param>
         private void ModifyNeighbourCells(Cell cell, Cell parent)
         {
-            //Thread.Sleep(2);
             if (cell == null)
             {
                 exit = true;
             }
             else
             {
+                // Hvis cellen er default eller ikke er occupied af en enhed.
                 if (baseGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].ECellType == ECellType.Default && !tileGrid[(int)cell.GridPos.X, (int)cell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
                 {
                     if (!closedList.Contains(cell) && !openList.Contains(cell))
@@ -385,6 +298,7 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                     cell.FGH = new FGH(CalculateG(cell), CalculateH(cell.GridPos, targetCell.GridPos));
                     cell.ECellType = ECellType.Open;
                 }
+                // Hvis cellen allerede eksistere på openListen, så ses der om der kan gives en bedre FGH pris.
                 else if (openList.Contains(cell) && cell.Parent != null)
                 {
                     Cell storeParent = cell.Parent;
@@ -400,19 +314,21 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
         }
 
+        /// <summary>
+        /// Returns a found path.
+        /// </summary>
         private void ReturnPath()
         {
-            while (!exit)//(true)
+            /* Dette while loop kører indtil den nuværende celle er lig start cellen.
+             * Dette vil sige den finder en path fra det endelig mål til enheden.
+             */
+            while (!exit)
             {
-                //if (currentCPUUsage.NextValue() == 100f)
-                //    Thread.Sleep(50);
-                //else
                 Thread.Sleep(5);
-                //Thread.Sleep(6);
-                //MyEventWaitHandler
+
                 if (currentCell != null)
                 {
-                    pathList.Add(currentCell);//pathList.Push(currentCell);
+                    pathList.Add(currentCell);
                     if (currentCell.Parent == startCell)
                         break;
 
@@ -424,79 +340,12 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             }
         }
 
-        private void CheckNextCell()
-        {
-            //if (tileGrid[(int)currentCell.GridPos.X, (int)currentCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-            //{
-            //    ResetAstar();
-            //
-            //}
-
-            nextCell = pathList.ElementAt(pathList.IndexOf(currentCell) + 1);
-
-            if (tileGrid[(int)nextCell.GridPos.X, (int)nextCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-            {
-                int index = pathList.IndexOf(nextCell) - 1;
-
-                if (index > pathCloneList.Count)
-                {
-                    pathList.Add(pathCloneList.ElementAt(pathList.IndexOf(nextCell) - 1));
-                    targetCell = pathList.Last();
-                }
-            }
-
-            //if (nextCell == null && pathList.Count >= 2)
-            //    nextCell = pathList.ElementAt(1);
-
-            //if (pathCloneList.Count != 0)
-            //{
-            //    while (tileGrid[(int)nextCell.GridPos.X, (int)nextCell.GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-            //    {
-            //        if (pathCloneList.Count != 0)
-            //        {
-            //            pathCloneList.Remove(pathCloneList.Last());
-            //            nextCell = pathCloneList.Last();
-
-            //            pathBlocked = true;
-            //        }
-            //        //targetCell = pathCloneList.Last();
-
-            //        //pathList.Remove(pathList.Last());
-            //        //targetCell = pathList.Last();
-            //        //pathList.Reverse();
-            //        //targetCell = pathList.Pop();
-            //        //pathList = pathList.Reverse();
-            //    }
-            //}
-            //else
-            //{
-            //    Cell backupCell = startCell;
-            //    ResetAstar();
-            //    owner.Target = tileGrid[(int)backupCell.GridPos.X, (int)backupCell.GridPos.Y];
-            //}
-
-            //if (pathStack.Peek() != null)
-            //{
-            //    //int x = pathCloneStack.Count;
-            //    bool newTarget = false;
-
-            //    while (tileGrid[(int)pathStack.Peek().GridPos.X, (int)pathStack.Peek().GridPos.Y].GetComponent<CTile>().IsUnitOccupied)
-            //    {
-            //        newTarget = true;
-            //        //if (pathStack.Count == 1)
-            //        //{
-            //        //    pathStack.Push(pathCloneStack.ElementAt(x));
-            //        //    x--;
-            //        //}
-            //        //else
-            //        pathStack.Pop();
-            //    }
-
-            //    if (newTarget)
-            //        targetCell = pathStack.Pop();
-            //}
-        }
-
+        /// <summary>
+        /// Explore cells near the Target cell for a new target.
+        /// </summary>
+        /// <param name="xTarget">X Grid Position of the Target cell.</param>
+        /// <param name="yTarget">X Grid Position of the Target cell.</param>
+        /// <returns>Returns a new Target.</returns>
         private GameObject ReadjustTarget(int xTarget, int yTarget)
         {
             int xStart = xTarget - 1,
@@ -506,26 +355,22 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
                 yEnd = yTarget + 1,
                 yCompareMax = tileGrid.GetLength(1);
 
-            for (int x = xStart; x < xEnd; x++)//(int x = xTarget - 1; x < x + 2; x++)
-                for (int y = yStart; y < yEnd; y++)//(int y = yTarget - 1; y < y + 2; y++)
+            for (int x = xStart; x < xEnd; x++)
+                for (int y = yStart; y < yEnd; y++)
                     if (x <= xCompareMax && x >= 0 && y <= yCompareMax && y >= 0)
-                    //try
-                    //{
                         if (!tileGrid[x, y].GetComponent<CTile>().IsUnitOccupied &&
                             tileGrid[x, y].GetComponent<CTile>().TileType == ETileType.Grass)
                             return tileGrid[x, y];
-            //}
-            //catch { }
-            //}
-            //else
-            //{
-            //    break;
-            //}
 
             tileGrid[xTarget, yTarget].GetComponent<CTile>().IsUnitOccupied = false;
             return tileGrid[xTarget, yTarget];
         }
 
+        /// <summary>
+        /// Calculates a cells G price from FGH.
+        /// </summary>
+        /// <param name="cell">Cell to calculate on.</param>
+        /// <returns>Returns a new G price.</returns>
         private uint CalculateG(Cell cell)
         {
             if (cell.Parent != null)
@@ -534,6 +379,12 @@ namespace KnightsVsVikings.Script.TheGame.Components.AstarComponent
             return DEFAULT_COST;
         }
 
+        /// <summary>
+        /// Calculates a cells H price from FGH.
+        /// </summary>
+        /// <param name="pos">Cells current position.</param>
+        /// <param name="target">Targets position.</param>
+        /// <returns>Returns a new H price.</returns>
         private uint CalculateH(Vector2 pos, Vector2 target)
         {
             return (uint)Math.Abs(Vector2.Distance(pos, target) * 10);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
+    // Lucas
     public interface ISQLiteTable
     {
         string TableName { get; set; }

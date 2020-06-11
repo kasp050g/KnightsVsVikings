@@ -41,11 +41,11 @@ namespace KnightsVsVikings
             }
 
             if (Context.LastDeliveredTo != null)
-                if (Context.GameObject.Transform.Position == Context.LastDeliveredTo.Transform.Position)// && Context.ResourceAmount == 0)
+                if (Context.GameObject.Transform.Position == Context.LastDeliveredTo.Transform.Position)
                     Machine.ChangeState<UnitGatheringState>();
 
             if (Context.LastGatheredFrom != null)
-                if (Context.GameObject.Transform.Position == Context.LastGatheredFrom.Transform.Position)// && Context.ResourceAmount == 0)
+                if (Context.GameObject.Transform.Position == Context.LastGatheredFrom.Transform.Position)
                     Machine.ChangeState<UnitGatheringState>();
         }
 

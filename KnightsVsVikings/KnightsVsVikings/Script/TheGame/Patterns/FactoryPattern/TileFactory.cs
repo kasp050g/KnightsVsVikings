@@ -8,28 +8,13 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings
 {
-    public class TileFactory : Factory
+    public class TileFactory : IFactory
     {
-        #region Singleton
-        private static TileFactory instance;
-        public static TileFactory Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new TileFactory();
-                }
-                return instance;
-            }
-        }
-        #endregion
-
-        public GameObject Creaft(ETileType tileType)
+        public GameObject Create(string type)
         {
             GameObject go = new GameObject();
             CSpriteRenderer sr = new CSpriteRenderer(SpriteContainer.Instance.Pixel);
-            CTile tile = new CTile(tileType);
+            CTile tile = new CTile((ETileType)Enum.Parse(typeof(ETileType), type));
 
             go.AddComponent<CSpriteRenderer>(sr);
             go.AddComponent<CTile>(tile);

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern
 {
+    // Lucas
+
     interface ISQLiteOutput
     {
         List<ISQLiteRow> ResultRows { get; }

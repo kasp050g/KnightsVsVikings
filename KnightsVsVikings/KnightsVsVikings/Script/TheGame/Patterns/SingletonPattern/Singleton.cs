@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.Script.TheGame.Patterns.SingletonPattern
 {
+    // Lucas
+    /// <summary>
+    /// Creates a Singleton.
+    /// </summary>
+    /// <typeparam name="T">Type of Class to create the Singleton as.</typeparam>
     public class Singleton<T> where T : class
     {
         private static T instance = null;

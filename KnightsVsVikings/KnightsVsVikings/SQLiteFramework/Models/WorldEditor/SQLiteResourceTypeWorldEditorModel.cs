@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Models.WorldEditor
 {
+    // Lucas
     class SQLiteResourceTypeWorldEditorModel : SQLiteRowBase
     {
         public int ResourceType { get; set; }

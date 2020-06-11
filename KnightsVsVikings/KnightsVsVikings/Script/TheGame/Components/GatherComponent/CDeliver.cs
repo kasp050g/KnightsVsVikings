@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace KnightsVsVikings.Script.TheGame.Components.GatherComponents
+namespace KnightsVsVikings.Script.TheGame.Components.GatherComponent
 {
+    // Lucas
     class CDeliver : Component
     {
         private Semaphore garrisonCapacity = new Semaphore(6, 6);

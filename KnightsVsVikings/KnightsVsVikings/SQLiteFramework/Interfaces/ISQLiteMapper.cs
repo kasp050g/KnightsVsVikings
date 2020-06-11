@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace KnightsVsVikings.SQLiteFramework.Interfaces
 {
+    // Lucas
+
+    /// <summary>
+    /// Translates SQLite data to C#.
+    /// </summary>
     public interface ISQLiteMapper
     {
         List<ISQLiteRow> MapRowsFromReader(IDataReader reader, ISQLiteTable readFromTable);
