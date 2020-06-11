@@ -25,6 +25,9 @@ namespace MainSystemFramework
             base.OnSwitchScene();
         }
 
+        /// <summary>
+        /// Move Camare with keyborde
+        /// </summary>
         public void MoveCamare()
         {
             Vector2 newMove = new Vector2(0, 0);
