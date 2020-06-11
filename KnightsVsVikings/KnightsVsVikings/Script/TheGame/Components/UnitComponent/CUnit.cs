@@ -39,7 +39,7 @@ namespace KnightsVsVikings
         private GameObject lastGatheredFrom,
                            lastDeliveredTo;
 
-        public GameObject Target { get;  set; } = null;
+        public GameObject Target { get; set; } = null;
         public CAnimator Animator { get => animator; set => animator = value; }
         public bool IsAlive { get; set; }
         public bool IsMoving { get; set; } = false;
