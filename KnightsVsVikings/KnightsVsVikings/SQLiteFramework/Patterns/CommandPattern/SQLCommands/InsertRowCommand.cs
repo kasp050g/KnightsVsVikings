@@ -63,29 +63,5 @@ namespace KnightsVsVikings.SQLiteFramework.Patterns.CommandPattern.SQLCommands
             catch
             { return false; }
         }
-
-        //private string GetProperties()
-        //{
-        //    List<string> result = new List<string>();
-        //
-        //    PropertyInfo[] properties = RowToInsert.GetType().GetProperties();
-        //
-        //    foreach (PropertyInfo property in properties)
-        //        result.Add(property.Name);
-        //
-        //    return string.Join(", ", result);
-        //}
-        //
-        //private string GetValues()
-        //{
-        //    List<string> result = new List<string>();
-        //
-        //    PropertyInfo[] properties = RowToInsert.GetType().GetProperties();
-        //
-        //    foreach (PropertyInfo property in properties)
-        //        result.Add((string)property.GetValue(RowToInsert).ObjectToSQLiteString());
-        //
-        //    return string.Join(", ", result);
-        //}
     }
 }
