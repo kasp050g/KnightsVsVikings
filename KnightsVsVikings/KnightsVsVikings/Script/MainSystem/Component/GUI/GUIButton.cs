@@ -190,10 +190,9 @@ namespace MainSystemFramework
                 {
                     lastUpdate = false;
                     currentUpdate = false;
-                    if (OnClick != null)
-                    {
-                        OnClick();
-                    }
+
+                        OnClick?.Invoke();
+                    
                 }
 
                 if (Input.GetMouseButton(EMyMouseButtons.LeftButton))
