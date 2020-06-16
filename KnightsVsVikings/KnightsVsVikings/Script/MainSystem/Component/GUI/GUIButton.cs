@@ -249,7 +249,7 @@ namespace MainSystemFramework
                     // SpriteEffects
                     SpriteRenderer.SpriteEffects,
                     // LayerDepth
-                    SpriteRenderer.LayerDepth + 0.01f
+                    SpriteRenderer.LayerDepth + 0.02f
                 );
             }
         }
