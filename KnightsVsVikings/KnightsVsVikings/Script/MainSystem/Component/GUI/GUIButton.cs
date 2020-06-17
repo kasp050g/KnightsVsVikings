@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using KnightsVsVikings;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -146,6 +147,10 @@ namespace MainSystemFramework
         public override void Awake()
         {            
             base.Awake();
+            CPlayAudio cPlayAudio = new CPlayAudio();
+            GameObject.AddComponent<CPlayAudio>(cPlayAudio);
+            OnClick += () => { cPlayAudio.PlaySoundEffect("buttonClick", 0.5f); };
+            onHorering += () => { cPlayAudio.PlaySoundEffect("buttonHoring", 0.1f); };
         }
         public override void Start()
         {

@@ -77,10 +77,20 @@ namespace MainSystemFramework
 
         public void Awake()
         {
-            foreach (Component component in components.Values)
+            List<Component> tmp = components.Values.ToList<Component>();
+            for (int i = 0; i < tmp.Count; i++)
             {
-                component.Awake();
+                tmp[i].Awake();
             }
+            List<Component> tmp1 = components.Values.ToList<Component>();
+            for (int i = tmp.Count; i < tmp1.Count; i++)
+            {
+                tmp1[i].Awake();
+            }
+            //foreach (Component component in components.Values)
+            //{
+            //    component.Awake();
+            //}
         }
 
         public void Start()

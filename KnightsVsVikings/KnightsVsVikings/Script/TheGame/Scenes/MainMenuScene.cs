@@ -20,11 +20,13 @@ namespace KnightsVsVikings
         public override void OnSwitchAwayFromThisScene()
         {
             base.OnSwitchAwayFromThisScene();
+            AudioContainer.Instance.StopSong();
         }
 
         public override void OnSwitchToThisScene()
         {
             base.OnSwitchToThisScene();
+            AudioContainer.Instance.PlaySong("song1",0.5f);
         }
 
         public override void Update()

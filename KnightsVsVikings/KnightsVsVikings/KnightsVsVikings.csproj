@@ -68,6 +68,7 @@
     <Compile Include="Script\MainSystem\Cameras\CameraRTS.cs" />
     <Compile Include="Script\MainSystem\Component\CCollider.cs" />
     <Compile Include="Script\MainSystem\Component\Component.cs" />
+    <Compile Include="Script\MainSystem\Component\CPlayAudio.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\GUIButton.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\GUI.cs" />
     <Compile Include="Script\MainSystem\Component\GUI\GUIImage.cs" />

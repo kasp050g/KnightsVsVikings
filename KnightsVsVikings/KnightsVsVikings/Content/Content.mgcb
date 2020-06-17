@@ -13,6 +13,36 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/song/song1.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/song/song1.wav
+
+#begin Audio/song/song2.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/song/song2.wav
+
+#begin Audio/song/song3.wav
+/importer:WavImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/song/song3.wav
+
+#begin Audio/UI/buttonClick.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/UI/buttonClick.wav
+
+#begin Audio/UI/buttonHoring.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Audio/UI/buttonHoring.wav
+
 #begin Font/MediaevalFont.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
